@@ -1,5 +1,4 @@
-# References
-## Kleinian Groups
+# Kleinian Groups
 - Indra's Pearls
 - 二元生成四次元クライン群における潜伏的放物型変換について(ja)
 佐久川恵太(Keita Sakugawa)
@@ -13,7 +12,3 @@
 佐久川恵太(Keita Sakugawa)
 - AN EXTENSION OF THE MASKIT SLICE FOR 4-DIMENSIONAL KLEINIAN GROUPS
 Yoshiaki Araki, Kentaro Ito
-## Tessellation
-- Hyperbolization of Euclidean Ornaments
-Martin von Gagern & Jurgen Richter-Gebert
-- Bending Circle Limits

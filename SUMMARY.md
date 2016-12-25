@@ -5,3 +5,4 @@
 
 * [Tessellation](tessellation/README.md)
 
+* [Other Fractals](fractals/README.md)

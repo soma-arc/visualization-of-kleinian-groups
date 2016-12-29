@@ -1,4 +1,5 @@
 # References
+参考文献をまとめた．筆者が読めていないものも含まれてる．
 ## Four Dimensional
 - 二元生成四次元クライン群における潜伏的放物型変換について(ja)
 - [On accidental compound parabolic transformation](http://www.kurims.kyoto-u.ac.jp/~kyodo/kokyuroku/contents/pdf/1660-02.pdf)  

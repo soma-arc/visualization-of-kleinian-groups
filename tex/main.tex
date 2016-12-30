@@ -1,4 +1,4 @@
-\documentclass[dvipdfmx]{jarticle}
+\documentclass[dvipdfmx]{article}
 \usepackage{ascmac,here,txfonts,txfonts}
 \usepackage[margin=2.5cm,noheadfoot]{geometry}
 \usepackage{color}
@@ -17,15 +17,20 @@ Meiji University\\
 
 \maketitle
 
-\tableofcontents
-
-\section{Introduction}
+\begin{abstract}
 クライン群(Kleinian Groups)はトポロジーや双曲幾何学に属する数学の１分野である．クライン群は様々な方法で可視化することで，フラクタルと呼ばれる美しい構造を見ることができる．この本では主にクライン群の可視化手法とその高速化についてまとめた．また，それに付随して，テセレーション(Tessellation)と呼ばれる敷き詰め模様とその他のフラクタル図形のレンダリング手法についてもまとめた．
 
-まず，様々なフラクタルの種類，レンダリング方法についてまとめた後，筆者が主に学習，実装したクライン群についてまとめる．
+１章ではいくつかのフラクタル図形とそのレンダリング手法についてまとめる．ここで述べる手法は後でクライン群を効率よく描画するための基礎となる．
+２章では筆者が主に学習，実装したクライン群について記述する．
+３章では敷き詰め模様のレンダリングのレンダリング手法をまとめる．
+\end{abstract}
+
+\tableofcontents
 
 \input{fractal}
 
 \input{klein}
+
+\input{tessellation}
 
 \end{document}

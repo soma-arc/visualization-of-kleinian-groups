@@ -1,0 +1,31 @@
+\documentclass[dvipdfmx]{jarticle}
+\usepackage{ascmac,here,txfonts,txfonts}
+\usepackage[margin=2.5cm,noheadfoot]{geometry}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\setlength{\parindent}{0.3in}
+
+\title{ Visualization of Kleinian Groups }
+\author{ Kento Nakamura\\
+Meiji University\\
+}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Introduction}
+クライン群(Kleinian Groups)はトポロジーや双曲幾何学に属する数学の１分野である．クライン群は様々な方法で可視化することで，フラクタルと呼ばれる美しい構造を見ることができる．この本では主にクライン群の可視化手法とその高速化についてまとめた．また，それに付随して，テセレーション(Tessellation)と呼ばれる敷き詰め模様とその他のフラクタル図形のレンダリング手法についてもまとめた．
+
+まず，様々なフラクタルの種類，レンダリング方法についてまとめた後，筆者が主に学習，実装したクライン群についてまとめる．
+
+\input{fractal}
+
+\input{klein}
+
+\end{document}

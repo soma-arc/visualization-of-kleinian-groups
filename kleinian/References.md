@@ -34,8 +34,6 @@ Masaaki Wada
 ## Quasi Fuchsian 3D Fractals
 - [円辺形と球面体の変形空間及び極限集合 (ja)](http://www.cajpn.org/refs/thesis/16M-Kageyama.pdf)  
 蔭山亮(Ryo Kageyama)
-- [Hexahedra with spherical faces] (not open to the public)  
-Kazushi Ahara, Yoshiaki Araki(2002)
 - [Sphairahedral Approach to Parameterize Visible Three Dimensional Quasi-Fuchsian Fractals](https://www.researchgate.net/publication/4023738_Sphairahedral_approach_to_parameterize_visible_three_dimensional_quasi-fuchsian_fractals)  
 Kazushi Ahara, Yoshiaki Araki(2003)
 - [Materializing 3D Quasi-Fuchsian Fractals](http://www.scipress.org/journals/forma/pdf/2101/21010019.pdf)  

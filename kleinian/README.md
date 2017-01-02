@@ -51,7 +51,7 @@ IISを用いることで，円や球をベースにしたクライン群を含�
 多くの場合，行列表現で与えられる．高次元のクライン群（インドラの真珠であつかうクライン群はすべて二次元の図に帰着させることができる）になると，四元数行列となり，パラメータ数はさらに増大する．そこで筆者らはすべてのメビウス変換を円や球の反転で構成することを考えた．そうすることで幾何学的な直観を得ることができる．また，IISを用いることで複雑な生成元をもつ群もリアルタイムに可視化することができる．このことは，研究者や学習者だけでなく，フラクタルアーティストにも有益なものとなるだろう．この方法に関する論文はBridges2016に投稿中である．
 # Interactive Image Sequences Converging to Fractals
 Iterated Function Systemを拡張したHyperbolic Iterated Function Systemを提案している．
-https://www-m10.ma.tum.de/bin/view/Lehrstuhl/AaronMontagKleinian
+
 
 # 
 また，2016年11月にクライン群の極限集合のDistance Estimationを行う式がFractal ForumsにおいてJos LeysとKnightyによって開発された．

@@ -61,14 +61,15 @@ IISを用いることで，円や球をベースにしたクライン群を含�
 
 \subsubsection{Other Rendering Methods}
 Aaron Montag氏はIterated Inversion Systemを拡張したHyperbolic Iterated Function Systemによって極限集合を描画することに成功した\cite{hyperbolicIFS}．固定点付近では図に乱れが出るものの，おおむね描画できる．
-Jos Ley, Knighty両氏によってマスキット群におけるDistance Estimationを開発した．
+
+また，Jos Ley, Knighty両氏はマスキット群におけるDistance Estimationのアルゴリズムを開発した．\footnote{An escape time algorithm for Kleinian group limit sets http://www.fractalforums.com/3d-fractal-generation/an-escape-tim-algorithm-for-kleinian-group-limit-sets/}二次元の極限集合だけでなく，三次元の群も高速に描画することができる．群は二つの放物型変換による群で，片方の元は平行移動を表す．荒木・糸\cite{maskit}による設定をうまく活用している．
 
 \subsubsection{Quasi Fuchsian 3-Dimensional Fractals}
-三次元フラクタルのレンダリングに大きな影響を与えた．
-四次元クライン群の一種である
-Distance Estimationの式がKnightyにより開発され，高速にレンダリングすることができる．
+阿原・荒木両氏による擬フックス群を三次元に拡張したフラクタルである\cite{sphairahedra}\cite{sphairahedraJa}．その極限集合は球の和集合となる．前述の三次元フラクタルのレンダリングに大きな影響を与えた．
+荒木氏はこのフラクタル図形の物質化についてもまとめている\cite{materializing}．
+Distance Estimationの式がKnighty氏により開発され，高速にレンダリングすることができる．\footnote{Another 3D Kleinian http://www.fractalforums.com/ifs-iterated-function-systems/another-3d-kleinian/}
 球面体をその周囲の球で反転させていくことにより得ることができる．
-蔭山氏が2016年にまとめている．
+蔭山氏が2016年にまとめている\cite{kageyama}．
 
 \subsubsection{4-Dimensional Kleinian Groups}
 インドラの真珠で紹介されるクライン群は複素平面にのみ作用する

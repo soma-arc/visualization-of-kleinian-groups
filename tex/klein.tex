@@ -52,12 +52,11 @@ $f(z) = \frac{az + b}{cz + d}$
 三次元形状をレンダリングする際にはレイマーチングと呼ばれるレイトレーシングの手法を用いる．
 
 \subsection{Geometrical Representation of Mobius Transformations}
-IISを用いることで，円や球をベースにしたクライン群を含むフラクタルが高速に描画できるようになりインタラクティブに構成するソフトウェアを開発した．
+IISを用いることで，円や球をベースにしたクライン群を含むフラクタルが高速に描画できるようになりインタラクティブに構成するソフトウェアを開発した．Schottky Link\footnote{https://schottky.jp}を開発した．
 円や球を用いることで，生成元と可視化される図形の間の関係性が理解しやすい．そこで，その他のメビウス変換についても円や球の反転の合成で構成することを考えた．
 多くの場合，行列表現で与えられる．高次元のクライン群（インドラの真珠であつかうクライン群はすべて二次元の図に帰着させることができる）になると，四元数行列となり，パラメータ数はさらに増大する．そこで筆者らはすべてのメビウス変換を円や球の反転で構成することを考えた．そうすることで幾何学的な直観を得ることができる．また，IISを用いることで複雑な生成元をもつ群もリアルタイムに可視化することができる．このことは，研究者や学習者だけでなく，フラクタルアーティストにも有益なものとなるだろう．この方法に関する論文はBridges2016に投稿中である．
 
 \subsection{Other Topics}
-\subsubsection{Pseudo-Kleinian}
 
 \subsubsection{Other Rendering Methods}
 Aaron Montag氏はIterated Inversion Systemを拡張したHyperbolic Iterated Function Systemによって極限集合を描画することに成功した\cite{hyperbolicIFS}．固定点付近では図に乱れが出るものの，おおむね描画できる．
@@ -65,10 +64,10 @@ Aaron Montag氏はIterated Inversion Systemを拡張したHyperbolic Iterated Fu
 また，Jos Ley, Knighty両氏はマスキット群におけるDistance Estimationのアルゴリズムを開発した．\footnote{An escape time algorithm for Kleinian group limit sets http://www.fractalforums.com/3d-fractal-generation/an-escape-tim-algorithm-for-kleinian-group-limit-sets/}二次元の極限集合だけでなく，三次元の群も高速に描画することができる．群は二つの放物型変換による群で，片方の元は平行移動を表す．荒木・糸\cite{maskit}による設定をうまく活用している．
 
 \subsubsection{Quasi Fuchsian 3-Dimensional Fractals}
-阿原・荒木両氏による擬フックス群を三次元に拡張したフラクタルである\cite{sphairahedra}\cite{sphairahedraJa}．その極限集合は球の和集合となる．前述の三次元フラクタルのレンダリングに大きな影響を与えた．
+阿原・荒木両氏による擬フックス群を三次元に拡張した４次元クライン群である\cite{sphairahedra}\cite{sphairahedraJa}．球面体をその周囲の球で反転させていくことにより得ることができる．その極限集合は球の和集合となる．前述の三次元フラクタルのレンダリングに大きな影響を与えた．
 荒木氏はこのフラクタル図形の物質化についてもまとめている\cite{materializing}．
-Distance Estimationの式がKnighty氏により開発され，高速にレンダリングすることができる．\footnote{Another 3D Kleinian http://www.fractalforums.com/ifs-iterated-function-systems/another-3d-kleinian/}
-球面体をその周囲の球で反転させていくことにより得ることができる．
+
+また，Distance EstimationのアルゴリズムがKnighty氏により開発された．\footnote{Another 3D Kleinian http://www.fractalforums.com/ifs-iterated-function-systems/another-3d-kleinian/}
 蔭山氏が2016年にまとめている\cite{kageyama}．
 
 \subsubsection{4-Dimensional Kleinian Groups}
@@ -76,10 +75,14 @@ Distance Estimationの式がKnighty氏により開発され，高速にレンダ
 四元数を用いることで，三次元空間に作用するメビウス変換を定義することができる．
 これはspk(1, 1)と呼ばれ，2x2の四元数行列で表現される．
 パラメータが多くなりすぎるため，あまり研究は進んでいない．
-例えば，以下の論文で佐久川氏が述べているスライスや離散条件など
+例えば，\cite{sakugawaMaster},\cite{accidentalParabolic}や\cite{sakugawa4d}で佐久川氏が述べているスライスや離散条件などに関しての追実験が必要であるが，まだ行われていない．
+
+荒木・糸糸氏のWebページ\footnote{http://www.math.nagoya-u.ac.jp/~itoken/3d-maskit/3d-maskit.html}にてレンダリングされたものを見ることができる．
+
+三浦氏は３つ以上の生成元による４次元クライン群をモジュラー群から構成しようと試みた\cite{miura}．筆者はこの論文における数値実験と可視化を行った．
 
 \subsubsection{Once Punctured Torus Groups}
-Once Punctured Torus Groupsはクライン群の一種である．OPTiという描画ソフトウェアが有名である．
+Once Punctured Torus Groupsはクライン群の一種である．OPTi\footnote{OPTi http://delta-mat.ist.osaka-u.ac.jp/OPTi/index.html}という描画ソフトウェアが有名である．
 描画や離散性判定のためのアルゴリズムが和田氏によりまとめられている．
 ベアズスライスとよばれる．OPTiでは，ベアズスライスも同時に描画される．
 ほとんどが解決された．

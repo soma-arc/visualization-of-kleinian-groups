@@ -79,8 +79,8 @@ Hybrid Systemの１つにpseudo-kleinianがある．Spherefoldと平行移動と
 
 \subsection{Other Fractals}
 
-Iterated Function systemは点に様々な関数を適用して，その集積点をレンダリングするアルゴリズムである．
-Fractals EverywhereはIFSによるフラクタルの研究を広めた書籍である．
-アルゴリズムやカラーリングに関する事項はThe Fractal Frame Algorithmによくまとまっている．並列計算による高速化に関して以下の論文にまとめられている．
+Iterated Function system（IFS）は点に様々な関数を適用して，その集積点をレンダリングするアルゴリズムである．シェルピンスキーのギャスケットなどもIFSでレンダリングすることができる．
+IFSに関する書籍としてはFractals Everywhere\cite{fractalsEverywhere}が有名である．並列計算による高速化に関して以下の論文にまとめられている\cite{highPerformanceIFS}\cite{GPUIFS}．
+IFSの一種にフラクタルフレーム(Fractal Frame)\cite{fractalFrame}と呼ばれるものがある．フラクタルフレームはIFSに用いる関数にメビウス変換などの非線形変換を用い，美しくレンダリングされるようにカラーリングが工夫されている．
 
-他にはL-Systemなどのアルゴリズムが存在するが，今回は後に記述するクライン群のレンダリングには関連してこないのでここでは触れない．
+他にはL-Systemなどの様々なアルゴリズムが存在するが，今回は後に記述するクライン群のレンダリングには関連してこないのでここでは触れない．

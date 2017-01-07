@@ -46,36 +46,45 @@ Escape-time Fractalsは複素平面上の点に対して，特定の漸化式を
 \end{eqnarray*}
 $z_n$が無限大に発散しないものをマンデルブロ集合と呼ぶ．図では黒い部分がマンデルブロ集合である．先端部分が拡大しても見ることができることがわかる．マンデルブロ集合はその単純な式から驚くほど豊富なバリエーションの図を見ることができる．
 カラーリングには様々な方法がある．図では発散と判定されるまでの計算の回数によって色をつけた．その他のEscape-time fractalには，ジュリア集合やファタウ集合等がある．
-各点における漸化式の計算はお互いに干渉しないので，そのままシェーダでの実装が可能であるが，先に述べたDistance Estimationを用いることで，エイリアシングノイズ等を避けてより精細に描画することができる．Green Functionと呼ばれる陰関数を用いる．導出はiq氏の記事が詳しい．Green Functionに関しては，マンデルブロ集合に関する詳細な議論となってしまうので，こちらの論文を参考にされたい．Doaudy Hubard Potensialを用いることでカラーリングやテセレーションに応用することができる．
-これもiq氏の\footnote{http://iquilezles.org/www/articles/distancefractals/distancefractals.htm}
-\cite{mandelbrot}
+
+各点における漸化式の計算はお互いに干渉しないので，そのままシェーダでの実装が可能であるが，先に述べたDistance Estimationを用いることで，エイリアシングノイズ等を避けてより精細に描画することができる．これにはGreen Functionと呼ばれる陰関数を用いる．導出はiq氏の記事が詳しい\footnote{http://iquilezles.org/www/articles/distancefractals/distancefractals.htm}．Green Functionに関しては，マンデルブロ集合に関する詳細な議論となってしまうので，こちらの論文\cite{mandelbrot}を参考にされたい．Doaudy Hubard Potensialを用いることでカラーリングやテセレーションに応用することができる．
 
 \subsection{Distance Estimated 3D Fractals}
-メンガーのスポンジ等の形状は見られたが，マンデルブロ集合のような複雑な３次元形状を持つフラクタルが求められていた．マンデルブロ集合を３次元に拡張する試みはさまざまに行われていたものの，あまり大きな成果はあげられていなかった．しかし，年に発表された阿原・荒木による４次元クライン群の一種であるQuasi Fuchsian 3D Fractalsはある程度の複雑性を持った３次元フラクタルであり，コミュニティに大きな影響を与えたと言われている．このフラクタルに関しては後の章で触れる．その後，２００９年にマンデルブロ集合をうまく拡張したmandelbulbの出現を皮切りに，次々と複雑なEscape-time fractalの式が発見された．これらもDistance Estimationとレイマーチングを用いることで効率よくレンダリングすることができる．これら一連のフラクタルに関してはSyntopiaの一連のポストにまとめられている．
+
+メンガーのスポンジ等の形状は見られたが，
+マンデルブロ集合のような複雑な３次元形状を持つフラクタルが求められていた．マンデルブロ集合を３次元に拡張する試みはさまざまに行われていたものの，あまり大きな成果はあげられていなかった．例えば，ジュリア集合を４次元に拡張し，Distance Estimationを用いて描く方法が１９８９年には発表されている\cite{4djulia}．
+しかし，その形状は単純でフラクタルコミュニティの満足のいくものではなかった．２００４年にKeenan Crane氏がGPUで実装した\footnote{Ray Tracing Quaternion Julia Sets on the GPU: https://www.cs.cmu.edu/~kmcrane/Projects/QuaternionJulia/}．
+
+２００３年に発表された阿原・荒木\cite{sphairahedra}による４次元クライン群の一種であるQuasi Fuchsian 3D Fractalsはある程度の複雑性を持った３次元フラクタルであり，コミュニティに大きな影響を与えたと言われている．このフラクタルに関しては後の章で触れる．その後，２００９年にマンデルブロ集合をうまく三次元に拡張したmandelbulbの出現を皮切りに，次々と複雑な三次元フラクタルの式が発見された．これらもDistance Estimationとレイマーチングを用いることで効率よくレンダリングすることができる．これら一連のフラクタルに関してはSyntopiaの一連のポスト\footnote{Syntopia Distance Estimated 3D Fractals: http://blog.hvidtfeldts.net/index.php/2011/06/distance-estimated-3d-fractals-part-i/}にまとめられている．
 注意が必要なのは，これらのフラクタルは純粋な数学の研究対象になりにくい．
 
 \subsubsection{Mandelbulb}
+
 mandelbulbはD.WhiteとP.Nylanderによって開発された．
-White(twinbee)氏は球面座標を用いるアプローチを提案（http://www.fractalforums.com/3d-fractal-generation/true-3d-mandlebrot-type-fractal/）したがその後，Nylander氏はそれを高次の積に拡張した．
+White(twinbee)氏は球面座標を用いるアプローチを提案\footnote{http://www.fractalforums.com/3d-fractal-generation/true-3d-mandlebrot-type-fractal/}したがその後，Nylander氏はそれを高次の積に拡張した．
 mandelbulbとして知られている式は$z^8 + c $であり，図のような形状をもつ．
 その経緯はWhite氏のWebサイトにまとめられている．
-レイマーチングを用いる際にはDistance Estimationを用いるが，これには通常のmandelbro集合で用いたものと同じアプローチを用いることができる．
+レイマーチングを用いる際にはDistance Estimationを用いるが，これには通常のマンデルブロ集合で用いたものと同じアプローチを用いることができる．
 White氏のWebページに詳しい経緯が掲載されている\footnote{http://www.skytopia.com/project/fractal/mandelbulb.html}．
 
 \subsubsection{Mandelbox}
-その後，２０１０年にTom Lowe氏によってMandelboxが開発された．\footnote{https://sites.google.com/site/mandelbox/what-is-a-mandelbox}
+その後，２０１０年にTom Lowe氏によってMandelbox\footnote{https://sites.google.com/site/mandelbox/what-is-a-mandelbox}が開発された．
 Mandelboxはball foldやbox foldといった操作を定義する．
-sphere foldは円の中心付近に来た点が発散してしまわないように，制限をかけた円の反転である．式は以下のように定義され
-https://sites.google.com/site/mandelbox/what-is-a-mandelbox
-様々にあるが，ヤコビアンの積で割ることで距離を求めることができる．
-その後は各漸化式の計算ごとに異なる式を使うHybrid Systemが考案された．今も様々なフラクタル作品が作られている．
+sphere foldは円の中心付近に来た点が発散してしまわないように，制限をかけた円の反転である．式は以下のように定義される．
+
+このDistance Estimationには様々な方法があるが，mandelboxでは最終的に得られた点の原点からの距離をヤコビアンの積で割ることで距離を求めることができる．
+
 
 \subsubsection{Pseudo-Kleinian}
-Hybrid Systemの１つにpseudo-kleinianがある．Spherefoldと平行移動と同じような働きをするboxfoldによってクライン群のような形状が得られる式である．
+
+mandelboxの登場以降は漸化式に複数の式を用いるHybrid Systemが考案された．今も様々なフラクタル作品が作られている．
+興味深いHybrid Systemの１つにpseudo-kleinianがある．これはSpherefoldと平行移動と同じような働きをするboxfoldによってクライン群のような形状が得られる式である．
 
 \subsection{Coloring by Orbit trap}
 
-ここでOrbit trapと呼ばれるカラーリングのアルゴリズムを紹介しておく．Escape-timeのような点に軌道が存在
+ここでOrbit trapと呼ばれるカラーリングのアルゴリズムを紹介しておく．Escape-timeアルゴリズムを用いたフラクタルのレンダリングでは，主にOrbit trapというカラーリングの手法が使われる．trapと呼ばれる何らかの図形を空間上に置いておき，trapと軌道の位置関係から色を付ける．
+以下の図は（）に点のtrapを置き，その位置に応じて色を付けた．黒の点がtrapであり，青の点が軌道である．
+この方法を応用すると，画像をtrapに用いることで，図のように点の軌道上に画像を張り付けることも可能である．
 
 \subsection{Other Fractals}
 
@@ -83,4 +92,4 @@ Iterated Function system（IFS）は点に様々な関数を適用して，そ�
 IFSに関する書籍としてはFractals Everywhere\cite{fractalsEverywhere}が有名である．並列計算による高速化に関して以下の論文にまとめられている\cite{highPerformanceIFS}\cite{GPUIFS}．
 IFSの一種にフラクタルフレーム(Fractal Frame)\cite{fractalFrame}と呼ばれるものがある．フラクタルフレームはIFSに用いる関数にメビウス変換などの非線形変換を用い，美しくレンダリングされるようにカラーリングが工夫されている．
 
-他にはL-Systemなどの様々なアルゴリズムが存在するが，今回は後に記述するクライン群のレンダリングには関連してこないのでここでは触れない．
+他にも様々なアルゴリズムが存在するが，今回は後述するクライン群のレンダリングには関連してこないので触れない．Wikipedia\footnote{https://en.wikipedia.org/wiki/Fractal}には有名なアルゴリズムが網羅的に記載されているので参考にされたい．

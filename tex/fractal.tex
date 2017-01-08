@@ -49,6 +49,14 @@ $z_n$が無限大に発散しないものをマンデルブロ集合と呼ぶ．
 
 各点における漸化式の計算はお互いに干渉しないので，そのままシェーダでの実装が可能であるが，先に述べたDistance Estimationを用いることで，エイリアシングノイズ等を避けてより精細に描画することができる．これにはGreen Functionと呼ばれる陰関数を用いる．導出はiq氏の記事が詳しい\footnote{http://iquilezles.org/www/articles/distancefractals/distancefractals.htm}．Green Functionに関しては，マンデルブロ集合に関する詳細な議論となってしまうので，こちらの論文\cite{mandelbrot}を参考にされたい．Doaudy Hubard Potensialを用いることでカラーリングやテセレーションに応用することができる．
 
+\begin{figure}[htbp]
+ \begin{center}
+      \includegraphics[width=3in, height=3in, keepaspectratio]{../img/fractal/mandelbrot.pdf}
+    \caption{Mandelbrot set}
+    \label{fig:mandelbrot}
+ \end{center}
+\end{figure}
+
 \subsection{Distance Estimated 3D Fractals}
 
 メンガーのスポンジ等の形状は見られたが，
@@ -58,14 +66,34 @@ $z_n$が無限大に発散しないものをマンデルブロ集合と呼ぶ．
 ２００３年に発表された阿原・荒木\cite{sphairahedra}による４次元クライン群の一種であるQuasi Fuchsian 3D Fractalsはある程度の複雑性を持った３次元フラクタルであり，コミュニティに大きな影響を与えたと言われている．このフラクタルに関しては後の章で触れる．その後，２００９年にマンデルブロ集合をうまく三次元に拡張したmandelbulbの出現を皮切りに，次々と複雑な三次元フラクタルの式が発見された．これらもDistance Estimationとレイマーチングを用いることで効率よくレンダリングすることができる．これら一連のフラクタルに関してはSyntopiaの一連のポスト\footnote{Syntopia Distance Estimated 3D Fractals: http://blog.hvidtfeldts.net/index.php/2011/06/distance-estimated-3d-fractals-part-i/}にまとめられている．
 注意が必要なのは，これらのフラクタルは純粋な数学の研究対象になりにくい．
 
+この章で使われている図のいくつかはFractal Lab\footnote{Fractal Lab: http://hirnsohle.de/test/fractalLab/}というWebアプリケーションを用いてレンダリングした．
 \subsubsection{Mandelbulb}
 
 mandelbulbはD.WhiteとP.Nylanderによって開発された．
-White(twinbee)氏は球面座標を用いるアプローチを提案\footnote{http://www.fractalforums.com/3d-fractal-generation/true-3d-mandlebrot-type-fractal/}したがその後，Nylander氏はそれを高次の積に拡張した．
-mandelbulbとして知られている式は$z^8 + c $であり，図のような形状をもつ．
-その経緯はWhite氏のWebサイトにまとめられている．
+White(twinbee)氏は球面座標を用いるアプローチを提案\footnote{http://www.fractalforums.com/3d-fractal-generation/true-3d-mandlebrot-type-fractal/}した．
+図\ref{fig:mandelbulb2}は$z^2 + c$を用いてレンダリングした結果であるが，あまり複雑な形状は現れなかった．
+しかし，その後Nylander氏が式を高次の積を扱えるように拡張した．
+図\ref{fig:mandelbulb8}は$z^8 + c $という式でレンダリングされた形状であり，Mandelbulbとして広く知られている．White氏のWebページに詳しい経緯が掲載されている\footnote{http://www.skytopia.com/project/fractal/mandelbulb.html}．
 レイマーチングを用いる際にはDistance Estimationを用いるが，これには通常のマンデルブロ集合で用いたものと同じアプローチを用いることができる．
-White氏のWebページに詳しい経緯が掲載されている\footnote{http://www.skytopia.com/project/fractal/mandelbulb.html}．
+
+\begin{figure}[h!tbp]
+ \begin{subfigure}{0.49\hsize}
+   \begin{center}
+    \includegraphics[width=3in, height=3in, keepaspectratio]{../img/fractal/mandelbulb2.pdf}
+    \caption{$z^2 + c$}
+    \label{fig:mandelbulb2}
+   \end{center}
+ \end{subfigure}
+ \hspace*{\fill}
+ \begin{subfigure}{0.49\hsize}
+   \begin{center}
+    \includegraphics[width=3in, height=3in, keepaspectratio]{../img/fractal/mandelbulb8.pdf}
+    \caption{$z^8 + c$}
+    \label{fig:mandelbulb8}
+   \end{center}
+ \end{subfigure}
+ \caption{Mandelbulb rendered by Fractal Lab}
+\end{figure}
 
 \subsubsection{Mandelbox}
 その後，２０１０年にTom Lowe氏によってMandelbox\footnote{https://sites.google.com/site/mandelbox/what-is-a-mandelbox}が開発された．
@@ -73,6 +101,25 @@ Mandelboxはball foldやbox foldといった操作を定義する．
 sphere foldは円の中心付近に来た点が発散してしまわないように，制限をかけた円の反転である．式は以下のように定義される．
 
 このDistance Estimationには様々な方法があるが，mandelboxでは最終的に得られた点の原点からの距離をヤコビアンの積で割ることで距離を求めることができる．
+
+\begin{figure}[h!tbp]
+ \begin{subfigure}{0.49\hsize}
+   \begin{center}
+    \includegraphics[width=3in, height=3in, keepaspectratio]{../img/fractal/mandelbox.pdf}
+    \caption{}
+    \label{fig:mandelbox}
+   \end{center}
+ \end{subfigure}
+ \hspace*{\fill}
+ \begin{subfigure}{0.49\hsize}
+   \begin{center}
+    \includegraphics[width=3in, height=3in, keepaspectratio]{../img/fractal/mandelbox2.pdf}
+    \caption{}
+    \label{fig:mandelbox2}
+   \end{center}
+ \end{subfigure}
+ \caption{Mandelbox rendered by Fractal Lab}
+\end{figure}
 
 
 \subsubsection{Pseudo-Kleinian}

@@ -63,27 +63,27 @@ $z_n$が無限大に発散しないものをマンデルブロ集合と呼ぶ．
 マンデルブロ集合のような複雑な３次元形状を持つフラクタルが求められていた．マンデルブロ集合を３次元に拡張する試みはさまざまに行われていたものの，あまり大きな成果はあげられていなかった．例えば，ジュリア集合を４次元に拡張し，Distance Estimationを用いて描く方法が１９８９年には発表されている\cite{4djulia}．
 しかし，その形状は単純でフラクタルコミュニティの満足のいくものではなかった．２００４年にKeenan Crane氏がGPUで実装した\footnote{Ray Tracing Quaternion Julia Sets on the GPU: https://www.cs.cmu.edu/~kmcrane/Projects/QuaternionJulia/}．
 
-２００３年に発表された阿原・荒木\cite{sphairahedra}による４次元クライン群の一種であるQuasi Fuchsian 3D Fractalsはある程度の複雑性を持った３次元フラクタルであり，コミュニティに大きな影響を与えたと言われている．このフラクタルに関しては後の章で触れる．その後，２００９年にマンデルブロ集合をうまく三次元に拡張したmandelbulbの出現を皮切りに，次々と複雑な三次元フラクタルの式が発見された．これらもDistance Estimationとレイマーチングを用いることで効率よくレンダリングすることができる．これらのフラクタルはDistance Estimated 3D Fractalsと呼ばれることが多い．これら一連のフラクタルの歴史と実装についてはSyntopiaの一連のポスト\footnote{Syntopia Distance Estimated 3D Fractals: http://blog.hvidtfeldts.net/index.php/2011/06/distance-estimated-3d-fractals-part-i/}によくまとめられている．
+２００３年に発表された阿原・荒木\cite{sphairahedra}による４次元クライン群の一種であるQuasi Fuchsian 3D Fractalsはある程度の複雑性を持った３次元フラクタルであり，コミュニティに大きな影響を与えたと言われている．このフラクタルに関しては後の章で触れる．その後，２００９年にマンデルブロ集合をうまく三次元に拡張したmandelbulbの出現を皮切りに，次々と複雑な三次元フラクタルの式が発見された．これらもDistance Estimationとレイマーチングを用いることで効率よくレンダリングすることができる．これらのフラクタルはDistance Estimated 3D Fractalsと呼ばれることが多い．これら一連のフラクタルの歴史と実装についてはMikael Hvidtfeldt Christensen氏のSyntopiaの一連のポスト\footnote{Syntopia Distance Estimated 3D Fractals: http://blog.hvidtfeldts.net/index.php/2011/06/distance-estimated-3d-fractals-part-i/}によくまとめられている．
 
-これらフラクタルをレンダリングするためのソフトウェアはMandelbulb 3D\footnote{http://mandelbulb.com/2014/mandelbulb-3d-mb3d-fractal-rendering-software/}やMandelbulber\footnote{http://www.mandelbulber.com/}が有名である．
-Fragmentarium\footnote{http://syntopia.github.io/Fragmentarium/}はシェーダベースのグラフィクスを開発するための環境である．フラクタルのサンプルコードも豊富で学習に役立つ．
+これらフラクタルをレンダリングするためのソフトウェアはMandelbulb 3D\footnote{Mandelbulb 3D: http://mandelbulb.com/2014/mandelbulb-3d-mb3d-fractal-rendering-software/}やMandelbulber\footnote{Mandelbulber: http://www.mandelbulber.com/}が有名である．
+Fragmentarium\footnote{Fragmentarium: http://syntopia.github.io/Fragmentarium/}はシェーダベースのグラフィクスを開発するための環境である．フラクタルのサンプルコードも豊富で学習に役立つ．
 Fractal Lab\footnote{Fractal Lab: http://hirnsohle.de/test/fractalLab/}はブラウザ上でGLSLを用いてフラクタルをレンダリングすることができるWebアプリケーションである．この章で使われている図のいくつかはFractal Labを用いてレンダリングした．
 
 \subsubsection{Mandelbulb}
 
-mandelbulbはD.WhiteとP.Nylanderによって開発された．
-White(twinbee)氏は球面座標を用いるアプローチを提案\footnote{http://www.fractalforums.com/3d-fractal-generation/true-3d-mandlebrot-type-fractal/}した．
-図\ref{fig:mandelbulb2}は$z^2 + c$を用いてレンダリングした結果であるが，あまり複雑な形状は現れなかった．
+MandelbulbはD.White(twinbee)とP.Nylanderによって開発された．
+White(twinbee)氏は球面座標上で計算するアプローチを提案\footnote{http://www.fractalforums.com/3d-fractal-generation/true-3d-mandlebrot-type-fractal/}した．
+図\ref{fig:mandelbulb2}は$z_{n+1} = z_n^2 + c$を用いてレンダリングした結果であるが，あまり複雑な形状は現れなかった．
 しかし，その後Nylander氏が式を高次の積を扱えるように拡張した．
-図\ref{fig:mandelbulb8}は$z^8 + c $という式でレンダリングされた形状であり，Mandelbulbとして広く知られている．White氏のWebページに詳しい経緯が掲載されている\footnote{http://www.skytopia.com/project/fractal/mandelbulb.html}．
+図\ref{fig:mandelbulb8}は$z_{n+1} = z_n^8 + c $という式でレンダリングされた形状であり，Mandelbulbとして広く知られている．White氏のWebページ\footnote{http://www.skytopia.com/project/fractal/mandelbulb.html}では開発の詳しい経緯がまとめられている．
 
-Mandelbulbは通常のマンデルブロ集合と同様に距離関数を導出することができる．
+Mandelbulbは三次元空間の点に対して漸化式を計算することで形状を得ることもできるが, 通常はマンデルブロ集合と同様に距離関数を導出し, レイマーチングを用いてレンダリングする.
 
 \begin{figure}[h!tbp]
  \begin{subfigure}{0.49\hsize}
    \begin{center}
     \includegraphics[width=3in, height=3in, keepaspectratio]{../img/fractal/mandelbulb2.pdf}
-    \caption{$z^2 + c$}
+    \caption{$z_{n + 1} = z_n^2 + c$}
     \label{fig:mandelbulb2}
    \end{center}
  \end{subfigure}
@@ -91,7 +91,7 @@ Mandelbulbは通常のマンデルブロ集合と同様に距離関数を導出�
  \begin{subfigure}{0.49\hsize}
    \begin{center}
     \includegraphics[width=3in, height=3in, keepaspectratio]{../img/fractal/mandelbulb8.pdf}
-    \caption{$z^8 + c$}
+    \caption{$z_{n+1} = z_n^8 + c$}
     \label{fig:mandelbulb8}
    \end{center}
  \end{subfigure}
@@ -100,17 +100,25 @@ Mandelbulbは通常のマンデルブロ集合と同様に距離関数を導出�
 
 \subsubsection{Mandelbox}
 その後，２０１０年にTom Lowe氏によってMandelbox\footnote{https://sites.google.com/site/mandelbox/what-is-a-mandelbox}が開発された．
-Mandelboxはball foldやbox foldといった操作を定義する．
-sphere foldは円の中心付近に来た点が発散してしまわないように，制限をかけた円の反転である．式は以下のように定義される．
+漸化式は$z_{n+1} = scale * spherefold(boxfold(z_n)) + c$となる.
+boxfoldは$x=\pm1, y=\pm1, z=\pm1$を頂点にもつ立方体の各面に対して, 点が外側にある場合にその面に関する反転を行なう.
+spherefoldは以下の式で定義される.
+\begin{eqnarray*}
+ spherefold(z) = \begin{cases}
+                  \frac{z}{r^2} & 0 \le |z| < r \\
+                  \frac{z}{|z|^2} & r \le |z|
+                 \end{cases}
+\end{eqnarray*}
+spherefoldは球の中心付近に来た点が発散してしまわないように，制限をかけた球の反転とみることができる．このような操作から, これらのフラクタルは多くの場合数学的な研究対象にならない.
 
-このDistance Estimationには様々な方法があるが，mandelboxでは最終的に得られた点の原点からの距離をヤコビアンの積で割ることで距離を求めることができる．
+このDistance Estimationには様々な方法があるが，通常, 最終的な点の長さからの距離をヤコビアンの積で割ることで距離を求めることができる．
 
 \begin{figure}[h!tbp]
  \begin{subfigure}{0.49\hsize}
    \begin{center}
     \includegraphics[width=3in, height=3in, keepaspectratio]{../img/fractal/mandelbox.pdf}
     \caption{}
-    \label{fig:mandelbox}
+    \label{fig:mandelbox1}
    \end{center}
  \end{subfigure}
  \hspace*{\fill}
@@ -122,19 +130,37 @@ sphere foldは円の中心付近に来た点が発散してしまわないよう
    \end{center}
  \end{subfigure}
  \caption{Mandelbox rendered by Fractal Lab}
+ \label{fig:mandelbox}
 \end{figure}
 
 
 \subsubsection{Pseudo-Kleinian}
 
-mandelboxの登場以降は漸化式に複数の式を用いるHybrid Systemが考案された．今も様々なフラクタル作品が作られている．
-興味深いHybrid Systemの１つにpseudo-kleinianがある．これはSpherefoldと平行移動と同じような働きをするboxfoldによってクライン群のような形状が得られる式である．
+Mandelboxの登場以降は漸化式にMandelbulbやMandelboxを含む複数の式を用いた{\it Hybrid System}によって．今も様々なフラクタル作品が作られている．
+興味深いHybrid Systemの１つに{\it pseudo-kleinian}がある．これは球の反転に近い操作であるSpherefoldと平行移動と同じような働きをするboxfoldの組み合わせによってクライン群のような形状が得られる式である．図はfragmentariumのサンプルスクリプトを用いてレンダリングされた.
 
-\subsection{Coloring by Orbit trap}
+\subsection{Coloring by Orbit Trap}
 
-ここでOrbit trapと呼ばれるカラーリングのアルゴリズムを紹介しておく．Escape-timeアルゴリズムを用いたフラクタルのレンダリングでは，主にOrbit trapというカラーリングの手法が使われる．trapと呼ばれる何らかの図形を空間上に置いておき，trapと軌道の位置関係から色を付ける．
-以下の図は（）に点のtrapを置き，その位置に応じて色を付けた．黒の点がtrapであり，青の点が軌道である．
-この方法を応用すると，画像をtrapに用いることで，図のように点の軌道上に画像を張り付けることも可能である．
+Escape-timeアルゴリズムを用いたフラクタルのレンダリングでは，主に{\it Orbit Trap}というカラーリングの手法が使われる．trapと呼ばれる点や直線などの図形を空間上に置いておき，trapと軌道上の点の位置関係から色を付ける．図\ref{fig:mandelbox}のMandelboxもOrbit Trapを用いて色が着けられている.
+図\ref{fig:mandelbrotOrbit}はマンデルブロ集合の計算によって$z_n$が桃色の領域に入った点を白く塗った.
+桃色の領域に到達するまでの軌道を描いたといえる. この方法を応用すると，図\ref{fig:mandelbrotBitmap}のように画像をtrapに用いることで，点の軌道上に画像を張り付けることも可能である．この手法は特に{\it Bitmap Orbit Trap}とも呼ばれる.
+
+\begin{figure}[htbp]
+ \begin{minipage}{0.49\hsize}
+  \begin{center}
+   \includegraphics[width=3in, height=3in, keepaspectratio]{../img/fractal/mandelbrot-orbit.pdf}
+    \caption{Mandelbrot set}
+    \label{fig:mandelbrotOrbit}
+  \end{center}
+ \end{minipage}
+ \begin{minipage}{0.49\hsize}
+  \begin{center}
+   \includegraphics[width=3in, height=3in, keepaspectratio]{../img/fractal/mandelbrot-bitmap.pdf}
+   \caption{Mandelbrot set}
+   \label{fig:mandelbrotBitmap}
+  \end{center}
+ \end{minipage}
+\end{figure}
 
 \subsection{Other Fractals}
 

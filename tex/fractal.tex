@@ -41,7 +41,7 @@ Fractal Forum\footnote{Fractal Forum:  http://www.fractalforums.com/}では大�
 小さなプログラムサイズでリアルタイムにレンダリングするという目的に合致する. 
 
 例えば, フラグメントシェーダで円を描くことを考えてみる. 
-点中心，半径$r$の円の距離関数は以下のようになる．
+原点中心，半径$r$の円の距離関数は以下のようになる．
 \begin{eqnarray*}
  f(z) = | length(z) - r |
 \end{eqnarray*}
@@ -103,11 +103,16 @@ Fractal Lab\footnote{Fractal Lab: http://hirnsohle.de/test/fractalLab/}はブラ
 
 \subsubsection{Mandelbulb}
 
-MandelbulbはD.White(twinbee)とP.Nylanderによって開発された．
-White(twinbee)氏は球面座標上で計算するアプローチを提案\footnote{http://www.fractalforums.com/3d-fractal-generation/true-3d-mandlebrot-type-fractal/}した．
+マンデルブロ集合を三次元に拡張するにあたって一番の問題は漸化式の意味付けであった.
+マンデルブロ集合では複素平面上で計算を行なうため, $z^2$は回転と拡縮, $c$の加算は点の平行移動を表わし, それによって軌道を見ることができる. 
+三次元空間の点において, 同様の意味を表わす代数体系のようなものを考える必要があった. 
+様々なアプローチが考案されたが, 最終的にD.White(twinbee)氏とP.Nylander氏が開発したMandelbulbが広く知られるようになった. 
+
+White氏は球面座標上で漸化式を計算するアプローチを提案\footnote{http://www.fractalforums.com/3d-fractal-generation/true-3d-mandlebrot-type-fractal/}した．
 図\ref{fig:mandelbulb2}は$z_{n+1} = z_n^2 + c$を用いてレンダリングした結果であるが，あまり複雑な形状は現れなかった．
 しかし，その後Nylander氏が式を高次の積を扱えるように拡張した．
 図\ref{fig:mandelbulb8}は$z_{n+1} = z_n^8 + c $という式でレンダリングされた形状であり，Mandelbulbとして広く知られている．White氏のWebページ\footnote{http://www.skytopia.com/project/fractal/mandelbulb.html}では開発の詳しい経緯がまとめられている．
+
 
 Mandelbulbは三次元空間の点に対して漸化式を計算することで形状を得ることもできるが, 通常はマンデルブロ集合と同様に距離関数を導出し, レイマーチングを用いてレンダリングする.
 
@@ -132,18 +137,23 @@ Mandelbulbは三次元空間の点に対して漸化式を計算することで�
 
 \subsubsection{Mandelbox}
 その後，２０１０年にTom Lowe氏によってMandelbox\footnote{https://sites.google.com/site/mandelbox/what-is-a-mandelbox}が開発された．
-漸化式は$z_{n+1} = scale * spherefold(boxfold(z_n)) + c$となる.
-boxfoldは$x=\pm1, y=\pm1, z=\pm1$を頂点にもつ立方体の各面に対して, 点が外側にある場合にその面に関する反転を行なう.
-spherefoldは以下の式で定義される.
+Mandelboxも三次元空間におけるEscape-time fractalである. 
+漸化式は$z_{n+1} = scale * spherefold(minR, boxfold(z_n)) + c$となる.
+ここで, boxfoldは$x=\pm1, y=\pm1, z=\pm1$を頂点にもつ立方体の各面に対して, 点が外側にある場合にその面に関する反転を行なう操作である.
+また, spherefoldは以下の式で定義される.
 \begin{eqnarray*}
- spherefold(z) = \begin{cases}
+ spherefold(r, z) = \begin{cases}
                   \frac{z}{r^2} & 0 \le |z| < r \\
                   \frac{z}{|z|^2} & r \le |z|
                  \end{cases}
 \end{eqnarray*}
-spherefoldは球の中心付近に来た点が発散してしまわないように，制限をかけた球の反転とみることができる．
+基本は原点中心, 半径1の球に関する反転である. 
+球の反転は, 中心を無限遠点へ変換するが, Escape-timeアルゴリズムでは中心付近のほとんどの点が発散と判定されてしまう. 
+そこでspherefoldでは, 中心付近の点の反転をあらかじめ決めておいた最小の半径における反転で制限をかけている．
 
-このDistance Estimationには様々な方法があるが，通常, 最終的な点の長さからの距離をヤコビアンの積で割ることで距離を求めることができる．
+Distance Estimationでは漸化式の微分としてヤコビアンの積を用いる. 
+式の各操作のたびに, ヤコビアンを累積していき, 
+最終的な点のノルムをヤコビアンの積で割ることで距離を近似的に求めることができる．
 
 \begin{figure}[h!tbp]
  \begin{subfigure}{0.49\hsize}

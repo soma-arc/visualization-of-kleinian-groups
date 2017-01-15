@@ -74,21 +74,60 @@
 \subsection{Graph Traversal Approach}
 
 群を構成する変換の全組み合わせを調べるとき，変換の語で構成される木構造を考える．
-図のような木はケーリーグラフ（Cayley graph）と呼ばれる．
-この木を幅優先探索するか，深さ優先探索するかで描画できるものが変わってくる．
+図\ref{fig:wordTree}のような木はケーリーグラフ（Cayley graph）と呼ばれ4種類の変換の合成の組合せを表わしている．
+この木を探索することで得られる合成変換を用いて群の作用を可視化する. 
+
+\begin{figure}[htbp]
+  \begin{center}
+   \includegraphics[width=3in, height=3in, keepaspectratio]{../img/klein/wordTree.pdf}
+   \caption{Word Tree}
+   \label{fig:wordTree}
+  \end{center}
+\end{figure}
 
 \subsubsection{Rendering the Orbit of Transformations}
-群を可視化する．軌道を描くことで群を可視化してみよう．
-それぞれの円の反転は自分以外の円を自分の内側に移す．よって，それぞれの円の内側には３つの円が移され，１２個の小円ができる．次に４つの円の反転を新たに表れた小円にも適用する．このことを繰り返すと，以下の画像のように，円が入れ子状につらなる図を得ることができる．これが群の生成元による軌道である．また，円列の極限を極限集合とよぶ．この極限を観察することがクライン群を研究する上で役に立つ．
-このアルゴリズムは変換で構成される木構造を幅優先探索で探索することに等しい．おおまかに生成元の作用を調べることに役立つ．
-この例では，軌道の元となる図形が生成元と同じであるが，その他の図形でも可能である. 
-図では中央に置いた絵を周囲の円の反転で移した軌道を描いた. 
-軌道は最終的に極限集合へと収束していく. 
-図\ref{fig:apr}はP.Nylander氏による作品\footnote{http://bugman123.com/Fractals/index.html}を参考に筆者が描画したものである．蝶が二つの元の作用で変換された軌道を極限集合とともに描いている．
+
+まず, 円の反転で構成される群を可視化してみよう. 
+円の反転は変換自体を円という図形で表現できるため, その作用を理解しやすい. 
+図\ref{fig:schottky}には4つ円の内側にたくさんの円が描かれている. 
+外側にある4つの大きな円を反転円と呼ぶ. 
+それぞれの反転円の反転は自分以外の反転円を自分の内側に移す．
+よって，それぞれの反転円の内側には３つの円が移され，合せて１２個の小円ができる．
+新たにできた小円に対してもその小円が属している反転円以外の反転を適用することで, 小円の下に新たな小円ができる. 
+このことを繰り返すと，図\ref{fig:schottky}のように，円が入れ子状につらなる図を得ることができる．これが群の生成元による軌道である．また，円列の極限を極限集合とよぶ．この極限を観察することがクライン群を研究する上で役に立つ．
+
+図\ref{fig:schottky}では反転円の軌道を描いが, 同様にして違う図形の軌道を描くこともできる.
+図\ref{fig:orbit}は中央に置いた猫の画像を4つ反転円による反転で移した軌道を描いた. 
+図\ref{fig:apr}はP.Nylander氏による作品\footnote{http://bugman123.com/Fractals/index.html}を参考に筆者が描画したものである. 
+虹色の曲線はおばあちゃんのレシピで得られた群の極限集合である. 
+蝶はその群の生成元で移されている. 
+どちらの図も図形の軌道は最終的に極限集合へと収束していくことがわかる. 
+
+このアルゴリズムは変換で構成される木構造を幅優先探索で探索することに等しい．
+幅優先探索で得られたすべての変換の語を大本となる図形(図\ref{fig:orbit}における中央の猫)に対して適用することで, おおまかに生成元の作用を調べることができる．
+
+\begin{figure}[htbp]
+ \begin{minipage}{0.49\hsize}
+  \begin{center}
+   \includegraphics[width=3in, height=3in, keepaspectratio]{../img/klein/schottkyCircles.pdf}
+   \caption{Schottky Circles}
+   \label{fig:schottky}
+  \end{center}
+ \end{minipage}
+ \begin{minipage}{0.49\hsize}
+  \begin{center}
+   \includegraphics[width=3in, height=3in, keepaspectratio]{../img/klein/circleOrbit.pdf}
+   \caption{orbit}
+   \label{fig:orbit}
+  \end{center}
+ \end{minipage}
+\end{figure}
+
 
 \subsubsection{Rendering the Limit Set}
 
-研究では, 前節でみた極限集合を直接描く方法が主に用いられる．
+前節でみた極限集合を直接描くこともできる. 
+全てのメビウス変換に円の反転における円のような図形を考えることは難しいので, 研究では主にこの方法が使われている. 
 $a$の固定点は変換$a$を繰り返し適用した極限に値する. 
 そこで, この固定点を変換の組み合わせで動かしてやることで極限集合を求めることができる. 
 

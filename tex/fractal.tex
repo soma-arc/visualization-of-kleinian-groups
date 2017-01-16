@@ -15,10 +15,10 @@
 この章ではコンピュータで計算，描画されるフラクタルを紹介する．
 
 アートやコンピュータ文化との関連は切り離せない. これらのフラクタルは多くの場合数学的な研究対象にならないものの.
-Fractal Forum\footnote{Fractal Forum:  http://www.fractalforums.com/}では大きなコミュニティが形成されており，多くのフラクタルファンが日夜議論を重ねている．ここから生れたフラクタル図形や描画手法も多い. 
+Fractal Forum\footnote{Fractal Forum:  \url{http://www.fractalforums.com/}}では大きなコミュニティが形成されており，多くのフラクタルファンが日夜議論を重ねている．ここから生れたフラクタル図形や描画手法も多い. 
 また，デモシーンという文化もフラクタルレンダリングとも関連が深い．デモシーンはデモと呼ばれるリアルタイムにCGグラフィクスや音楽を生成するプログラムを見せ合うコンピューターサブカルチャーの一つである．
-美しいコンピュータグラフィクスを効率よく，さらに小さなサイズのプログラムで描画する手法が考えられており，数式で複雑な形状を描画できるようなフラクタルと相性が良い．デモシーンに関しては，Demoscene - The Art of the Algorithm\footnote{Demoscene - The Art of the Algorithms: https://www.youtube.com/watch?v=iRkZcTg1JWU}が詳しい．
-著名なデモシーナーのInigo Quilez(iq)は自身のウェブページ\footnote{Inigo Quilez's webpage: http://iquilezles.org/index.html}に様々な記事をまとめている. 
+美しいコンピュータグラフィクスを効率よく，さらに小さなサイズのプログラムで描画する手法が考えられており，数式で複雑な形状を描画できるようなフラクタルと相性が良い．デモシーンに関しては，Demoscene - The Art of the Algorithm\footnote{Demoscene - The Art of the Algorithms: \url{https://www.youtube.com/watch?v=iRkZcTg1JWU}}が詳しい．
+著名なデモシーナーのInigo Quilez(iq)は自身のウェブページ\footnote{Inigo Quilez's webpage: \url{http://iquilezles.org/index.html}}に様々な記事をまとめている. 
 
 \begin{figure}[htbp]
  \begin{center}
@@ -50,12 +50,12 @@ Fractal Forum\footnote{Fractal Forum:  http://www.fractalforums.com/}では大�
 \begin{eqnarray*}
  DistanceFunction(x) \approx \frac{|f(x)|}{|\bigtriangledown f(x)|}
 \end{eqnarray*}
-この手法はDistance Estimationと呼ばれ，複雑な形状を高速かつ綺麗に描画することに役立つ．この形は基本形であるが, より精度の高い近似式を得るための工夫が施される場合がある. 詳しい導出はInigo Quilez氏の記述が詳しい\footnote{distance estimation: http://iquilezles.org/www/articles/distance/distance.htm}．
+この手法はDistance Estimationと呼ばれ，複雑な形状を高速かつ綺麗に描画することに役立つ．この形は基本形であるが, より精度の高い近似式を得るための工夫が施される場合がある. 詳しい導出はInigo Quilez氏の記述が詳しい\footnote{distance estimation: \url{http://iquilezles.org/www/articles/distance/distance.htm}}．
 
 シェーダで三次元空間を描画する場合にはレイトレーシングが用いられる．レイトレーシングは視点からスクリーンへレイ（光線）を飛ばし，その挙動をシミュレーションすることで物体を描画する手法である．レイと物体の交差点はレイの方向と位置から代数的に計算することができる．
 また，レイマーチング(Sphere tracingとも呼ばれる)\cite{sphereTracing}という手法を用いることで，距離関数を用いて任意の三次元形状との交差点を近似的に計算することができる．物体の形状を代数的に計算することが難しいフラクタル形状のレンダリングを行う際は，Distance Estimationにより近似的に物体との距離を得てレイマーチングを用いることで，高速に描画することができる．
 
-GLSLによるレンダリングや，レイマーチングに関しては，doxas氏のwgld\footnote{wgld: https://wgld.org/d/glsl/}によくまとまっている．シェーダを用いたレンダリングはglslsandbox\footnote{glslsandbox: http://glslsandbox.com/}やShadertoy\footnote{Shadertoy: https://www.shadertoy.com/}といったウェブサービスで手軽に試すことができる．
+GLSLによるレンダリングや，レイマーチングに関しては，doxas氏のwgld\footnote{wgld: \url{https://wgld.org/d/glsl/}}によくまとまっている．シェーダを用いたレンダリングはglslsandbox\footnote{glslsandbox: \url{http://glslsandbox.com/}}やShadertoy\footnote{Shadertoy: \url{https://www.shadertoy.com/}}といったウェブサービスで手軽に試すことができる．
 
 GPUの計算性能をより汎用的な計算に用いるためのプラットフォームとしてCUDAやOpenCLが登場している．これらのプラットフォームを用いることでシェーダではできない複雑な処理を行うことができるようになり，GPUは機械学習などの分野にも活躍の場を広げた．このようにGPUによる演算を画像処理以外の汎用的な用途に用いる技術はGPGPUと呼ばれている．
 
@@ -71,7 +71,7 @@ $z_n$が無限大に発散しないものをマンデルブロ集合と呼ぶ．
 マンデルブロ集合はその単純な式から驚くほど豊富なバリエーションの図を見ることができる．
 その他のEscape-time fractalには，Julia集合(図\ref{fig:julia})やFatou集合等がある．
 
-各点における漸化式の計算はお互いに干渉しないので，そのままシェーダでの実装が可能であるが，先に述べたDistance Estimationを用いることで，エイリアシングノイズ等を避けてより精細に描画することができる．これにはGreen Functionと呼ばれる陰関数を用いる．導出はiq氏の記事が詳しい\footnote{http://iquilezles.org/www/articles/distancefractals/distancefractals.htm}．Green Functionに関しては，マンデルブロ集合に関する詳細な議論となってしまうので，こちらの論文\cite{mandelbrot}を参考にされたい．
+各点における漸化式の計算はお互いに干渉しないので，そのままシェーダでの実装が可能であるが，先に述べたDistance Estimationを用いることで，エイリアシングノイズ等を避けてより精細に描画することができる．これにはGreen Functionと呼ばれる陰関数を用いる．導出はiq氏の記事が詳しい\footnote{distance rendering for fractals: \url{http://iquilezles.org/www/articles/distancefractals/distancefractals.htm}}．Green Functionに関しては，マンデルブロ集合に関する詳細な議論となってしまうので，こちらの論文\cite{mandelbrot}を参考にされたい．
 
 \begin{figure}[htbp]
  \begin{minipage}{0.49\hsize}
@@ -93,13 +93,13 @@ $z_n$が無限大に発散しないものをマンデルブロ集合と呼ぶ．
 マンデルブロ集合のような複雑な３次元形状を持つフラクタルが求められていた．マンデルブロ集合を３次元に拡張する試みはさまざまに行われていたものの，あまり大きな成果はあげられていなかった．
 例えば，ジュリア集合を４次元に拡張し，Distance Estimationを用いて描く方法が１９８９年には発表されている\cite{4djulia}．
 しかし，その形状は単純でフラクタルコミュニティの満足のいくものではなかった．
-２００４年にKeenan Crane氏がGPUで実装した\footnote{Ray Tracing Quaternion Julia Sets on the GPU: https://www.cs.cmu.edu/~kmcrane/Projects/QuaternionJulia/}．
+２００４年にKeenan Crane氏がGPUで実装した\footnote{Ray Tracing Quaternion Julia Sets on the GPU: \url{https://www.cs.cmu.edu/~kmcrane/Projects/QuaternionJulia/}}．
 
-２００３年に発表された阿原・荒木\cite{sphairahedra}による４次元クライン群の一種であるQuasi Fuchsian 3D Fractalsはある程度の複雑性を持った３次元フラクタルであり，コミュニティに大きな影響を与えたと言われている．このフラクタルに関しては後の章で触れる．その後，２００９年にマンデルブロ集合をうまく三次元に拡張したMandelbulbの出現を皮切りに，次々と複雑な三次元フラクタルの式が発見された．これらもDistance Estimationとレイマーチングを用いることで効率よくレンダリングすることができる．これらのフラクタルはDistance Estimated 3D Fractalsと呼ばれることが多い．これらのフラクタルの歴史と実装についてはMikael Hvidtfeldt Christensen氏のSyntopiaの一連のブログポスト\footnote{Syntopia Distance Estimated 3D Fractals: http://blog.hvidtfeldts.net/index.php/2011/06/distance-estimated-3d-fractals-part-i/}によくまとめられている．
+２００３年に発表された阿原・荒木\cite{sphairahedra}による４次元クライン群の一種であるQuasi Fuchsian 3D Fractalsはある程度の複雑性を持った３次元フラクタルであり，コミュニティに大きな影響を与えたと言われている．このフラクタルに関しては後の章で触れる．その後，２００９年にマンデルブロ集合をうまく三次元に拡張したMandelbulbの出現を皮切りに，次々と複雑な三次元フラクタルの式が発見された．これらもDistance Estimationとレイマーチングを用いることで効率よくレンダリングすることができる．これらのフラクタルはDistance Estimated 3D Fractalsと呼ばれることが多い．これらのフラクタルの歴史と実装についてはMikael Hvidtfeldt Christensen氏のSyntopiaの一連のブログポスト\footnote{Syntopia, Distance Estimated 3D Fractals: \url{http://blog.hvidtfeldts.net/index.php/2011/06/distance-estimated-3d-fractals-part-i/}}によくまとめられている．
 
-これらフラクタルをレンダリングするためのソフトウェアはMandelbulb 3D\footnote{Mandelbulb 3D: http://mandelbulb.com/2014/mandelbulb-3d-mb3d-fractal-rendering-software/}やMandelbulber\footnote{Mandelbulber: http://www.mandelbulber.com/}が有名である．
-Fragmentarium\footnote{Fragmentarium: http://syntopia.github.io/Fragmentarium/}はシェーダベースのグラフィクスを開発するための環境である．フラクタルのサンプルコードも豊富で学習に役立つ．
-Fractal Lab\footnote{Fractal Lab: http://hirnsohle.de/test/fractalLab/}はブラウザ上でGLSLを用いてフラクタルをレンダリングすることができるWebアプリケーションである．この章で使われている図のいくつかはFractal Labを用いてレンダリングした．
+これらフラクタルをレンダリングするためのソフトウェアはMandelbulb 3D\footnote{Mandelbulb 3D: \url{http://mandelbulb.com/2014/mandelbulb-3d-mb3d-fractal-rendering-software/}}やMandelbulber\footnote{Mandelbulber: \url{http://www.mandelbulber.com/}}が有名である．
+Fragmentarium\footnote{Fragmentarium: \url{http://syntopia.github.io/Fragmentarium/}}はシェーダベースのグラフィクスを開発するための環境である．フラクタルのサンプルコードも豊富で学習に役立つ．
+Fractal Lab\footnote{Fractal Lab: \url{http://hirnsohle.de/test/fractalLab/}}はブラウザ上でGLSLを用いてフラクタルをレンダリングすることができるWebアプリケーションである．この章で使われている図のいくつかはFractal Labを用いてレンダリングした．
 
 \subsubsection{Mandelbulb}
 
@@ -108,11 +108,10 @@ Fractal Lab\footnote{Fractal Lab: http://hirnsohle.de/test/fractalLab/}はブラ
 三次元空間の点において, 同様の意味を表わす代数体系のようなものを考える必要があった. 
 様々なアプローチが考案されたが, 最終的にD.White(twinbee)氏とP.Nylander氏が開発したMandelbulbが広く知られるようになった. 
 
-White氏は球面座標上で漸化式を計算するアプローチを提案\footnote{http://www.fractalforums.com/3d-fractal-generation/true-3d-mandlebrot-type-fractal/}した．
+White氏は球面座標上で漸化式を計算するアプローチを提案\footnote{\url{http://www.fractalforums.com/3d-fractal-generation/true-3d-mandlebrot-type-fractal/}}した．
 図\ref{fig:mandelbulb2}は$z_{n+1} = z_n^2 + c$を用いてレンダリングした結果であるが，あまり複雑な形状は現れなかった．
 しかし，その後Nylander氏が式を高次の積を扱えるように拡張した．
-図\ref{fig:mandelbulb8}は$z_{n+1} = z_n^8 + c $という式でレンダリングされた形状であり，Mandelbulbとして広く知られている．White氏のWebページ\footnote{http://www.skytopia.com/project/fractal/mandelbulb.html}では開発の詳しい経緯がまとめられている．
-
+図\ref{fig:mandelbulb8}は$z_{n+1} = z_n^8 + c $という式でレンダリングされた形状であり，Mandelbulbとして広く知られている．White氏のWebページ\footnote{Skytopia: \url{http://www.skytopia.com/project/fractal/mandelbulb.html}}では開発の詳しい経緯がまとめられている．
 
 Mandelbulbは三次元空間の点に対して漸化式を計算することで形状を得ることもできるが, 通常はマンデルブロ集合と同様に距離関数を導出し, レイマーチングを用いてレンダリングする.
 
@@ -136,7 +135,7 @@ Mandelbulbは三次元空間の点に対して漸化式を計算することで�
 \end{figure}
 
 \subsubsection{Mandelbox}
-その後，２０１０年にTom Lowe氏によってMandelbox\footnote{https://sites.google.com/site/mandelbox/what-is-a-mandelbox}が開発された．
+その後，2010年にTom Lowe氏によってMandelbox\footnote{Mandelbox, \url{https://sites.google.com/site/mandelbox/what-is-a-mandelbox}}が開発された．
 Mandelboxも三次元空間におけるEscape-time fractalである. 
 漸化式は$z_{n+1} = scale * spherefold(minR, boxfold(z_n)) + c$となる.
 ここで, boxfoldは$x=\pm1, y=\pm1, z=\pm1$を頂点にもつ立方体の各面に対して, 点が外側にある場合にその面に関する反転を行なう操作である.

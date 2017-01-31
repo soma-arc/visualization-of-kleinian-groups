@@ -1,28 +1,49 @@
 %#!platex main.tex
 
 \section{Kleinian Groups}
-クライン群について学習する際には書籍『インドラの真珠』\cite{indra}を読むことを勧める．インドラの真珠は数学者以外にもクライン群の魅力を伝えるために書かれた．中には研究者レベルの高度な内容も出てくるが，高校レベルの数学と簡単なプログラムを組む能力があれば，自分で図をレンダリングしながら読み進めることができるだろう．
+クライン群について学習する際には書籍『インドラの真珠』\cite{indra}を読むことを勧める．
+インドラの真珠は数学者以外にもクライン群の魅力を伝えるために書かれた．
+中には研究者レベルの高度な内容も出てくるが，高校レベルの数学と簡単なプログラムを組む能力があれば，自分で図をレンダリングしながら読み進めることができる．
 この章では，クライン群に関する用語を確認した後にレンダリング手法と『インドラの真珠』では言及のないクライン群の話題を紹介する．
 
 \subsection{Group}
-群(Group)という語はここでは変換の集まりだと考えることにする．例えば，以下のような二種類の変換を考えてみよう．
+群(Group)という語はここでは変換の集まりだと考えることにする．例えば，
+以下のような二種類の変換を考えてみよう．
 \begin{eqnarray*}
  f(z) = z + 1
  g(z) = z + i
 \end{eqnarray*}
 逆変換の４種類の変換を組み合わせ, 合成することで，たくさんの変換を作ることができる．
 これらの変換すべての集合を群, 群の元となった4種の変換を生成元と呼ぶ．
-クライン群はメビウス変換(M\"obius Transformations)を生成元にもつ群のなかで離散性という性質を持つものをいう．
+クライン群は\emph{メビウス変換}(M\"obius Transformations)を生成元にもつ群のなかで離散性という性質を持つものをいう．
+
 またここでは変換にラベルを付けて扱う．変換を小文字のアルファベットで表し，その逆変換を大文字で綴る．
 ラベルを並べて書くことで，変換の合成を表す．その際に右側の変換から使うことに注意する．
 例えば点pに対してaabaという変換を用いると，pを右上右右の順で点を動かすことになる．
-また，上付文字はその変換の無限列とする．例えば，$\overline{a}$としたとき，$aaaaa...$といった変換$a$の無限列となる．通常これはどの点に適用しても変換$a$の固定点に収束する．
+また，上付文字はその変換の無限列とする．
+例えば，$\overline{a}$は，$aaaaa...$といった変換$a$の無限列となる．
+通常これはどの点に適用しても変換$a$の\emph{固定点}に収束する．
+固定点とは，$f(z) = z$となるような，変換を使って動かすことのできない点である．
 
+\subsection{Conjugation}
+
+共役(Conjugation)という操作をもちいることで, ひとつの変換を異なる座標系で
+
+原点を中心とする回転について考える.
+この矩形を中心として考えたいとする.
+原点を中心とした回転を$T$, 矩形の中心までの平行移動を$S$とすると, 矩形の
+中心における回転を表す変換を以下のように計算することができる.
+\begin{equation*}
+ \hat{T} = STS^{-1}
+\end{equation*}
+変換$\hat{T}$を$T$の共役, $S$を共役変換と呼ぶ.
+$\hat{T}$は回転を表わす変換であることに変わりはない.
+$\hat{T}$は回転と共役であるともいう.
 
 \subsection{M\"obius Transformations}
 
 メビウス変換は複素平面上に, ひとつの無限遠点を付け加えた拡張複素平面$\hat{\mathbb{C}}$上で定義される.
-これはリーマン球面とも呼ばれ, 拡張複素平面全体を球面として扱うことができる. 
+これはリーマン球面とも呼ばれ, 拡張複素平面全体を球面として扱うことができる.
 メビウス変換は一次分数変換とも呼ばれ，以下のように表わされる．
 \begin{eqnarray*}
  a, b, c, d\in \hat{\mathbb{C}}, f(z) = \frac{az + b}{cz + d}
@@ -40,7 +61,7 @@
 メビウス変換は，等角性や円円対応といった性質をもつ．
 図\ref{fig:circleInversion}はメビウス変換の中でも重要な役割を持つ，円に関する反転という操作を可視化したものである．
 それぞれの図形は黒い円に関する反転で移されている．緑色の矩形を観察すると，変換の前後で直角が保たれていることがわかる．
-また，黄色の円は円が保たれている．メビウス変換は角度は保つが形は大きく歪めてしまう. 
+また，黄色の円は円が保たれている．メビウス変換は角度は保つが形は大きく歪めてしまう.
 これを三次元の球で同様に球に関する反転を考えることもできる.
 \begin{figure}[htbp]
  \begin{center}
@@ -50,12 +71,11 @@
  \end{center}
 \end{figure}
 
-メビウス変換はおおまかに\emph{放物型}, \emph{斜航型},\emph{楕円型}の三種類に分類される．それぞれの変換の型は異なる固定点の数をもつ.
-固定点とは，$f(z) = z$となるような，メビウス変換を使って動かすことのできない点である．複素平面上の点はメビウス変換を繰り返し適用することで固定点へと収束していく．また, 固定点は計算で求めることができる.
+メビウス変換はおおまかに\emph{放物型}, \emph{斜航型},\emph{楕円型}の三種類に分類される.
 斜航型変換と楕円型変換は2つ，放物型変換は1つの固定点をもつ．
-斜航型変換は単純な回転を除いた複素数によるスケーリングと共役である. .
+斜航型変換は単純な回転を除いた複素数によるスケーリングと共役である.
 また斜航型変換の中でも，スケーリングの係数が正の実数であるとき，その変換を\emph{双曲型}と呼ぶ場合もある．
-放物型は平行移動と共役で, 楕円型変換は回転と共役である. 
+放物型は平行移動と共役で, 楕円型変換は回転と共役である.
 
 クライン群の描画において，メビウス変換の分類は重要である．なぜならば，楕円型変換を含む群の多くはクライン群にはなりえない．また，放物型変換は固定点への収束が遅いという特徴をもつ．これは後述する極限集合の描画の際に考慮することとなる．
 
@@ -82,39 +102,62 @@
 
 \subsection{Stereographic Projection}
 
-複素平面に無限遠点を付け加えたモデルを考えたが, これを球面で表すことで全
+拡張複素平面はリーマン球面という名の通り, 球面で表すことで全
 体をよく見ることができる.
-
 地図の制作のため, 地球のような球面を平面に投影する方法が様々に考えられて
 きたが, 複素平面を球面へと写像するためには, \emph{立体射影}({\it
 stereographic projection})と呼ばれる方法がよく使われる.
 立体射影は角度と円を保つため, メビウス変換と相性が良い.
-無限遠点は北極へ, 原点は南極へと移る.
-つまり, 平面上でのすべての動きは球面上で見ることができる.
-この球面は\emph{リーマン球面}と呼ばれている.
-いくつかの方法があるが,
-図は立体射影を図示したものである.
+立体射影では, 無限遠点は北極へ, 原点は南極へと移る.
+北極から他の球面上の点へと直線を引く.
+その直線と平面の交点が立体射影により移り合う点である.
+図\ref{fig:stereoProject}は立体射影を図示したものである.
 赤の円は単位円を表す. 単位円は赤道へと移る.
 
-複素平面上での回転は球の回転として表わすことができる.
-これをうまく利用し, 全天球画像の加工する
-Saul Schleimer, Henry Segermanはこれを利用した全天球画像へのエフェクトを考案している\cite{spherical}.
-\footnote{Spherical Droste video: https://www.youtube.com/watch?v=qvh-EAipIUk\&t=4s}
+Saul Schleimer, Henry Segermanはこれを利用した全天球画像へのエフェクトを
+考案している\cite{spherical}.
+図\ref{fig:spherical}は正距円筒図法(Equirectangular map)と球の内側からみ
+た視点と, 複素平面とリーマン球面を可視化したものである.
+このように, 複素平面上での回転は球の回転として表わすことができる.
+\footnote{Spherical Droste video: \url{https://www.youtube.com/watch?v=qvh-EAipIUk\&t=4s}}
 
+\begin{figure}[htbp]
+ \center
+ \includegraphics[width=3in, height=3in, keepaspectratio]{../img/klein/stereoProject.pdf}
+ \caption{Stereographic Projection}
+ \label{fig:stereoProject}
+\end{figure}
+
+\begin{figure}[htbp]
+ \begin{minipage}{0.5\hsize}
+  \center
+  \includegraphics[width=3in, height=3in, keepaspectratio]{../img/klein/spherical.pdf}
+  \subcaption{Stereographic }
+  \label{fig:sphericalStandard}
+ \end{minipage}
+ \begin{minipage}{0.5\hsize}
+  \center
+  \includegraphics[width=3in, height=3in, keepaspectratio]{../img/klein/sphericalRotation.pdf}
+  \subcaption{Stereographic 2}
+  \label{fig:sphericalRotation}
+ \end{minipage}
+ \caption{Spherical image}
+ \label{fig:spherical}
+\end{figure}
 
 \subsection{Graph Traversal Approach}
 
 群を構成する変換の全組み合わせを調べるとき，変換の語で構成される木構造を考える．
 図\ref{fig:wordTree}のような木はケーリーグラフ（Cayley graph）と呼ばれ4種類の変換の合成の組合せを表わしている．
-この木を探索することで得られる合成変換を用いて群の作用を可視化する. ここでは簡単にその方法をまとめる.
+この木を探索することで得られる合成変換を用いて群の作用を可視化する.
+ここでは簡単にその方法をまとめる.
 疑似コードを含む詳細な解説は『インドラの真珠』にある.
 
 \begin{figure}[htbp]
-  \begin{center}
-   \includegraphics[width=3in, height=3in, keepaspectratio]{../img/klein/wordTree.pdf}
-   \caption{Word Tree}
-   \label{fig:wordTree}
-  \end{center}
+ \center
+ \includegraphics[width=3in, height=3in, keepaspectratio]{../img/klein/wordTree.pdf}
+ \caption{Word Tree}
+ \label{fig:wordTree}
 \end{figure}
 
 \subsubsection{Rendering the Orbit of Transformations}
@@ -186,8 +229,16 @@ $aab\overline{a}$と$aaa\overline{a}$のように隣同士の接頭語を持つ�
 効率よく描画するためには，うまくこのような元を取り除く必要がある．これを解決するためには有限オートマトンが使われる．
 インドラの真珠においても有限オートマトンの使い方に関する解説はあるが, より数学的な事項は『Word Processing In Groups』\cite{wordProcessing}が詳しい．
 
-先に述べたように，メビウス変換の群すべてがクライン群になるわけではない．群のレシピのパラメータの中には描画すると極限集合が収束せず，図\ref{fig:non-discrete}のように乱れるようなものがある．このような群は非離散群と呼ばれ，クライン群ではない. この離散と非離散のパラメータ領域を描画した図は'スライス'と呼ばれる．スライスの離散と非離散の境界もフラクタル形状となる. 境界のパラメータを用いて描画するとしばしば極限集合が興味深い形になる.
-山下靖氏のページ\footnote{Discreteness Locus: \url{http://vivaldi.ics.nara-wu.ac.jp/~yamasita/Slice/}}では様々なスライスを見ることができる. どのようなパラメータが離散的であるか，すなわちクライン群となるかを調べることがクライン群の研究テーマの一つとなる．
+先に述べたように，メビウス変換の群すべてがクライン群になるわけではない．
+群のレシピのパラメータの中には描画すると極限集合が収束せず，図
+\ref{fig:non-discrete}のように乱れるようなものがある．
+このような群は非離散群と呼ばれ，クライン群ではない.
+この離散と非離散のパラメータ領域を描画した図は'スライス'と呼ばれる．
+スライスの離散と非離散の境界もフラクタル形状となる. 境界のパラメータを用いて描画するとしばしば極限集合が興味深い形になる.
+山下靖氏のページ\footnote{Discreteness Locus:
+\url{http://vivaldi.ics.nara-wu.ac.jp/~yamasita/Slice/}}では様々なスライ
+スを見ることができる.
+どのようなパラメータが離散的であるか，すなわちクライン群となるかを調べることがクライン群の研究テーマの一つとなる．
 
 
 \begin{figure}[h!tbp]
@@ -264,7 +315,7 @@ $aab\overline{a}$と$aaa\overline{a}$のように隣同士の接頭語を持つ�
 これはスクリーンスペースのピクセルそれぞれに対して独立に計算することができるのでGLSLによる並列計算，描画を行うことができる．
 また，Distance Estimationとレイマーチングを用いることで, 三次元形状に関しても高速で描画することができる．
 
-\subsection{Geometrical Representation of Mobius Transformations}
+\subsection{Geometrical Representation of M\"obius Transformations}
 
 木構造を用いて群を可視化する際には，変換を行列で考えたが，行列表現でメビウス変換を操作することは直観が得にくい．さらに，四次元クライン群を構成する三次元空間に作用するメビウス変換は，２×２四元数行列で表現することができるが，さらにパラメータ数が増大する．このことは，四次元クライン群の研究があまり進んでいないことの原因にもなっている．
 そこで筆者らはすべてのメビウス変換を円や球の反転で構成することを考えた．円や球を用いることで，生成元と可視化される図形の間の関係性が理解しやすく，幾何学的な直観を得ることができる．それに加え，IISを用いることで複雑な生成元をもつ群もリアルタイムに可視化することができる．このことは，研究者や学習者だけでなく，フラクタルアーティストにも有益なものとなるだろう．具体的な構成方法などはBridges2017に投稿中である．
@@ -278,7 +329,8 @@ $aab\overline{a}$と$aaa\overline{a}$のように隣同士の接頭語を持つ�
 Aaron Montag氏はIterated Inversion Systemを拡張したHyperbolic Iterated Function Systemによって極限集合を描画することに成功した\cite{hyperbolicIFS}．固定点付近では図に乱れが出るものの，おおむね描画できる．実装はここ\footnote{Kleinian Groups WebGL: \url{https://www-m10.ma.tum.de/bin/view/Lehrstuhl/AaronMontagKleinian}}でみることができる.
 
 また，Jos Ley, Knighty両氏はマスキット群におけるEscape-timeアルゴリズム, Distance Estimationを開発した
-\footnote{An escape time algorithm for Kleinian group limit set: \url{http://www.fractalforums.com/3d-fractal-generation/an-escape-tim-algorithm-for-kleinian-group-limit-sets/}}.
+\footnote{An escape time algorithm for Kleinian group limit set:\\ \quad
+\quad \url{http://www.fractalforums.com/3d-fractal-generation/an-escape-tim-algorithm-for-kleinian-group-limit-sets/}}.
  二次元の極限集合だけでなく，三次元の図像も高速に描画することができる.
 荒木・糸\cite{maskit}と同様の設定で, 一方に平行移動を含む2つの放物型変換による群を考えている.
 詳細なアルゴリズムに関しては, Jos Ley氏がまとめている\footnote{Mathematical Imagery, An escape-time algorithm for a family of Kleinian groups: \url{http://www.josleys.com/article_show.php?id=221}}.

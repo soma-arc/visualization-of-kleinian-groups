@@ -7,28 +7,50 @@
 この章では，クライン群に関する用語を確認した後にレンダリング手法と『インドラの真珠』では言及のないクライン群の話題を紹介する．
 
 \subsection{Group}
-群(Group)という語はここでは変換の集まりだと考えることにする．例えば，
-以下のような二種類の変換を考えてみよう．
-\begin{eqnarray*}
- f(z) = z + 1
- g(z) = z + i
-\end{eqnarray*}
-逆変換の４種類の変換を組み合わせ, 合成することで，たくさんの変換を作ることができる．
-これらの変換すべての集合を群, 群の元となった4種の変換を生成元と呼ぶ．
-クライン群は\emph{メビウス変換}(M\"obius Transformations)を生成元にもつ群のなかで離散性という性質を持つものをいう．
 
-またここでは変換にラベルを付けて扱う．変換を小文字のアルファベットで表し，その逆変換を大文字で綴る．
-ラベルを並べて書くことで，変換の合成を表す．その際に右側の変換から使うことに注意する．
-例えば点pに対してaabaという変換を用いると，pを右上右右の順で点を動かすことになる．
+\emph{群}(\textit{Group})という語はここでは変換の集まりだと考えることにする.
+例えば，複素平面上で実軸正の方向への平行移動を表わす変換$a$と虚軸正の方向
+への平行移動$b$,そしてそれらの逆変換$A$と$B$を考えたときに, それらの組み合わ
+せで大量の変換を作ることができる. それら全てを総称し, 群とよぶ.
+また, 群を生成する際に用いた$a, b, A, B$を\emph{生成元}(\textit{Generator})とよぶ.
+ここではそれぞれの変換を小文字のアルファベットで表し，その逆変換を大文字で綴る．
+ラベルを並べて書くことで，変換の合成を表す．
+例えば点$p$を$aaba$という変換で移すことはラベルの右側から$f(f(g(f(p))))$
+とすることに等しい.
 また，上付文字はその変換の無限列とする．
 例えば，$\overline{a}$は，$aaaaa...$といった変換$a$の無限列となる．
 通常これはどの点に適用しても変換$a$の\emph{固定点}に収束する．
 固定点とは，$f(z) = z$となるような，変換を使って動かすことのできない点である．
 
+\begin{minipage}{0.5\hsize}
+ \begin{eqnarray*}
+  Generators =
+   \begin{cases}
+    a \colon f(z) = z + 1  \\
+    A \colon f^{-1}(z) = z - 1 \\
+    b \colon g(z) = z + i \\
+    B \colon g^{-1}(z) = z - i
+   \end{cases}
+ \end{eqnarray*}
+\end{minipage}
+\begin{minipage}{0.5\hsize}
+ \begin{eqnarray*}
+  Group =
+   \begin{cases}
+    aab\\
+    abbbaB \\
+    ABBAbba \\
+    baBBAbaaa \\
+    ...
+   \end{cases}
+ \end{eqnarray*}
+\end{minipage}
+
+クライン群は\emph{メビウス変換}(M\"obius Transformations)を生成元にもつ群のなかで離散性という性質を持つものをいう．
+
 \subsection{Conjugation}
 
-共役(Conjugation)という操作をもちいることで, ひとつの変換を異なる座標系で
-
+\emph{共役}(\textit{Conjugation})という操作をもちいることで, ひとつの変換を異なる座標で表わすことができる.
 原点を中心とする回転について考える.
 この矩形を中心として考えたいとする.
 原点を中心とした回転を$T$, 矩形の中心までの平行移動を$S$とすると, 矩形の
@@ -59,8 +81,10 @@ $\hat{T}$は回転と共役であるともいう.
   \right)
 \end{eqnarray*}
 メビウス変換は，等角性や円円対応といった性質をもつ．
-図\ref{fig:circleInversion}はメビウス変換の中でも重要な役割を持つ，円に関する反転という操作を可視化したものである．
-それぞれの図形は黒い円に関する反転で移されている．緑色の矩形を観察すると，変換の前後で直角が保たれていることがわかる．
+図\ref{fig:circleInversion}はメビウス変換の中でも重要な役割を持つ，円に
+関する反転という操作を可視化したものである．
+それぞれの図形は黒い円に関する反転で移されている．
+緑色の矩形を観察すると，変換の前後で直角が保たれていることがわかる．
 また，黄色の円は円が保たれている．メビウス変換は角度は保つが形は大きく歪めてしまう.
 これを三次元の球で同様に球に関する反転を考えることもできる.
 \begin{figure}[htbp]
@@ -77,13 +101,17 @@ $\hat{T}$は回転と共役であるともいう.
 また斜航型変換の中でも，スケーリングの係数が正の実数であるとき，その変換を\emph{双曲型}と呼ぶ場合もある．
 放物型は平行移動と共役で, 楕円型変換は回転と共役である.
 
-クライン群の描画において，メビウス変換の分類は重要である．なぜならば，楕円型変換を含む群の多くはクライン群にはなりえない．また，放物型変換は固定点への収束が遅いという特徴をもつ．これは後述する極限集合の描画の際に考慮することとなる．
+クライン群の描画において，メビウス変換の分類は重要である.
+なぜならば，楕円型変換を含む群の多くはクライン群にはなりえない.
+また，放物型変換は固定点への収束が遅いという特徴をもつ.
+これは後述する極限集合の描画の際に考慮することとなる.
 
 メビウス変換は４つの複素数で構成されていることから，８つのパラメータがある．ただし，このままでは自由度が高すぎるため，適切に制限を加えた群の「レシピ」が作られている．
 『インドラの真珠』で使われる「おばあちゃんのレシピ」をみてみよう．
 \begin{eqnarray*}
  t_a, t_b \in \mathbb{C} \\
  x^2 - t_a t_b x + t_a^2 + t_b^2 = 0 \text{の一方の解}x\text{を}t_{ab} = x \text{とする. }\\
+ z_0 = \frac{(t_{ab} -2)t_b}{t_b t_{ab} - 2 t_a + 2it_{ab}}\\
  A = \left(
       \begin{array}{ccc}
        \frac{t_a}{2} & \frac{t_a t_{ab} - 2 t_b + 4i}{(2 t_{ab} + 4)z_0} \\
@@ -169,7 +197,11 @@ Saul Schleimer, Henry Segermanはこれを利用した全天球画像へのエ�
 それぞれの反転円の反転は自分以外の反転円を自分の内側に移す．
 よって，それぞれの反転円の内側には３つの円が移され，合せて１２個の小円ができる．
 新たにできた小円に対してもその小円が属している反転円以外の反転を適用することで, 小円の下に新たな小円ができる.
-このことを繰り返すと，図\ref{fig:schottky}のように，円が入れ子状につらなる図を得ることができる．これが群の生成元による軌道である．また，円列の極限を極限集合とよぶ．この極限を観察することがクライン群を研究する上で役に立つ．
+このことを繰り返すと，図\ref{fig:schottky}のように，円が入れ子状につらな
+る図を得ることができる．
+これが群の生成元による軌道である．
+また，円列の極限を極限集合とよぶ．
+この極限を観察することがクライン群を研究する上で役に立つ．
 
 図\ref{fig:schottky}では反転円の軌道を描いが, 同様にして違う図形の軌道を描くこともできる.
 例えば, 図\ref{fig:orbit}は中央に置いた猫の画像を4つ反転円による反転で移した軌道を描いた.
@@ -179,7 +211,7 @@ Saul Schleimer, Henry Segermanはこれを利用した全天球画像へのエ�
 どちらの図も図形の軌道は最終的に極限集合へと収束していくことがわかる.
 
 このアルゴリズムは変換で構成される木構造を幅優先探索で探索することに等しい．
-例えば, 図\ref{fig:wordTree}の語の木を時計回りに探索すると$ a, b, A, B, aB, aa, ab, ba, bb, ...$の順に合成された変換を得ることができる.
+例えば, 図\ref{fig:wordTree}の語の木を時計回りに探索すると$a, b, A, B, aB, aa, ab, ba, bb, ...$の順に合成された変換を得ることができる.
 あらかじめ決められた深さまで調べたら, 得られたすべての変換の語を大本となる図形(図\ref{fig:orbit}における中央の猫)に対して適用することで, おおまかに生成元の作用を調べることができる．
 
 
@@ -234,7 +266,8 @@ $aab\overline{a}$と$aaa\overline{a}$のように隣同士の接頭語を持つ�
 \ref{fig:non-discrete}のように乱れるようなものがある．
 このような群は非離散群と呼ばれ，クライン群ではない.
 この離散と非離散のパラメータ領域を描画した図は'スライス'と呼ばれる．
-スライスの離散と非離散の境界もフラクタル形状となる. 境界のパラメータを用いて描画するとしばしば極限集合が興味深い形になる.
+スライスの離散と非離散の境界もフラクタル形状となる.
+境界のパラメータを用いて描画するとしばしば極限集合が興味深い形になる.
 山下靖氏のページ\footnote{Discreteness Locus:
 \url{http://vivaldi.ics.nara-wu.ac.jp/~yamasita/Slice/}}では様々なスライ
 スを見ることができる.
@@ -304,29 +337,68 @@ $aab\overline{a}$と$aaa\overline{a}$のように隣同士の接頭語を持つ�
 
 \subsubsection{Faults of Graph Traversal Approach}
 
-グラフを探索する方法にはいくつかの欠点がある. まず, 生成元や，探索を深くするごとに指数オーダーで計算量が増えてしまう. また, 部分的に拡大したい場合に無駄な部分を計算しないといった処理にも手間がかかる. さらに木構造の探索は並列化に向かないため, 高速化が難しい. そのため, 木構造の探索に頼らない方法がいくつか考案されている.
+グラフを探索する方法にはいくつかの欠点がある.
+まず, 生成元や，探索を深くするごとに指数オーダーで計算量が増えてしまう.
+また, 部分的に拡大したい場合に無駄な部分を計算しないといった処理にも手間
+がかかる.
+さらに木構造の探索は並列化に向かないため, 高速化が難しい.
+そのため, 木構造の探索に頼らない方法がいくつか考案されている.
 
-しかしながら, 最近のOpenCLやCUDAといった並列計算プラットフォームではDynamic Parallelismという機能を用いることで，木構造探索の並列計算を行うことが可能である．ただし, 最新のハードウェアに依存した機能のため, どの計算機環境でも使えるわけではない.
+しかしながら, 最近のOpenCLやCUDAといった並列計算プラットフォームでは
+Dynamic Parallelismという機能を用いることで，木構造探索の並列計算を行う
+ことが可能である．
+ただし, 最新のハードウェアに依存した機能のため, どの計算機環境でも使えるわけではない.
 
 \subsection{Iterated Inversion System}
 
-筆者らは, 1章でみたシェーダを用いたフラクタルのレンダリングアルゴリズムに着想を得て, 円や球の反転で構成される群の軌道を高速に描画するためのアルゴリズム，Iterated Inversion System (IIS)\cite{iis}を開発した．
-円や球の座標と半径を直接計算するこれまでのアプローチに対して，このアルゴリズムは任意の点が属する円や球の深さを特定する．
-これはスクリーンスペースのピクセルそれぞれに対して独立に計算することができるのでGLSLによる並列計算，描画を行うことができる．
+筆者らは, 1章でみたシェーダを用いたフラクタルのレンダリングアルゴリズム
+に着想を得て, 円や球の反転で構成される群の軌道を高速に描画するためのアル
+ゴリズム, \textit{Iterated Inversion System (IIS)}\cite{iis}を開発した．
+円や球の座標と半径を直接計算するこれまでのアプローチに対して，このアルゴ
+リズムは任意の点が属する円や球の深さを特定する．
+これはスクリーンスペースのピクセルそれぞれに対して独立に計算することがで
+きるのでGLSLによる並列計算，描画を行うことができる．
+
+図\ref{fig:iis-orb}のような4つの反転円を考える.
+ある点がいずれかの円盤に属している時にその円に関する反転を行なう.
+これを反転後の点がすべての円の外側に移されるまで繰り返す.
+最終的に, 行なった反転の回数が, その点が属している円盤の深さとなる.
+図\ref{fig:iis-orb}では青い点の軌道を描いている. 
+この点は二回反転が行なわれているので, 反転円から二番目の円に属している. 
+
+\begin{figure}[htbp]
+ \center
+ \includegraphics[ height=1.5in, keepaspectratio]{../img/klein/orb.pdf}
+ \caption{Orbit}
+ \label{fig:iis-orb}
+\end{figure}
+
 また，Distance Estimationとレイマーチングを用いることで, 三次元形状に関しても高速で描画することができる．
 
 \subsection{Geometrical Representation of M\"obius Transformations}
 
-木構造を用いて群を可視化する際には，変換を行列で考えたが，行列表現でメビウス変換を操作することは直観が得にくい．さらに，四次元クライン群を構成する三次元空間に作用するメビウス変換は，２×２四元数行列で表現することができるが，さらにパラメータ数が増大する．このことは，四次元クライン群の研究があまり進んでいないことの原因にもなっている．
-そこで筆者らはすべてのメビウス変換を円や球の反転で構成することを考えた．円や球を用いることで，生成元と可視化される図形の間の関係性が理解しやすく，幾何学的な直観を得ることができる．それに加え，IISを用いることで複雑な生成元をもつ群もリアルタイムに可視化することができる．このことは，研究者や学習者だけでなく，フラクタルアーティストにも有益なものとなるだろう．具体的な構成方法などはBridges2017に投稿中である．
-また，筆者は円や球の反転で構成される群をインタラクティブに構成するソフトウェア，{\it Schottky Link} \footnote{Schottky Link: \url{https://schottky.jp}}を開発している．
+木構造を用いて群を可視化する際には，変換を行列で考えたが，行列表現でメビ
+ウス変換を操作することは直観が得にくい．
+さらに，四次元クライン群を構成する三次元空間に作用するメビウス変換は, ２×２
+四元数行列で表現することができるが，さらにパラメータ数が増大する．
+このことは，四次元クライン群の研究があまり進んでいないことの原因にもなっている．
+そこで筆者らはすべてのメビウス変換を円や球の反転で構成することを考えた．
+円や球を用いることで，生成元と可視化される図形の間の関係性が理解しやすく，
+幾何学的な直観を得ることができる．
+それに加え，IISを用いることで複雑な生成元をもつ群もリアルタイムに可視化
+することができる．
+このことは，研究者や学習者だけでなく，フラクタルアーティストにも有益なも
+のとなるだろう．
+具体的な構成方法などはBridges2017に投稿中である．
+また，筆者は円や球の反転で構成される群をインタラクティブに構成するソフト
+ウェア, {\it Schottky Link} \footnote{Schottky Link: \url{https://schottky.jp}}を開発している．
 
 \subsection{Other Topics}
 
 この節では, その他のレンダリング手法とクライン群の研究の中でも興味深い図像を見ることができる先行研究を紹介する.
 
 \subsubsection{Other Rendering Methods}
-Aaron Montag氏はIterated Inversion Systemを拡張したHyperbolic Iterated Function Systemによって極限集合を描画することに成功した\cite{hyperbolicIFS}．固定点付近では図に乱れが出るものの，おおむね描画できる．実装はここ\footnote{Kleinian Groups WebGL: \url{https://www-m10.ma.tum.de/bin/view/Lehrstuhl/AaronMontagKleinian}}でみることができる.
+Aaron MontagはIterated Inversion Systemを拡張したHyperbolic Iterated Function Systemによって極限集合を描画することに成功した\cite{hyperbolicIFS}．固定点付近では図に乱れが出るものの，おおむね描画できる．実装はここ\footnote{Kleinian Groups WebGL: \url{https://www-m10.ma.tum.de/bin/view/Lehrstuhl/AaronMontagKleinian}}でみることができる.
 
 また，Jos Ley, Knighty両氏はマスキット群におけるEscape-timeアルゴリズム, Distance Estimationを開発した
 \footnote{An escape time algorithm for Kleinian group limit set:\\ \quad
@@ -337,7 +409,7 @@ Aaron Montag氏はIterated Inversion Systemを拡張したHyperbolic Iterated Fu
 
 \subsubsection{Quasi Fuchsian 3-Dimensional Fractals}
 
-Quasi Fuchsian 3-Dimensional Fractalsは阿原・荒木両氏による擬フックス群を三次元に拡張した４次元クライン群である\cite{sphairahedra}\cite{sphairahedraJa}．
+Quasi Fuchsian 3-Dimensional Fractalsは阿原・荒木による擬フックス群を三次元に拡張した４次元クライン群である\cite{sphairahedra}\cite{sphairahedraJa}．
 前述のフラクタルコミュニティに大きな影響を与えたと言われている.
 
 図\ref{fig:schottky}において, 中央の円盤に囲まれた黒い領域を\emph{円辺形}と呼ぶ.
@@ -349,8 +421,8 @@ Quasi Fuchsian 3-Dimensional Fractalsは阿原・荒木両氏による擬フッ�
 
 著者によってYouTubeに投稿された動画\footnote{Quasi-fuchsian fractals: \url{https://www.youtube.com/watch?v=3lcO9zRCv-4}}ではこのフラクタルの構成過程をみることができる.
 数学的な事項については2016年に蔭山氏がまとめている\cite{kageyama}．
-荒木氏はこのフラクタル図形の物質化についてもまとめている\cite{materializing}．
-また，Distance EstimationのアルゴリズムがKnighty氏により開発された\footnote{Another 3D Kleinian: \url{http://www.fractalforums.com/ifs-iterated-function-systems/another-3d-kleinian/}}．
+荒木はこのフラクタル図形の物質化についてもまとめている\cite{materializing}．
+また，Distance EstimationのアルゴリズムがKnightyにより開発された\footnote{Another 3D Kleinian: \url{http://www.fractalforums.com/ifs-iterated-function-systems/another-3d-kleinian/}}．
 
 \begin{figure}[htbp]
  \begin{minipage}{0.49\hsize}
@@ -376,7 +448,7 @@ Quasi Fuchsian 3-Dimensional Fractalsは阿原・荒木両氏による擬フッ�
 
 しかし, 四元数を用いることで，三次元空間に作用するメビウス変換を定義することができる．
 これは$sp^k(1, 1)$と呼ばれ，2x2の四元数行列で表現される．
-四元数で構成されるメビウス変換とその分類は佐久川氏による\cite{sakugawaMaster}や\cite{accidentalParabolic}にまとまっている．佐久川氏は，三次元空間上で捩じりが加わるようなメビウス変換を\emph{複合放物型}({\it Compund Parabolic}), \emph{複合斜航型}({\it Compound Loxodromic})と分類した．
+四元数で構成されるメビウス変換とその分類は佐久川による\cite{sakugawaMaster}や\cite{accidentalParabolic}にまとまっている．佐久川氏は，三次元空間上で捩じりが加わるようなメビウス変換を\emph{複合放物型}({\it Compund Parabolic}), \emph{複合斜航型}({\it Compound Loxodromic})と分類した．
 図\ref{fig:sakugawa}は佐久川氏による複合放物型変換を含む群のレシピによる群の極限集合を描画したものである.
 放物型変換である平行移動に回転が加わることで複合放物型変換となる.
 
@@ -406,7 +478,7 @@ Quasi Fuchsian 3-Dimensional Fractalsは阿原・荒木両氏による擬フッ�
 
 \subsubsection{Once Punctured Torus Groups}
 {\it Once Punctured Torus Groups}はクライン群の一種である．{\it OPTi}\footnote{OPTi: \url{http://delta-mat.ist.osaka-u.ac.jp/OPTi/index.html}}という描画ソフトウェアが有名である．
-描画\cite{OPTiDrawing}や離散性判\cite{OPTiDiscrete}のためのアルゴリズムが和田氏によりまとめられている．
+描画\cite{OPTiDrawing}や離散性判定\cite{OPTiDiscrete}のためのアルゴリズムが和田によりまとめられている．
 このスライス領域はベアズスライスとよばれる．
 Once Punctured Torus Groupsの研究はOPTiによって進歩した．
 図\ref{fig:opt}のように, 平行移動の生成元をもつため, 極限集合は比較的高速に描画することができる.

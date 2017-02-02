@@ -23,7 +23,7 @@
 固定点とは，$f(z) = z$となるような，変換を使って動かすことのできない点である．
 
 \begin{minipage}{0.5\hsize}
- \begin{eqnarray*}
+ \begin{align*}
   Generators =
    \begin{cases}
     a \colon f(z) = z + 1  \\
@@ -31,10 +31,10 @@
     b \colon g(z) = z + i \\
     B \colon g^{-1}(z) = z - i
    \end{cases}
- \end{eqnarray*}
+ \end{align*}
 \end{minipage}
 \begin{minipage}{0.5\hsize}
- \begin{eqnarray*}
+ \begin{align*}
   Group =
    \begin{cases}
     aab\\
@@ -43,7 +43,7 @@
     baBBAbaaa \\
     ...
    \end{cases}
- \end{eqnarray*}
+ \end{align*}
 \end{minipage}
 
 クライン群は\emph{メビウス変換}(M\"obius Transformations)を生成元にもつ群のなかで離散性という性質を持つものをいう．
@@ -360,11 +360,40 @@ Dynamic Parallelismという機能を用いることで，木構造探索の並�
 きるのでGLSLによる並列計算，描画を行うことができる．
 
 図\ref{fig:iis-orb}のような4つの反転円を考える.
+黒い領域は基本領域とよぶ.
 ある点がいずれかの円盤に属している時にその円に関する反転を行なう.
 これを反転後の点がすべての円の外側に移されるまで繰り返す.
 最終的に, 行なった反転の回数が, その点が属している円盤の深さとなる.
-図\ref{fig:iis-orb}では青い点の軌道を描いている. 
-この点は二回反転が行なわれているので, 反転円から二番目の円に属している. 
+図\ref{fig:iis-orb}では青い点の軌道を描いている.
+この点は二回反転が行なわれているので, 反転円から二番目の円に属している.
+それぞれの計算はピクセルごとに行なうことができるため, 多項式時間で描画す
+ることができる.
+実際にこのアルゴリズムを用いてすべての点を基本領域へと移動させるためには,
+無限回の反転が必要である. そのため, あらかじめ最大の反転回数を決めておく.
+擬似コードをアルゴリズム\ref{iis2d}に示す.
+
+ \begin{algorithm}
+  \caption{Iterated Inversion System (IIS)}
+  \label{iis2d}
+  \begin{algorithmic}
+   \REQUIRE count $= 0$ and coordinates $=$ position determined by
+   pixel
+   \FOR{$i=0$ to MAX\_INVERSION}
+   \STATE inFundamentalDomain $\leftarrow$ \TRUE
+   \FOR{ each map $G$ in Maps }
+   \IF{$G$ is available to coordinates}
+   \STATE coordinates $\leftarrow$ $G(\text{coordinates})$
+   \STATE INCREMENT count
+   \STATE inFundamentalDomain $\leftarrow$ \FALSE
+   \ENDIF
+   \ENDFOR
+   \IF {inFundamentalDomain}
+   \STATE BREAK for
+   \ENDIF
+   \ENDFOR
+   \STATE RETURN count
+  \end{algorithmic}
+ \end{algorithm}
 
 \begin{figure}[htbp]
  \center
@@ -373,7 +402,78 @@ Dynamic Parallelismという機能を用いることで，木構造探索の並�
  \label{fig:iis-orb}
 \end{figure}
 
-また，Distance Estimationとレイマーチングを用いることで, 三次元形状に関しても高速で描画することができる．
+また, 球の反転による三次元形状もレイマーチングを用いることで, 高速に描画
+することができる.
+二次元の場合と同様に球の反転によるショットキー球の軌道を描こうとすると,
+軌道はショットキー球の内側に連なってしまい, 描画に手間がかかる.
+そこで我々は軌道の元となる球を用意し, その球をショットキー球の反転で移し
+た軌道を描画する.
+図\ref{fig:simpleGen3d}における灰色の球を\emph{ショットキー球},緑色の球を\emph{基本球}とよぶ.
+基球をすべてのショットキー球の反転で移すと図\ref{fig:simpleOrb3d}のよう
+な軌道が得られる.
+レイマーチングに用いる距離関数を求めるため,
+ここで簡単のために, 図\ref{fig:xySlice}に示されるような図
+\ref{fig:iis-orb}のXY平面での断面を考えることにする.
+橙色の円列はショットキー球の軌道, 水色の円が基本球の軌道である.
+緑色の点$P2$はレイの先端, であるとすると最も近い球は$S2$となる.
+しかし, 我々は$S2$の位置と半径は分からない.
+基本球である$S1$の位置と半径のみを知っている.
+
+擬似コードはアルゴリズム\ref{iis3d}に示した.
+
+
+\begin{figure}[htbp]
+ \begin{minipage}[b]{0.5\hsize}
+  \begin{minipage}[]{0.49\hsize}
+   \center
+   \includegraphics[ height=1.5in, keepaspectratio]{../img/klein/simpleGen.pdf}
+   \subcaption{Generator}
+   \label{fig:simpleGen3d}
+  \end{minipage}
+  \begin{minipage}[]{0.49\hsize}
+   \center
+   \includegraphics[ height=1.5in, keepaspectratio]{../img/klein/simpleOrbit.pdf}
+   \subcaption{Orbit}
+   \label{fig:simpleOrb3d}
+  \end{minipage}
+  \caption{The orbit of the green sphere}
+  \label{fig:iis-orb}
+ \end{minipage}
+ \begin{minipage}[b]{0.5\hsize}
+  \center
+  \includegraphics[ height=1.5in, keepaspectratio]{../img/klein/xySlice.pdf}
+  \caption{XY-slice image of Figure \ref{fig:iis-orb}}
+  \label{fig:xySlice}
+ \end{minipage}
+\end{figure}
+
+\begin{algorithm}
+ \caption{Distance function}
+ \label{iis3d}
+ \begin{algorithmic}
+  \REQUIRE count $= 0$, $d$ = MAX\_DISTANCE, $dr = 1.0$, and coordinates $=$ tipping
+  point of the ray
+  \FOR{$i=0$ to MAX\_INVERSION}
+  \STATE inFundamentalDomain $\leftarrow$ \TRUE
+  \FOR{ each Map $G$ in Maps}
+  \IF{$G$ is available to coordinates}
+  \STATE coordinates $\leftarrow$ $G(\text{coordinates})$
+  \STATE $dr \leftarrow dr * $ (Jacobian of $G(\text{coordinates})$)
+  \STATE INCREMENT count
+  \STATE inFundamentalDomain $\leftarrow$ \FALSE
+  \ENDIF
+  \ENDFOR
+  \IF {isInFundamentalDomain}
+  \STATE BREAK for
+  \ENDIF
+  \ENDFOR
+  \FOR{ each BaseSphere $S$ in BaseSpheres}
+  \STATE $d \leftarrow$ min($d$, scalingFactor * (distance(coordinates, $S$.center) $-$
+  $S$.radius) $/$ (absolute value of $dr$))
+  \ENDFOR
+  \RETURN $d$
+ \end{algorithmic}
+\end{algorithm}
 
 \subsection{Geometrical Representation of M\"obius Transformations}
 

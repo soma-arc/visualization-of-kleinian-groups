@@ -431,10 +431,25 @@ Dynamic Parallelismという機能を用いることで，木構造探索の並�
 ショットキー球の中心を$S$その半径を$R$,半径を適用する前の点を$P$とおくと
 球の反転のヤコビアンは以下のように計算できる.
 $ Jacobian = R^2 / distance(P, S)^2 $
+また, 半径が無限大の球の反転のヤコビアンは1であることに注意する.
+反転のヤコビアンを反転をおこなう毎にかけあわせていく.
+最終的に近似されたレイの先端から最も近い球との距離は, 基本球と基本領域に
+落ちた点との距離をヤコビアンの積で割ることで求めることができる.
 
-
+この近似は荒いため, もう一つ考慮すべき事がある.
+レイの先端が極限集合の外側にあるとき, その点は円の反転によって外側に移さ
+れるため, レイは予期せずしてオブジェクトと突きぬけてしまう.
+このことは図\ref{fig:artifact}のような乱れを生みだしてしまう.
+オブジェクトの前面が正しくレンダリングされていない.
+このような不具合を避けるため, 算出された距離を縮小する必要がある.
+縮小率は球の大きさによって実験的に決めた.
 擬似コードはアルゴリズム\ref{iis3d}に示した.
 
+基本球の数を増やすことも可能である. 図\ref{fig:3baseSphere}は3つの基本球
+の軌道を描画した.
+基本球の大きさを変更することで, 形状を変形することができる.
+図\ref{fig:limitSetOnSphere}は基本球の大きさを極限集合と同じ大きさにしたものである.
+球の上に極限集合が描画されていることがわかる.
 
 \begin{figure}[htbp]
  \begin{minipage}[b]{0.5\hsize}
@@ -459,6 +474,38 @@ $ Jacobian = R^2 / distance(P, S)^2 $
   \caption{XY-slice image of Figure \ref{fig:iis-orb}}
   \label{fig:xySlice}
  \end{minipage}
+\end{figure}
+
+\begin{figure}[htbp]
+ \begin{minipage}{0.5\hsize}
+  \center
+  \includegraphics[ height=1.5in, keepaspectratio]{../img/klein/artifact.pdf}
+  \caption{The Artifact}
+  \label{fig:artifact}
+ \end{minipage}
+ \begin{minipage}{0.5\hsize}
+  \center
+  \includegraphics[ height=1.5in, keepaspectratio]{../img/klein/3dLimitSet.pdf}
+  \caption{The Limit set on the sphere}
+  \label{fig:limitSetOnSphere}
+ \end{minipage}
+\end{figure}
+
+\begin{figure}[htbp]
+ \begin{minipage}{0.5\hsize}
+  \center
+  \includegraphics[ height=1.5in, keepaspectratio]{../img/klein/3baseGen.pdf}
+  \subcaption{Generator}
+  \label{fig:}
+ \end{minipage}
+ \begin{minipage}{0.5\hsize}
+  \center
+  \includegraphics[ height=1.5in, keepaspectratio]{../img/klein/3baseOrb.pdf}
+  \subcaption{Orbit}
+  \label{fig:}
+ \end{minipage}
+ \caption{The orbit of 3 base spheres}
+ \label{fig:3baseSphere}
 \end{figure}
 
 \begin{algorithm}

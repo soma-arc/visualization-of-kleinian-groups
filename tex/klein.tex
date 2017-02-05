@@ -379,7 +379,10 @@ Dynamic Parallelismという機能を用いることで，木構造探索の並�
 ることができる.
 実際にこのアルゴリズムを用いてすべての点を基本領域へと移動させるためには,
 無限回の反転が必要である. そのため, あらかじめ最大の反転回数を決めておく.
-擬似コードをアルゴリズム\ref{iis2d}に示す.
+
+後に我々は単純な反転以外の生成元を導入する. 我々は基本領域にある点に対しては恒
+等写像で, その他の点に対しては反転の合成を適用する写像$G$を考える.
+より一般化した擬似コードをアルゴリズム\ref{iis2d}に示す.
 
  \begin{algorithm}
   \caption{Iterated Inversion System (IIS)}
@@ -542,17 +545,110 @@ $ Jacobian = R^2 / distance(P, S)^2 $
 ウス変換を操作することは直観が得にくい．
 さらに，四次元クライン群を構成する三次元空間に作用するメビウス変換は, ２×２
 四元数行列で表現することができるが，さらにパラメータ数が増大する．
-このことは，四次元クライン群の研究があまり進んでいないことの原因にもなっている．
-そこで筆者らはすべてのメビウス変換を円や球の反転で構成することを考えた．
+このことは，四次元クライン群の研究を難しくしている．
+そこで筆者はすべてのメビウス変換を円や球の反転で構成することを考えた．
 円や球を用いることで，生成元と可視化される図形の間の関係性が理解しやすく，
 幾何学的な直観を得ることができる．
 それに加え，IISを用いることで複雑な生成元をもつ群もリアルタイムに可視化
 することができる．
 このことは，研究者や学習者だけでなく，フラクタルアーティストにも有益なも
 のとなるだろう．
-具体的な構成方法などはBridges2017に投稿中である．
 また，筆者は円や球の反転で構成される群をインタラクティブに構成するソフト
-ウェア, {\it Schottky Link} \footnote{Schottky Link: \url{https://schottky.jp}}を開発している．
+ウェア, {\it Schottky Link} \footnote{Schottky Link:
+\url{https://schottky.jp}}を開発している．
+
+\subsubsection{2D Generators}
+
+\noindent\textbf{Simple Inversion}
+先に述べたように, 円に関する反転は複素平面の向きを変えるので, メビウス変
+換ではない.
+ふたつの反転円がペアとなってはじめてメビウス変換となる.
+しかし, ここでは簡単のためにメビウス変換の元として扱う.
+
+\noindent\textbf{Inversion of a Circle with Infinite Radius}
+無限の半径をもつ円に関する反転は直線に関する反転で表される.
+図では右側の反転円が左側の半径無限の円の内側に反転で移されていることがわ
+かる.
+
+\noindent\textbf{Rotation}
+二つの交差する直線の反転の組み合わせは回転を表わす. 回転角は二直線のなす
+角の二倍である. 図では90度回転を示した. また, 軌道となる円同士がお互いに
+重なりあわないようにするためには, 回転角は有理角である必要がある.
+
+\noindent\textbf{Composition of Two Circles}
+二つの同心円をもちいることで, 双曲型変換である単純な拡縮を表わすことがで
+きる.
+図をみよ.
+赤い円を$C1$,緑の円を$C2$, そして青い円を$C1'$とよぶ.
+$C1'$は$C1$を$C2$による反転で移した像である.
+図では, 白い縁をもつ二つの円の軌道を描いている.
+固定点は円の中心と無限遠点である.
+我々は写像$G$を以下のように構成する.
+ここで接頭辞$I$は反転を表わす.
+例えば, $I_{C1}$は$C1$による反転を表わす.
+\begin{align*}
+ G =
+  \begin{cases}
+   I_{C2} \circ I_{C1} & (\text{The point is inside of } C1) \\
+   I_{C1} \circ I_{C2} & (\text{The point is outside of }C1')
+  \end{cases}
+\end{align*}
+我々は$G$を繰り返し用いることで点を基本領域へと移動させることができる.
+この種類の生成元の基本領域は青と緑の領域である.
+完全な円の軌道をIISを用いて描くには, ショットキー円をこの領域内に配置す
+る必要がある.
+
+次に, $C1$を少し動かすと, 図のような軌道が得られる.
+有限の固定点は動くが, 内側の円$C1$の内部に留まり, 無限遠点の固定点は有限
+の点に移る.
+二つの円が交差しない限り, これも双曲型変換である.
+$C1$と$C2$が接触する時, 図のように固定点はその交点で重なりあい, 放物型変
+換となる.
+
+\noindent\textbf{Loxodromic}
+上記の生成元の軌道は単純な拡縮と共役であった.
+我々はその軌道に二つの反転を加えることで軌道を捻ることができる.
+図では$C1$の中心を$C2$通る白い直線$L$と黄色の円$C3$, そして水色の点$P$が
+描かれている.
+$P$は制御点であり, $C3$は$P$とその$C1$と$C2$による反転の像である$P'$と
+$P''$の三点から定義される.
+$L$と$C3$の組み合わせは回転を表す.
+写像$G$は以下のようになる.
+\begin{align*}
+G =
+\begin{cases}
+ (I_{C2} \circ I_{C1}) \circ (I_{C3} \circ I_L) & (\text{The point is inside of } C1) \\
+ (I_L \circ I_{C3}) \circ (I_{C1} \circ I_{C2}) & (\text{The point is outside of }C1')
+\end{cases}
+\end{align*}
+また, 二つの固定点からこの種類の生成元を得ることもできる.
+
+\subsubsection{3D Generators}
+ほとんどの三次元の生成元は二次元の生成元から自然に導くことができる.
+
+\noindent\textbf{Simple Inversion.}
+二次元の場合と同様に球の反転単体はメビウス変換ではなく, 二つの球のペアに
+よる反転がメビウス変換である.
+しかし, ここではこれもメビウス変換として扱う.
+
+\noindent\textbf{Inversion of a Sphere with Infinite Radius}
+半径が無限大の球による反転は平面による反転と表すことができる.
+図では青い板が半径が無限の球を表現している.
+右側の軌道はこの板によって左側へと移されている.
+
+\noindent\textbf{Rotation}
+二次元の場合と同様にして, 回転は互いに交わる二枚の平面の反転により表され
+る.
+回転軸は二枚の平面の交線である.
+図では180度の回転を示した.
+
+\noindent\textbf{Parallel Translation}
+二つの平行な平面のペアは平面の法線方向への平行移動を表わす.
+図はこの生成元と軌道を描いた.
+これは, 放物型変換である.
+
+\noindent\textbf{Compound Parabolic}
+更に, 三次元では, 軌道に捻りを加えることができる.
 
 \subsection{Other Topics}
 
@@ -561,7 +657,8 @@ $ Jacobian = R^2 / distance(P, S)^2 $
 \subsubsection{Other Rendering Methods}
 Aaron MontagはIterated Inversion Systemを拡張したHyperbolic Iterated Function Systemによって極限集合を描画することに成功した\cite{hyperbolicIFS}．固定点付近では図に乱れが出るものの，おおむね描画できる．実装はここ\footnote{Kleinian Groups WebGL: \url{https://www-m10.ma.tum.de/bin/view/Lehrstuhl/AaronMontagKleinian}}でみることができる.
 
-また，Jos Ley, Knighty両氏はマスキット群におけるEscape-timeアルゴリズム, Distance Estimationを開発した
+また，Jos Ley, Knighty両氏はマスキット群におけるEscape-timeアルゴリズム
+とDistance Estimationを開発した
 \footnote{An escape time algorithm for Kleinian group limit set:\\ \quad
 \quad \url{http://www.fractalforums.com/3d-fractal-generation/an-escape-tim-algorithm-for-kleinian-group-limit-sets/}}.
  二次元の極限集合だけでなく，三次元の図像も高速に描画することができる.
@@ -583,7 +680,9 @@ Quasi Fuchsian 3-Dimensional Fractalsは阿原・荒木による擬フックス�
 著者によってYouTubeに投稿された動画\footnote{Quasi-fuchsian fractals: \url{https://www.youtube.com/watch?v=3lcO9zRCv-4}}ではこのフラクタルの構成過程をみることができる.
 数学的な事項については2016年に蔭山氏がまとめている\cite{kageyama}．
 荒木はこのフラクタル図形の物質化についてもまとめている\cite{materializing}．
-また，Distance EstimationのアルゴリズムがKnightyにより開発された\footnote{Another 3D Kleinian: \url{http://www.fractalforums.com/ifs-iterated-function-systems/another-3d-kleinian/}}．
+また，Distance EstimationのアルゴリズムがKnightyにより開発された
+\footnote{Another 3D Kleinian:
+ \url{http://www.fractalforums.com/ifs-iterated-function-systems/another-3d-kleinian/}}．
 
 \begin{figure}[htbp]
  \begin{minipage}{0.49\hsize}
@@ -613,7 +712,13 @@ Quasi Fuchsian 3-Dimensional Fractalsは阿原・荒木による擬フックス�
 図\ref{fig:sakugawa}は佐久川氏による複合放物型変換を含む群のレシピによる群の極限集合を描画したものである.
 放物型変換である平行移動に回転が加わることで複合放物型変換となる.
 
-荒木・糸両氏はマスキット群を四次元クライン群に拡張した\cite{maskit}．幾何学的性質をうまく使うことで，四元数の計算を避けている．レンダリングされた極限集合は糸氏のWebページ\footnote{4-dimensional Kleinian punctured torus groups: \url{http://www.math.nagoya-u.ac.jp/~itoken/3d-maskit/3d-maskit.html}}や論文中で見ることができる．佐久川氏はこの群の四元数表示を導出した\cite{sakugawa4d}．
+荒木・糸両氏はマスキット群を四次元クライン群に拡張した\cite{maskit}．
+幾何学的性質をうまく使うことで，四元数の計算を避けている．
+レンダリングされた極限集合は糸氏のWebページ\footnote{4-dimensional
+Kleinian punctured torus groups:
+\url{http://www.math.nagoya-u.ac.jp/~itoken/3d-maskit/3d-maskit.html}}や
+論文中で見ることができる．佐久川氏はこの群の四元数表示を導出した
+\cite{sakugawa4d}.
 
 三浦氏は３つ以上の生成元による４次元クライン群をモジュラー群から構成することを試みた\cite{miura}．筆者はこの論文における数値実験と可視化を行った．
 

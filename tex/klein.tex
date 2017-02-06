@@ -649,6 +649,50 @@ G =
 
 \noindent\textbf{Compound Parabolic}
 更に, 三次元では, 軌道に捻りを加えることができる.
+図では軌道に平行移動の元が適用されるたびに回転していることがわかる.
+これは\emph{複合放物型変換}(\textit{Compound Parabolic})とよばれる.
+
+\noindent\textbf{Composition of Two Spheres}
+
+二次元の場合と同様に二つの球の反転を組み合わせる.
+図に示される赤い球を$S1$, 黄緑の球を$S2$,青い球を$S1'$とよぶ.
+写像$G$は二次元と同様に以下のようになる.
+\begin{align*}
+G =
+\begin{cases}
+ I_{S2} \circ I_{S1} & (\text{The point is inside of } S1) \\
+ I_{S1} \circ I_{S2} & (\text{The point is outside of }S1')
+\end{cases}
+\end{align*}
+$S1$と$S2$に接触がない場合この生成元は斜航型変換である.
+軌道は図に示した.
+$S1$と$S2$が一点で接触し時, 放物型変換となる.
+その接点が固定点となる.
+図をみよ.
+球の軌道は固定点ので接触していることがわかる.
+
+\noindent\textbf{Compound Loxodromic}
+最後に, $S1$と$S2$に垂直な二つの球を追加する.
+図に示される桃色の球を$S3$, 黄色の球を$S4$と呼ぶ.
+また, 3つの制御点を$P$,$Q1$,$Q2$が存在する.
+$S3$と$S4$の反転の組み合わせは回転を表す.
+球は4つの点により決定される.
+$P'$と$P''$を$P$の$S1$と$S2$の反転による像とする.
+$G$は以下のようになる.
+\begin{align*}
+S3 = Sphere(P, P', P'', Q1) \quad
+S4 = Sphere(P, P', P'', Q2) \\
+G =
+\begin{cases}
+ (I_{S4} \circ I_{S3}) \circ (I_{S1} \circ I_{S2}) & (\text{The point is inside of } S1) \\
+ (I_{S2} \circ I_{S1}) \circ (I_{S3} \circ I_{S4}) & (\text{The point is outside of }S1')\\
+\end{cases}
+\end{align*}
+図では, 二次元における斜航型変換のような捻じれた軌道をみることができる.
+この生成元を\emph{複合斜航型変換}(Compound Loxodromic)とよぶ.
+
+\subsection{Optimization}
+
 
 \subsection{Other Topics}
 

@@ -58,49 +58,107 @@ Language(GLSL)}や\textit{High Level Shading Language(HLSL)}の\emph{フラ
 グメントシェーダ}(Fragment Shader)を用いるものがある．
 フラグメントシェーダは本来，ポリゴンに陰影をつけるために使用され, その処
 理はGPUで行なわれる.
-しかし, スクリーンスペースに矩形のポリゴンをレンダリングすることで画面全体に
-各ピクセルごとの処理の結果をレンダリングすることができる．
-GPUは浮動小数演算性能に優れていることに加え，各ピクセルの演算は並列に行われるため高速である.
+GPUは浮動小数演算性能に優れていることに加え，各ピクセルの演算は並列に行
+われるため高速である.
 
-シェーダを用いたレンダリングでは, 全てのオブジェクトがプログラムで表現される.
-例えば,  通常三次元物体を表現する場合には, メッシュで表現される.
-頂点や法線の情報を読み出して描画する.
-それに対して, アルゴリズムで形状を生成することになる.
-小さなプログラムサイズでリアルタイムにレンダリングするという目的に合致する.
+この手法では, スクリーンスペースに矩形のポリゴンをレンダリングすることで
+\emph{プロシージャル}(\textit{Procedural})に図を描画する.
+プロシージャルとは, 数式やアルゴリズムを用いて形状を生成すること等を
+指す.
+複雑な形状をポリゴンで表現するよりもプログラムの実行サイズを下
+げたり, 計算速度を向上させたりすることができるため, デモの, 小さなプログ
+ラムサイズでリアルタイムにレンダリングするという目的に適している.
+フラクタルはしばしば簡潔なアルゴリズムで複雑な形状を生成するので, デモに
+おいてもよく使われる.
 
-例えば, フラグメントシェーダで円を描くことを考えてみる.
+アルゴリズム\ref{shaderSample}に擬似コードと図\ref{fig:simpleShader}にレ
+ンダリング結果を示した.
+このように, ピクセルごとに座標が与えられるので, これを用いてピクセルの色
+を決定する.
+
+\begin{algorithm}
+ \begin{algorithmic}
+\begin{minipage}{0.5\hsize}
+
+ \caption{Sample Shader}
+ \label{shaderSample}
+  \REQUIRE COORDINATES, resolution
+  \STATE uv = COORDINATES / resolution
+  \STATE COLOR = Vector3(uv.x uv.y, 1.)
+\end{minipage}
+ \end{algorithmic}
+\end{algorithm}
+
+
+幾何図形を描く際には多くの場合, 距離関数を用いる.
+距離関数は, 図形からの最短距離を返す関数である.
 原点中心，半径$r$の円の距離関数は以下のようになる．
-\begin{eqnarray*}
- f(z) = | length(z) - r |
-\end{eqnarray*}
-この関数は円周からの距離を返す．
-この距離から一定以下の距離をもつ時にピクセルを塗りつぶす処理を書くと円を
-描くことができる．
-複数の図形を描きたい時は，複数の距離関数を評価し，最も小さな距離を求めればよい．
-また，距離関数は陰関数とその微分から近似的に導出することができる．
-与えられた点$x$に対して, 陰関数$f(x)$が表す零点集合への最短距離を返す距
-離関数は以下のように近似的に求めることができる.
+\begin{align*}
+ f(z) =  length(z) - r
+\end{align*}
+この関数は円周からの距離を返す.
+座標が, 負の距離をもつときに色をつけるような処理を書く
+と円を描くことができる．
+アルゴリズム\ref{renderCircle}に疑似コードと図\ref{fig:circleShader}にレ
+ンダリング結果を示した.
+複数の図形を描きたい時は，複数の距離関数を評価し，最も小さな距離を求めれ
+ばよい.
+
+また，距離関数は陰関数から近似的に導出することができる.
+この手法をDistance Estimationとよぶ.
+その式の一つをここで紹介する.
+与えられた点$x$に対して, 陰関数$f(x)$が表す零点集合への最短距離を返す近
+似関数は微分を用いて以下のように求めることができる.
 \begin{eqnarray*}
  DistanceFunction(x) \approx \frac{|f(x)|}{|\bigtriangledown f(x)|}
 \end{eqnarray*}
-この手法はDistance Estimationと呼ばれ，複雑な形状を高速かつ綺麗に描画す
-ることに役立つ．この形は基本形であるが, より精度の高い近似式を得るための
-工夫が施される場合がある.
-詳しい導出はInigo Quilez氏の記述が詳しい\footnote{distance estimation: \url{http://iquilezles.org/www/articles/distance/distance.htm}}．
+詳しい導出はiqによるものが詳しい\footnote{distance estimation:
+\url{http://iquilezles.org/www/articles/distance/distance.htm}}.
 
-シェーダで三次元空間を描画する場合には\emph{レイトレーシング}({\it Ray
+\begin{algorithm}
+ \begin{algorithmic}
+  \caption{Render circle}
+  \label{renderCircle}
+  \REQUIRE COORDINATES, resolution
+  \STATE p = COORDINATES - (resolution / 2.)
+  \STATE distance = length(p) - radius
+  \IF{distance $\leq$ 0}
+  \STATE COLOR = Vector3(1, 1, 1)
+  \ELSE
+  \STATE COLOR = Vector3(0, 0, 0)
+  \ENDIF
+ \end{algorithmic}
+\end{algorithm}
+
+ \begin{figure}[htbp]
+  \begin{minipage}{0.5\hsize}
+   \center
+   \includegraphics[ height=1.5in, keepaspectratio]{../img/fractal/uv.pdf}
+   \caption{Simple shader}
+   \label{fig:simpleShader}
+  \end{minipage}
+  \begin{minipage}{0.5\hsize}
+   \center
+   \includegraphics[ height=1.5in, keepaspectratio]{../img/fractal/circle.pdf}
+   \caption{Circle}
+   \label{fig:circleShader}
+  \end{minipage}
+ \end{figure}
+
+シェーダで三次元形状を描画する際には\emph{レイトレーシング}({\it Ray
 tracing})が用いられる．
-レイトレーシングは視点からスクリーンへ\emph{レイ}（{\it Ray}）を飛ばし，
-その挙動をシミュレーションすることで物体を描画する手法である．
+レイトレーシングはあらかじめ設定された視点(カメラ)からスクリーンへ
+\emph{レイ}({\it Ray})を飛ばし，
+その挙動を計算することで物体を描画する手法である．
 レイと物体の交差点はレイの方向と位置から代数的に計算することができる．
 また，\emph{レイマーチング}({\it Ray marching, Sphere tracing}とも呼ばれ
-る)\cite{sphereTracing}という手法を用いるこfとで，距離関数を用いて任意の
+る)\cite{sphereTracing}という手法を用いることで，距離関数を用いて任意の
 三次元形状との交差点を近似的に計算することができる．
 物体の形状を代数的に計算することが難しいフラクタル形状のレンダリングを行
 う際は，Distance Estimationにより近似的に物体との距離を得てレイマーチン
-グを用いることで，高速に描画することができる．
+グと併用することで，高速に描画することができる．
 
-GLSLによるレンダリングや，レイマーチングに関しては，doxas氏の
+GLSLによるレンダリングや, レイマーチングに関してはdoxasによる
 wgld\footnote{wgld: \url{https://wgld.org/d/glsl/}}によくまとまっている．
 シェーダを用いたレンダリングはglslsandbox\footnote{glslsandbox:
 \url{http://glslsandbox.com/}}やShadertoy\footnote{Shadertoy:
@@ -110,21 +168,24 @@ wgld\footnote{wgld: \url{https://wgld.org/d/glsl/}}によくまとまってい�
 GPUの計算性能をより汎用的な計算に用いるためのプラットフォームとしてCUDA
 やOpenCLが登場している．
 これらのプラットフォームを用いることでシェーダではできない複雑な処理を行
-うことができるようになり，GPUは機械学習などの分野にも活躍の場を広げた．
-このようにGPUによる演算を画像処理以外の汎用的な用途に用いる技術はGPGPUと呼ばれている．
+うことができるようになり，GPUによる並列演算は機械学習などの分野にも活躍
+の場を広げた.
+このようにGPUによる演算を画像処理以外の汎用的な用途に用いる技術はGPGPUと
+呼ばれている.
 
 \subsection{Escape-time Fractals}
 {\it Escape-time Fractals}は複素平面上の点に対して，特定の漸化式を計算し，
 その点の軌道の収束，発散を見ることで描画されるフラクタルである．
-Escape-time Fractalsで代表的なものが\emph{マンデルブロ集合}({\it Mandelbrot set})である.
+Escape-time Fractalsで代表的なものが\emph{マンデルブロ集合}({\it
+Mandelbrot set})である.
 マンデルブロ集合の漸化式は以下のようになる．
 \begin{eqnarray*}
  \begin{cases}
   z_{n+1} = z^2_{n} + c \\ z_0 = 0
  \end{cases}
 \end{eqnarray*}
-$z_n$が無限大に発散しないものをマンデルブロ集合と呼ぶ．図
-\ref{fig:mandelbrot}は黒い部分がマンデルブロ集合である．
+$\displaystyle \lim_{x \to \infty} z_n$が無限大に発散しないものをマンデ
+ルブロ集合と呼ぶ．図\ref{fig:mandelbrot}における黒い部分がマンデルブロ集合である．
 発散と判定されるまでの計算の回数によって色をつけた．
 マンデルブロ集合はその単純な式から驚くほど豊富なバリエーションの図を見ることができる．
 その他のEscape-time fractalには，\emph{ジュリア集合}({\it Julia set})(図

@@ -218,20 +218,26 @@ Green Functionに関しては，マンデルブロ集合に関する詳細な議
 
 \subsection{Distance Estimated 3D Fractals}
 
-マンデルブロ集合のような複雑な３次元形状を持つフラクタルが求められていた．
-マンデルブロ集合を３次元に拡張する試みはさまざまに行われていたものの，あ
-まり大きな成果はあげられていなかった．
-例えば，ジュリア集合を４次元に拡張し，Distance Estimationを用いて描く方
-法が１９８９年には発表されている\cite{4djulia}．
-しかし，その形状は単純でフラクタルコミュニティの満足のいくものではなかった．
-２００４年にKeenan Crane氏がGPUで実装した\footnote{Ray Tracing
-Quaternion Julia Sets on the GPU:
+マンデルブロ集合は数あるフラクタルの中でも複雑な形状を見せるものであった
+ので, それを三次元に拡張する方法が考えられてきた.
+例えば，ジュリア集合を四元数を用いて，計算したQuaternion Julia 3D
+fractal\cite{4djulia}が１９８９
+年には発表されている.
+しかし，どの三次元フラクタルもその形状は単純でフラクタルコミュニティの満
+足のいくものにはならなかった．
+
+そんな中で, ２００３年に発表された阿原・荒木\cite{sphairahedra}による４
+次元クライン群の一種である{\it Quasi Fuchsian 3D Fractals}はある程度の複
+雑性を持った３次元フラクタルであったため，コミュニティに大きな影響を与え
+たと言われている．
+このフラクタルに関しては後の章で触れる．
+
+このあたりから, コンピュータのグラフィクス性能が向上し,
+２００４年にはKeenan CraneがQuaternion JuliaをGPUによってリアルタイムに
+描画することに成功した. \footnote{Ray Tracing Quaternion Julia Sets on
+the GPU:
 \url{https://www.cs.cmu.edu/~kmcrane/Projects/QuaternionJulia/}}．
 
-２００３年に発表された阿原・荒木\cite{sphairahedra}による４次元クライン
-群の一種である{\it Quasi Fuchsian 3D Fractals}はある程度の複雑性を持った
-３次元フラクタルであり，コミュニティに大きな影響を与えたと言われている．
-このフラクタルに関しては後の章で触れる．
 その後，２００９年にマンデルブロ集合をうまく三次元に拡張した{\it
 Mandelbulb}の出現を皮切りに，次々と複雑な三次元フラクタルの式が発見され
 た．これらもDistance Estimationとレイマーチングを用いることで効率よくレ

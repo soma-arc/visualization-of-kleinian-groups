@@ -232,24 +232,29 @@ fractal\cite{4djulia}が１９８９
 たと言われている．
 このフラクタルに関しては後の章で触れる．
 
-このあたりから, コンピュータのグラフィクス性能が向上し,
-２００４年にはKeenan CraneがQuaternion JuliaをGPUによってリアルタイムに
+この時期から, コンピュータのグラフィクス性能が向上し, 三次元のフラクタ
+ル図形をリアルタイムに描画することができるようになった.
+例えば, ２００４年にKeenan CraneはQuaternion JuliaをGPUによってリアルタイムに
 描画することに成功した. \footnote{Ray Tracing Quaternion Julia Sets on
 the GPU:
-\url{https://www.cs.cmu.edu/~kmcrane/Projects/QuaternionJulia/}}．
+\url{https://www.cs.cmu.edu/~kmcrane/Projects/QuaternionJulia/}}.
+iqは2007年にQuaternion Juliaをテーマにした4Kデモ(プログラムの実行サイズ
+を4kbに抑えたデモ作品),
+\textit{kindernoiser}\footnote{http://www.pouet.net/prod.php?which=32549}
+を発表している.
 
-その後，２００９年にマンデルブロ集合をうまく三次元に拡張した{\it
-Mandelbulb}の出現を皮切りに，次々と複雑な三次元フラクタルの式が発見され
-た．これらもDistance Estimationとレイマーチングを用いることで効率よくレ
-ンダリングすることができる．これらのフラクタルはDistance Estimated 3D
-Fractalsと呼ばれることが多い．
-これらのフラクタルの歴史と実装についてはMikael Hvidtfeldt Christensen氏
-のSyntopiaの一連のブログポスト\footnote{Syntopia, Distance Estimated 3D
+その後，２００９年に遂にマンデルブロ集合をうまく三次元に拡張した{\it
+Mandelbulb}が開発された.
+これを皮切りに, 次々と複雑な三次元フラクタルの式が開発された．
+どれもEscape-time fractalの一種であり, Distance Estimationとレイマー
+チングを用いることで効率よくレンダリングすることができる.
+これらのフラクタルの歴史と実装についてはMikael Hvidtfeldt Christensen
+の一連のブログポスト\footnote{Syntopia, Distance Estimated 3D
 Fractals:\\ \quad \quad
 \url{http://blog.hvidtfeldts.net/index.php/2011/06/distance-estimated-3d-fractals-part-i/}}
 によくまとめられている.
 
-これらフラクタルをレンダリングするためのソフトウェアは{\it Mandelbulb
+これらのフラクタルをレンダリングするためのソフトウェアは{\it Mandelbulb
 3D}\footnote{Mandelbulb 3D:
 \url{http://mandelbulb.com/2014/mandelbulb-3d-mb3d-fractal-rendering-software/}}
 や{\it Mandelbulber}\footnote{Mandelbulber:
@@ -266,27 +271,32 @@ Fractals:\\ \quad \quad
 \subsubsection{Mandelbulb}
 
 マンデルブロ集合を三次元に拡張するにあたって一番の問題は漸化式の意味付けであった.
-マンデルブロ集合では複素平面上で計算を行なうため, $z^2$は回転と拡縮, $c$
-の加算は点の平行移動を表わし, それによって軌道を見ることができる.
-三次元空間の点において, 同様の意味を表わす代数体系のようなものを考える必要があった.
-様々なアプローチが考案されたが, 最終的にD.White(twinbee)氏とP.Nylander氏
-が開発したMandelbulbが広く知られるようになった.
+通常のマンデルブロ集合では複素数の演算を行っている.
+$z^2$は回転と拡縮, $c$の加算は点の平行移動を表わし, それによって点の軌道
+を考えることができる.
+つまり, マンデルブロ集合を三次元に拡張するためには, 三次元空間の点におけ
+る, $z^2$の意味付けが必要なのである.
+そのひとつが四元数を用いた, Quaternion Juliaであるが, 生成される図は対称
+的であり, あまり興味を引くものではなかった.
+他にも様々なアプローチが考案されたようであるが, 最終的にDaniel
+White(twinbee)とPaul Nylander
+が2009年に開発したMandelbulbが三次元に拡張されたマンデルブロ集合として広
+く知られることとなった.
 
-White氏は球面座標上で漸化式を計算するアプローチを提案
+Whiteは球面座標上で漸化式を計算するアプローチを提案
 \footnote{\url{http://www.fractalforums.com/3d-fractal-generation/true-3d-mandlebrot-type-fractal/}}
 した．
 図\ref{fig:mandelbulb2}は$z_{n+1} = z_n^2 + c$を用いてレンダリングした結
 果であるが，あまり複雑な形状は現れなかった．
-しかし，その後Nylander氏が式を高次の積を扱えるように拡張した．
+しかし，その後Nylanderが式を高次の積を扱えるように拡張した．
 図\ref{fig:mandelbulb8}は$z_{n+1} = z_n^8 + c $という式でレンダリングさ
-れた形状であり，Mandelbulbとして広く知られている．White氏のWebページ
+れた形状であり，これがMandelbulbとして知られている．WhiteのWebページ
 \footnote{Skytopia:
 \url{http://www.skytopia.com/project/fractal/mandelbulb.html}}では開発の
 詳しい経緯がまとめられている．
 
-Mandelbulbは三次元空間の点に対して漸化式を計算することで形状を得ることも
-できるが, 通常はマンデルブロ集合と同様に距離関数を導出し, レイマーチング
-を用いてレンダリングする.
+また, Mandelbulbも通常のマンデルブロ集合と同様にDistance Estimationを用
+いることができる.
 
 \begin{figure}[h!tbp]
  \begin{subfigure}{0.49\hsize}
@@ -308,25 +318,26 @@ Mandelbulbは三次元空間の点に対して漸化式を計算することで�
 \end{figure}
 
 \subsubsection{Mandelbox}
-その後，2010年にTom Lowe氏によって{\it Mandelbox}\footnote{Mandelbox:
+
+その後，2010年にTom Loweによって{\it Mandelbox}\footnote{Mandelbox:
 \url{https://sites.google.com/site/mandelbox/what-is-a-mandelbox}}が開発
 された．
 Mandelboxも三次元空間におけるEscape-time fractalである.
-漸化式は$z_{n+1} = scale * spherefold(minR, boxfold(z_n)) + c$となる.
+漸化式は$z_{n+1} = scale * spherefold(minR, boxfold(z_n)) + c$と表わせる.
 ここで, {\it boxfold}は$x=\pm1, y=\pm1, z=\pm1$を頂点にもつ立方体の各面
 に対して, 点が外側にある場合にその面に関する反転を行なう操作である.
 また, {\it spherefold}は以下の式で定義される.
-\begin{eqnarray*}
+\begin{align*}
  spherefold(r, z) = \begin{cases}
                   \frac{z}{r^2} & 0 \le |z| < r \\
                   \frac{z}{|z|^2} & r \le |z|
                  \end{cases}
-\end{eqnarray*}
-基本は原点中心, 半径1の球に関する反転である.
-球の反転は, 中心を無限遠点へ変換するが, Escape-timeアルゴリズムでは中心
-付近のほとんどの点が発散と判定されてしまう.
+\end{align*}
+基本は原点中心, 半径$r$の球に関する反転であるが値に制限を設けている.
+球の反転は, 中心付近を無限遠点付近へと移してしまうため, 漸化式の計算途中
+に中心付近を通る点が発散と判定されてしまう.
 そこでspherefoldでは, 中心付近の点の反転をあらかじめ決めておいた最小の半
-径における反転で制限をかけている．
+径における反転で置きかえることで軌道が発散しないようにしている．
 
 Distance Estimationでは漸化式の微分としてヤコビアンの積を用いる.
 式の各操作のたびに, ヤコビアンを累積していき,

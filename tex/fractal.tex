@@ -328,10 +328,9 @@ Mandelboxも三次元空間におけるEscape-time fractalである.
 そこでspherefoldでは, 中心付近の点の反転をあらかじめ決めておいた最小の半
 径における反転で制限をかけている．
 
-Mandelboxの漸化式の関数には場合分けがある．
-そのため，Distance Estimationでは漸化式の微分としてヤコビアンの積を用いる.
+MandelboxのDistance Estimationでは漸化式の微分としてヤコビアンの積を用いる.
 式の各操作のたびに, ヤコビアンを累積していき,
-最終的な点の原点からの距離ををヤコビアンの積で割ることで距離を近似的に求
+最終的な点の原点からの距離をヤコビアンの積で割ることで距離を近似的に求
 めることができる．
 
 \begin{figure}[h!tbp]
@@ -362,7 +361,16 @@ Mandelboxの登場以降は漸化式にMandelbulbやMandelboxを含む複数の�
 興味深いHybrid Systemの１つに{\it pseudo-kleinian}がある．
 これは球の反転に近い操作であるSpherefoldと平行移動と同じような働きをする
 boxfoldの組み合わせによってクライン群のような形状が得られる式である．
-図はfragmentariumのサンプルスクリプトを用いてレンダリングされた.
+図\ref{fig:pseudoKleinian}はfragmentariumのサンプルスクリプトを用いてレンダリングされた.
+
+\begin{figure}[htbp]
+  \begin{center}
+   \includegraphics[width=3in, height=3in, keepaspectratio]{../img/fractal/pseudoKleinian.pdf}
+   \caption{pseudo-kleinian}
+   \label{fig:pseudoKleinian}
+  \end{center}
+\end{figure}
+
 
 \subsection{Coloring by Orbit Trap}
 
@@ -371,7 +379,7 @@ Escape-timeアルゴリズムを用いたフラクタルのカラーリングに
 Orbit Trap}とよばれる手法が使われる．
 図\ref{fig:mandelbox}のMandelboxもOrbit Trapを用いて色がつけられている.
 
-Orbit trapでは，trapと呼ばれる点や直線などの図形を空間上に置いておき，
+Orbit trapは，trapと呼ばれる点や直線などの図形を空間上に置いておき，
 trapと漸化式の計算で得られる軌道の点の位置関係から色を付ける方法である．
 図\ref{fig:mandelbrotOrbit}はマンデルブロ集合の計算の最中に$z_n$が桃色の
 領域に入った点を白く塗った.
@@ -410,9 +418,19 @@ IFSに関する書籍としてFractals Everywhere\cite{fractalsEverywhere}があ
 \cite{highPerformanceIFS}\cite{GPUIFS}．
 
 IFSを拡張したフラクタルアートの一種に\emph{フラクタルフレーム}{\it(Fractal
-Frame)}\cite{fractalFrame}がある．フラクタルフレームはIFS
+Flame)}\cite{fractalFlame}がある．フラクタルフレームはIFS
 に用いる関数にメビウス変換などの非線形変換を用い，美しくレンダリングされ
 るようにカラーリング等が工夫されている．
+図\ref{fig:pseudoKleinian}はApophysis 7Xを用いてレンダリングされたフラクタル
+フレームである．
+
+\begin{figure}[htbp]
+  \begin{center}
+   \includegraphics[width=3in, height=3in, keepaspectratio]{../img/fractal/fractalFlame.pdf}
+   \caption{Fractal Flame}
+   \label{fig:fractalFlame}
+  \end{center}
+\end{figure}
 
 他にも様々なアルゴリズムが存在するが，今回は後述するクライン群のレンダリ
 ングには関連してこないので触れない．

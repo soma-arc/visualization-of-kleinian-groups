@@ -13,8 +13,8 @@
 \subsection{Conjugation}
 
 クライン群を考えるうえで, 我々は様々な変換を扱う.
-変換に関する操作において重要となるのが, \emph{共役}(\textit{Conjugation})と
-よばれる概念である.
+変換に関する操作において重要となるのが, \emph{共役}(\textit{Conjugation})
+である.
 共役を用いることで, ある変換をその性質を変えずに異なる座標において作
 用させることができ, 複雑な変換をよりわかりやすい座標における変換としてみ
 ることができる.
@@ -79,33 +79,20 @@ $f(z)$を$a$，$g(z)$を$b$とすると逆変換は$A$，$B$となる．
 メビウス変換は複素平面上に, ひとつの無限遠点を付け加えた拡張複素平面$\hat{\mathbb{C}}$上で定義される.
 これはリーマン球面とも呼ばれ, 拡張複素平面全体を球面として扱うことができる.
 メビウス変換は一次分数変換とも呼ばれ，以下のように表わされる．
-\begin{eqnarray*}
+\begin{align*}
  a, b, c, d\in \hat{\mathbb{C}}, f(z) = \frac{az + b}{cz + d}
-\end{eqnarray*}
+\end{align*}
 我々がなじみ深い平行移動，拡縮や回転といった操作もメビウス変換に含まれる．
 これを２×２の複素数行列として扱うことで，変換の合成を行列の積とすることができる．
-\begin{eqnarray*}
+\begin{align*}
   A = \left(
     \begin{array}{ccc}
       a & b \\
       c & d
     \end{array}
   \right)
-\end{eqnarray*}
+\end{align*}
 メビウス変換は，等角性や円円対応といった性質をもつ．
-図\ref{fig:circleInversion}はメビウス変換の中でも重要な役割を持つ，円に
-関する反転という操作を可視化したものである．
-それぞれの図形は黒い円に関する反転で移されている．
-緑色の矩形を観察すると，変換の前後で直角が保たれていることがわかる．
-また，黄色の円は円が保たれている．メビウス変換は角度は保つが形は大きく歪めてしまう.
-これを三次元の球で同様に球に関する反転を考えることもできる.
-\begin{figure}[htbp]
- \begin{center}
-      \includegraphics[width=3in, height=3in, keepaspectratio]{../img/klein/circleInversion.pdf}
-    \caption{Circle Inversion}
-    \label{fig:circleInversion}
- \end{center}
-\end{figure}
 
 メビウス変換はおおまかに\emph{放物型}, \emph{斜航型},\emph{楕円型}の三種類に分類される.
 斜航型変換と楕円型変換は2つ，放物型変換は1つの固定点をもつ．
@@ -118,27 +105,33 @@ $f(z)$を$a$，$g(z)$を$b$とすると逆変換は$A$，$B$となる．
 また，放物型変換は固定点への収束が遅いという特徴をもつ.
 これは後述する極限集合の描画の際に考慮することとなる.
 
-メビウス変換は４つの複素数で構成されていることから，８つのパラメータがある．ただし，このままでは自由度が高すぎるため，適切に制限を加えた群の「レシピ」が作られている．
-『インドラの真珠』で使われる「おばあちゃんのレシピ」をみてみよう．
-\begin{eqnarray*}
- t_a, t_b \in \mathbb{C} \\
- x^2 - t_a t_b x + t_a^2 + t_b^2 = 0 \text{の一方の解}x\text{を}t_{ab} = x \text{とする. }\\
- z_0 = \frac{(t_{ab} -2)t_b}{t_b t_{ab} - 2 t_a + 2it_{ab}}\\
- A = \left(
-      \begin{array}{ccc}
-       \frac{t_a}{2} & \frac{t_a t_{ab} - 2 t_b + 4i}{(2 t_{ab} + 4)z_0} \\
-       \frac{(t_a t_{ab} - 2 t_b -4i)z_0}{2 t_{ab} - 4} & \frac{t_a}{2}
-      \end{array}
-     \right)
- B = \left(
-      \begin{array}{ccc}
-       \frac{t_b - 2i}{2} & \frac{t_b}{2} \\
-       \frac{t_b}{2} & \frac{t_b + 2i}{2}
-      \end{array}
-     \right)
-\end{eqnarray*}
-パラメータは二つの複素数$t_a, t_b$と$t_{ab}$の選び方となった．
-「おばあちゃんのレシピ」は群を可視化した際に綺麗な図がレンダリングされるように調整がなされている.
+\subsection{Circle Inversion}
+
+図\ref{fig:circleInversion}は円に関する反転という操作を可視化したもので
+ある．
+それぞれの図形は黒い円に関する反転で移されている．
+緑色の矩形を観察すると，変換の前後で直角が保たれていることがわかる．
+また，桃色の円は円が保たれている．
+
+円に関する反転は複素平面の向き付けを逆にしてしまうため, メビウス変換では
+ないが, 2つの反転を合成することで双曲型のメビウス変換となる.
+
+点aを中心とする半径rの円に関する反転は
+\begin{align*}
+ \frac{r^2}{\overline{z - a}} + a
+\end{align*}
+となる.
+また, 半径が無限大の円に関する反転は直線に関する反転となる.
+
+これを球に拡張することで同様に球に関する反転を考えることもできる.
+
+\begin{figure}[htbp]
+ \begin{center}
+      \includegraphics[width=3in, height=3in, keepaspectratio]{../img/klein/circleInversion.pdf}
+    \caption{Circle Inversion}
+    \label{fig:circleInversion}
+ \end{center}
+\end{figure}
 
 \subsection{Stereographic Projection}
 
@@ -192,6 +185,30 @@ Saul Schleimer, Henry Segermanはこれを利用した全天球画像へのエ�
 この木を探索することで得られる合成変換を用いて群の作用を可視化する.
 ここでは簡単にその方法をまとめる.
 疑似コードを含む詳細な解説は『インドラの真珠』にある.
+
+メビウス変換は４つの複素数で構成されているが, このままでは自由度が高すぎ
+るため，群を考えるときにはパラメータ化する.
+これは群の「レシピ」ともよばれる.
+例えば, 『インドラの真珠』で使われる「おばあちゃんのレシピ」では, 二つの複素数
+$t_a, t_b$をパラメータにとることで, 以下のように2つの生成元を得ることができる.
+\begin{align*}
+ t_a, t_b \in \mathbb{C} \\
+ x^2 - t_a t_b x + t_a^2 + t_b^2 = 0 \text{の一方の解}x\text{を}t_{ab} = x \text{とする. }\\
+ z_0 = \frac{(t_{ab} -2)t_b}{t_b t_{ab} - 2 t_a + 2it_{ab}}\\
+ A = \left(
+      \begin{array}{ccc}
+       \frac{t_a}{2} & \frac{t_a t_{ab} - 2 t_b + 4i}{(2 t_{ab} + 4)z_0} \\
+       \frac{(t_a t_{ab} - 2 t_b -4i)z_0}{2 t_{ab} - 4} & \frac{t_a}{2}
+      \end{array}
+     \right)
+ B = \left(
+      \begin{array}{ccc}
+       \frac{t_b - 2i}{2} & \frac{t_b}{2} \\
+       \frac{t_b}{2} & \frac{t_b + 2i}{2}
+      \end{array}
+     \right)
+\end{align*}
+「おばあちゃんのレシピ」は群を可視化した際に綺麗な図がレンダリングされるように調整がなされている.
 
 \begin{figure}[htbp]
  \center
@@ -856,7 +873,8 @@ Kleinian punctured torus groups:
 \end{figure}
 
 \subsubsection{Once Punctured Torus Groups}
-{\it Once Punctured Torus Groups}はクライン群の一種である．{\it OPTi}\footnote{OPTi: \url{http://delta-mat.ist.osaka-u.ac.jp/OPTi/index.html}}という描画ソフトウェアが有名である．
+{\it Once Punctured Torus Groups}はクライン群の一種である．
+{\it OPTi}\footnote{OPTi: \url{http://delta-mat.ist.osaka-u.ac.jp/OPTi/index.html}}という描画ソフトウェアが有名である．
 描画\cite{OPTiDrawing}や離散性判定\cite{OPTiDiscrete}のためのアルゴリズムが和田によりまとめられている．
 このスライス領域はベアズスライスとよばれる．
 Once Punctured Torus Groupsの研究はOPTiによって進歩した．

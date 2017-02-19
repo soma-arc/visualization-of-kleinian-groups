@@ -584,13 +584,12 @@ $ Jacobian = R^2 / distance(P, S)^2 $
 ウス変換を操作することは直観が得にくい．
 例えば，行列による変換の表現から変換の作用を推測することは非常に難しい．
 
-三次元空間に作用するメビウス変換を考えることで，高次元のクライン群を作ることができる．
+また，三次元空間に作用するメビウス変換を考えることで，高次元のクライン群を作ることができる．
 図は四次元クライン群の極限集合を可視化したものである．
 このように，三次元上での捩じれをもつ非常に興味深い形状が得られる．
 
 しかし，このような群を構成するメビウス変換は,
 四元数行列で表現されるため，さらに複雑な代数計算が必要となる．
-このことは，四次元クライン群の研究を難しくしている．
 
 そこで筆者はすべてのメビウス変換を円や球の反転で構成し，その軌道を描くことを考えた．
 円や球を用いることで，幾何学的な直観が働き，生成元と可視化される図形の間の関係性を
@@ -669,6 +668,70 @@ G =
 \end{align*}
 また, 二つの固定点からこの種類の生成元を得ることもできる.
 
+\begin{figure}[h!tbp]
+ \begin{minipage}[t]{0.3\hsize}
+  \begin{center}
+   \includegraphics[width=2.2in, height=2.2in, keepaspectratio]{../img/klein/2diis/infCircle.pdf}
+  \end{center}
+  \caption{Inversion of the circle with infinite radius}
+  \label{fig:infCircle}
+ \end{minipage}
+ \hspace*{\fill}
+ \begin{minipage}[t]{0.3\hsize}
+  \begin{center}
+   \includegraphics[width=2.2in, height=2.2in, keepaspectratio]{../img/klein/2diis/rotation.pdf}
+  \end{center}
+  \caption{Rotation}
+  \label{fig:Rotation}
+ \end{minipage}
+ \hspace*{\fill}
+ \begin{minipage}[t]{0.3\hsize}
+  \begin{center}
+   \includegraphics[width=2.2in, height=2.2in, keepaspectratio]{../img/klein/2diis/translation.pdf}
+  \end{center}
+  \caption{Parallel translation}
+  \label{fig:translation2d}
+ \end{minipage}
+\end{figure}
+
+\begin{figure}[h!tbp]
+ \begin{minipage}[]{0.75\hsize}
+  \begin{subfigure}{0.24\textwidth}
+   \begin{center}
+    \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/2diis/scalingEdged.pdf}
+    \caption{Scaling}
+    \label{fig:scaling2d}
+   \end{center}
+  \end{subfigure}
+ \hspace*{\fill}
+ \begin{subfigure}{0.24\textwidth}
+  \begin{center}
+   \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/2diis/hyperbolicEdged.pdf}
+   \caption{Hyperbolic}
+   \label{fig:hyperbolic2d}
+  \end{center}
+ \end{subfigure}
+ \hspace*{\fill}
+ \begin{subfigure}{0.24\textwidth}
+  \begin{center}
+   \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/2diis/parabolicEdged.pdf}
+   \caption{Parabolic}
+   \label{fig:parabolic2d}
+  \end{center}
+ \end{subfigure}
+  \hspace*{\fill}
+  \caption{Composition of two circles}
+ \end{minipage}
+ \begin{minipage}[]{0.21\hsize}
+  \begin{center}
+   \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/2diis/loxodromicEdged.pdf}
+   \caption{Loxodromic transformation}
+   \label{fig:loxodromic2d}
+  \end{center}
+
+ \end{minipage}
+\end{figure}
+
 \subsubsection{3D Generators}
 ほとんどの三次元の生成元は二次元の生成元から自然に導くことができる.
 
@@ -736,6 +799,206 @@ G =
 \end{align*}
 図では, 二次元における斜航型変換のような捻じれた軌道をみることができる.
 この生成元を\emph{複合斜航型変換}(Compound Loxodromic)とよぶ.
+
+
+\begin{figure}[h!tbp]
+ \begin{minipage}[t]{0.49\hsize}
+  \begin{subfigure}{0.24\textwidth}
+   \begin{center}
+    \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/3diis/infSphereGen.pdf}
+    \caption{Generator}
+    \label{fig:infSphereGen}
+   \end{center}
+  \end{subfigure}
+  \hspace*{\fill}
+  \begin{subfigure}{0.24\textwidth}
+   \begin{center}
+    \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/3diis/infSphereOrbit.pdf}
+    \caption{Orbit}
+    \label{fig:infSphereOrb}
+   \end{center}
+  \end{subfigure}
+  \hspace*{\fill}
+  \caption{Inversion of the Sphere with infinite radius}
+  \label{fig:infSphere}
+
+ \end{minipage}
+ \hspace*{\fill}
+ \begin{minipage}[t]{0.49\hsize}
+
+  \begin{subfigure}{0.24\textwidth}
+   \begin{center}
+    \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/3diis/rotationGen.pdf}
+    \caption{Generator}
+    \label{fig:rotationGen}
+   \end{center}
+  \end{subfigure}
+  \hspace*{\fill}
+  \begin{subfigure}{0.24\textwidth}
+   \begin{center}
+    \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/3diis/rotationOrb.pdf}
+    \caption{Orbit}
+    \label{fig:rotationOrb}
+   \end{center}
+  \end{subfigure}
+  \hspace*{\fill}
+  \caption{Rotation}
+  \label{fig:rotation3d}
+ \end{minipage}
+\end{figure}
+
+\begin{figure}[h!tbp]
+ \begin{minipage}{0.49\hsize}
+  \begin{subfigure}{0.24\textwidth}
+   \begin{center}
+    \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/3diis/translationGen.pdf}
+    \caption{Generator}
+    \label{fig:translationGen}
+   \end{center}
+  \end{subfigure}
+ \hspace*{\fill}
+ \begin{subfigure}{0.24\textwidth}
+  \begin{center}
+   \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/3diis/translationOrbit.pdf}
+   \caption{Orbit}
+    \label{fig:translationOrb}
+  \end{center}
+ \end{subfigure}
+ \hspace*{\fill}
+\caption{Parallel translation}
+ \label{fig:translation3d}
+
+ \end{minipage}
+ \begin{minipage}{0.49\hsize}
+  \begin{subfigure}{0.24\textwidth}
+   \begin{center}
+    \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/3diis/compParabolicGen.pdf}
+    \caption{Generator}
+    \label{fig:compParabolicGen}
+   \end{center}
+  \end{subfigure}
+ \hspace*{\fill}
+ \begin{subfigure}{0.24\textwidth}
+  \begin{center}
+   \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/3diis/compParabolicOrb.pdf}
+   \caption{Orbit}
+   \label{fig:compParabolicOrb}
+  \end{center}
+ \end{subfigure}
+ \hspace*{\fill}
+\caption{Compound parabolic transformation}
+ \label{fig:compParabolic}
+ \end{minipage}
+\end{figure}
+
+\begin{figure}[h!tbp]
+
+  \begin{subfigure}{0.24\textwidth}
+   \begin{center}
+    \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/3diis/loxoGenSimple.pdf}
+    \caption{Generator}
+    \label{fig:loxoGen3d}
+   \end{center}
+  \end{subfigure}
+ \hspace*{\fill}
+  \begin{subfigure}{0.24\textwidth}
+   \begin{center}
+    \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/3diis/loxoOrbSimple.pdf}
+    \caption{Orbit}
+    \label{fig:loxoOrb3d}
+   \end{center}
+  \end{subfigure}
+ \hspace*{\fill}
+ \begin{subfigure}{0.24\textwidth}
+  \begin{center}
+   \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/3diis/loxoOrbSch.pdf}
+   \caption{Orbit}
+   \label{fig:loxoOrbSch3d}
+  \end{center}
+ \end{subfigure}
+
+  \caption{Loxodromic transformation}
+  \label{fig:loxodromic3d}
+
+\end{figure}
+
+\begin{figure}[h!tbp]
+ \begin{minipage}{0.49\hsize}
+  \begin{subfigure}{0.24\textwidth}
+   \begin{center}
+    \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/3diis/parabolicGen.pdf}
+    \caption{Generator}
+    \label{fig:parabolicGen3d}
+   \end{center}
+  \end{subfigure}
+ \hspace*{\fill}
+ \begin{subfigure}{0.24\textwidth}
+  \begin{center}
+   \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/3diis/parabolicOrb.pdf}
+   \caption{Orbit}
+   \label{fig:parabolicOrb3d}
+  \end{center}
+ \end{subfigure}
+  \hspace*{\fill}
+  \caption{Parabolic transformation}
+  \label{fig:parabolic3d}
+ \end{minipage}
+ \begin{minipage}{0.49\hsize}
+  \begin{subfigure}{0.24\textwidth}
+   \begin{center}
+    \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/3diis/compLoxoGen.pdf}
+    \caption{Generator}
+    \label{fig:compLoxoGen}
+   \end{center}
+  \end{subfigure}
+ \hspace*{\fill}
+ \begin{subfigure}{0.24\textwidth}
+  \begin{center}
+   \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/3diis/compLoxoOrb.pdf}
+   \caption{Orbit}
+   \label{fig:compLoxoOrb}
+  \end{center}
+ \end{subfigure}
+  \hspace*{\fill}
+  \caption{Compound loxodromic transformation}
+  \label{fig:compLoxo}
+ \end{minipage}
+\end{figure}
+
+\begin{figure}[h!tbp]
+ \begin{minipage}[t]{0.24\hsize}
+  \begin{center}
+   \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/2diis/translationMod.pdf}
+  \end{center}
+  \caption{Parallel translation}
+  \label{fig:translationMod}
+ \end{minipage}
+ \hspace*{\fill}
+ \begin{minipage}[t]{0.24\hsize}
+  \begin{center}
+   \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/2diis/parabolicMod.pdf}
+  \end{center}
+  \caption{Inverted parabolic generator}
+  \label{fig:parabolicMod}
+ \end{minipage}
+ \hspace*{\fill}
+ \begin{minipage}[t]{0.24\hsize}
+   \begin{center}
+    \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/2diis/hyperbolicMod.pdf}
+   \end{center}
+   \caption{Inverted hyperbolic generator}
+   \label{fig:loxodromicMod}
+ \end{minipage}
+  \hspace*{\fill}
+ \begin{minipage}[t]{0.24\hsize}
+   \begin{center}
+    \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/2diis/loxodromicModRotation.pdf}
+   \end{center}
+   \caption{Inverted loxodromic generator}
+   \label{fig:loxodromicRotationMod}
+  \hspace*{\fill}
+ \end{minipage}
+\end{figure}
 
 \subsection{Optimization}
 

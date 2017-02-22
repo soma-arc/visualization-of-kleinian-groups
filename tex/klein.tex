@@ -587,7 +587,6 @@ $ Jacobian = R^2 / distance(P, S)^2 $
 また，三次元空間に作用するメビウス変換を考えることで，高次元のクライン群を作ることができる．
 図は四次元クライン群の極限集合を可視化したものである．
 このように，三次元上での捩じれをもつ非常に興味深い形状が得られる．
-
 しかし，このような群を構成するメビウス変換は,
 四元数行列で表現されるため，さらに複雑な代数計算が必要となる．
 
@@ -649,7 +648,7 @@ $G$を点に繰り返し作用させることで基本領域へと移動させ�
 る必要がある.
 
 次に$C1$を少し動かすと, 図\ref{fig:hyperbolic2d}のような軌道が得られる.
-無限遠点の固定点は有限の点に移り，有限の固定点は, $C1$の内部で移動する． 
+無限遠点の固定点は有限の点に移り，有限の固定点は, $C1$の内部で移動する．
 二つの円が交差しない限り, これも双曲型変換である.
 
 $C1$と$C2$が接触する時, 図\ref{fig:parabolic2d}のように，固定点はその交点で重なりあい, 放物型変換となる.
@@ -799,7 +798,8 @@ S4 = Sphere(P, P', P'', Q2) \\
 G =
 \begin{cases}
  (I_{S4} \circ I_{S3}) \circ (I_{S1} \circ I_{S2}) & (\text{The point is inside of } S1) \\
- (I_{S2} \circ I_{S1}) \circ (I_{S3} \circ I_{S4}) & (\text{The point is outside of }S1')\\
+ (I_{S2} \circ I_{S1}) \circ (I_{S3} \circ I_{S4}) & (\text{The point is
+ outside of } S1')\\
 \end{cases}
 \end{align*}
 図では, 二次元における斜航型変換のような捻じれた軌道をみることができる.
@@ -1069,35 +1069,46 @@ $\varphi = 2 \theta i$で計算することができる.
 
 \subsection{Other Topics}
 
-この節では, その他のレンダリング手法とクライン群の研究の中でも興味深い図像を見ることができる先行研究を紹介する.
+この節では, その他のレンダリング手法とクライン群の研究の中でも興味深い図
+像を見ることができる先行研究を紹介する.
 
 \subsubsection{Other Rendering Methods}
-Aaron MontagはIterated Inversion Systemを拡張したHyperbolic Iterated Function Systemによって極限集合を描画することに成功した\cite{hyperbolicIFS}．固定点付近では図に乱れが出るものの，おおむね描画できる．実装はここ\footnote{Kleinian Groups WebGL: \url{https://www-m10.ma.tum.de/bin/view/Lehrstuhl/AaronMontagKleinian}}でみることができる.
+Aaron MontagはIterated Inversion Systemを拡張したHyperbolic Iterated
+Function Systemによる極限集合の描画を提案している\cite{hyperbolicIFS}
+\footnote{Kleinian Groups WebGL:
+ \url{https://www-m10.ma.tum.de/bin/view/Lehrstuhl/AaronMontagKleinian}}.
 
-また，Jos Ley, Knighty両氏はマスキット群におけるEscape-timeアルゴリズム
-とDistance Estimationを開発した
+また, Jos Ley・Knightyはマスキット群におけるEscape-timeアルゴリズムの式
+とDistance Estimationを考案した
 \footnote{An escape time algorithm for Kleinian group limit set:\\ \quad
 \quad \url{http://www.fractalforums.com/3d-fractal-generation/an-escape-tim-algorithm-for-kleinian-group-limit-sets/}}.
- 二次元の極限集合だけでなく，三次元の図像も高速に描画することができる.
-荒木・糸\cite{maskit}と同様の設定で, 一方に平行移動を含む2つの放物型変換による群を考えている.
-詳細なアルゴリズムに関しては, Jos Ley氏がまとめている\footnote{Mathematical Imagery, An escape-time algorithm for a family of Kleinian groups: \url{http://www.josleys.com/article_show.php?id=221}}.
+荒木・糸\cite{maskit}の考えた群と同様に, 一方に平行移動を含む2つの放物型変換による群を考えている.
+この方法を用いると, 二次元だけでなく，三次元の図像も高速に描画することができる.
+詳細なアルゴリズムに関しては, Jos Leyがまとめている
+\footnote{Mathematical Imagery, An escape-time algorithm for a family of
+Kleinian groups: \url{http://www.josleys.com/article_show.php?id=221}}.
 
 \subsubsection{Quasi Fuchsian 3-Dimensional Fractals}
 
-Quasi Fuchsian 3-Dimensional Fractalsは阿原・荒木による擬フックス群を三次元に拡張した４次元クライン群である\cite{sphairahedra}\cite{sphairahedraJa}．
-前述のフラクタルコミュニティに大きな影響を与えたと言われている.
+阿原・荒木は擬フックス群を三次元に拡張した４次元クライン群を考案した
+\cite{sphairahedra}\cite{sphairahedraJa}.
+これはQuasi Fuchsian 3-Dimensional Fractalsとよばれ,
+前述のフラクタルコミュニティに大きな影響を与えたといわれている.
+荒木はこのフラクタル図形の物質化についてまとめている\cite{materializing}．
+数学的な事項については2016年に蔭山\cite{kageyama}がまとめている．
 
-図\ref{fig:schottky}において, 中央の円盤に囲まれた黒い領域を\emph{円辺形}と呼ぶ.
-擬フックス群は円辺形を囲む円盤から生成元を得ることができる.
-そこで円辺形を三次元に拡張した\emph{球面体}を用いることで三次元の擬フックス群の形状を求めることができる.
+図\ref{fig:schottky}において, 中央の円盤に囲まれた黒い領域を\emph{円辺形}と
+よぶ.
+擬フックス群は円辺形を囲む円盤の組から生成元を得ることができる.
+そこで円辺形を三次元に拡張した\emph{球面体}を用いることで三次元の擬フッ
+クス群を構成することができる.
 図\ref{fig:sphairahedra}は6つの球に囲まれた球面体のひとつである.
-三角柱の面は3つの半径無限大の球に囲まれていると考える.
+側面は3つの半径無限大の球に囲まれていると考える.
 この球面体をそれを囲む球の反転で移していくことで図\ref{fig:quasiFuchsian}のような形状を得る.
+阿原・荒木による動画\footnote{Quasi-fuchsian fractals:
+\url{https://www.youtube.com/watch?v=3lcO9zRCv-4}}ではこのフラクタルの構成過程をみることができる.
 
-著者によってYouTubeに投稿された動画\footnote{Quasi-fuchsian fractals: \url{https://www.youtube.com/watch?v=3lcO9zRCv-4}}ではこのフラクタルの構成過程をみることができる.
-数学的な事項については2016年に蔭山氏がまとめている\cite{kageyama}．
-荒木はこのフラクタル図形の物質化についてもまとめている\cite{materializing}．
-また，Distance EstimationのアルゴリズムがKnightyにより開発された
+また, Distance Estimationによる高速描画のアルゴリズムが2012年にKnightyによって開発された
 \footnote{Another 3D Kleinian:
  \url{http://www.fractalforums.com/ifs-iterated-function-systems/another-3d-kleinian/}}．
 
@@ -1120,30 +1131,29 @@ Quasi Fuchsian 3-Dimensional Fractalsは阿原・荒木による擬フックス�
 
 \subsubsection{Other 4-Dimensional Kleinian Groups}
 
-インドラの真珠で紹介されるクライン群は複素平面にのみ作用するメビウス変換から構成されている.
+インドラの真珠で紹介されるクライン群は複素平面に作用するメビウス変換から構成されている.
 現在このようなクライン群は, ほぼ研究され尽されてしまった.
-
-しかし, 四元数を用いることで，三次元空間に作用するメビウス変換を定義することができる．
+しかし, 先に述べたように, 三次元空間に作用するメビウス変換を四元数を用い
+て定義することができる.
 これは$sp^k(1, 1)$と呼ばれ，2x2の四元数行列で表現される．
-三次元空間上で捩じりが加わるようなメビウス変換は \emph{複合放物型}({\it
-Compund Parabolic}), \emph{複合斜航型}({\it Compound Loxodromic})と分類
+三次元空間上で捩じりが加わるようなメビウス変換は複合放物型, 複合斜航型と分類
 される.
-
 四元数で構成されるメビウス変換とその分類は佐久川による
 \cite{sakugawaMaster}や\cite{accidentalParabolic}にまとまっている．
 
-図\ref{fig:sakugawa}は佐久川氏による複合放物型変換を含む群のレシピによる群の極限集合を描画したものである.
+図\ref{fig:sakugawa}は佐久川による複合放物型変換を含む群のレシピによる群
+の極限集合を描画したものである.
 放物型変換である平行移動に回転が加わることで複合放物型変換となる.
 
-荒木・糸両氏はマスキット群を四次元クライン群に拡張した\cite{maskit}．
-幾何学的性質をうまく使うことで，四元数の計算を避けている．
-レンダリングされた極限集合は糸氏のWebページ\footnote{4-dimensional
-Kleinian punctured torus groups:
-\url{http://www.math.nagoya-u.ac.jp/~itoken/3d-maskit/3d-maskit.html}}や
-論文中で見ることができる．佐久川氏はこの群の四元数表示を導出した
-\cite{sakugawa4d}.
+荒木・糸はマスキット群を高次元に拡張した\cite{maskit}
+\footnote{4-dimensional Kleinian punctured torus groups:
+\url{http://www.math.nagoya-u.ac.jp/~itoken/3d-maskit/3d-maskit.html}}．
+論文中では幾何学的性質をうまく使うことで，四元数の計算を避けている．
+また, 佐久川はこの群の四元数表示を導出した\cite{sakugawa4d}.
 
-三浦氏は３つ以上の生成元による４次元クライン群をモジュラー群から構成することを試みた\cite{miura}．筆者はこの論文における数値実験と可視化を行った．
+三浦は３つ以上の生成元による４次元クライン群をモジュラー群から構成するこ
+とを試みた\cite{miura}．
+筆者はこの論文における数値実験と可視化を行った．
 
 \begin{figure}[h!tbp]
  \begin{subfigure}{0.49\hsize}
@@ -1166,12 +1176,15 @@ Kleinian punctured torus groups:
 \end{figure}
 
 \subsubsection{Once Punctured Torus Groups}
-{\it Once Punctured Torus Groups}はクライン群の一種である．
-{\it OPTi}\footnote{OPTi: \url{http://delta-mat.ist.osaka-u.ac.jp/OPTi/index.html}}という描画ソフトウェアが有名である．
-描画\cite{OPTiDrawing}や離散性判定\cite{OPTiDiscrete}のためのアルゴリズムが和田によりまとめられている．
-このスライス領域はベアズスライスとよばれる．
-Once Punctured Torus Groupsの研究はOPTiによって進歩した．
-図\ref{fig:opt}のように, 平行移動の生成元をもつため, 極限集合は比較的高速に描画することができる.
+
+クライン群の部分群である一点穴開きトーラス群({\it Once Punctured Torus Groups})は
+和田による{\it OPTi}\footnote{OPTi:
+\url{http://delta-mat.ist.osaka-u.ac.jp/OPTi/index.html}}という描画ソフ
+トウェアによって大きく研究が進んだ．
+描画や離散性判定のためのアルゴリズ
+ムが開発者の和田によりまとめられている
+\cite{OPTiDrawing}\cite{OPTiDiscrete}．
+この群の極限集合は図\ref{fig:opt}のようになる.
 
 \begin{figure}[htbp]
  \begin{center}
@@ -1184,6 +1197,7 @@ Once Punctured Torus Groupsの研究はOPTiによって進歩した．
 \subsection{Further Readings}
 この章の最後に，クライン群のより数学的な背景を学習するための書籍をいくつか挙げておく．
 『双曲幾何学への招待』\cite{invitation}は絶版であるが双曲幾何学の基本事項がまとまっている．
-クライン群のより数学的内容に踏み込んだ書籍には『双曲多様体とクライン群』\cite{manifold}や『Outer Circles』\cite{outerCircles}がある.
+クライン群のより数学的内容に踏み込んだ書籍には『双曲多様体とクライン群』
+\cite{manifold}や『Outer Circles』\cite{outerCircles}がある.
 また, レクチャーノート集に『Kleinian Group and Hyperbolic 3-Manifolds』\cite{kleinianGroupsAndHyperbolic3-Manifolds}や
 『Spaces of Kleinian Groups』\cite{space}がある.

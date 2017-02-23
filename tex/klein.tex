@@ -674,65 +674,57 @@ G =
 
 \begin{figure}[h!tbp]
  \begin{minipage}[t]{0.3\hsize}
-  \begin{center}
-   \includegraphics[width=2.2in, height=2.2in, keepaspectratio]{../img/klein/2diis/infCircle.pdf}
-  \end{center}
+  \center
+   \includegraphics[width=2in, height=2in, keepaspectratio]{../img/klein/2diis/infCircle.pdf}
   \caption{Inversion of the circle with infinite radius}
   \label{fig:infCircle}
  \end{minipage}
  \hspace*{\fill}
  \begin{minipage}[t]{0.3\hsize}
-  \begin{center}
-   \includegraphics[width=2.2in, height=2.2in, keepaspectratio]{../img/klein/2diis/rotation.pdf}
-  \end{center}
+  \center
+  \includegraphics[width=2in, height=2in, keepaspectratio]{../img/klein/2diis/rotation.pdf}
   \caption{Rotation}
   \label{fig:rotation}
  \end{minipage}
  \hspace*{\fill}
  \begin{minipage}[t]{0.3\hsize}
-  \begin{center}
-   \includegraphics[width=2.2in, height=2.2in, keepaspectratio]{../img/klein/2diis/translation.pdf}
-  \end{center}
+  \center
+  \includegraphics[width=2in, height=2in, keepaspectratio]{../img/klein/2diis/translation.pdf}
   \caption{Parallel translation}
   \label{fig:translation2d}
  \end{minipage}
 \end{figure}
 
 \begin{figure}[h!tbp]
- \begin{minipage}[]{0.75\hsize}
-  \begin{subfigure}{0.24\textwidth}
-   \begin{center}
-    \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/2diis/scalingEdged.pdf}
-    \caption{Scaling}
-    \label{fig:scaling2d}
-   \end{center}
-  \end{subfigure}
+ \begin{minipage}[]{0.65\hsize}
+  \begin{minipage}[]{0.22\hsize}
+   \center
+   \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/2diis/scalingEdged.pdf}
+   \subcaption{Scaling}
+   \label{fig:scaling2d}
+  \end{minipage}
  \hspace*{\fill}
- \begin{subfigure}{0.24\textwidth}
-  \begin{center}
+  \begin{minipage}[]{0.22\hsize}
+   \center
    \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/2diis/hyperbolicEdged.pdf}
-   \caption{Hyperbolic}
+   \subcaption{Hyperbolic}
    \label{fig:hyperbolic2d}
-  \end{center}
- \end{subfigure}
+  \end{minipage}
  \hspace*{\fill}
- \begin{subfigure}{0.24\textwidth}
-  \begin{center}
+  \begin{minipage}[]{0.22\hsize}
+   \center
    \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/2diis/parabolicEdged.pdf}
-   \caption{Parabolic}
+   \subcaption{Parabolic}
    \label{fig:parabolic2d}
-  \end{center}
- \end{subfigure}
-  \hspace*{\fill}
+  \end{minipage}
   \caption{Composition of two circles}
  \end{minipage}
- \begin{minipage}[]{0.21\hsize}
-  \begin{center}
-   \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/2diis/loxodromicEdged.pdf}
-   \caption{Loxodromic transformation}
-   \label{fig:loxodromic2d}
-  \end{center}
-
+ \hspace*{\fill}
+ \begin{minipage}[]{0.22\hsize}
+  \center
+  \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/2diis/loxodromicEdged.pdf}
+  \caption{Loxodromic transformation}
+  \label{fig:loxodromic2d}
  \end{minipage}
 \end{figure}
 
@@ -744,7 +736,7 @@ G =
 よる反転がメビウス変換である.
 しかし, ここではこれもメビウス変換として扱う.
 
-\noindent\textbf{Inversion of a Sphere with Infinite Radius}
+l\noindent\textbf{Inversion of a Sphere with Infinite Radius}
 半径が無限大の球による反転は平面による反転と表すことができる.
 図\ref{fig:infSphereGen}では青い板が半径が無限の球を表現している.
 図\ref{fig:infSphereOrb}における軌道の右側はこの板によって左側へと
@@ -754,7 +746,7 @@ G =
 二次元の場合と同様にして，互いに交わる二つの平面の反転によって
 回転を表すことができる．
 回転軸は二枚の平面の交線で，なす角の二倍が回転角となる.
-図\ref{rotation3d}では180度の回転を示した.
+図\ref{fig:rotation3d}では180度の回転を示した.
 
 \noindent\textbf{Parallel Translation}
 二つの平行な平面の組は平面の法線方向への平行移動を表わす.
@@ -762,7 +754,7 @@ G =
 
 \noindent\textbf{Compound Parabolic}
 更に, 三次元では平行移動の軌道に捻りを加えることができる.
-図\ref{fig:CompParabolic}では軌道に平行移動の元が適用されるたびに回転
+図\ref{fig:compParabolic}では軌道に平行移動の元が適用されるたびに回転
 が加えられていることがわかる.
 この生成元は\emph{複合放物型変換}(\textit{Compound Parabolic})とよばれる.
 
@@ -1201,3 +1193,5 @@ Kleinian groups: \url{http://www.josleys.com/article_show.php?id=221}}.
 \cite{manifold}や『Outer Circles』\cite{outerCircles}がある.
 また, レクチャーノート集に『Kleinian Group and Hyperbolic 3-Manifolds』\cite{kleinianGroupsAndHyperbolic3-Manifolds}や
 『Spaces of Kleinian Groups』\cite{space}がある.
+
+\clearpage

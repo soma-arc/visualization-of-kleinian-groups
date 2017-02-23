@@ -1,13 +1,16 @@
-\documentclass[dvipdfmx]{article}
+\documentclass[dvipdfmx]{jsarticle}
 \usepackage{amsmath, amsthm, amssymb}
 \usepackage{ascmac,here,txfonts,txfonts}
-\usepackage[margin=2.5cm,noheadfoot]{geometry}
+\usepackage[margin=2.5cm]{geometry}
 \usepackage{color}
 \usepackage{graphicx}
 \usepackage{algorithm}
 \usepackage{algorithmic}
 \usepackage[subrefformat=parens]{subcaption}
 \usepackage{hyperref}
+\usepackage{csquotes}
+
+
 \captionsetup{compatibility=false}
 
 \setlength{\parindent}{0.3in}
@@ -18,6 +21,8 @@ Meiji University\\
 }
 
 \date{}
+
+\pagestyle{headings}
 
 \begin{document}
 
@@ -39,7 +44,11 @@ Meiji University\\
 
 \end{abstract}
 
+\clearpage
+
 \tableofcontents
+
+\clearpage
 
 \input{fractal}
 

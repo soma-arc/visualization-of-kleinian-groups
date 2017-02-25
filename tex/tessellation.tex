@@ -35,17 +35,20 @@
 これは前章でみた群の軌道の描画方法と同様に, 変換の木構造を幅優先探索し,
 得られた合成変換で正方形を移動させることで描画することができる．
 
-一方で, シェーダを用いて描画する場合にはその逆を行う．
+一方で, シェーダを用いて描画する場合にはその逆を行う.
 すなわち，図\ref{fig:tileMove}のように各ピクセルを敷き詰めを構成する４種
 の変換で基本タイルへと点を動かす．
 そうして，基本タイルへ動かした後で操作の回数や基本タイル上の色からそのピ
-クセルの色を決めて塗る．
+クセルの色を決めて塗る.
+おおむねIIS同様のアプローチである.
+ただし, この方法はペンローズタイリングのような非周期的な敷き詰め模様に適
+用することは難しい.
 このアルゴリズムをまとめると以下のような手順になる.
 \begin{enumerate}
- \item 基本タイルを見つける
- \item 基本タイルを敷き詰めるための変換を見つける
- \item 各ピクセルを基本タイルに入るまで変換し続ける
- \item 変換の回数や基本タイル上の色を使って色を付ける
+ \item 基本タイルを見つける.
+ \item 基本タイルを敷き詰めるための変換を見つける.
+ \item 各ピクセルを基本タイルに入るまで変換し続ける.
+ \item 変換の回数や基本タイル上の色を使って色を付ける.
 \end{enumerate}
 
 \begin{figure}[h!tbp]
@@ -135,28 +138,42 @@ Limit』といった有名な作品を生み出した．
 \end{figure}
 
 これより円盤モデルにおけるテセレーションを描く方法を記述する.
-円盤モデルの円盤は原点中心，半径1の円とする．
+円盤モデルの円盤は単位円とする．
 基本タイルを中央にある4つの最も大きなタイルの内の1つとする.
-このタイルはx軸，y軸，そして２つの円弧で囲まれている．
+このタイルはx軸，y軸，そして2つの円弧で囲まれている．
 これらの弧に関する反転を用いて，先ほどのアルゴリズムを用いると図
-\ref{fig:hyperbolicTessellation}のような敷き詰め模様を描くことができる．
+\ref{fig:outer}のような敷き詰め模様を描くことができる.
+実は円盤の外側にも世界は広がっており, それは円盤の内側と円に関する反転で
+移りあう.
 円盤の内側に属する点は内側の基本タイルに，円盤の外側に属する点は外側の基
-本タイルに移るため，最終的な点の位置で処理を切り分けることにより，両者の
-色を区別することができる．
+本タイルに移るため，最終的な点の位置で両者を区別することができる．
+
 双曲タイリングは，木構造の探索によって計算しようとすると，計算量が多くな
 るため，円盤の端まで描画することは難しいが，前述のアルゴリズムを用いると
-端までリアルタイムで描画することができる．
+図\ref{fig:zoom}のように, 端までリアルタイムで描画することができる．
 
-図\ref{fig:outer}では基本タイルとして，３つの角が$\frac{\pi}{2}$，残りの角が$\frac{\pi}{3}$である４辺形を用いたが，基本タイルでも敷き詰めることができるわけではない．
-敷き詰め条件は\emph{ポアンカレの張り合わせ定理}として知られている．双曲三角形のタイリング条件は以下のようになる．
+図\ref{fig:outer}では基本タイルとして, 3つの角が$\frac{\pi}{2}$，残りの
+角が$\frac{\pi}{3}$である四辺形を用いたが，どのような基本タイルでも敷き
+詰めることができるわけではない．
+敷き詰め条件は\emph{ポアンカレの張り合わせ定理}として知られている．
+例えば双曲平面における三角形である双曲三角形のタイリング条件は以下のよう
+になる.
 \begin{eqnarray*}
-\text{３内角を}\frac{\pi}{p},\frac{\pi}{q},\frac{\pi}{r}\text{とする時，}
+\text{３内角を}\frac{\pi}{p},\frac{\pi}{q},\frac{\pi}{r} (p, q, r \in
+ \mathbb{N} \cup \{\infty\}) \text{とする時，}
  \frac{1}{p} + \frac{1}{q} + \frac{1}{r} < 1 \text{を満たす．}
 \end{eqnarray*}
-双曲三角形を２つ張り合わせることで双曲４辺形を得ることができる．
+このような双曲三角形を2つ張り合わせることで敷き詰め可能な双曲四辺形を得
+ることができる.
+図\ref{fig:failed}にはこの定理を満さない双曲三角形の敷き詰めを描いた.
+よく見ると一部のタイルが正しく移りあっていないことがわかる.
 
-Vladimir Bulatov氏は円盤を変形させる方法を考案した\cite{bending}．Bulatov氏は双曲平面や双曲空間におけるタイリングや，その変形についてまとめている\footnote{Bulatov Abstract Creations: \url{http://bulatov.org/math/index.html}}．
-筆者は図\ref{fig:deformed}のような双曲タイリングとその変形を行うWebアプリケーションを制作している．
+Vladimir Bulatovは双曲空間を考えることで円盤における双曲テセレーションを
+図\ref{fig:deformed}のように変形させる方法を考案した\cite{bending}.
+Bulatovは他にも双曲平面や双曲空間におけるタイリングや，その変形についてまとめている
+\footnote{Bulatov Abstract Creations: \url{http://bulatov.org/math/index.html}}．
+
+筆者は双曲タイリングとその変形を行うウェブアプリケーションを開発している．
 \footnote{Hyperbolic Tessellator: \url{https://soma-arc.net/HyperbolicTessellator/}}．
 
 \begin{figure}[htbp]
@@ -164,7 +181,7 @@ Vladimir Bulatov氏は円盤を変形させる方法を考案した\cite{bending
    \center
    \includegraphics[width=3in, height=3in, keepaspectratio]{../img/tessellation/outer.pdf}
    \caption{Outer}
-   \label{fig:Outer}
+   \label{fig:outer}
   \end{minipage}
  \hspace*{\fill}
  \begin{minipage}{0.49\hsize}
@@ -179,9 +196,9 @@ Vladimir Bulatov氏は円盤を変形させる方法を考案した\cite{bending
 \begin{figure}[htbp]
   \begin{minipage}{0.49\hsize}
    \center
-   \includegraphics[width=3in, height=3in, keepaspectratio]{../img/tessellation/hyperbolicRect}
-   \caption{rect}
-   \label{fig:rect}
+   \includegraphics[width=3in, height=3in, keepaspectratio]{../img/tessellation/failed.pdf}
+   \caption{failed}
+   \label{fig:failed}
   \end{minipage}
  \hspace*{\fill}
  \begin{minipage}{0.49\hsize}

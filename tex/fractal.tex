@@ -78,17 +78,15 @@ GPUは浮動小数演算性能に優れていることに加え，各ピクセ�
 
 \begin{algorithm}
  \begin{algorithmic}
-\begin{minipage}{0.5\hsize}
-
- \caption{Sample Shader}
- \label{shaderSample}
-  \REQUIRE COORDINATES, resolution
-  \STATE uv = COORDINATES / resolution
-  \STATE COLOR = Vector3(uv.x uv.y, 1.)
-\end{minipage}
+  \begin{minipage}{0.5\hsize}
+   \caption{Sample Shader}
+   \label{shaderSample}
+   \REQUIRE COORDINATES, resolution
+   \STATE uv = COORDINATES / resolution
+   \STATE COLOR = Vector3(uv.x uv.y, 1.)
+  \end{minipage}
  \end{algorithmic}
 \end{algorithm}
-
 
 幾何図形を描く際には多くの場合, 距離関数を用いる.
 距離関数は, 図形からの最短距離を返す関数である.
@@ -103,17 +101,6 @@ GPUは浮動小数演算性能に優れていることに加え，各ピクセ�
 ンダリング結果を示した.
 複数の図形を描きたい時は，複数の距離関数を評価し，最も小さな距離を求めれ
 ばよい.
-
-また，距離関数は陰関数から近似的に導出することができる.
-この手法をDistance Estimationとよぶ.
-その式の一つをここで紹介する.
-与えられた点$x$に対して, 陰関数$f(x)$が表す零点集合への最短距離を返す近
-似関数は微分を用いて以下のように求めることができる.
-\begin{align*}
- DistanceFunction(x) \approx \frac{|f(x)|}{|\bigtriangledown f(x)|}
-\end{align*}
-詳しい導出はiqによるものが詳しい\footnote{distance estimation:
-\url{http://iquilezles.org/www/articles/distance/distance.htm}}.
 
 \begin{algorithm}
  \begin{algorithmic}
@@ -145,6 +132,42 @@ GPUは浮動小数演算性能に優れていることに加え，各ピクセ�
   \end{minipage}
  \end{figure}
 
+また，距離関数は陰関数から近似的に導出することができる.
+この手法を\textit{Distance Estimation}とよぶ.
+iqによる式\footnote{distance estimation:
+\url{http://iquilezles.org/www/articles/distance/distance.htm}}
+のひとつを紹介する.
+
+平面上のある点を$x$, $e$を$x$から最も近い零点集合へ向うベクトルとすると,
+零点集合上の点は$x + e$と表せる.
+求めたい距離は$|e|$となる.
+$f(x + e) = 0$から導出してみよう.
+これをテイラー展開すると
+$f(x + e) = f(x) + f'(x) \cdot e  + \frac{1}{2}f''(x) \cdot e^2 ...$とな
+る. ここで$e$が十分に小さいと仮定し, 2次以上の項を無視する線型近似を行う
+と
+$0=|f(x + e)| \approx |f(x) + f'(x) \cdot e|$
+となる. ここで, $x, e$はベクトルであり, $\cdot$は内積を表すことに注意す
+る.
+三角不等式によって, $| f(x) + f'(x) | \geq |f(x)| - |f'(x)|$であるから,
+$0 \geq |f(x)| - |f'(x) \cdot e|$.
+また, コーシーシュワルツの不等式より,
+$|f'(x)| \cdot |e| \geq | f'(x)\cdot e|$
+であるから,
+$0 \geq |f(x)| - |f'(x) \cdot e| \geq |f(x)| - |f'(x)| \cdot |e|$
+となる.
+最後に$0 \geq |f(x)| - |f'(x)| \cdot |e|$を変形すると
+$|e| \geq \frac{|f(x)|}{|f'(x)|}$が得られる.
+このことから, ある点$x$に対して, 陰関数$f(x)$が表す零点集合への最短距離を返す近
+似関数は以下のように表すことができる.
+\begin{align*}
+ DistanceFunction(x) \approx \frac{|f(x)|}{|\bigtriangledown f(x)|}
+\end{align*}
+ただし, $e$が十分小さいことを仮定しているため, 零点集合から遠い点につい
+ては誤差が大きくなってしまうことに注意する.
+導関数から得られた微分値の代わりにヤコビアンが用いられたり, 中心差分法等
+で導出された微分の近似値が用いられることもある.
+
 シェーダで三次元形状を描画する際には\emph{レイトレーシング}({\it Ray
 tracing})が用いられる．
 レイトレーシングはあらかじめ設定された視点(カメラ)からスクリーンへ
@@ -170,24 +193,30 @@ GPUの計算性能をより汎用的な計算に用いるためのプラット�
 これらのプラットフォームを用いることでシェーダではできない複雑な処理を行
 うことができるようになり，GPUによる並列演算は機械学習などの分野にも活躍
 の場を広げた.
-このようにGPUによる演算を画像処理以外の汎用的な用途に用いる技術はGPGPUと
-呼ばれている.
+このようにGPUによる演算を画像処理以外の汎用的な用途に用いる技術は
+\textit{GPGPU(General-purpose computing on graphics processing units)}
+と呼ばれている.
 
 \subsection{Escape-time Fractals}
+
 {\it Escape-time Fractals}は複素平面上の点に対して，特定の漸化式を計算し，
 その点の軌道の収束，発散を見ることで描画されるフラクタルである．
 Escape-time Fractalsで代表的なものが\emph{マンデルブロ集合}({\it
 Mandelbrot set})である.
 マンデルブロ集合の漸化式は以下のようになる．
 \begin{eqnarray*}
+ z, c \in \mathbb{C} \quad
  \begin{cases}
   z_{n+1} = z^2_{n} + c \\ z_0 = 0
  \end{cases}
 \end{eqnarray*}
-$\displaystyle \lim_{x \to \infty} z_n$が無限大に発散しないものをマンデ
-ルブロ集合と呼ぶ．図\ref{fig:mandelbrot}における黒い部分がマンデルブロ集合である．
-発散と判定されるまでの計算の回数によって色をつけた．
-マンデルブロ集合はその単純な式から驚くほど豊富なバリエーションの図を見ることができる．
+複素平面上の点$c$に対して, $\displaystyle \lim_{n \to \infty} z_n$が無
+限大に発散しないものをマンデルブロ集合と呼ぶ．
+図\ref{fig:mandelbrot}における黒い部分がマンデルブロ集合である．
+その他の部分については, 発散と判定されるまでの計算の回数によって色をつけ
+た．
+マンデルブロ集合はその単純な式から驚くほど豊富なバリエーションの図を見る
+ことができる．
 その他のEscape-time fractalには，\emph{ジュリア集合}({\it Julia set})(図
 \ref{fig:julia})や\emph{ファトゥー集合}({\it Fatou set})等がある．
 
@@ -195,11 +224,11 @@ $\displaystyle \lim_{x \to \infty} z_n$が無限大に発散しないものを�
 装が可能であるが，先に述べたDistance Estimationを用いることで，エイリア
 シングノイズ等を避けてより精細に描画することができる．
 これには{\it Green Function}と呼ばれる陰関数を用いる．
-導出はiq氏の記事が詳しい\footnote{distance rendering for fractals:
+導出はiqによる記事\footnote{distance rendering for fractals:
 \url{http://iquilezles.org/www/articles/distancefractals/distancefractals.htm}}
-．
+が詳しい.
 Green Functionに関しては，マンデルブロ集合に関する詳細な議論となってしま
-うので，こちらの論文\cite{mandelbrot}を参考にされたい．
+うので，\cite{mandelbrot}を参考にされたい．
 
 \begin{figure}[htbp]
  \begin{minipage}{0.49\hsize}
@@ -218,38 +247,38 @@ Green Functionに関しては，マンデルブロ集合に関する詳細な議
 
 \subsection{Distance Estimated 3D Fractals}
 
-マンデルブロ集合は数あるフラクタルの中でも複雑な形状を見せるものであった
-ので, それを三次元に拡張する方法が考えられてきた.
-例えば，ジュリア集合を四元数を用いて，計算したQuaternion Julia 3D
-fractal\cite{4djulia}が１９８９
-年には発表されている.
-しかし，どの三次元フラクタルもその形状は単純でフラクタルコミュニティの満
-足のいくものにはならなかった．
+マンデルブロ集合は数あるフラクタルの中でも特に複雑な形状を見せるものであった
+ので, その三次元への拡張も古くから興味が持たれてきた.
 
-そんな中で, ２００３年に発表された阿原・荒木\cite{sphairahedra}による４
-次元クライン群の一種である{\it Quasi Fuchsian 3D Fractals}はある程度の複
-雑性を持った３次元フラクタルであったため，コミュニティに大きな影響を与え
-たと言われている．
+例えば，ジュリア集合を四元数を用いて計算した
+Quaternion Julia 3D fractal\cite{4djulia}が１９８９年に発表されている.
+しかし, この形状は四元数による回転対称性をもつため, 形状が単純でフラクタ
+ルコミュニティの満足のいくものではなかった.
+
+そのような中で, ２００３年に発表された阿原・荒木による４
+次元クライン群の一種である{\it Quasi Fuchsian 3D
+Fractals}\cite{sphairahedra}はある程度の複雑性を持った３次元フラクタルで
+あったため，コミュニティに大きな影響を与えたと言われている．
 このフラクタルに関しては後の章で触れる．
 
 この時期から, コンピュータのグラフィクス性能が向上し, 三次元のフラクタ
 ル図形をリアルタイムに描画することができるようになった.
 例えば, ２００４年にKeenan CraneはQuaternion JuliaをGPUによってリアルタイムに
-描画することに成功した. \footnote{Ray Tracing Quaternion Julia Sets on
+描画している. \footnote{Ray Tracing Quaternion Julia Sets on
 the GPU:
 \url{https://www.cs.cmu.edu/~kmcrane/Projects/QuaternionJulia/}}.
-iqは2007年にQuaternion Juliaをテーマにした4Kデモ(プログラムの実行サイズ
-を4kbに抑えたデモ作品),
+iqは2007年にQuaternion Juliaをテーマにした4k intro(実行ファイルのサイズ
+を4kb以内に抑えたデモ作品),
 \textit{kindernoiser}\footnote{http://www.pouet.net/prod.php?which=32549}
 を発表している.
 
 その後，２００９年に遂にマンデルブロ集合をうまく三次元に拡張した{\it
 Mandelbulb}が開発された.
 これを皮切りに, 次々と複雑な三次元フラクタルの式が開発された．
-どれもEscape-time fractalの一種であり, Distance Estimationとレイマー
+多くはEscape-time fractalの一種であり, Distance Estimationとレイマー
 チングを用いることで効率よくレンダリングすることができる.
 これらのフラクタルの歴史と実装についてはMikael Hvidtfeldt Christensen
-の一連のブログポスト\footnote{Syntopia, Distance Estimated 3D
+による一連の記事\footnote{Syntopia, Distance Estimated 3D
 Fractals:\\ \quad \quad
 \url{http://blog.hvidtfeldts.net/index.php/2011/06/distance-estimated-3d-fractals-part-i/}}
 によくまとめられている.
@@ -265,21 +294,23 @@ Fractals:\\ \quad \quad
 フラクタルのサンプルコードも豊富で学習に役立つ．
 {\it Fractal Lab}\footnote{Fractal Lab:
 \url{http://hirnsohle.de/test/fractalLab/}}はブラウザ上でGLSLを用いてフ
-ラクタルをレンダリングすることができるWebアプリケーションである．
-この章で使われている図のいくつかはFractal Labを用いてレンダリングした．
+ラクタルをレンダリングすることができるウェブアプリケーションである．
+この章で使われている図のいくつかはFractal LabとFragmentariumを用いてレン
+ダリングした．
 
 \subsubsection{Mandelbulb}
 
-マンデルブロ集合を三次元に拡張するにあたって一番の問題は漸化式の意味付けであった.
-通常のマンデルブロ集合では複素数の演算を行っている.
-$z^2$は回転と拡縮, $c$の加算は点の平行移動を表わし, それによって点の軌道
-を考えることができる.
-つまり, マンデルブロ集合を三次元に拡張するためには, 三次元空間の点におけ
-る, $z^2$の意味付けが必要なのである.
-そのひとつが四元数を用いた, Quaternion Juliaであるが, 生成される図は対称
-的であり, あまり興味を引くものではなかった.
-他にも様々なアプローチが考案されたようであるが, 最終的にDaniel
-White(twinbee)とPaul Nylander
+三次元の拡張において問題になるのは, 三次元空間において用いる代数である.
+マンデルブロ集合の漸化式は複素数の乗算と加算で構成されている.
+$z^2$は点$z$に原点中心の回転と拡縮を作用させ, 加算$z + c$は平行移動を作用さ
+せる. これによって点の軌道を考えることができる.
+そのため, 三次元空間の点において, 軌道を考えることができるような$z^2$の
+意味付けが必要であった.
+
+そのためのアプローチのひとつが四元数を用いた, Quaternion Juliaであるが,
+生成される図は対称的であり, あまり興味を引くものではなかった.
+
+最終的にDaniel White(twinbee)とPaul Nylander
 が2009年に開発したMandelbulbが三次元に拡張されたマンデルブロ集合として広
 く知られることとなった.
 
@@ -290,13 +321,14 @@ Whiteは球面座標上で漸化式を計算するアプローチを提案
 果であるが，あまり複雑な形状は現れなかった．
 しかし，その後Nylanderが式を高次の積を扱えるように拡張した．
 図\ref{fig:mandelbulb8}は$z_{n+1} = z_n^8 + c $という式でレンダリングさ
-れた形状であり，これがMandelbulbとして知られている．WhiteのWebページ
+れた形状であり，これがMandelbulbとして知られている．Whiteのウェブページ
 \footnote{Skytopia:
-\url{http://www.skytopia.com/project/fractal/mandelbulb.html}}では開発の
+\url{http://www.skytopia.com/project/fractal/mandelbulb.html}}には開発の
 詳しい経緯がまとめられている．
 
-また, Mandelbulbも通常のマンデルブロ集合と同様にDistance Estimationを用
-いることができる.
+また, Mandelbulbも通常のマンデルブロ集合と同様にDistance Estimationによっ
+て形状への最短距離を求めることができ, これによってレイマーチングで描画す
+ることができる.
 
 \begin{figure}[h!tbp]
  \begin{subfigure}{0.49\hsize}
@@ -372,7 +404,7 @@ Mandelboxの登場以降は漸化式にMandelbulbやMandelboxを含む複数の�
 興味深いHybrid Systemの１つに{\it pseudo-kleinian}がある．
 これは球の反転に近い操作であるSpherefoldと平行移動と同じような働きをする
 boxfoldの組み合わせによってクライン群のような形状が得られる式である．
-図\ref{fig:pseudoKleinian}はfragmentariumのサンプルスクリプトを用いてレンダリングされた.
+図\ref{fig:pseudoKleinian}はFragmentariumのサンプルスクリプトを用いてレンダリングされた.
 
 \begin{figure}[htbp]
   \begin{center}

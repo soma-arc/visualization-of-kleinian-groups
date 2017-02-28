@@ -43,6 +43,12 @@ Quilez's webpage: \url{http://iquilezles.org/index.html}}にコンピュータ�
  クスに関する様々な記事をまとめている.
  ここで紹介する手法もまとめられているので, 合せて参考にされたい.
 
+ この章では, 後のクライン群の可視化に関わりのあるフラクタルとその描画手
+ 法についてまとめる.
+ ここで述べたもの以外にも様々なフラクタル図形が存在している.
+ それらについてはマンデルブロ自身の著作である\cite{fractal}に網羅的にま
+ とめられている.
+
 \begin{figure}[htbp]
  \center
  \includegraphics[width=3in, height=3in, keepaspectratio]{../img/fractal/gasket.pdf}
@@ -168,18 +174,45 @@ $|e| \geq \frac{|f(x)|}{|f'(x)|}$が得られる.
 導関数から得られた微分値の代わりにヤコビアンが用いられたり, 中心差分法等
 で導出された微分の近似値が用いられることもある.
 
-シェーダで三次元形状を描画する際には\emph{レイトレーシング}({\it Ray
+シェーダのみで三次元形状を描画する際には\emph{レイトレーシング}({\it Ray
 tracing})が用いられる．
-レイトレーシングはあらかじめ設定された視点(カメラ)からスクリーンへ
-\emph{レイ}({\it Ray})を飛ばし，
+レイトレーシングはあらかじめ設定された視点(カメラ)から
+\emph{レイ}({\it Ray}, 光線)を飛ばし，
 その挙動を計算することで物体を描画する手法である．
-レイと物体の交差点はレイの方向と位置から代数的に計算することができる．
+図\ref{fig:raytrace}にレイトレーシングの模式図を示した.
+レイと物体の交差点はレイの原点と方向から代数的に計算することができる.
+
 また，\emph{レイマーチング}({\it Ray marching, Sphere tracing}とも呼ばれ
-る)\cite{sphereTracing}という手法を用いることで，距離関数を用いて任意の
-三次元形状との交差点を近似的に計算することができる．
-物体の形状を代数的に計算することが難しいフラクタル形状のレンダリングを行
-う際は，Distance Estimationにより近似的に物体との距離を得てレイマーチン
-グと併用することで，高速に描画することができる．
+る)\cite{sphereTracing}という手法で，物体の距離関数からレイとの交差点を
+近似的に求めることができる.
+図\ref{fig:raymarch}にレイマーチングの模式図を示した.
+視点$P_0$に最も近い物体との距離を求め, その距離分だけレイを進め, その位
+置を$P_1$とする.
+この作業を繰り返し, 得られた点列の極限点が交差点となる.
+
+また, レイマーチングでは, 距離関数をうまく組み合わせることで, 三次元形状
+の和, 差, 積をとるような演算も高速に行なえる.
+この手法はメッシュによらないプロシージャルな形状表現に適しており, デモシー
+ンでも広く使われている.
+
+交差点を代数的に計算することが難しいフラクタル形状をレンダリングする際に
+は, Distance Estimationによって形状との距離を求めてレイマーチングを行な
+うのが一般的である.
+
+ \begin{figure}[htbp]
+  \begin{minipage}{0.5\hsize}
+   \center
+   \includegraphics[width=3in, keepaspectratio]{../img/fractal/raytrace.pdf}
+   \caption{Ray tracing}
+   \label{fig:raytrace}
+  \end{minipage}
+  \begin{minipage}{0.5\hsize}
+   \center
+   \includegraphics[width=3in, keepaspectratio]{../img/fractal/raymarching.pdf}
+   \caption{Ray marching}
+   \label{fig:raymarch}
+  \end{minipage}
+ \end{figure}
 
 GLSLによるレンダリングや, レイマーチングに関してはdoxasによる
 wgld\footnote{wgld: \url{https://wgld.org/d/glsl/}}によくまとまっている．
@@ -449,9 +482,9 @@ trapに用いることで，点の軌道上に画像を張り付けることも�
  \end{minipage}
 \end{figure}
 
-\subsection{Other Fractals}
+\subsection{Iterated Function System}
 
-もう一つ有名なアルゴリズムとして，{\it Iterated Function system (IFS)}が
+もう一つ有名なアルゴリズムとして，{\it Iterated Function System (IFS)}が
 ある．
 IFSは平面状の複数の点に様々な関数を適用して，その集積
 点をレンダリングするアルゴリズムである．
@@ -474,10 +507,5 @@ Flame)}\cite{fractalFlame}がある．フラクタルフレームはIFS
    \label{fig:fractalFlame}
   \end{center}
 \end{figure}
-
-他にも様々なアルゴリズムが存在するが，今回は後述するクライン群のレンダリ
-ングには関連してこないので触れない．
-マンデルブロ自身の著作\cite{fractal}では種々のフラクタルについて網羅的に
-まとめられている.
 
 \clearpage

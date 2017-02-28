@@ -41,16 +41,14 @@ $\hat{T}$は回転と共役であるという.
 群のなかで離散性という性質を持つものをいう．
 
 ここでは，それぞれの変換を小文字のアルファベットで表し，その逆変換を大文字で綴る．
-$f(z)$を$a$，$g(z)$を$b$とすると逆変換は$A$，$B$となる．
-ラベルを並べて書くことで，変換の合成を表す．
+$f(z)$を$a$，$g(z)$を$b$とおくと逆変換は$A$，$B$となる．
+変換の合成はアルファベットを並べて書くことで表す.
 例えば合成変換$f(f(g(f(p))))$は$aaba$という語で表される．
 また，上付文字はその変換の無限列とする．
 例えば，$\overline{a}$は，$aaaaa...$というような変換$a$の無限列となる．
-この無限列に対応する合成変換はどの点に作用させても変換$a$の\emph{固定点}
-に収束する．
-固定点は，$f(z) = z$となるような，変換を使って動かすことのできない点である．
-
-\begin{minipage}{0.5\hsize}
+この無限列に対応する合成変換はどの点に作用させてもその点を変換$a$の
+\emph{固定点}に移す．
+固定点とは，$f(z) = z$となるような，変換を使って動かすことのできない点である．
  \begin{align*}
   Generators =
    \begin{cases}
@@ -59,10 +57,7 @@ $f(z)$を$a$，$g(z)$を$b$とすると逆変換は$A$，$B$となる．
     b \colon g(z) \\
     B \colon g^{-1}(z)
    \end{cases}
- \end{align*}
-\end{minipage}
-\begin{minipage}{0.5\hsize}
- \begin{align*}
+  \quad
   Group =
    \begin{cases}
     aab\\
@@ -72,32 +67,36 @@ $f(z)$を$a$，$g(z)$を$b$とすると逆変換は$A$，$B$となる．
     ...
    \end{cases}
  \end{align*}
-\end{minipage}
 
 \subsection{M\"obius Transformations}
 
-メビウス変換は複素平面上に, ひとつの無限遠点を付け加えた拡張複素平面$\hat{\mathbb{C}}$上で定義される.
-これはリーマン球面とも呼ばれ, 拡張複素平面全体を球面として扱うことができる.
+二次元のメビウス変換は複素平面上に, ひとつの無限遠点を付け加えた拡張複素
+平面$\hat{\mathbb{C}}$上で定義される.
+これはリーマン球面とも呼ばれ, 拡張複素平面全体を球面として扱うことができ
+る.
 メビウス変換は一次分数変換とも呼ばれ，以下のように表わされる．
 \begin{align*}
- a, b, c, d\in \hat{\mathbb{C}}, f(z) = \frac{az + b}{cz + d}
+ a, b, c, d\in \hat{\mathbb{C}} \quad f(z) = \frac{az + b}{cz + d}
 \end{align*}
-我々がなじみ深い平行移動，拡縮や回転といった操作もメビウス変換に含まれる．
+我々になじみの深い平行移動，拡縮や回転といった操作もメビウス変換に含まれる．
 これを２×２の複素数行列として扱うことで，変換の合成を行列の積とすることができる．
 \begin{align*}
-  A = \left(
-    \begin{array}{ccc}
-      a & b \\
-      c & d
-    \end{array}
-  \right)
+  m = \left(
+ \begin{array}{ccc}
+  a & b \\
+  c & d
+ \end{array}
+ \right)
 \end{align*}
 メビウス変換は，等角性や円円対応といった性質をもつ．
 
-メビウス変換はおおまかに\emph{放物型}, \emph{斜航型},\emph{楕円型}の三種類に分類される.
+メビウス変換はおおまかに\emph{放物型}(\textit{Parabolic}), \emph{斜航
+型}(\textit{Loxodromic}), \emph{楕円型}(\textit{Elliptic})の三種類に分
+類される.
 斜航型変換と楕円型変換は2つ，放物型変換は1つの固定点をもつ．
-斜航型変換は単純な回転を除いた複素数によるスケーリングと共役である.
-また斜航型変換の中でも，スケーリングの係数が正の実数であるとき，その変換を\emph{双曲型}と呼ぶ場合もある．
+斜航型変換は単純な回転を除いた複素数による拡縮と共役である.
+また斜航型変換の中でも，正の実数による拡縮と共役の
+変換を\emph{双曲型}(\textit{Hyperbolic})と呼ぶ場合もある．
 放物型は平行移動と共役で, 楕円型変換は回転と共役である.
 
 クライン群の描画において，メビウス変換の分類は重要である.
@@ -110,9 +109,14 @@ $f(z)$を$a$，$g(z)$を$b$とすると逆変換は$A$，$B$となる．
 円に関する反転は, メビウス変換を構成する最小単位ともいえる変換である.
 点aを中心とする半径rの円に関する反転を$I(z)$とすると式は以下のようになる.
 \begin{align*}
-I(z) = \frac{r^2}{\overline{z - a}} + a
+I(z) =
+ \begin{cases}
+  \frac{r^2}{\overline{z - a}} + a \quad &for \quad z \in \mathbb{C} - \{a\} \\
+  a \quad &for \quad z = \infty\\
+  \infty \quad &for \quad z = a
+ \end{cases}
 \end{align*}
-また, 半径が無限大の円に関する反転は直線に関する反転となる.
+また, 半径が無限大の円に関する反転は直線に関する反転と考えることができる.
 
 図\ref{fig:circleInversion}は黒い円に関する反転によって移される図形を可
 視化したものである．
@@ -196,9 +200,12 @@ Saul Schleimer, Henry Segermanはこれを利用した全天球画像へのエ�
 $t_a, t_b$をパラメータにとることで, 以下のように2つの生成元を得ることができる.
 \begin{enumerate}
  \item 二つの複素数，$t_z, t_b$を選ぶ．
- \item  $x^2 - t_a t_b x + t_a^2 + t_b^2 = 0 \text{の一方の解}x\text{を}t_{ab} \text{とする. }$
- \item $z_0 = \frac{(t_{ab} -2)t_b}{t_b t_{ab} - 2 t_a + 2it_{ab}}$
- \item 
+ \item  二次方程式
+        $x^2 - t_a t_b x + t_a^2 + t_b^2 = 0 \text{の一方の解}x\text{を
+        選び, }t_{ab}= \text{とする. }$
+ \item $z_0$を次のように定義する.
+       $z_0 = \frac{(t_{ab} -2)t_b}{t_b t_{ab} - 2 t_a + 2it_{ab}}$
+ \item 生成元の行列は次のようになる.
         \begin{align*}
        &a = \left(
       \begin{array}{ccc}
@@ -321,65 +328,42 @@ $aaa\overline{a}$と$aaa\overline{b}$のような同じ接頭語を持つ極限�
 スを見ることができる.
 どのようなパラメータが離散的であるか，すなわちクライン群となるかを調べることがクライン群の研究テーマの一つとなる．
 
-\begin{figure}[h!tbp]
- \begin{subfigure}{0.49\hsize}
-   \begin{center}
-    \includegraphics[width=3in, height=3in, keepaspectratio]{../img/klein/apr.pdf}
-    \caption{}
-    \label{fig:apr}
-   \end{center}
- \end{subfigure}
- \hspace*{\fill}
- \begin{subfigure}{0.49\hsize}
-   \begin{center}
-    \includegraphics[width=3in, height=3in, keepaspectratio]{../img/klein/comp.pdf}
-    \caption{}
-    \label{fig:comp}
-   \end{center}
- \end{subfigure}
- \caption{The limit set of Kleinian Groups}
- \label{fig:limitsetWithOrbit}
+\begin{figure}[htbp]
+ \begin{minipage}{0.5\hsize}
+  \center
+  \includegraphics[ height=2.5in, keepaspectratio]{../img/klein/limitset/limit1.pdf}
+  \subcaption{}
+ \end{minipage}
+ \begin{minipage}{0.5\hsize}
+  \center
+  \includegraphics[ height=2.5in, keepaspectratio]{../img/klein/limitset/limit2.pdf}
+  \subcaption{}
+ \end{minipage}
+ \begin{minipage}{0.5\hsize}
+  \center
+  \includegraphics[ height=2.5in, keepaspectratio]{../img/klein/limitset/limit3.pdf}
+  \subcaption{}
+ \end{minipage}
+ \begin{minipage}{0.5\hsize}
+  \center
+  \includegraphics[ height=2.5in, keepaspectratio]{../img/klein/limitset/limit4.pdf}
+  \subcaption{}
+ \end{minipage}
+ \caption{The limit set of Kleinian groups}
 \end{figure}
 
 \begin{figure}[htbp]
- \begin{subfigure}{0.49\hsize}
-  \begin{center}
-   \includegraphics[width=3in, height=3in, keepaspectratio]{../img/klein/horizon.pdf}
-   \caption{}
-   \label{fig:horizon1}
-  \end{center}
- \end{subfigure}
- \begin{subfigure}{0.49\hsize}
-  \begin{center}
-   \includegraphics[width=3in, height=3in, keepaspectratio]{../img/klein/limit-horizontal.pdf}
-   \caption{}
-   \label{fig:horizon2}
-  \end{center}
- \end{subfigure}\\
- \begin{subfigure}{0.49\hsize}
-  \begin{center}
-   \includegraphics[width=3in, height=3in, keepaspectratio]{../img/klein/limit3.pdf}
-   \caption{}
-   \label{fig:limit3}
-  \end{center}
- \end{subfigure}
- \begin{subfigure}{0.49\hsize}
-  \begin{center}
-   \includegraphics[width=3in, height=3in, keepaspectratio]{../img/klein/limit4.pdf}
-   \caption{}
-   \label{fig:limit4}
-  \end{center}
- \end{subfigure}
- \caption{The limit set of Kleinian Groups}
- \label{fig:limitset}
-\end{figure}
-
-\begin{figure}[htbp]
- \begin{center}
-  \includegraphics[ height=1.5in, keepaspectratio]{../img/klein/non-discrete.pdf}
-  \caption{non discrete}
-  \label{fig:non-discrete}
- \end{center}
+ \begin{minipage}{0.5\hsize}
+  \center
+  \includegraphics[ height=2.5in, keepaspectratio]{../img/klein/limitset/non-discrete1.pdf}
+  \subcaption{}
+ \end{minipage}
+ \begin{minipage}{0.5\hsize}
+  \center
+  \includegraphics[ height=2.5in, keepaspectratio]{../img/klein/limitset/non-discrete2.pdf}
+  \subcaption{}
+ \end{minipage}
+ \caption{The limit set of non-discrete groups}
 \end{figure}
 
 \subsubsection{Faults of Graph Traversal Approach}
@@ -1004,7 +988,7 @@ $S3$と$S4$の反転の組み合わせは回転を表す.
  \end{minipage}
 \end{figure}
 
-\subsection{Optimization}
+\subsubsection{Optimization}
 
 いくつかの反転で構成された写像は適切な共役をとることによって, 最適化する
 ことができる.
@@ -1089,7 +1073,7 @@ Function Systemによる極限集合の描画を提案している\cite{hyperbol
 この方法を用いると, 二次元だけでなく，三次元の図像も高速に描画することができる.
 詳細なアルゴリズムに関しては, Jos Leyがまとめている
 \footnote{Mathematical Imagery, An escape-time algorithm for a family of
-Kleinian groups: \url{http://www.josleys.com/article_show.php?id=221}}.
+Kleinian groups:\\ \quad \quad \url{http://www.josleys.com/article_show.php?id=221}}.
 
 \subsubsection{Quasi Fuchsian 3-Dimensional Fractals}
 

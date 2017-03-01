@@ -56,7 +56,7 @@ Quilez's webpage: \url{http://iquilezles.org/index.html}}にコンピュータ�
  \label{fig:gasket}
 \end{figure}
 
-\subsection{About Rendering}
+\subsection{Shader Based Rendering}
 
 この節では，近年よく使われるシェーダを用いたレンダリング手法について触れる.
 最近のデモ作品でよく用いられる作品制作手法の１つに\textit{OpenGL Shading
@@ -138,6 +138,24 @@ GPUは浮動小数演算性能に優れていることに加え，各ピクセ�
   \end{minipage}
  \end{figure}
 
+シェーダを用いたレンダリングはglslsandbox\footnote{glslsandbox:
+\url{http://glslsandbox.com/}}やShadertoy\footnote{Shadertoy:
+\url{https://www.shadertoy.com/}}といったウェブサービスで手軽に試すこと
+ができる．
+doxasによるwgld\footnote{wgld: \url{https://wgld.org/d/glsl/}}には，シェー
+ダによるレンダリングの入門事項がよくまとまっている．
+
+また，GPUの計算性能をより汎用的な計算に用いるためのプラットフォームとしてCUDA
+やOpenCLが登場している．
+これらのプラットフォームを用いることでシェーダではできない複雑な処理を
+GPUで行うことができるようになり，GPUによる並列演算は機械学習などの分野に
+も活躍の場を広げた.
+このようにGPUによる演算を画像処理以外の汎用的な用途に用いる技術は
+\textit{GPGPU(General-purpose computing on graphics processing units)}
+と呼ばれている.
+
+\subsubsection{Distance Estimation}
+
 また，距離関数は陰関数から近似的に導出することができる.
 この手法を\textit{Distance Estimation}とよぶ.
 iqによる式\footnote{distance estimation:
@@ -150,8 +168,7 @@ iqによる式\footnote{distance estimation:
 $f(x + e) = 0$から導出してみよう.
 これをテイラー展開すると
 $f(x + e) = f(x) + f'(x) \cdot e  + \frac{1}{2}f''(x) \cdot e^2 ...$とな
-る. ここで$e$が十分に小さいと仮定し, 2次以上の項を無視する線型近似を行う
-と
+る. ここで$e$が十分に小さいと仮定し, 2次以上の項を無視する線型近似を行うと
 $0=|f(x + e)| \approx |f(x) + f'(x) \cdot e|$
 となる. ここで, $x, e$はベクトルであり, $\cdot$は内積を表すことに注意す
 る.
@@ -173,6 +190,8 @@ $|e| \geq \frac{|f(x)|}{|f'(x)|}$が得られる.
 ては誤差が大きくなってしまうことに注意する.
 導関数から得られた微分値の代わりにヤコビアンが用いられたり, 中心差分法等
 で導出された微分の近似値が用いられることもある.
+
+\subsubsection{Ray tracing}
 
 シェーダのみで三次元形状を描画する際には\emph{レイトレーシング}({\it Ray
 tracing})が用いられる．
@@ -213,22 +232,6 @@ tracing})が用いられる．
    \label{fig:raymarch}
   \end{minipage}
  \end{figure}
-
-GLSLによるレンダリングや, レイマーチングに関してはdoxasによる
-wgld\footnote{wgld: \url{https://wgld.org/d/glsl/}}によくまとまっている．
-シェーダを用いたレンダリングはglslsandbox\footnote{glslsandbox:
-\url{http://glslsandbox.com/}}やShadertoy\footnote{Shadertoy:
-\url{https://www.shadertoy.com/}}といったウェブサービスで手軽に試すこと
-ができる．
-
-GPUの計算性能をより汎用的な計算に用いるためのプラットフォームとしてCUDA
-やOpenCLが登場している．
-これらのプラットフォームを用いることでシェーダではできない複雑な処理を行
-うことができるようになり，GPUによる並列演算は機械学習などの分野にも活躍
-の場を広げた.
-このようにGPUによる演算を画像処理以外の汎用的な用途に用いる技術は
-\textit{GPGPU(General-purpose computing on graphics processing units)}
-と呼ばれている.
 
 \subsection{Escape-time Fractals}
 
@@ -308,8 +311,9 @@ iqは2007年にQuaternion Juliaをテーマにした4k intro(実行ファイル�
 その後，２００９年に遂にマンデルブロ集合をうまく三次元に拡張した{\it
 Mandelbulb}が開発された.
 これを皮切りに, 次々と複雑な三次元フラクタルの式が開発された．
-多くはEscape-time fractalの一種であり, Distance Estimationとレイマー
-チングを用いることで効率よくレンダリングすることができる.
+それらの多くはEscape-time fractalの一種であり,
+Distance Estimationとレイマーチングを用いることで効率よくレンダリングす
+ることができる.
 これらのフラクタルの歴史と実装についてはMikael Hvidtfeldt Christensen
 による一連の記事\footnote{Syntopia, Distance Estimated 3D
 Fractals:\\ \quad \quad
@@ -340,7 +344,7 @@ $z^2$は点$z$に原点中心の回転と拡縮を作用させ, 加算$z + c$は
 そのため, 三次元空間の点において, 軌道を考えることができるような$z^2$の
 意味付けが必要であった.
 
-そのためのアプローチのひとつが四元数を用いた, Quaternion Juliaであるが,
+そのためのアプローチのひとつが四元数を用いたQuaternion Juliaであるが,
 生成される図は対称的であり, あまり興味を引くものではなかった.
 
 最終的にDaniel White(twinbee)とPaul Nylander
@@ -485,20 +489,23 @@ trapに用いることで，点の軌道上に画像を張り付けることも�
 \subsection{Iterated Function System}
 
 もう一つ有名なアルゴリズムとして，{\it Iterated Function System (IFS)}が
-ある．
-IFSは平面状の複数の点に様々な関数を適用して，その集積
-点をレンダリングするアルゴリズムである．
-シェルピンスキーのギャスケットなどもIFSでレンダリングすることができる．
+ある．IFSは点に複数の関数を反復的に作用させることで描画される．
+
+主なアルゴリズムでは，
+平面の点をランダムにとり，その点にランダムに選んだ関数を作用させることを
+繰り返すことで得られた点を描画する．
+シェルピンスキーのギャスケットなどもこの方法でレンダリングすることができる．
+
 IFSに関する書籍としてFractals Everywhere\cite{fractalsEverywhere}がある．
-並列計算による高速化に関して以下の論文にまとめられている
-\cite{highPerformanceIFS}\cite{GPUIFS}．
+また，並列計算による高速化に関する論文に
+\cite{highPerformanceIFS}や，\cite{GPUIFS}がある．
 
 IFSを拡張したフラクタルアートの一種に\emph{フラクタルフレーム}{\it(Fractal
 Flame)}\cite{fractalFlame}がある．フラクタルフレームはIFS
 に用いる関数にメビウス変換などの非線形変換を用い，美しくレンダリングされ
-るようにカラーリング等が工夫されている．
-図\ref{fig:pseudoKleinian}はApophysis 7Xを用いてレンダリングされたフラクタル
-フレームである．
+るようにカラーリングのアルゴリズムにも工夫が加えられている．
+図\ref{fig:pseudoKleinian}はフラクタルフレームレンダラのひとつである，
+Apophysis 7Xを用いてレンダリングされたフラクタルフレームである．
 
 \begin{figure}[htbp]
   \begin{center}

@@ -2,53 +2,54 @@
 
 \section{Fractal}
 
-[\emph{フラクタル}(fractal)は数学者ブノワ・マンデルブロ(Benoit
+\emph{フラクタル}(\textit{fractal})は数学者ブノワ・マンデルブロ(Benoit
 B. Mandelbrot)が提唱した幾何学の概念である．フラクタル図形と呼ばれる図形
 は自己相似性を持ち, 図形のどこを拡大しても全体と同じ形を見ることができる．
-図\ref{fig:gasket}は\emph{シェルピンスキーのギャスケット}と呼ばれるフラ
-クタル図形である．三角形を一定の法則に基づいて分割していくことで，無限に
+図\ref{fig:gasket}は\emph{シェルピンスキーのギャスケッ
+ト}(\textit{Sierpinski gasket})と呼ばれるフラクタル図形である．
+三角形を一定の法則に基づいて分割していくことで，無限に
 続いていく三角形が得られる．その形はどこを拡大しても同様の法則性を持った
-図形が得られる．また，自然界の多くの場面でもフラクタル構造をみることがで
-きる. 海岸線や, シダ植物などにもフラクタル構造をみることができる. フラク
-タルを考えることは自然科学研究の新たなアプローチとしても発展した.
-
+図形が得られる．また，自然界の多くの場所でもフラクタル構造をみることがで
+きる. 海岸線や, シダ植物などにもフラクタル構造をみることができる.
 自己相似性を持つ図形はフラクタルという名がつけられる以前から研究されてい
-たが, 名が付けられることで, 研究が進むことになった. しかし, こうした図形
-達に名が付けられたことに加え, コンピュータの普及により様々なフラクタル図
-形を計算, 描画することができるようになり，アートとしても大きく発展した．
+たが, 名が付けられることで, 研究が進むことになった.
+フラクタルを考えることは自然科学研究の新たなアプローチとしても発展した.
 
 フラクタルの特異な形状は多くの人々の興味を引き, アートとしても大きく発展
 した. これにはコンピュータの普及も大きく関連しており, コンピュータ文化と
-の関連は切り離せない. フラクタルに関するコミュニティとして最大ともいえる
-ウェブサイトに, Fractal Forum\footnote{Fractal Forum:
-\url{http://www.fractalforums.com/}}がある. この章でこのコミュニティから
-生れたフラクタル図形や描画手法は多く, この章で紹介するフラクタルも
-Fractal Forumから生れた. これらのフラクタルは数学的な研究対象にならない
-ものが多いものの, アートとしては非常に興味を引く形状を持つ.
+の関連は切り離せない.
+インターネット上のフラクタルコミュニティとして最大のものに，\textit{Fractal
+Forum}\footnote{Fractal Forum:\url{http://www.fractalforums.com/}}
+という電子掲示板がある.
+このコミュニティから生まれたフラクタル図形や描画手法はとても多い．
+ここで議論されるフラクタルは数学的な研究対象にならないものが多いものの, アートと
+しては非常に興味を引く形状を持つ.
 
-また，\emph{デモシーン}({\it Demoscene})という文化もフラクタルレンダリン
+また，\emph{デモシーン}(\textit{Demoscene})という文化もフラクタルレンダリン
 グと関連が深い．
-デモシーンは\emph{デモ}({\it Demo})と呼ばれるリアルタイ
+デモシーンは\emph{デモ}(\textit{Demo})と呼ばれるリアルタイ
 ムにCGグラフィクスや音楽を生成するプログラムを見せ合うコンピューターサブ
 カルチャーの一つである．美しいコンピュータグラフィクスを効率よく，さらに
-小さなサイズのプログラムで描画することを追求しており, 数式で複雑な形状を
-描画できるフラクタルと相性が良い.
-また, デモからは様々な最適化手法をみることができる.
- デモシーンに関しては，Demoscene - The
- Art of the Algorithm\footnote{Demoscene - The Art of the Algorithms:
- \url{https://www.youtube.com/watch?v=iRkZcTg1JWU}}というドキュメンタリー
- が詳しい．
-著名なデモシーナーのInigo Quilez(iq)は自身のウェブページ\footnote{Inigo
-Quilez's webpage: \url{http://iquilezles.org/index.html}}にコンピュータグラフィ
- クスに関する様々な記事をまとめている.
- ここで紹介する手法もまとめられているので, 合せて参考にされたい.
+小さなサイズのプログラムで描画することを追求している．
+フラクタルは形として面白いことに加え，数式で複雑な形状を描画できるの
+でデモと相性がよい．
 
- この章では, 後のクライン群の可視化に関わりのあるフラクタルとその描画手
- 法についてまとめる.
- ここで述べたもの以外にも様々なフラクタル図形が存在している.
- それらについてはマンデルブロ自身の著作である~\cite{mandelbrot1983fractal}
-(邦訳~\cite{mandelbrot-ja-201102-1}
-~\cite{mandelbrot-ja-201102-2})に網羅的にまとめられている.
+デモシーンに関しては，\textit{Demoscene - The
+Art of the Algorithm}\footnote{Demoscene - The Art of the Algorithms:
+ \url{https://www.youtube.com/watch?v=iRkZcTg1JWU}}が詳しい．
+また，著名なデモシーナーのInigo Quilez(iq)は自身のウェブページ\footnote{Inigo
+Quilez's webpage: \url{http://iquilezles.org/index.html}}にコンピュータグラフィ
+クスに関する様々な記事をまとめている.
+ここで紹介する手法もまとめられているので, 併せて参考にされたい.
+
+この章では, 後のクライン群の可視化に関わりのあるフラクタルとその描画手
+法についてまとめる.
+ここで記述があるもの以外にも様々なフラクタルが存在している.
+マンデルブロ自身の著作である『フラクタル幾何学』
+\cite{mandelbrot-ja-201102-1}
+\cite{mandelbrot-ja-201102-2}
+(原著:\cite{mandelbrot1983fractal})では種々のフラクタルが網羅的にまとめ
+られている.
 
 \begin{figure}[htbp]
  \center
@@ -59,10 +60,9 @@ Quilez's webpage: \url{http://iquilezles.org/index.html}}にコンピュータ�
 
 \subsection{Shader Based Rendering}
 
-この節では，近年よく使われるシェーダを用いたレンダリング手法について触れる.
 最近のデモ作品でよく用いられる作品制作手法の１つに\textit{OpenGL Shading
 Language(GLSL)}や\textit{High Level Shading Language(HLSL)}の\emph{フラ
-グメントシェーダ}(Fragment Shader)を用いるものがある．
+グメントシェーダ}(\textit{Fragment Shader})を用いるものがある．
 フラグメントシェーダは本来，ポリゴンに陰影をつけるために使用され, その処
 理はGPUで行なわれる.
 GPUは浮動小数演算性能に優れていることに加え，各ピクセルの演算は並列に行
@@ -72,21 +72,21 @@ GPUは浮動小数演算性能に優れていることに加え，各ピクセ�
 \emph{プロシージャル}(\textit{Procedural})に図を描画する.
 プロシージャルとは, 数式やアルゴリズムを用いて形状を生成すること等を
 指す.
-複雑な形状をポリゴンで表現するよりもプログラムの実行サイズを下
-げたり, 計算速度を向上させたりすることができるため, デモの, 小さなプログ
-ラムサイズでリアルタイムにレンダリングするという目的に適している.
+複雑な形状をあらかじめモデリングされたポリゴンで表現するよりもプログラム
+の実行サイズを下げたり, 計算速度を向上させたりすることができる． 
+このことはデモにおける小さなプログラムサイズでリアルタイムにレンダリングする
+という目的に適している.
 フラクタルはしばしば簡潔なアルゴリズムで複雑な形状を生成するので, デモに
 おいてもよく使われる.
 
-アルゴリズム\ref{shaderSample}に擬似コードと図\ref{fig:simpleShader}にレ
-ンダリング結果を示した.
-このように, ピクセルごとに座標が与えられるので, これを用いてピクセルの色
-を決定する.
-
+シェーダでは, ピクセルごとにその座標とCPU側から渡される変数を受け取り，
+これらを用いてピクセルの色を決定する.
+アルゴリズム\ref{shaderSample}にシェーダの簡単な擬似コードを，
+図\ref{fig:simpleShader}にそのレンダリング結果を示した.
 \begin{algorithm}
  \begin{algorithmic}
   \begin{minipage}{0.5\hsize}
-   \caption{Sample Shader}
+   \caption{Sample shader}
    \label{shaderSample}
    \REQUIRE COORDINATES, resolution
    \STATE uv = COORDINATES / resolution
@@ -95,19 +95,22 @@ GPUは浮動小数演算性能に優れていることに加え，各ピクセ�
  \end{algorithmic}
 \end{algorithm}
 
-幾何図形を描く際には多くの場合, 距離関数を用いる.
-距離関数は, 図形からの最短距離を返す関数である.
-原点中心，半径$r$の円の距離関数は以下のようになる．
+幾何図形を描く際には\emph{距離関数}(\textit{Distance Function})がよく用いられる.
+距離関数は任意の点が与えられたときに，図形からの最短距離を返す関数である．
+例えば,平面上の点$z$が与えられたとき，原点中心，半径$r$の円との距離を返
+す距離関数$f(z)$は以下のようになる．
 \begin{align*}
  f(z) =  length(z) - r
 \end{align*}
 この関数は円周からの距離を返す.
-座標が, 負の距離をもつときに色をつけるような処理を書く
-と円を描くことができる．
-アルゴリズム\ref{renderCircle}に疑似コードと図\ref{fig:circleShader}にレ
-ンダリング結果を示した.
+平面上の各点に距離関数を作用させ,得られた距離が負であるときに色をつける
+処理を書くと円を描くことができる．
 複数の図形を描きたい時は，複数の距離関数を評価し，最も小さな距離を求めれ
 ばよい.
+距離関数による描画は，得られた距離によって色の濃さを変えるといった工夫で
+図形をより滑らかに描くことができる．
+アルゴリズム\ref{renderCircle}に円を描く疑似コードを，図
+\ref{fig:circleShader}にそのレンダリング結果を示した.
 
 \begin{algorithm}
  \begin{algorithmic}
@@ -139,12 +142,12 @@ GPUは浮動小数演算性能に優れていることに加え，各ピクセ�
   \end{minipage}
  \end{figure}
 
+h\_doxasによるwgld\footnote{wgld: \url{https://wgld.org/d/glsl/}}には，シェー
+ダによるレンダリングの入門事項がよくまとまっている．
 シェーダを用いたレンダリングはglslsandbox\footnote{glslsandbox:
 \url{http://glslsandbox.com/}}やShadertoy\footnote{Shadertoy:
 \url{https://www.shadertoy.com/}}といったウェブサービスで手軽に試すこと
 ができる．
-doxasによるwgld\footnote{wgld: \url{https://wgld.org/d/glsl/}}には，シェー
-ダによるレンダリングの入門事項がよくまとまっている．
 
 また，GPUの計算性能をより汎用的な計算に用いるためのプラットフォームとしてCUDA
 やOpenCLが登場している．
@@ -157,24 +160,27 @@ GPUで行うことができるようになり，GPUによる並列演算は機�
 
 \subsubsection{Distance Estimation}
 
-また，距離関数は陰関数から近似的に導出することができる.
-この手法を\textit{Distance Estimation}とよぶ.
-iqによる式\footnote{distance estimation:
+簡単な幾何図形の距離関数は簡単に導出できるが，そうでない図形やフラクタル
+の場合は難しい．
+しかし，\textit{Distance Estimation}と呼ばれる手法を用いることで，
+距離関数を陰関数から近似的に導出することができる.
+フラクタルをシェーダを用いてレンダリングする際には，Distance Estimation
+が重要となる．
+その式の一つをiqによる導出\footnote{distance estimation:
 \url{http://iquilezles.org/www/articles/distance/distance.htm}}
-のひとつを紹介する.
+をベースにして紹介する.
 
-平面上のある点を$x$, $e$を$x$から最も近い零点集合へ向うベクトルとすると,
-零点集合上の点は$x + e$と表せる.
-求めたい距離は$|e|$となる.
-$f(x + e) = 0$から導出してみよう.
-これをテイラー展開すると
+平面上のある点を$x$, 陰関数が表す零点集合上において$x$から最も近い点を
+$x + e$とすると，$e$は$x$から最も近い点へ向かうベクトルである．
+そして求めたい距離は$|e|$となる．
+$f(x + e) = 0$から距離関数を導出する.
+この式をテイラー展開すると
 $f(x + e) = f(x) + f'(x) \cdot e  + \frac{1}{2}f''(x) \cdot e^2 ...$とな
 る. ここで$e$が十分に小さいと仮定し, 2次以上の項を無視する線型近似を行うと
 $0=|f(x + e)| \approx |f(x) + f'(x) \cdot e|$
-となる. ここで, $x, e$はベクトルであり, $\cdot$は内積を表すことに注意す
-る.
+となる. ここで, $x, e$はベクトルであり, $\cdot$は内積を表すことに注意する.
 三角不等式によって, $| f(x) + f'(x) | \geq |f(x)| - |f'(x)|$であるから,
-$0 \geq |f(x)| - |f'(x) \cdot e|$.
+$0 \geq |f(x)| - |f'(x) \cdot e|$となる.
 また, コーシーシュワルツの不等式より,
 $|f'(x)| \cdot |e| \geq | f'(x)\cdot e|$
 であるから,
@@ -189,7 +195,7 @@ $|e| \geq \frac{|f(x)|}{|f'(x)|}$が得られる.
 \end{align*}
 ただし, $e$が十分小さいことを仮定しているため, 零点集合から遠い点につい
 ては誤差が大きくなってしまうことに注意する.
-導関数から得られた微分値の代わりにヤコビアンが用いられたり, 中心差分法等
+導関数から得られる微分値にはヤコビアンが用いられたり, 中心差分法等
 で導出された微分の近似値が用いられることもある.
 
 \subsubsection{Ray tracing}
@@ -210,11 +216,10 @@ tracing})が用いられる．
 置を$P_1$とする.
 この作業を繰り返し, 得られた点列の極限点が交差点となる.
 
-また, レイマーチングでは, 距離関数をうまく組み合わせることで, 三次元形状
+レイマーチングでは, 距離関数をうまく組み合わせることで, 三次元形状
 の和, 差, 積をとるような演算も高速に行なえる.
 この手法はメッシュによらないプロシージャルな形状表現に適しており, デモシー
 ンでも広く使われている.
-
 交差点を代数的に計算することが難しいフラクタル形状をレンダリングする際に
 は, Distance Estimationによって形状との距離を求めてレイマーチングを行な
 うのが一般的である.
@@ -236,17 +241,17 @@ tracing})が用いられる．
 
 \subsection{Escape-time Fractals}
 
-{\it Escape-time Fractals}は複素平面上の点に対して，特定の漸化式を計算し，
+\textit{Escape-time Fractals}は複素平面上の点に対して，特定の漸化式を計算し，
 その点の軌道の収束，発散を見ることで描画されるフラクタルである．
-Escape-time Fractalsで代表的なものが\emph{マンデルブロ集合}({\it
-Mandelbrot set})である.
+Escape-time Fractalsで代表的なものが\emph{マンデルブロ集
+合}(\textit{Mandelbrot set})である.
 マンデルブロ集合の漸化式は以下のようになる．
-\begin{eqnarray*}
+\begin{align*}
  z, c \in \mathbb{C} \quad
  \begin{cases}
   z_{n+1} = z^2_{n} + c \\ z_0 = 0
  \end{cases}
-\end{eqnarray*}
+\end{align*}
 複素平面上の点$c$に対して, $\displaystyle \lim_{n \to \infty} z_n$が無
 限大に発散しないものをマンデルブロ集合と呼ぶ．
 図\ref{fig:mandelbrot}における黒い部分がマンデルブロ集合である．
@@ -254,18 +259,18 @@ Mandelbrot set})である.
 た．
 マンデルブロ集合はその単純な式から驚くほど豊富なバリエーションの図を見る
 ことができる．
-その他のEscape-time fractalには，\emph{ジュリア集合}({\it Julia set})(図
-\ref{fig:julia})や\emph{ファトゥー集合}({\it Fatou set})等がある．
+その他のEscape-time fractalには，\emph{ジュリア集合}(\textit{Julia set})(図
+\ref{fig:julia})や\emph{ファトゥー集合}(\textit{Fatou set})等がある．
 
 各点における漸化式の計算はお互いに干渉しないので，そのままシェーダでの実
 装が可能であるが，先に述べたDistance Estimationを用いることで，エイリア
 シングノイズ等を避けてより精細に描画することができる．
-これには{\it Green Function}と呼ばれる陰関数を用いる．
+これには\textit{Green Function}と呼ばれる陰関数を用いる．
 導出はiqによる記事\footnote{distance rendering for fractals:
 \url{http://iquilezles.org/www/articles/distancefractals/distancefractals.htm}}
 が詳しい.
 Green Functionに関しては，マンデルブロ集合に関する詳細な議論となってしま
-うので，~\cite{douady1984exploring}を参考にされたい．
+うので,\cite{douady1984exploring}を参考にされたい．
 
 \begin{figure}[htbp]
  \begin{minipage}{0.49\hsize}
@@ -287,19 +292,19 @@ Green Functionに関しては，マンデルブロ集合に関する詳細な議
 マンデルブロ集合は数あるフラクタルの中でも特に複雑な形状を見せるものであった
 ので, その三次元への拡張も古くから興味が持たれてきた.
 例えば，ジュリア集合を四元数を用いて計算した
-Quaternion Julia 3D fractal~\cite{hart1989ray}が１９８９年に発表されている.
+\textit{Quaternion Julia 3D fractal}\cite{hart1989ray}が1989年に発表されている.
 しかし, この形状は四元数による回転対称性をもつため, 形状が単純でフラクタ
 ルコミュニティの満足のいくものではなかった.
 
-そのような中で, ２００３年に発表された阿原・荒木による４
-次元クライン群の一種である{\it Quasi Fuchsian 3D
-Fractals}~\cite{ahara2003sphairahedral}はある程度の複雑性を持った３次元フラクタルで
+そのような中で, 2003年に発表された阿原・荒木による４
+次元クライン群の一種である\textit{Quasi Fuchsian 3D
+Fractals}\cite{ahara2003sphairahedral}はある程度の複雑性を持った３次元フラクタルで
 あったため，コミュニティに大きな影響を与えたと言われている．
 このフラクタルに関しては後の章で触れる．
 
 また，この時期から, コンピュータのグラフィクス性能が向上し, 三次元のフラクタ
 ル図形をリアルタイムに描画することができるようになった.
-例えば, ２００４年にKeenan CraneはQuaternion JuliaをGPUによってリアルタイムに
+例えば, 2004年にKeenan CraneはQuaternion JuliaをGPUによってリアルタイムに
 描画している. \footnote{Ray Tracing Quaternion Julia Sets on
 the GPU:
 \url{https://www.cs.cmu.edu/~kmcrane/Projects/QuaternionJulia/}}.
@@ -308,8 +313,8 @@ iqは2007年にQuaternion Juliaをテーマにした4k intro(実行ファイル�
 \textit{kindernoiser}\footnote{http://www.pouet.net/prod.php?which=32549}
 を発表している.
 
-その後，２００９年に遂にマンデルブロ集合をうまく三次元に拡張した{\it
-Mandelbulb}が開発された.
+その後，2009年に遂にマンデルブロ集合をうまく三次元に拡張した
+\textit{Mandelbulb}が開発された.
 これを皮切りに, 次々と複雑な三次元フラクタルの式が開発された．
 それらの多くはEscape-time fractalの一種であり,
 Distance Estimationとレイマーチングを用いることで効率よくレンダリングす
@@ -319,17 +324,18 @@ Distance Estimationとレイマーチングを用いることで効率よくレ�
 Fractals:\\ \quad \quad
 \url{http://blog.hvidtfeldts.net/index.php/2011/06/distance-estimated-3d-fractals-part-i/}}
 にまとめられている.
+こちらも併せて参考にされたい．
 
-これらのフラクタルをレンダリングするためのソフトウェアは{\it Mandelbulb
+これらのフラクタルをレンダリングするためのソフトウェアには\textit{Mandelbulb
 3D}\footnote{Mandelbulb 3D:
 \url{http://mandelbulb.com/2014/mandelbulb-3d-mb3d-fractal-rendering-software/}}
-や{\it Mandelbulber}\footnote{Mandelbulber:
+や\textit{Mandelbulber}\footnote{Mandelbulber:
 \url{http://www.mandelbulber.com/}}が有名である.
 シェーダベースのグラフィクスを開発するための環境である
-{\it Fragmentarium}\footnote{Fragmentarium:
+\textit{Fragmentarium}\footnote{Fragmentarium:
 \url{http://syntopia.github.io/Fragmentarium/}}は．
 フラクタルのサンプルコードが豊富でアルゴリズムの学習に役立つ．
-{\it Fractal Lab}\footnote{Fractal Lab:
+\textit{Fractal Lab}\footnote{Fractal Lab:
 \url{http://hirnsohle.de/test/fractalLab/}}はブラウザ上でGLSLを用いてフ
 ラクタルをレンダリングすることができるウェブアプリケーションである．
 この章で使われている図のいくつかはFractal LabとFragmentariumを用いてレン
@@ -337,7 +343,8 @@ Fractals:\\ \quad \quad
 
 \subsubsection{Mandelbulb}
 
-三次元の拡張において問題になるのは, 三次元空間において用いる代数である.
+マンデルブロ集合の三次元の拡張において問題になるのは, 三次元空間において
+用いる代数である.
 マンデルブロ集合の漸化式は複素数の乗算と加算で構成されている.
 $z^2$は点$z$に原点中心の回転と拡縮を作用させ, 加算$z + c$は平行移動を作用さ
 せる. これによって点の軌道を考えることができる.
@@ -387,14 +394,14 @@ Whiteは球面座標上で漸化式を計算するアプローチを提案
 
 \subsubsection{Mandelbox}
 
-その後，2010年にTom Loweによって{\it Mandelbox}\footnote{Mandelbox:
+その後，2010年にTom Loweによって\textit{Mandelbox}\footnote{Mandelbox:
 \url{https://sites.google.com/site/mandelbox/what-is-a-mandelbox}}が開発
 された．
 Mandelboxも三次元空間におけるEscape-time fractalである.
 漸化式は$z_{n+1} = scale * spherefold(minR, boxfold(z_n)) + c$である.
-ここで, {\it boxfold}は$x=\pm1, y=\pm1, z=\pm1$を頂点にもつ立方体の各面
+ここで, \textit{boxfold}は$x=\pm1, y=\pm1, z=\pm1$を頂点にもつ立方体の各面
 に対して, 点が外側にある場合にその面に関する反転を行なう操作である.
-また, {\it spherefold}は点が原点中心の球の内側にある時にその球に関する反転　を行う操作である．
+また, \textit{spherefold}は点が原点中心の球の内側にある時にその球に関する反転　を行う操作である．
 ただし，球の反転は, 中心付近を無限遠点付近へと移してしまうため, 漸化式の計算途中
 に中心付近を通る点が発散と判定されてしまう.
 そこでspherefoldでは, 中心付近の点の反転をあらかじめ決めておいた最小の半
@@ -437,8 +444,8 @@ MandelboxのDistance Estimationでは漸化式の微分としてヤコビアン�
 \subsubsection{Pseudo-Kleinian}
 
 Mandelboxの登場以降は漸化式にMandelbulbやMandelboxを含む複数の式を用いた
-{\it Hybrid System}によって，様々なフラクタル作品が作られている．
-興味深いHybrid Systemの１つに{\it pseudo-kleinian}がある．
+\textit{Hybrid System}によって，様々なフラクタル作品が作られている．
+興味深いHybrid Systemの１つに\textit{pseudo-kleinian}がある．
 これは球の反転に近い操作であるSpherefoldと平行移動と同じような働きをする
 boxfoldをうまく組み合わせによってクライン群のような形状が得られる式である．
 図\ref{fig:pseudoKleinian}はFragmentariumのサンプルスクリプトを用いてレンダリングされた.
@@ -455,7 +462,7 @@ boxfoldをうまく組み合わせによってクライン群のような形状�
 \subsection{Coloring by Orbit Trap}
 
 フラクタルのレンダリングにおいて，カラーリングは重要な要素である．
-Escape-timeアルゴリズムを用いたフラクタルのカラーリングには，主に{\it
+Escape-timeアルゴリズムを用いたフラクタルのカラーリングには，主に\textit{
 Orbit Trap}とよばれる手法が使われる．
 図\ref{fig:mandelbox}のMandelboxもOrbit Trapを用いて色がつけられている.
 
@@ -467,7 +474,7 @@ trapと漸化式の計算で得られる軌道の点の位置関係から色を�
 
 また，この方法を応用すると，図\ref{fig:mandelbrotBitmap}のように画像を
 trapに用いることで，点の軌道上に画像を張り付けることも可能である．
-この手法は特に{\it Bitmap Orbit Trap}とも呼ばれる.
+この手法は特に\textit{Bitmap Orbit Trap}とも呼ばれる.
 
 \begin{figure}[htbp]
  \begin{minipage}{0.49\hsize}
@@ -488,7 +495,7 @@ trapに用いることで，点の軌道上に画像を張り付けることも�
 
 \subsection{Iterated Function System}
 
-もう一つ有名なアルゴリズムとして，{\it Iterated Function System (IFS)}が
+もう一つ有名なアルゴリズムとして，\textit{Iterated Function System (IFS)}が
 ある．IFSは点に複数の関数を反復的に作用させることで描画される．
 
 IFSの描画アルゴリズムの一つとして，カオスゲームがある．
@@ -500,7 +507,7 @@ IFSに関する書籍としてFractals Everywhereite{fractalsEverywhere}があ�
 また，並列計算による高速化に関する論文に
 ~\cite{2010_fractal_flames}や，\cite{Green:2005:GIF:1187112.1187128}がある．
 
-IFSを拡張したフラクタルアートの一種に\emph{フラクタルフレーム}{\it(Fractal
+IFSを拡張したフラクタルアートの一種に\emph{フラクタルフレーム}\textit{(Fractal
 Flame)}~\cite{draves2003fractal}がある．
 フラクタルフレームではIFSに用いる関数にメビウス変換などの非線形変換を用
 い，美しくレンダリングされるようにカラーリングのアルゴリズムにも工夫が加えられている．

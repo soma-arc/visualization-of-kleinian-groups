@@ -2,7 +2,7 @@
 
 \section{Fractal}
 
-\emph{フラクタル}(fractal)は数学者ブノワ・マンデルブロ(Benoit
+[\emph{フラクタル}(fractal)は数学者ブノワ・マンデルブロ(Benoit
 B. Mandelbrot)が提唱した幾何学の概念である．フラクタル図形と呼ばれる図形
 は自己相似性を持ち, 図形のどこを拡大しても全体と同じ形を見ることができる．
 図\ref{fig:gasket}は\emph{シェルピンスキーのギャスケット}と呼ばれるフラ
@@ -46,8 +46,9 @@ Quilez's webpage: \url{http://iquilezles.org/index.html}}にコンピュータ�
  この章では, 後のクライン群の可視化に関わりのあるフラクタルとその描画手
  法についてまとめる.
  ここで述べたもの以外にも様々なフラクタル図形が存在している.
- それらについてはマンデルブロ自身の著作である\cite{fractal}に網羅的にま
- とめられている.
+ それらについてはマンデルブロ自身の著作である~\cite{mandelbrot1983fractal}
+(邦訳~\cite{mandelbrot-ja-201102-1}
+~\cite{mandelbrot-ja-201102-2})に網羅的にまとめられている.
 
 \begin{figure}[htbp]
  \center
@@ -202,7 +203,7 @@ tracing})が用いられる．
 レイと物体の交差点はレイの原点と方向から代数的に計算することができる.
 
 また，\emph{レイマーチング}({\it Ray marching, Sphere tracing}とも呼ばれ
-る)\cite{sphereTracing}という手法で，物体の距離関数からレイとの交差点を
+る)~\cite{hart1996sphere}という手法で，物体の距離関数からレイとの交差点を
 近似的に求めることができる.
 図\ref{fig:raymarch}にレイマーチングの模式図を示した.
 視点$P_0$に最も近い物体との距離を求め, その距離分だけレイを進め, その位
@@ -264,7 +265,7 @@ Mandelbrot set})である.
 \url{http://iquilezles.org/www/articles/distancefractals/distancefractals.htm}}
 が詳しい.
 Green Functionに関しては，マンデルブロ集合に関する詳細な議論となってしま
-うので，\cite{mandelbrot}を参考にされたい．
+うので，~\cite{douady1984exploring}を参考にされたい．
 
 \begin{figure}[htbp]
  \begin{minipage}{0.49\hsize}
@@ -285,19 +286,18 @@ Green Functionに関しては，マンデルブロ集合に関する詳細な議
 
 マンデルブロ集合は数あるフラクタルの中でも特に複雑な形状を見せるものであった
 ので, その三次元への拡張も古くから興味が持たれてきた.
-
 例えば，ジュリア集合を四元数を用いて計算した
-Quaternion Julia 3D fractal\cite{4djulia}が１９８９年に発表されている.
+Quaternion Julia 3D fractal~\cite{hart1989ray}が１９８９年に発表されている.
 しかし, この形状は四元数による回転対称性をもつため, 形状が単純でフラクタ
 ルコミュニティの満足のいくものではなかった.
 
 そのような中で, ２００３年に発表された阿原・荒木による４
 次元クライン群の一種である{\it Quasi Fuchsian 3D
-Fractals}\cite{sphairahedra}はある程度の複雑性を持った３次元フラクタルで
+Fractals}~\cite{ahara2003sphairahedral}はある程度の複雑性を持った３次元フラクタルで
 あったため，コミュニティに大きな影響を与えたと言われている．
 このフラクタルに関しては後の章で触れる．
 
-この時期から, コンピュータのグラフィクス性能が向上し, 三次元のフラクタ
+また，この時期から, コンピュータのグラフィクス性能が向上し, 三次元のフラクタ
 ル図形をリアルタイムに描画することができるようになった.
 例えば, ２００４年にKeenan CraneはQuaternion JuliaをGPUによってリアルタイムに
 描画している. \footnote{Ray Tracing Quaternion Julia Sets on
@@ -318,17 +318,17 @@ Distance Estimationとレイマーチングを用いることで効率よくレ�
 による一連の記事\footnote{Syntopia, Distance Estimated 3D
 Fractals:\\ \quad \quad
 \url{http://blog.hvidtfeldts.net/index.php/2011/06/distance-estimated-3d-fractals-part-i/}}
-によくまとめられている.
+にまとめられている.
 
 これらのフラクタルをレンダリングするためのソフトウェアは{\it Mandelbulb
 3D}\footnote{Mandelbulb 3D:
 \url{http://mandelbulb.com/2014/mandelbulb-3d-mb3d-fractal-rendering-software/}}
 や{\it Mandelbulber}\footnote{Mandelbulber:
 \url{http://www.mandelbulber.com/}}が有名である.
+シェーダベースのグラフィクスを開発するための環境である
 {\it Fragmentarium}\footnote{Fragmentarium:
-\url{http://syntopia.github.io/Fragmentarium/}}はシェーダベースのグラフィ
-クスを開発するための環境である．
-フラクタルのサンプルコードも豊富で学習に役立つ．
+\url{http://syntopia.github.io/Fragmentarium/}}は．
+フラクタルのサンプルコードが豊富でアルゴリズムの学習に役立つ．
 {\it Fractal Lab}\footnote{Fractal Lab:
 \url{http://hirnsohle.de/test/fractalLab/}}はブラウザ上でGLSLを用いてフ
 ラクタルをレンダリングすることができるウェブアプリケーションである．
@@ -343,7 +343,6 @@ $z^2$は点$z$に原点中心の回転と拡縮を作用させ, 加算$z + c$は
 せる. これによって点の軌道を考えることができる.
 そのため, 三次元空間の点において, 軌道を考えることができるような$z^2$の
 意味付けが必要であった.
-
 そのためのアプローチのひとつが四元数を用いたQuaternion Juliaであるが,
 生成される図は対称的であり, あまり興味を引くものではなかった.
 
@@ -392,21 +391,22 @@ Whiteは球面座標上で漸化式を計算するアプローチを提案
 \url{https://sites.google.com/site/mandelbox/what-is-a-mandelbox}}が開発
 された．
 Mandelboxも三次元空間におけるEscape-time fractalである.
-漸化式は$z_{n+1} = scale * spherefold(minR, boxfold(z_n)) + c$と表わせる.
+漸化式は$z_{n+1} = scale * spherefold(minR, boxfold(z_n)) + c$である.
 ここで, {\it boxfold}は$x=\pm1, y=\pm1, z=\pm1$を頂点にもつ立方体の各面
 に対して, 点が外側にある場合にその面に関する反転を行なう操作である.
-また, {\it spherefold}は以下の式で定義される.
-\begin{align*}
- spherefold(r, z) = \begin{cases}
-                  \frac{z}{r^2} & 0 \le |z| < r \\
-                  \frac{z}{|z|^2} & r \le |z|
-                 \end{cases}
-\end{align*}
-基本は原点中心, 半径$r$の球に関する反転であるが値に制限を設けている.
-球の反転は, 中心付近を無限遠点付近へと移してしまうため, 漸化式の計算途中
+また, {\it spherefold}は点が原点中心の球の内側にある時にその球に関する反転　を行う操作である．
+ただし，球の反転は, 中心付近を無限遠点付近へと移してしまうため, 漸化式の計算途中
 に中心付近を通る点が発散と判定されてしまう.
 そこでspherefoldでは, 中心付近の点の反転をあらかじめ決めておいた最小の半
 径における反転で置きかえることで軌道が発散しないようにしている．
+半径$R$，最小の半径$r$としたときに，$z$に対するspherefoldは以下の式にな
+る.
+\begin{align*}
+ spherefold(R, r, z) = \begin{cases}
+                  z \frac{R^2}{r^2} & 0 \le |z| < r \\
+                  z \frac{R^2}{|z|^2} & r \le |z| < R
+                 \end{cases}
+\end{align*}
 
 MandelboxのDistance Estimationでは漸化式の微分としてヤコビアンの積を用いる.
 式の各操作のたびに, ヤコビアンを累積していき,
@@ -440,7 +440,7 @@ Mandelboxの登場以降は漸化式にMandelbulbやMandelboxを含む複数の�
 {\it Hybrid System}によって，様々なフラクタル作品が作られている．
 興味深いHybrid Systemの１つに{\it pseudo-kleinian}がある．
 これは球の反転に近い操作であるSpherefoldと平行移動と同じような働きをする
-boxfoldの組み合わせによってクライン群のような形状が得られる式である．
+boxfoldをうまく組み合わせによってクライン群のような形状が得られる式である．
 図\ref{fig:pseudoKleinian}はFragmentariumのサンプルスクリプトを用いてレンダリングされた.
 
 \begin{figure}[htbp]
@@ -491,19 +491,19 @@ trapに用いることで，点の軌道上に画像を張り付けることも�
 もう一つ有名なアルゴリズムとして，{\it Iterated Function System (IFS)}が
 ある．IFSは点に複数の関数を反復的に作用させることで描画される．
 
-主なアルゴリズムでは，
-平面の点をランダムにとり，その点にランダムに選んだ関数を作用させることを
+IFSの描画アルゴリズムの一つとして，カオスゲームがある．
+カオスゲームでは，平面の点をランダムにとり，その点にランダムに選んだ関数を作用させることを
 繰り返すことで得られた点を描画する．
 シェルピンスキーのギャスケットなどもこの方法でレンダリングすることができる．
 
-IFSに関する書籍としてFractals Everywhere\cite{fractalsEverywhere}がある．
+IFSに関する書籍としてFractals Everywhereite{fractalsEverywhere}がある．
 また，並列計算による高速化に関する論文に
-\cite{highPerformanceIFS}や，\cite{GPUIFS}がある．
+~\cite{2010_fractal_flames}や，\cite{Green:2005:GIF:1187112.1187128}がある．
 
 IFSを拡張したフラクタルアートの一種に\emph{フラクタルフレーム}{\it(Fractal
-Flame)}\cite{fractalFlame}がある．フラクタルフレームはIFS
-に用いる関数にメビウス変換などの非線形変換を用い，美しくレンダリングされ
-るようにカラーリングのアルゴリズムにも工夫が加えられている．
+Flame)}~\cite{draves2003fractal}がある．
+フラクタルフレームではIFSに用いる関数にメビウス変換などの非線形変換を用
+い，美しくレンダリングされるようにカラーリングのアルゴリズムにも工夫が加えられている．
 図\ref{fig:pseudoKleinian}はフラクタルフレームレンダラのひとつである，
 Apophysis 7Xを用いてレンダリングされたフラクタルフレームである．
 

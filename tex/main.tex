@@ -9,9 +9,11 @@
 \usepackage[subrefformat=parens]{subcaption}
 \usepackage{hyperref}
 \usepackage{csquotes}
-
+\usepackage[backend=biber, style=numeric, sorting=none]{biblatex}
 
 \captionsetup{compatibility=false}
+
+\addbibresource{references.bib}
 
 \setlength{\parindent}{0.3in}
 
@@ -40,7 +42,9 @@ Meiji University\\
 ２章ではクライン群の可視化手法と周辺分野について記述する．
 ３章ではテセレーションのレンダリング手法をまとめる.
 
-筆者が書いたプログラムの多くは\textit{GitHub}\footnote{GitHub: \url{https://github.com/soma-arc}}や\textit{Shadertoy}\footnote{Shadertoy: \url{https://www.shadertoy.com/user/soma\_arc}}で公開されている.
+筆者が書いたプログラムの多くは\textit{GitHub}\footnote{GitHub: \url{https://github.com/soma-arc}}や
+\textit{Shadertoy}\footnote{Shadertoy: \url{https://www.shadertoy.com/user/soma\_arc}}で公開されている.
+講演スライドや論文は筆者のウェブページ\footnote{\url{https://knkmr.net}}で公開されている．
 
 \end{abstract}
 
@@ -56,6 +60,7 @@ Meiji University\\
 
 \input{tessellation}
 
-\input{references}
+\addcontentsline{toc}{section}{References}
+\printbibliography
 
 \end{document}

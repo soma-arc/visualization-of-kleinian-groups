@@ -2,8 +2,7 @@
 
 \section{Kleinian Groups}
 
-クライン群について学習する際には書籍『インドラの真珠』\cite{indra}を読む
-ことを勧める.
+クライン群について学習する際には書籍『インドラの真珠』\cite{komori-indra201303}(原著:\cite{MumfordSeriesWright200204})を読むことを勧める.
 インドラの真珠は数学者以外にもクライン群の魅力を伝えるために書かれた．
 中には研究者レベルの高度な内容も扱うが，高校レベルの数学と簡単なプロ
 グラムを組む能力があれば，自分で図をレンダリングしながら読み進めることができる．
@@ -169,7 +168,7 @@ stereographic projection})と呼ばれる方法がよく使われる.
 てお互いに移りあう点である．
 
 Saul Schleimer, Henry Segermanはこれを利用した全天球画像へのエフェクトを
-考案している\cite{spherical}.
+考案している\cite{bridges2016:15}.
 図\ref{fig:spherical}は正距円筒図法(Equirectangular map)と球の内側からみ
 た視点と, 複素平面とリーマン球面を可視化したものである.
 このように, 複素平面上での回転は球の回転として表わすことができる.
@@ -328,7 +327,7 @@ $aaa\overline{a}$と$aaa\overline{b}$のような同じ接頭語を持つ極限�
 このような変換をもたない群を\emph{自由群}と呼ぶ.
 効率よく描画するためには，逆戻りを生み出す元を取り除く必要がある．
 そのためには有限オートマトンが使われる．
-有限オートマトンに関する書籍には『Word Processing In Groups』\cite{wordProcessing}がある．
+有限オートマトンに関する書籍には『Word Processing In Groups』\cite{Epstein:1992:wordProcessing}がある．
 
 先に述べたように，メビウス変換の群すべてがクライン群になるわけではない．
 群の中には描画すると極限集合が収束せず，図\ref{fig:non-discrete}のように
@@ -398,7 +397,7 @@ Dynamic Parallelismという機能を用いることで，木構造探索の並�
 
 筆者らは, 1章でみたシェーダを用いたフラクタルのレンダリングアルゴリズム
 に着想を得て, 円や球の反転で構成される群の軌道を高速に描画するためのアル
-ゴリズム, \textit{Iterated Inversion System (IIS)}\cite{iis}を開発した．
+ゴリズム, \textit{Iterated Inversion System (IIS)}\cite{bridges2016:367}を開発した．
 円や球の座標と半径を直接計算するこれまでのアプローチに対して，このアルゴ
 リズムは任意の点が属する円や球の深さを特定する．
 これはスクリーンスペースのピクセルそれぞれに対して独立に計算することがで
@@ -417,14 +416,14 @@ Dynamic Parallelismという機能を用いることで，木構造探索の並�
 それぞれの計算はピクセルごとに行なうことができるため, 最大の反転回数と，円の数の
 多項式時間で描画することができる.
 
-このアルゴリズムをより一般化した擬似コードをアルゴリズム\ref{iis2d}に示す.
+このアルゴリズムをより一般化した擬似コードをアルゴリズム\ref{alg:iis2d}に示す.
 後に我々は単純な円の反転以外の生成元を導入する.
 そこで，基本領域にある点に対しては恒等写像で, その他の点に対しては反転の合成を
 適用する写像$G$を考え，これを反転の代わりに用いることとする.
 
  \begin{algorithm}
   \caption{Iterated Inversion System (IIS)}
-  \label{iis2d}
+  \label{alg:iis2d}
   \begin{algorithmic}
    \REQUIRE count $= 0$ and coordinates $=$ position determined by
    pixel
@@ -494,7 +493,7 @@ $ Jacobian = R^2 / distance(P, S)^2 $
 図\ref{fig:limitSetOnSphere}は基本球の大きさを極限集合と同じ大きさにしたものである.
 球の上に極限集合が描画されていることがわかる.
 
-一般化した擬似コードはアルゴリズム\ref{iis3d}に示した.
+一般化した擬似コードはアルゴリズム\ref{alg:iis3d}に示した.
 
 \begin{figure}[htbp]
  \begin{minipage}[b]{0.5\hsize}
@@ -555,7 +554,7 @@ $ Jacobian = R^2 / distance(P, S)^2 $
 
 \begin{algorithm}
  \caption{Distance function}
- \label{iis3d}
+ \label{alg:iis3d}
  \begin{algorithmic}
   \REQUIRE count $= 0$, $d$ = MAX\_DISTANCE, $dr = 1.0$, and coordinates $=$ tipping
   point of the ray
@@ -1075,7 +1074,7 @@ $\varphi = 2 \theta i$で計算することができる.
 
 \subsubsection{Other Rendering Methods}
 Aaron MontagはIterated Inversion Systemを拡張したHyperbolic Iterated
-Function Systemによる極限集合の描画を提案している\cite{hyperbolicIFS}
+Function Systemによる極限集合の描画を提案している\cite{Montag2014hyperbolicIFS}
 \footnote{Kleinian Groups WebGL:
  \url{https://www-m10.ma.tum.de/bin/view/Lehrstuhl/AaronMontagKleinian}}.
 
@@ -1083,7 +1082,7 @@ Function Systemによる極限集合の描画を提案している\cite{hyperbol
 とDistance Estimationを考案した
 \footnote{An escape time algorithm for Kleinian group limit set:\\ \quad
 \quad \url{http://www.fractalforums.com/3d-fractal-generation/an-escape-tim-algorithm-for-kleinian-group-limit-sets/}}.
-荒木・糸\cite{maskit}の考えた群と同様に, 一方に平行移動を含む2つの放物型変換による群を考えている.
+荒木・糸\cite{araki2008extension}の考えた群と同様に, 一方に平行移動を含む2つの放物型変換による群を考えている.
 この方法を用いると, 二次元だけでなく，三次元の図像も高速に描画することができる.
 詳細なアルゴリズムに関しては, Jos Leyがまとめている
 \footnote{Mathematical Imagery, An escape-time algorithm for a family of
@@ -1092,11 +1091,11 @@ Kleinian groups:\\ \quad \quad \url{http://www.josleys.com/article_show.php?id=2
 \subsubsection{Quasi Fuchsian 3-Dimensional Fractals}
 
 阿原・荒木は擬フックス群を三次元に拡張した４次元クライン群を考案した
-\cite{sphairahedra}\cite{sphairahedraJa}.
+\cite{ahara2003sphairahedral}\cite{ahara2003sphaira}.
 これはQuasi Fuchsian 3-Dimensional Fractalsとよばれ,
 前述のフラクタルコミュニティに大きな影響を与えたといわれている.
-荒木はこのフラクタル図形の物質化についてまとめている\cite{materializing}．
-数学的な事項については2016年に蔭山\cite{kageyama}がまとめている．
+荒木はこのフラクタル図形の物質化についてまとめている\cite{araki2006materializing}．
+数学的な事項については2016年に蔭山\cite{kageyama2016masterSphaira}がまとめている．
 
 図\ref{fig:schottky}において, 中央の円盤に囲まれた黒い領域を\emph{円辺形}と
 よぶ.
@@ -1140,20 +1139,20 @@ Kleinian groups:\\ \quad \quad \url{http://www.josleys.com/article_show.php?id=2
 三次元空間上で捩じりが加わるようなメビウス変換は複合放物型, 複合斜航型と分類
 される.
 四元数で構成されるメビウス変換とその分類は佐久川による
-\cite{sakugawaMaster}や\cite{accidentalParabolic}にまとまっている．
+\cite{sakugawa2007master}や\cite{sakugawa2009accidental}にまとまっている．
 
 図\ref{fig:sakugawa}は佐久川による複合放物型変換を含む群のレシピによる群
 の極限集合を描画したものである.
 放物型変換である平行移動に回転が加わることで複合放物型変換となる.
 
-荒木・糸はマスキット群を高次元に拡張した\cite{maskit}
+荒木・糸はマスキット群を高次元に拡張した\cite{araki2008extension}
 \footnote{4-dimensional Kleinian punctured torus groups:
 \url{http://www.math.nagoya-u.ac.jp/~itoken/3d-maskit/3d-maskit.html}}．
 論文中では幾何学的性質をうまく使うことで，四元数の計算を避けている．
-また, 佐久川はこの群の四元数表示を導出した\cite{sakugawa4d}.
+また, 佐久川はこの群の四元数表示を導出した\cite{sakugawa2010limit}.
 
 三浦は３つ以上の生成元による４次元クライン群をモジュラー群から構成するこ
-とを試みた\cite{miura}．
+とを試みた\cite{miura2015master}．
 筆者はこの論文における数値実験と可視化を行った．
 
 \begin{figure}[h!tbp]
@@ -1191,7 +1190,7 @@ Kleinian groups:\\ \quad \quad \url{http://www.josleys.com/article_show.php?id=2
 トウェアによって大きく研究が進んだ．
 描画や離散性判定のためのアルゴリズ
 ムが開発者の和田によりまとめられている
-\cite{OPTiDrawing}\cite{OPTiDiscrete}．
+\cite{wada2003optiDrawingLimit}\cite{wada2006optiDiscreteness}.
 この群の極限集合は図\ref{fig:opt}のようになる.
 
  \begin{figure}[htbp]
@@ -1213,10 +1212,10 @@ Kleinian groups:\\ \quad \quad \url{http://www.josleys.com/article_show.php?id=2
 
 \subsection{Further Readings}
 この章の最後に，クライン群のより数学的な背景を学習するための書籍をいくつか挙げておく．
-『双曲幾何学への招待』\cite{invitation}は絶版であるが双曲幾何学の基本事項がまとまっている．
+双曲幾何学の入門書には「双曲幾何学への招待」\cite{taniguchi_okumura199610invitation}や「双曲幾何」\cite{mitani200409hyperbolicGeometry}がある．
 クライン群のより数学的内容に踏み込んだ書籍には『双曲多様体とクライン群』
-\cite{manifold}や『Outer Circles』\cite{outerCircles}がある.
-また, レクチャーノート集に『Kleinian Group and Hyperbolic 3-Manifolds』\cite{kleinianGroupsAndHyperbolic3-Manifolds}や
-『Spaces of Kleinian Groups』\cite{space}がある.
+\cite{taniguchi_matsuzaki_hyperbolicManifold}や『Outer Circles』\cite{Marden200705outerCircles}がある.
+また, レクチャーノート集に『Kleinian Group and Hyperbolic 3-Manifolds』\cite{Y._V._C.200311}や
+『Spaces of Kleinian Groups』\cite{Yair_Makoto_Caroline200606}がある.
 
 \clearpage

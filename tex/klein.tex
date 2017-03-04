@@ -5,10 +5,10 @@
 クライン群について学習する際には書籍『インドラの真珠』\cite{komori-indra201303}
 (原著:\cite{MumfordSeriesWright200204})を読むことを勧める.
 インドラの真珠は数学者以外にもクライン群の魅力を伝えるために書かれた．
-中には研究者レベルの高度な内容も扱うが，高校レベルの数学と簡単なプロ
+中には研究者レベルの高度な内容も扱う部分もあるが，高校レベルの数学と簡単なプロ
 グラムを組む能力があれば，自分で図をレンダリングしながら読み進めることができる．
 この章では，クライン群に関する用語を確認した後にレンダリング手法と『イン
-ドラの真珠』では言及のないクライン群の話題を紹介する．
+ドラの真珠』では言及のないクライン群の話題をまとめる．
 
 \subsection{Conjugation}
 
@@ -37,10 +37,12 @@ $\hat{T}$は回転と共役であるという.
 とき，これらの組み合わせを合成することで得られる変換の集合を群とよぶ．
 また，ここで群を構成した4つの変換を\emph{生成元}(\textit{Generator})とよ
 ぶ.
+この群は２つの変換から生成されるので\emph{二元生成群}というようによばれることも
+ある．
 クライン群は\emph{メビウス変換}(M\"obius Transformations)を生成元にもつ
 群のなかで離散性という性質を持つものをいう．
 
-ここでは，それぞれの変換を小文字のアルファベットで表し，その逆変換を大文字で綴る．
+ここから，それぞれの変換を小文字のアルファベットで表し，その逆変換を大文字で綴ることにする．
 $f(z)$を$a$，$g(z)$を$b$とおくと逆変換は$A$，$B$となる．
 変換の合成はアルファベットを並べて書くことで表す.
 例えば合成変換$f(f(g(f(p))))$は$aaba$という語で表される．
@@ -78,11 +80,11 @@ $f(z)$を$a$，$g(z)$を$b$とおくと逆変換は$A$，$B$となる．
 \begin{align*}
  a, b, c, d\in \hat{\mathbb{C}} \quad f(z) = \frac{az + b}{cz + d}
 \end{align*}
-我々になじみの深い平行移動，拡縮や回転といった変換もメビウス変換に含まれ
-る．メビウス変換は，等角性や円円対応といった性質をもつ．
+メビウス変換は，等角性や円円対応といった性質をもつ．
+我々になじみの深い平行移動，拡縮や回転といった変換もメビウス変換に含まれる．
 
-また，以下のように係数を２×２の複素数行列として扱うことで，代数として操作することが
-できる．
+メビウス変換は，以下のように係数を２×２の複素数行列として扱うことで，
+代数として操作することができる．
 例えば合成変換を行列の積として表すことができる．
 \begin{align*}
   m = \left(
@@ -105,16 +107,15 @@ $f(z)$を$a$，$g(z)$を$b$とおくと逆変換は$A$，$B$となる．
 クライン群の描画において，メビウス変換の分類は重要である.
 なぜならば，楕円型変換を含む群の多くはクライン群にはなりえない.
 また，放物型変換は固定点への収束が遅いという特徴をもつ.
-これは後述する極限集合の描画の際に考慮することとなる.
+これは後述する極限集合の描画の際に考慮することになる.
 
 \subsection{Circle Inversion}
 
 円は複素平面に作用するメビウス変換を考えるうえで重要な図形である．
-先に述べたように，メビウス変換によって円は円に移される円円対応という性質
+先に述べたように，メビウス変換は円を円に移す円円対応という性質
 をもつ．
 ここでは円に関する反転(\textit{Circle Inversion})という操作をみる．
-これは円弧を鏡とみた鏡映であり，無限遠点は円の中心と入れ替えられる．
-また，メビウス変換を構成する変換の最小単位ともいえる.
+これは円弧を軸とみた鏡映変換であり，無限遠点は円の中心と入れ替えられる．
 
 点aを中心とする半径rの円に関する反転を$I(z)$とすると式は以下のようになる.
 \begin{align*}
@@ -139,6 +140,8 @@ I(z) =
 ないが, 2つの反転を合成することで双曲型のメビウス変換となる.
 偶数個の円の反転を組み合わせることで, その他の種類のメビウス変換を構成することが
 できる.
+円に関する反転はメビウス変換を構成する変換の最小単位ともいえる.
+
 また, 円を球に拡張することで球に関する反転を考えることができる．
 これを用いて三次元空間に作用するメビウス変換を構成することもできる.
 
@@ -157,23 +160,13 @@ I(z) =
 複素平面を球面へと写像するためには, \emph{立体射影}({\it
 stereographic projection})と呼ばれる方法がよく使われる.
 地図の制作のため, 地球のような球面を平面に投影する方法が様々に考えられて
-きたが, その中でも立体射影は角度と円を保つため, メビウス変換と相性が良い.
+きたが, それらの手法の中でも立体射影は角度と円を保つため, メビウス変換と相性が良い.
 
-立体射影は簡単に説明すると以下のように行える．
-ある球面上の点を$P$とおくと, $P$を立体射影で移した複素平面上の像は球面の北極
+立体射影は以下のように行える．
+ある球面上の点を$P$とおくと, $P$を立体射影で移した複素平面上の点は球の北極
 から$P$へと引いた直線と複素平面との交点となる.
-
 図\ref{fig:stereoProject}は立体射影を図示したものである.
 赤の円は単位円，青の直線はx軸を表している．
-緑の直線において，北極以外の球面上の交点と，平面との交点が立体射影によっ
-てお互いに移りあう点である．
-
-Saul Schleimer, Henry Segermanはこれを利用した全天球画像へのエフェクトを
-考案している\cite{bridges2016-15}.
-図\ref{fig:spherical}は正距円筒図法(Equirectangular map)と球の内側からみ
-た視点と, 複素平面とリーマン球面を可視化したものである.
-このように, 複素平面上での回転は球の回転として表わすことができる.
-\footnote{Spherical Droste video: \url{https://www.youtube.com/watch?v=qvh-EAipIUk\&t=4s}}
 
 \begin{figure}[htbp]
  \center
@@ -182,11 +175,32 @@ Saul Schleimer, Henry Segermanはこれを利用した全天球画像へのエ�
  \label{fig:stereoProject}
 \end{figure}
 
+
+Saul Schleimer，Henry Segermanはメビウス変換を利用して全天球画像（上下左
+右360度パノラマ写真）を編集することを考案した\cite{bridges2016-15}.
+彼らは\emph{ドロステ効果}(\textit{Droste-effect})とよばれる効果をもつ再
+帰的な画像をメビウス変換を用いてつくる手法を提案している
+\footnote{Spherical Droste video:
+\url{https://www.youtube.com/watch?v=qvh-EAipIUk}}．
+
+全天球画像は，その名の通り球面に張り付けられた画像であるので，メビウス変
+換で角度を保ったまま編集を加えることができる．
+また全天球画像は正距円筒図法(Equirectangular map)で扱われることも多い．
+この図法は縦軸に緯度，横軸に経度をとり，球面をそのまま写像するものである．
+メビウス変換で球面の画像を編集したものを正距円筒図法で写像すると興味深い
+効果をみることができる．
+
+図\ref{fig:sphericalRotation},\ref{fig:sphericalTranslation},
+\ref{fig:sphericalScaling}は図\ref{fig:sphericalStandard}の格子模様
+に対して，簡単なメビウス変換を作用させたものである．
+複素平面，リーマン球面，その正距円筒図，そして全天球画像の一部を注視した
+図を示した．
+
 \begin{figure}[htbp]
  \begin{minipage}{0.5\hsize}
   \center
   \includegraphics[width=3in, height=3in, keepaspectratio]{../img/klein/spherical.pdf}
-  \subcaption{Stereographic }
+  \subcaption{Standard}
   \label{fig:sphericalStandard}
  \end{minipage}
  \begin{minipage}{0.5\hsize}
@@ -195,30 +209,57 @@ Saul Schleimer, Henry Segermanはこれを利用した全天球画像へのエ�
   \subcaption{Rotation}
   \label{fig:sphericalRotation}
  \end{minipage}
- \caption{Spherical image}
+ \begin{minipage}{0.5\hsize}
+  \center
+  \includegraphics[width=3in, height=3in, keepaspectratio]{../img/klein/sphericalTranslation.pdf}
+  \subcaption{Translation}
+  \label{fig:sphericalTranslation}
+ \end{minipage}
+ \begin{minipage}{0.5\hsize}
+  \center
+  \includegraphics[width=3in, height=3in, keepaspectratio]{../img/klein/sphericalScaling.pdf}
+  \subcaption{Scaling}
+  \label{fig:sphericalScaling}
+ \end{minipage}
+ \caption{Spherical images}
  \label{fig:spherical}
 \end{figure}
 
-\subsection{Graph Traversal Approach}
+\subsection{Vizualization with Graph Traversal Approach}
 
-この節では木構造の探索によるクライン群の可視化について記述する.
-群を構成する変換の全組み合わせを調べるとき，変換の語で構成される木構造を考える．
-図\ref{fig:wordTree}のような木はケーリーグラフ（Cayley graph）と呼ばれ4種類の変換の合成の組合せを表わしている．
-この木を探索することで得られる合成変換を用いて群の作用を可視化する.
-疑似コードを含む詳細な解説は『インドラの真珠』にある.
+群を構成する変換の全組み合わせは，変換の語で構成される木構造で表現するこ
+とができる．
+図\ref{fig:wordTree}にその木構造のひとつを示した．
+このような木構造はケーリーグラフ（Cayley graph）と呼ばれる．
+この図では変換$a, b$とそれらの逆変換である4種類の変換の合成の組合せを表
+わしている．
+例えば，$a$というラベルがふられたノードでは，外側へ三本のエッジが
+張られ，$ab, aa, aB$という合成変換を表すノードへとつながっている．
+また，$aA$は逆変換を合成することになるので，このグラフ上では逆戻りを表し
+ている．
 
-メビウス変換は４つの複素数で構成されているが, このままでは自由度が高すぎ
-るため，群を考えるときにはパラメータ化する.
-パラメータ化された式は群の「レシピ」ともよばれる.
-例えば, 『インドラの真珠』で使われる「おばあちゃんのレシピ」では, 二つの複素数
-$t_a, t_b$をパラメータにとることで, 以下のように2つの生成元を得ることができる.
+このグラフを探索することで，群を構成する合成変換を列挙していくことができ
+る．この節では，ケーリーグラフを探索することで得られる合成変換を用いて群の作
+用を可視化する方法をみる.
+
+群を構成するためには複数のメビウス変換が必要であるが，メビウス変換は４つ
+の複素数で構成されているため，自由度が高く，そのまま群を考えることは難し
+い．
+そのため，群の生成元を得るための「レシピ」がよく用いられる．
+
+例えば, 『インドラの真珠』では「おばあちゃんのレシピ」とよぶレシピが紹介
+されている．
+このレシピは, 二つの複素数$t_a, t_b$をパラメータにとり，以下のような操作
+で2つの生成元を得ることができる.
 \begin{enumerate}
  \item 二つの複素数，$t_z, t_b$を選ぶ．
  \item  二次方程式
         $x^2 - t_a t_b x + t_a^2 + t_b^2 = 0 \text{の一方の解}x\text{を
-        選び, }t_{ab}= \text{とする. }$
+        選び, }t_{ab}= x \text{とする. }$
  \item $z_0$を次のように定義する.
-       $z_0 = \frac{(t_{ab} -2)t_b}{t_b t_{ab} - 2 t_a + 2it_{ab}}$
+       \begin{align*}
+        z_0 = \frac{(t_{ab} -2)t_b}{t_b t_{ab} - 2 t_a + 2it_{ab}}
+       \end{align*}
  \item 生成元の行列は次のようになる.
         \begin{align*}
        &a = \left(
@@ -235,7 +276,10 @@ $t_a, t_b$をパラメータにとることで, 以下のように2つの生成�
      \right)
         \end{align*}
 \end{enumerate}
-「おばあちゃんのレシピ」は群を可視化した際に綺麗な図がレンダリングされるように共役によって調整されている.
+これによって８つの複素数のパラメータをもつ二元生成群を２つの複素数から生
+成することができ，考えやすくなる．
+また，「おばあちゃんのレシピ」は群を可視化した際に綺麗な図がレンダリング
+されるように共役によって調整されている.
 
 \begin{figure}[htbp]
  \center
@@ -244,31 +288,93 @@ $t_a, t_b$をパラメータにとることで, 以下のように2つの生成�
  \label{fig:wordTree}
 \end{figure}
 
-\subsubsection{Rendering the Orbit of Transformations}
+\subsubsection{The Orbit of Transformations}
 
-まず, 円の反転で構成される群を可視化してみよう.
+まず, 円の反転で構成される群を可視化してみる.
 円の反転は変換自体を円という図形で表現できるため, その作用を理解しやすい.
-図\ref{fig:schottky}には4つ円の内側にたくさんの円が描かれている.
+図\ref{fig:schottky}には4つの大きな円の内側にたくさんの円が入れ子状に描
+かれている.
+これは反転円の\emph{軌道}とよばれる．また，円列の極限を\emph{極限集合}とよぶ．
 
-外側にある4つの大きな円を反転円とよぶ.
-それぞれの反転円の反転は自分以外の反転円を自分の内側に移す．
-よって，それぞれの反転円に関する反転を行なうと, それぞれの円の内側には３
-つの円が移され，合せて１２個の小円ができる．
-新たにできた小円に対してもその小円が属している反転円以外の反転を適用することで, 小円の下に新たな小円ができる.
-このことを繰り返すと，図\ref{fig:schottky}のように，円が入れ子状につらな
-る図を得ることができる．
-これを反転円の\emph{軌道}とよぶ．
-また，円列の極限を極限集合とよぶ．
+\begin{enumerate}
+ \item 図\ref{fig:level0}に示した4つの大きな円を反転円とよぶ.
+       これらの円に関する反転を生成元とする群の軌道を描くことを考える．
+ \item それぞれの反転円に関する反転は\ref{fig:level0inv}のように，自分以外の反
+       転円を自分の内側に移す．
+ \item この操作を４つの反転円でおこなうと, それぞれの円の内側には３つの円が移
+       され，図\ref{fig:level1}のように合せて１２個の小円ができる．
+ \item 次に，新たにできた小円に対してもその小円が属している反転円以外の反転を作
+       用させる図\ref{fig:level1inv}
+ \item 小円の下に新たな小円ができる.図\ref{fig:level2}
+ \item このことを繰り返すと，最終的に図\ref{fig:levelMax}を得ることができる．
+\end{enumerate}
 
-図\ref{fig:schottky}では反転円の軌道を描いが, 同様にして違う図形の軌道を描くこともできる.
-例えば, 図\ref{fig:orbit}は中央に置いた猫の画像を4つ反転円による反転で移した軌道を描いた.
+\begin{figure}[htbp]
+ \begin{minipage}{0.33\hsize}
+  \begin{center}
+   \includegraphics[width=2in, height=2in, keepaspectratio]{../img/klein/orbit/level0.pdf}
+   \subcaption{orbit}
+   \label{fig:level0}
+  \end{center}
+ \end{minipage}
+ \begin{minipage}{0.33\hsize}
+  \begin{center}
+   \includegraphics[width=2in, height=2in, keepaspectratio]{../img/klein/orbit/level0inv.pdf}
+   \subcaption{orbit}
+   \label{fig:level0inv}
+  \end{center}
+ \end{minipage}
+ \begin{minipage}{0.33\hsize}
+  \begin{center}
+   \includegraphics[width=2in, height=2in, keepaspectratio]{../img/klein/orbit/level1.pdf}
+   \subcaption{orbit}
+   \label{fig:level1}
+  \end{center}
+ \end{minipage}
+ \begin{minipage}{0.33\hsize}
+  \begin{center}
+   \includegraphics[width=2in, height=2in, keepaspectratio]{../img/klein/orbit/level1inv.pdf}
+   \subcaption{orbit}
+   \label{fig:level1inv}
+  \end{center}
+ \end{minipage}
+ \begin{minipage}{0.33\hsize}
+  \begin{center}
+   \includegraphics[width=2in, height=2in, keepaspectratio]{../img/klein/orbit/level2.pdf}
+   \subcaption{orbit}
+   \label{fig:level2}
+  \end{center}
+ \end{minipage}
+ \begin{minipage}{0.33\hsize}
+  \begin{center}
+   \includegraphics[width=2in, height=2in, keepaspectratio]{../img/klein/orbit/levelMax.pdf}
+   \subcaption{level max}
+   \label{fig:levelMax}
+  \end{center}
+ \end{minipage}
+ \caption{Process}
+\end{figure}
 
-このアルゴリズムは変換で構成される木構造を幅優先探索で探索することに等しい．
-例えば, 図\ref{fig:wordTree}の語の木を時計回りに探索すると$a, b, A, B,
+図\ref{fig:schottky}では反転円の軌道を描いが, 同様にして異なる図形の
+軌道を描くこともできる.
+例えば, 図\ref{fig:orbit}は中央に置いた猫の画像を4つ反転円による反転で移
+した軌道を描いた.
+
+図\ref{fig:apr}はP.Nylander氏による作品\footnote{bugman123.com Fractals:
+\url{http://bugman123.com/Fractals/index.html}}を参考に描画した.
+中央右側の蝶をおばあちゃんのレシピで得られた群の生成元で移した.
+虹色の曲線は極限集合である.
+どちらの図も図形の軌道は最終的に極限集合へと収束していくことがわかる.
+
+このアルゴリズムは変換で構成されるケーリーグラフを幅優先探索で探索するこ
+とに等しい．
+例えば, 図\ref{fig:wordTree}の木を時計回りに探索すると$a, b, A, B,
 aB, aa, ab, ba, bb, ...$の順に合成された変換を得ることができる.
-あらかじめ決められた深さまで調べたら, 得られたすべての変換の語を大本とな
-る図形(図\ref{fig:orbit}における中央の猫)に対して作用させることで, おお
-まかに生成元の作用を調べることができる．
+あらかじめ決められた深さまで調べたら, 得られたすべての合成変換を大本とな
+る図形(図\ref{fig:orbit}においては中央の猫)に対して作用させることで, 軌
+道を計算することができる．
+このようにして描かれた図形の軌道を軌道をみることで，おおまかに生成元の作
+用を観察することができる．
 
 \begin{figure}[htbp]
  \begin{minipage}{0.49\hsize}
@@ -287,83 +393,102 @@ aB, aa, ab, ba, bb, ...$の順に合成された変換を得ることができ�
  \end{minipage}
 \end{figure}
 
-
 \subsubsection{Rendering the Limit Set}
 
-より複雑なメビウス変換群を可視化する際には, 極限集合を直接描く方法が使わ
-れる.
-極限集合はケーリーグラフにおいて, 無限の深さの語に対応している.
+軌道の元となる図の位置によって得られる図が変わることや，幅優先探索
+は計算量が大きいことから，より複雑なメビウス変換群を可視化する際には, 極
+限集合を直接描く方法が使われる.
+
+極限集合はケーリーグラフにおいて, 無限の深さのノードの合成変換に対応している.
 しかし, 現実にそれを求めることは不可能なので, 群の生成元の固定点をある程
 度の長さをもった変換の語で移すことで求める.
-例えば, 変換$a$の固定点は任意の点に$a$を繰り返し適用した点, つまり
-$\overline{a}$を適用した極限点と考えることができる.
-例えば, 変換$abbAAb\overline{a}$で表わされる極限点は$a$の固定点を合成変換$abbAAb$で移すことで求めることができる.
+
+例えば, 変換$a$の固定点は任意の点に$a$を無限回作用させた点, つまり
+$\overline{a}$を作用させた点と考えることができ，その点は極限集合に含まれる.
+そのため，合成変換$abbAAb\overline{a}$で表される点は$a$の固定点を合成変換
+$abbAAb$で移すことで求めることができ，これも極限集合に含まれる.
 この時, $abbAAb$を接頭語と呼ぶ.
 
-図\ref{fig:wordTree}の語の木を時計回りに長さ3までの語を探索すると,$ aBA, aBB, aBa, aaB, ...$という順で接頭語が得られる.
+このように，ケーリーグラフを探索して接頭語を求め，それを生成元の固定点に
+作用させることで極限集合を得ることができる．
+接頭語を求める際には，深さ優先探索が用いられる．
+図\ref{fig:wordTree}の語の木を時計回りに長さ3までの語を探索すると,$ abA, abb, aba, aab ...$という順で接頭語が得られる.
 これらの語に, 逆変換をかけないように, 生成元の固定点を与えると極限点を求めることができる.
+
 例えば$aBA$を用いて$\overline{A}, \overline{b}, \overline{B}$の3つの固定点を変換すると互いに近い3つの極限点が得られる.
 $aab\overline{a}$と$aaa\overline{a}$のように隣同士の接頭語を持つ極限点や
 $aaa\overline{a}$と$aaa\overline{b}$のような同じ接頭語を持つ極限点同士は
-近い.
-そのため, 得られた点同士を順番に結ぶと図のようなフラクタル構造を持つ曲線を得ることができる.
-実際に実装する場合には, 得られた点同士の距離によってより深い語への探索の打ち切りと継続を決める.
-
-図\ref{fig:apr}はP.Nylander氏による作品\footnote{bugman123.com Fractals:
-\url{http://bugman123.com/Fractals/index.html}}を参考に描画した.
-中央右側の蝶をおばあちゃんのレシピで得られた群の生成元で移した.
-虹色の曲線は極限集合である.
-どちらの図も図形の軌道は最終的に極限集合へと収束していくことがわかる.
+近い位置にあることが証明されている.
+そのため, 得られた点同士を順番に結ぶと図\ref{fig:limitset}のようなフラクタル
+構造を持つ曲線を得ることができる.
+また，得られた点同士の距離によって，より深い語を探索するかどうかを判断し，
+そこで計算を打ち切ることで探索を高速化することができる.
 
 ただし, 綺麗に描画するには様々な工夫が必要となる.
-まず, 放物型変換は固定点への収束に時間がかかため, 放物型変換の固定点付近
-をうまく描画するためには, 放物型の生成元のための特別な処理が必要である.
-図\ref{fig:apr}の右端をよく見ると直線で結ばれていることがわかる.
-ここには放物型変換の固定点が存在しており, 収束が遅いため, この近辺の極限点を得るためには, より長い接頭語が必要となっている.
-インドラの真珠では特殊語アルゴリズムと呼ばれるアルゴリズムでこの問題に対処する.
+まず, 放物型変換は固定点への収束に時間がかかるため, 放物型変換の固定点付近
+をうまく描画するためには，グラフを深く探索しなければならない．
+図\ref{fig:limit1}の右端をよく見ると直線で結ばれていることがわかる.
+ここには放物型変換の固定点が存在しており, 収束が遅いため, この近辺の極限
+点を得るためには, より長い接頭語が必要となる.
+『インドラの真珠』では放物型の生成元を特別視して扱う「特殊語アルゴリズム」と
+よばれるアルゴリズムでこの問題に対処する.
 
-また, ある変換に対してその逆変換をかけてしまうと元にもどってしまうことは
-自明であるが, 特定の変換の組み合わせが逆戻りを生み出してしまうことがある.
-例えば, 先に述べた平行移動の例において，abABという変換は点を一周させて元の場所に戻してしまう．
-このような変換をもたない群を\emph{自由群}と呼ぶ.
-効率よく描画するためには，逆戻りを生み出す元を取り除く必要がある．
-そのためには有限オートマトンが使われる．
-有限オートマトンに関する書籍には『Word Processing In Groups』\cite{Epstein:1992:wordProcessing}がある．
+また, ある変換とその逆変換を合成してしまうと恒等変換になってしまうことは
+自明であるが，特定の変換の組み合わせが恒等変換を生み出してしまうことがある.
+例えば,語$a$を$f(z) = z + 1$，語$b$を$g(z) = z + i$とするとき，
+abABという語が表す合成変換は恒等変換となってしまう．
+このような語を$\dot{も}\dot{た}\dot{な}\dot{い}$群を\emph{自由群}と呼ぶ.
+こういった語が存在すると，ケーリーグラフの探索の効率が悪くなってしまうた
+め，効率よく描画するためにはこういった語を取り除く必要がある．
+このことに対処するためには有限オートマトンが使われる．
+詳しくは『インドラの真珠』を参照されたい．
+変換群に関する有限オートマトンを取り扱った書籍には『Word Processing In
+Groups』\cite{Epstein:1992:wordProcessing}がある．
 
-先に述べたように，メビウス変換の群すべてがクライン群になるわけではない．
-群の中には描画すると極限集合が収束せず，図\ref{fig:non-discrete}のように
-乱れるものがある.
+先に述べたように，メビウス変換群の離散部分群がクライン群となる．
+そのため群の中には描画すると極限集合が収束せず，図\ref{fig:non-discrete}
+のように乱れるものがある.
 このような群は\emph{非離散群}と呼ばれ，クライン群ではない.
-この離散と非離散のパラメータ領域を描画した図は\emph{スライス}と呼ばれ,
-スライスの離散と非離散の境界もフラクタル形状となる.
-境界付近のパラメータを用いて描画するとしばしば極限集合が興味深い形になる.
-山下靖氏のページ\footnote{Discreteness Locus:
-\url{http://vivaldi.ics.nara-wu.ac.jp/~yamasita/Slice/}}では様々なスライ
-スを見ることができる.
-どのようなパラメータが離散的であるか，すなわちクライン群となるかを調べることがクライン群の研究テーマの一つとなる．
+メビウス変換群のなかで，どのようなパラメータを持つ群が離散的であるか，す
+なわちクライン群となるかを調べることがクライン群の研究テーマの一つとなる．
+離散，非離散を判定するために有用な定理として\emph{ポアンカレの多面体定理}
+や\emph{ヨルゲンセン不等式定理}とよばれるものが存在する．
+
+離散と非離散のパラメータ領域を描画した図は\emph{スライス}と呼ばれ,
+スライスの離散と非離散の境界もしばしばフラクタル形状となる.
+また，その境界付近のパラメータによる群を描画するとしばしば極限集合が興味
+深い形になる.
+山下靖のウェブページ\footnote{Discreteness Locus:
+\url{http://vivaldi.ics.nara-wu.ac.jp/~yamasita/Slice/}}では様々な
+スライスの画像を見ることができる.
 
 \begin{figure}[htbp]
  \begin{minipage}{0.5\hsize}
   \center
   \includegraphics[ height=2.5in, keepaspectratio]{../img/klein/limitset/limit1.pdf}
   \subcaption{}
+  \label{fig:limit1}
  \end{minipage}
  \begin{minipage}{0.5\hsize}
   \center
   \includegraphics[ height=2.5in, keepaspectratio]{../img/klein/limitset/limit2.pdf}
   \subcaption{}
+  \label{fig:limit2}
  \end{minipage}
  \begin{minipage}{0.5\hsize}
   \center
   \includegraphics[ height=2.5in, keepaspectratio]{../img/klein/limitset/limit3.pdf}
   \subcaption{}
+  \label{fig:limit3}
  \end{minipage}
  \begin{minipage}{0.5\hsize}
   \center
   \includegraphics[ height=2.5in, keepaspectratio]{../img/klein/limitset/limit4.pdf}
   \subcaption{}
+  \label{fig:limit4}
  \end{minipage}
  \caption{The limit set of Kleinian groups}
+ \label{fig:limitset}
 \end{figure}
 
 \begin{figure}[htbp]
@@ -378,23 +503,28 @@ $aaa\overline{a}$と$aaa\overline{b}$のような同じ接頭語を持つ極限�
   \subcaption{}
  \end{minipage}
  \caption{The limit set of non-discrete groups}
+ \label{fig:non-discrete}
 \end{figure}
 
 \subsubsection{Faults of Graph Traversal Approach}
 
-グラフを探索する方法にはいくつかの欠点がある.
-まず, 生成元や，探索を深くするごとに指数オーダーで計算量が増えてしまう.
+ケーリーグラフを探索する方法にはいくつかの欠点がある.
+まず, 生成元の数を増やしたり，探索を深くしたりするごとに指数オーダーで計
+算量が増えてしまうことが挙げられる.
+さらに木構造の探索はそもそも並列化に向かないため, 高速化が難しい．
 また, 部分的に拡大したい場合に無駄な部分を計算しないといった処理にも手間
 がかかる.
-さらに木構造の探索は並列化に向かないため, 高速化が難しい.
-そのため, 木構造の探索に頼らない方法がいくつか考案されている.
+このような欠点を避けるため，木構造の探索に頼らない方法がいくつか考案され
+ている．
 
-しかしながら, 最近のOpenCLやCUDAといった並列計算プラットフォームでは
-Dynamic Parallelismという機能を用いることで，木構造探索の並列計算を行う
-ことが可能である．
-ただし, 最新のハードウェアに依存した機能のため, どの計算機環境でも使えるわけではない.
+しかしながら, 最新のOpenCLやCUDAといった並列計算プラットフォームでは
+Dynamic Parallelismという機能を用いることで，木構造探索の並列計算を効率
+よく行うことが可能である．
+ただし, 最新のハードウェアに依存した機能のため, どの計算機環境でも使える
+とはいえない.
 
 \subsection{Iterated Inversion System}
+
 
 筆者らは, 1章でみたシェーダを用いたフラクタルのレンダリングアルゴリズム
 に着想を得て, 円や球の反転で構成される群の軌道を高速に描画するためのアル

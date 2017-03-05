@@ -424,6 +424,35 @@ $aaa\overline{a}$と$aaa\overline{b}$のような同じ接頭語を持つ極限�
 また，得られた点同士の距離によって，より深い語を探索するかどうかを判断し，
 そこで計算を打ち切ることで探索を高速化することができる.
 
+\begin{figure}[htbp]
+ \begin{minipage}{0.5\hsize}
+  \center
+  \includegraphics[ height=2.5in, keepaspectratio]{../img/klein/limitset/limit1.pdf}
+  \subcaption{}
+  \label{fig:limit1}
+ \end{minipage}
+ \begin{minipage}{0.5\hsize}
+  \center
+  \includegraphics[ height=2.5in, keepaspectratio]{../img/klein/limitset/limit2.pdf}
+  \subcaption{}
+  \label{fig:limit2}
+ \end{minipage}
+ \begin{minipage}{0.5\hsize}
+  \center
+  \includegraphics[ height=2.5in, keepaspectratio]{../img/klein/limitset/limit3.pdf}
+  \subcaption{}
+  \label{fig:limit3}
+ \end{minipage}
+ \begin{minipage}{0.5\hsize}
+  \center
+  \includegraphics[ height=2.5in, keepaspectratio]{../img/klein/limitset/limit4.pdf}
+  \subcaption{}
+  \label{fig:limit4}
+ \end{minipage}
+ \caption{The limit set of Kleinian groups}
+ \label{fig:limitset}
+\end{figure}
+
 ただし, 綺麗に描画するには様々な工夫が必要となる.
 まず, 放物型変換は固定点への収束に時間がかかるため, 放物型変換の固定点付近
 をうまく描画するためには，グラフを深く探索しなければならない．
@@ -465,35 +494,6 @@ Groups』\cite{Epstein:1992:wordProcessing}がある．
 \begin{figure}[htbp]
  \begin{minipage}{0.5\hsize}
   \center
-  \includegraphics[ height=2.5in, keepaspectratio]{../img/klein/limitset/limit1.pdf}
-  \subcaption{}
-  \label{fig:limit1}
- \end{minipage}
- \begin{minipage}{0.5\hsize}
-  \center
-  \includegraphics[ height=2.5in, keepaspectratio]{../img/klein/limitset/limit2.pdf}
-  \subcaption{}
-  \label{fig:limit2}
- \end{minipage}
- \begin{minipage}{0.5\hsize}
-  \center
-  \includegraphics[ height=2.5in, keepaspectratio]{../img/klein/limitset/limit3.pdf}
-  \subcaption{}
-  \label{fig:limit3}
- \end{minipage}
- \begin{minipage}{0.5\hsize}
-  \center
-  \includegraphics[ height=2.5in, keepaspectratio]{../img/klein/limitset/limit4.pdf}
-  \subcaption{}
-  \label{fig:limit4}
- \end{minipage}
- \caption{The limit set of Kleinian groups}
- \label{fig:limitset}
-\end{figure}
-
-\begin{figure}[htbp]
- \begin{minipage}{0.5\hsize}
-  \center
   \includegraphics[ height=2.5in, keepaspectratio]{../img/klein/limitset/non-discrete1.pdf}
   \subcaption{}
  \end{minipage}
@@ -525,32 +525,50 @@ Dynamic Parallelismという機能を用いることで，木構造探索の並�
 
 \subsection{Iterated Inversion System}
 
-
+ケーリーグラフの探索に依らないアルゴリズムを考案するにあたり，
 筆者らは, 1章でみたシェーダを用いたフラクタルのレンダリングアルゴリズム
-に着想を得て, 円や球の反転で構成される群の軌道を高速に描画するためのアル
-ゴリズム, \textit{Iterated Inversion System (IIS)}\cite{bridges2016-367}を開発した．
+に着想を参考にした．
+そして，円や球の反転で構成される群の軌道を高速に描画するためのアル
+ゴリズム, \textit{Iterated Inversion System (IIS)}\cite{bridges2016-367}
+を開発した．
 円や球の座標と半径を直接計算するこれまでのアプローチに対して，このアルゴ
 リズムは任意の点が属する円や球の深さを特定する．
 これはスクリーンスペースのピクセルそれぞれに対して独立に計算することがで
 きるので，シェーダによる並列計算，描画を行うことができる．
 
-アルゴリズム自体は非常にシンプルである．
-先にみた４つの反転円による群を考える．
-このとき，黒い領域を基本領域とよぶ.
-ある点がいずれかの反転円に属している時にその反転円に関する反転を行なうという操作を
-反転後の点がすべての円の外側である基本領域に移されるまで繰り返す.
-最終的に, 行なった反転の回数が, その点が属している円盤の深さとなる.
-図\ref{fig:iis-orb}では青い点の軌道を描いている.
-この点は二回反転が行なわれているので, 下から二番目の円に属している.
+\subsubsection{The Algorithm}
+
+アルゴリズムは非常にシンプルである．
+図\ref{fig:iis-orb}のような４つの反転円の軌道を描くことを考える．
+ここで，すべての円の外側である黒い領域を\emph{基本領
+域}(\textit{fundamental domain})とよぶ.
+
+IISは平面状の全ての点に対して計算を行う．
+ある点がいずれかの反転円に属している時にその反転円に関する反転を作用させ
+る．
+操作を反転後の点が基本領域に移されるまで繰り返す.
+最終的に行なった反転の回数が, その点が属している円盤の深さとなる.
+図\ref{fig:iis-orb}では青い点を反転を繰り返して移した軌道を描いている.
+この点は二回の反転によって基本領域に到達したので, 下から二番目の円に属し
+ている.
+
 実際にこのアルゴリズムを用いてすべての点を基本領域へと移動させるためには,
 無限回の反転が必要である. そのため, あらかじめ最大の反転回数を決めておく.
-それぞれの計算はピクセルごとに行なうことができるため, 最大の反転回数と，円の数の
-多項式時間で描画することができる.
+それぞれの計算は最大の反転回数と，円の数の多項式時間で描画することができる.
+また，画面に入っている部分のみを計算するので，無駄な部分を計算する必要が
+ない．
+
+\begin{figure}[htbp]
+ \center
+ \includegraphics[ height=1.5in, keepaspectratio]{../img/klein/orb.pdf}
+ \caption{Orbit}
+ \label{fig:iis-orb}
+\end{figure}
 
 このアルゴリズムをより一般化した擬似コードをアルゴリズム\ref{alg:iis2d}に示す.
 後に我々は単純な円の反転以外の生成元を導入する.
-そこで，基本領域にある点に対しては恒等写像で, その他の点に対しては反転の合成を
-適用する写像$G$を考え，これを反転の代わりに用いることとする.
+そこで，基本領域上にある点に対しては恒等変換を, その他の点に対しては反転の合成を
+作用させる変換$G$を考える.
 
  \begin{algorithm}
   \caption{Iterated Inversion System (IIS)}
@@ -575,112 +593,130 @@ Dynamic Parallelismという機能を用いることで，木構造探索の並�
   \end{algorithmic}
  \end{algorithm}
 
-\begin{figure}[htbp]
- \center
- \includegraphics[ height=1.5in, keepaspectratio]{../img/klein/orb.pdf}
- \caption{Orbit}
- \label{fig:iis-orb}
-\end{figure}
+\subsubsection{3D Extension}
 
 このアルゴリズムは三次元空間における球の反転に対しても用いることができる．
-しかし，反転球の軌道は球の内側に入り込むため，二次元の場合と同様に描画するには手間がかかる．
-そこで我々は軌道の元となる球を用意し, その球を反転球の反転の組み合わせで移した軌道を描画する.
-これはレイマーチングとDistance Estimationを用いることで高速に描画することができる．
-
-図\ref{fig:simpleGen3d}における灰色の球を\emph{反転球},緑色の球を\emph{基本球}とよぶ.
-基本球をすべての反転球の反転の組合わせで移すと図\ref{fig:simpleOrb3d}のよう
-な形状が得られる.
-基本球の数を増やすことも可能である. 図\ref{fig:3baseSphere}は3つの基本球
-の軌道を描画した.
-
-レイマーチングに用いる距離関数を求めるため,
-ここで簡単のために, 図\ref{fig:iis-orb}のXY平面での断面を考えることにする.
-これを図\ref{fig:xySlice}に示した．
-橙色の円列はショットキー球の軌道, 水色の円が基本球の軌道である.
-緑色の点$P2$をレイの先端であるとすると最も近い球は$S2$となる.
-しかし, $S2$の位置と半径は分からない．
-そこで我々は変換のヤコビアンを用いて, 基本球である$S1$の位置と半径から距離を逆算する.
-
-反転球の中心を$S$その半径を$R$,半径を適用する前の点を$P$とおくと
-球の反転のヤコビアンは以下のように計算できる.
-$ Jacobian = R^2 / distance(P, S)^2 $
-また, 半径が無限大の球の反転のヤコビアンは1であることに注意する.
-
-距離関数では，レイの先端にIISを作用させ，
-球の反転のヤコビアンを反転をおこなう毎にかけあわせていく.
-最終的に基本領域上の点と基本球との距離をヤコビアンの積で割ることで近似された距離を求めることができる．
-
-この近似は荒いため, もう一つ考慮すべき事がある.
-レイの先端が極限集合より外側にあるとき, その点は球の反転によって外側に移さ
-れるため, 距離関数が正しく機能せず，大きな距離を返してしまい，
-レイは予期せずしてオブジェクトを突きぬけてしまう.
-よってオブジェクトの前面が正しくレンダリングされずに，
-図\ref{fig:artifact}のような乱れを生みだす.
-
-このような不具合を避けるため, 算出された距離を縮小する方法をとった．
-距離の縮小率は球の大きさによって実験的に決められる.
-
-基本球の大きさを変更することで, 形状を変形することができる.
-図\ref{fig:limitSetOnSphere}は基本球の大きさを極限集合と同じ大きさにしたものである.
-球の上に極限集合が描画されていることがわかる.
-
-一般化した擬似コードはアルゴリズム\ref{alg:iis3d}に示した.
+空間上の点に対しても点が属している球の深さを計算することができるが，球に
+よる反転の軌道は球の内側に入り込むため，二次元の場合と同様に描画するには
+手間がかかる．
+そこで我々は軌道の元となる球を用意し, その球を球の反転の組み合わせで
+移した軌道を描画する.
+図\ref{fig:3baseSphereGen}に描かれている３つの緑の球をすべての灰色の球の
+反転の組み合わせで移した軌道が図\ref{fig:3baseSphereOrb}のようになる．
+ここで，灰色の球を\emph{反転球}，緑色の球を\emph{基本球}とよぶ.
 
 \begin{figure}[htbp]
- \begin{minipage}[b]{0.5\hsize}
+ \begin{minipage}{0.5\hsize}
+  \center
+  \includegraphics[ height=1.7in, keepaspectratio]{../img/klein/3baseGen.pdf}
+  \subcaption{Generator}
+  \label{fig:3baseSphereGen}
+ \end{minipage}
+ \begin{minipage}{0.5\hsize}
+  \center
+  \includegraphics[ height=1.7in, keepaspectratio]{../img/klein/3baseOrb.pdf}
+  \subcaption{Orbit}
+  \label{fig:3baseSphereOrb}
+ \end{minipage}
+ \caption{The orbit of 3 base spheres}
+ \label{fig:3baseSphere}
+\end{figure}
+
+これはレイマーチングとDistance Estimationを用いることで高速に描画するこ
+とができる．レイマーチングに用いる距離関数を導出するため，ここから図
+\ref{fig:simple3diis}に示されるような，６つの反転球と１つの基本球による
+軌道を考える．
+簡単のために, この図のXY平面での断面を図\ref{fig:xySlice}に示した．
+橙色の円列はショットキー球の軌道, 水色の円が基本球の軌道である.
+緑色の点$P2$はレイの先端であり，これに最も近い球は$S2$である．
+黄色の点$P1$は$P2$の属する反転球で$P2$を反転した像である．
+また，$S1$は$S2$をその反転球で移した像であり，基本球でもある．
+
+距離関数は$P2$から$S2$までの距離を返す必要がある．
+しかし, $S2$の位置と半径は分からない．
+そこで我々は球の反転のヤコビアンを用いて, 点$P1$と基本球である$S1$から求
+める距離を逆算する.
+求める距離を$d$，$S1$の半径と中心をそれぞれ$S1r, S1c$とすると，次の式で
+近似することができる．
+\begin{align*}
+ d \approx (distance(P1, S1c) - S1r) / Jacobian
+\end{align*}
+これは1章でみたDistance Estimationと同様のアプローチである．
+
+また，反転球の中心を$S$その半径を$R$,反転をさせる前の点を$P$とおくと
+球の反転のヤコビアンは次のように計算できる.
+\begin{align*}
+ Jacobian = R^2 / distance(P, S)^2 
+\end{align*}
+半径が無限大の球の反転のヤコビアンは1であることに注意する.
+
+実際の距離関数では，レイの先端にIIS作用させる過程で球の反転を行う毎にそ
+のヤコビアンをかけ合わせていく．
+最終的に基本領域上に移された点から基本球への距離をヤコビアンの積で割ること
+で近似された距離を求めることができる．
+ただし，球から点が離れすぎてしまうと誤差が大きくなってしまうことに注意が
+必要である．
+
+また，もう一つ考慮すべき事がある.
+レイの先端が図\ref{fig:xySlice}における極限集合より外側にあるとき, その
+点は球の反転によって反転球の外側に移されてしまう．
+そのため距離関数は実際の最短距離よりも大きな距離を返してしまい，
+レイはオブジェクトを突きぬけてしまう.
+このことは，図\ref{fig:artifact}に描かれるような乱れを生み出す.
+軌道の前面が正しくレンダリングされていないことがわかる．
+この不具合を避けるため, 算出された距離を縮小する方法をとる．
+レイマーチングのステップ数は増えてしまうが，正しく描画することができる．
+距離の縮小率は球の大きさによって実験的に決めた.
+
+レイマーチングで描画したことにより得られる副次的な効果として，
+基本球の大きさを反転球と重なりあうように大きくすることで, 反転球の軌道の
+形状を変形することができる.
+図\ref{fig:limitSetOnSphere}は基本球の半径を球面が極限集合と被るような大
+きさにしたときのものである.
+球の上に極限集合をみることができる．.
+図はそこから基本球の大きさをさらに大きくした図である．数学的な意味を読み
+取ることはできないが，興味深い形状である．
+
+ここでみた処理を一般化した距離関数の擬似コードをアルゴリズム
+\ref{alg:iis3d}に示した.
+
+\begin{figure}[htbp]
   \begin{minipage}[]{0.49\hsize}
    \center
-   \includegraphics[ height=1.5in, keepaspectratio]{../img/klein/simpleGen.pdf}
+   \includegraphics[ height=3in, keepaspectratio]{../img/klein/simpleGen.pdf}
    \subcaption{Generator}
    \label{fig:simpleGen3d}
   \end{minipage}
   \begin{minipage}[]{0.49\hsize}
    \center
-   \includegraphics[ height=1.5in, keepaspectratio]{../img/klein/simpleOrbit.pdf}
+   \includegraphics[ height=3in, keepaspectratio]{../img/klein/simpleOrbit.pdf}
    \subcaption{Orbit}
    \label{fig:simpleOrb3d}
   \end{minipage}
   \caption{The orbit of the green sphere}
-  \label{fig:iis-orb}
- \end{minipage}
- \begin{minipage}[b]{0.5\hsize}
-  \center
-  \includegraphics[ height=1.5in, keepaspectratio]{../img/klein/xySlice.pdf}
-  \caption{XY-slice image of Figure \ref{fig:iis-orb}}
-  \label{fig:xySlice}
- \end{minipage}
+  \label{fig:simple3diis}
 \end{figure}
 
 \begin{figure}[htbp]
  \begin{minipage}{0.5\hsize}
   \center
-  \includegraphics[ height=1.5in, keepaspectratio]{../img/klein/artifact.pdf}
+  \includegraphics[ height=1.7in, keepaspectratio]{../img/klein/xySlice.pdf}
+  \caption{XY-slice image of Figure \ref{fig:simple3diis}}
+  \label{fig:xySlice}
+ \end{minipage}
+ \begin{minipage}{0.5\hsize}
+  \center
+  \includegraphics[ height=1.7in, keepaspectratio]{../img/klein/artifact.pdf}
   \caption{The Artifact}
   \label{fig:artifact}
  \end{minipage}
- \begin{minipage}{0.5\hsize}
+\end{figure}
+
+\begin{figure}[htbp]
   \center
   \includegraphics[ height=1.5in, keepaspectratio]{../img/klein/3dLimitSet.pdf}
   \caption{The Limit set on the sphere}
   \label{fig:limitSetOnSphere}
- \end{minipage}
-\end{figure}
-
-\begin{figure}[htbp]
- \begin{minipage}{0.5\hsize}
-  \center
-  \includegraphics[ height=1.5in, keepaspectratio]{../img/klein/3baseGen.pdf}
-  \subcaption{Generator}
-  \label{fig:}
- \end{minipage}
- \begin{minipage}{0.5\hsize}
-  \center
-  \includegraphics[ height=1.5in, keepaspectratio]{../img/klein/3baseOrb.pdf}
-  \subcaption{Orbit}
-  \label{fig:}
- \end{minipage}
- \caption{The orbit of 3 base spheres}
- \label{fig:3baseSphere}
 \end{figure}
 
 \begin{algorithm}
@@ -713,26 +749,38 @@ $ Jacobian = R^2 / distance(P, S)^2 $
 
 \subsection{Geometrical Representation of M\"obius Transformations}
 
-木構造を用いて群を可視化する際には，変換を行列で考えたが，行列表現でメビ
-ウス変換を操作することは直観が得にくい．
-例えば，行列による変換の表現から変換の作用を推測することは非常に難しい．
+多くの場合メビウス変換は行列を用いて代数的に扱う．
+しかし，行列表現でメビウス変換を操作することは直観が得にくい．
+行列による変換の表現から変換の作用を推測することは非常に難しい．
 
-また，三次元空間に作用するメビウス変換を考えることで，高次元のクライン群を作ることができる．
-図は四次元クライン群の極限集合を可視化したものである．
-このように，三次元上での捩じれをもつ非常に興味深い形状が得られる．
+また，三次元空間に作用するメビウス変換を考えることで，高次元のクライン群
+を構成することができる．
+高次元のクライン群の極限集合は三次元空間でのねじれをもつ非常に興味深い形
+状をもつ．
 しかし，このような群を構成するメビウス変換は,
 四元数行列で表現されるため，さらに複雑な代数計算が必要となる．
 
-そこで筆者はすべてのメビウス変換を円や球の反転で構成し，その軌道を描くことを考えた．
-円や球を用いることで，幾何学的な直観が働き，生成元と可視化される図形の間の関係性を
-容易に理解することができる．
-それに加え，IISを用いることで複雑な生成元をもつ群もリアルタイムに可視化
-することができる．
-このことは，研究者や学習者だけでなく，フラクタルアーティストにも有益なも
-のになる．
-筆者は円や球の反転で構成される群をインタラクティブに構成するウェブアプリケーション，
-{\it Schottky Link} \footnote{Schottky Link:
+クライン群の生成元のレシピを考案することは非常に難しい研究テーマである．
+クライン群の極限集合の形状はアートとしてみても非常に魅力的であるが，美し
+い極限集合を生成するオリジナルのレシピを作ることは一介のアーティストにで
+きることではない．
+
+しかしながら，図\ref{fig:schottky}や図\ref{fig:simple3diis}のような円や
+球の反転による軌道の形状には，円や球といった形から幾何学的な直観が働くため，
+生成元と可視化される図形の間の関係を容易に理解することができる．
+そこで筆者はすべてのメビウス変換を円や球の反転で構成し，その軌道を描くこ
+とを考えた．
+群の軌道を描く処理は計算量が大きいものであったが，IISを用いることで複雑
+な生成元をもつ群もリアルタイムに可視化することができるようになった．
+
+この節では，二次元と三次元のメビウス変換を円と球の反転の合成で構成し，そ
+の軌道をIISで描画するための手法をまとめる．この内容は\textit{Bridges
+2017}に投稿中である．
+
+筆者は円や球の反転で構成される群をインタラクティブに構成するウェブアプリケーション，{\it Schottky Link} \footnote{Schottky Link:
 \url{https://schottky.jp}}を開発している．
+このアプリケーションは，研究者や学習者だけでなく，フラクタルアーティスト
+にも有益なものである．
 
 \subsubsection{2D Generators}
 

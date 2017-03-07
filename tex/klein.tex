@@ -559,10 +559,19 @@ IISは平面状の全ての点に対して計算を行う．
 ない．
 
 \begin{figure}[htbp]
+\begin{minipage}{0.5\hsize}
  \center
- \includegraphics[ height=1.5in, keepaspectratio]{../img/klein/orb.pdf}
+ \includegraphics[ height=2.5in, keepaspectratio]{../img/klein/iisOrb.pdf}
  \caption{Orbit}
- \label{fig:iis-orb}
+ \label{fig:iis-orb} 
+\end{minipage}
+\begin{minipage}{0.5\hsize}
+  \center
+ \includegraphics[ height=2.5in, keepaspectratio]{../img/klein/eightCircles.pdf}
+ \caption{Eight circles}
+ \label{}
+\end{minipage}
+
 \end{figure}
 
 このアルゴリズムをより一般化した擬似コードをアルゴリズム\ref{alg:iis2d}に示す.
@@ -700,23 +709,55 @@ IISは平面状の全ての点に対して計算を行う．
 \begin{figure}[htbp]
  \begin{minipage}{0.5\hsize}
   \center
-  \includegraphics[ height=1.7in, keepaspectratio]{../img/klein/xySlice.pdf}
+  \includegraphics[ width=3in, keepaspectratio]{../img/klein/orbitRect.pdf}
   \caption{XY-slice image of Figure \ref{fig:simple3diis}}
   \label{fig:xySlice}
  \end{minipage}
  \begin{minipage}{0.5\hsize}
   \center
-  \includegraphics[ height=1.7in, keepaspectratio]{../img/klein/artifact.pdf}
+  \includegraphics[ width=3in, keepaspectratio]{../img/klein/artifactRect.pdf}
   \caption{The Artifact}
   \label{fig:artifact}
  \end{minipage}
 \end{figure}
 
 \begin{figure}[htbp]
-  \center
-  \includegraphics[ height=1.5in, keepaspectratio]{../img/klein/3dLimitSet.pdf}
-  \caption{The Limit set on the sphere}
-  \label{fig:limitSetOnSphere}
+ \begin{minipage}{0.5\hsize}
+  \begin{minipage}{0.24\hsize}
+   \center
+   \includegraphics[ height=1.5in, keepaspectratio]{../img/klein/limitSetOnSphereGen.pdf}
+   \subcaption{Generator}
+   \label{fig:limitSetOnSphere}
+  \end{minipage}
+ \hspace*{\fill}
+  \begin{minipage}{0.24\hsize}
+   \center
+   \includegraphics[ height=1.5in, keepaspectratio]{../img/klein/limitSetOnSphere.pdf}
+   \subcaption{Orbit}
+   \label{fig:limitSetOnSphere}
+  \end{minipage}
+  \hspace*{\fill}
+  \caption{The limit set on the sphere}
+  \label{}
+ \end{minipage}
+ \begin{minipage}{0.5\hsize}
+  \begin{minipage}{0.24\hsize}
+   \center
+   \includegraphics[ height=1.5in, keepaspectratio]{../img/klein/limitObjGen.pdf}
+   \subcaption{Generator}
+   \label{fig:limitSetOnSphere}
+  \end{minipage}
+ \hspace*{\fill}
+  \begin{minipage}{0.24\hsize}
+   \center
+   \includegraphics[ height=1.5in, keepaspectratio]{../img/klein/limitObj.pdf}
+   \subcaption{Orbit}
+   \label{fig:limitSetOnSphere}
+  \end{minipage}
+ \hspace*{\fill}
+  \caption{More large radius}
+  \label{}
+ \end{minipage}
 \end{figure}
 
 \begin{algorithm}
@@ -1113,6 +1154,13 @@ $S3$と$S4$の反転の合成は回転を表す.
  \hspace*{\fill}
  \begin{minipage}{0.24\hsize}
   \center
+  \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/3diis/loxoSchottkyGen.pdf}
+  \subcaption{Generator}
+  \label{fig:loxoOrbSchGen3d}
+ \end{minipage}
+ \hspace*{\fill}
+ \begin{minipage}{0.24\hsize}
+  \center
   \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/3diis/loxoOrbSch.pdf}
   \subcaption{Orbit}
   \label{fig:loxoOrbSch3d}
@@ -1122,25 +1170,53 @@ $S3$と$S4$の反転の合成は回転を表す.
 \end{figure}
 
 \begin{figure}[h!tbp]
- \begin{minipage}{0.49\hsize}
   \begin{minipage}{0.24\hsize}
    \center
-   \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/3diis/parabolicGen.pdf}
+   \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/3diis/parabolicOneGen.pdf}
    \subcaption{Generator}
    \label{fig:parabolicGen3d}
   \end{minipage}
   \hspace*{\fill}
   \begin{minipage}{0.24\hsize}
    \center
-   \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/3diis/parabolicOrb.pdf}
+   \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/3diis/parabolicOneOrb.pdf}
    \subcaption{Orbit}
    \label{fig:parabolicOrb3d}
   \end{minipage}
   \hspace*{\fill}
-  \caption{Parabolic transformation}
-  \label{fig:parabolic3d}
+  \begin{minipage}{0.24\hsize}
+   \center
+   \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/3diis/parabolicGen.pdf}
+   \subcaption{Generator}
+   \label{fig:compLoxoGen}
+  \end{minipage}
+ \hspace*{\fill}
+ \begin{minipage}{0.24\hsize}
+  \center
+  \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/3diis/parabolicOrb.pdf}
+  \subcaption{Orbit}
+   \label{fig:compLoxoOrb}
  \end{minipage}
- \begin{minipage}{0.49\hsize}
+ \hspace*{\fill}
+  \caption{Parabolic transformation}
+ \label{fig:compLoxo}
+\end{figure}
+
+\begin{figure}[h!tbp]
+  \begin{minipage}{0.24\hsize}
+   \center
+   \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/3diis/compLoxoOneGen.pdf}
+   \subcaption{Generator}
+   \label{fig:compLoxoGen}
+  \end{minipage}
+ \hspace*{\fill}
+ \begin{minipage}{0.24\hsize}
+  \center
+  \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/3diis/compLoxoOneOrb.pdf}
+  \subcaption{Orbit}
+   \label{fig:compLoxoOrb}
+ \end{minipage}
+ \hspace*{\fill}
   \begin{minipage}{0.24\hsize}
    \center
    \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/3diis/compLoxoGen.pdf}
@@ -1157,7 +1233,6 @@ $S3$と$S4$の反転の合成は回転を表す.
  \hspace*{\fill}
   \caption{Compound loxodromic transformation}
  \label{fig:compLoxo}
- \end{minipage}
 \end{figure}
 
 \subsubsection{Optimization}

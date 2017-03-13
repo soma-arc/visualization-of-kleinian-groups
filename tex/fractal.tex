@@ -167,6 +167,8 @@ GPUで行うことができるようになり，GPUによる並列演算は機�
 \url{http://iquilezles.org/www/articles/distance/distance.htm}}
 をベースにして紹介する．
 
+図\ref{fig:distance-estimate}における赤色の曲線を表す陰関数$f(x)$を考え
+る．
 平面上のある点を$x$，陰関数が表す零点集合上において$x$から最も近い点を
 $x + e$とすると，$e$は$x$から最も近い点へ向かうベクトルである．
 そして求めたい距離は$|e|$となる．
@@ -193,6 +195,13 @@ $|e| \geq \frac{|f(x)|}{|f'(x)|}$が得られる．
 ては誤差が大きくなってしまうことに注意する．
 導関数から得られる微分値にはヤコビアンや，中心差分法等
 で導出された微分の近似値が用いられることもある．
+
+ \begin{figure}[htbp]
+  \center
+  \includegraphics[width=3in, keepaspectratio]{../img/fractal/distance-estimate.pdf}
+  \caption{Distance estimation}
+  \label{fig:distance-estimate}
+ \end{figure}
 
 \subsubsection{Ray tracing}
 

@@ -1285,14 +1285,18 @@ $S3$と$S4$の反転の合成は回転を表す．
 
 まず始めに，平行移動と回転の合成によって
 平行な二直線の一方をX軸に垂直に，もう一方の直線がY軸に沿うようにする共役
-変換$T$を考える．
-共役変換で移された直線は図\ref{fig:translationMod}に示した．
-$w$を二直線の距離，$i$を平行移動によって移された半径無限の円の指数,
-$P$を写像に与えられた点に$T$を作用させた点,
-$P'$を写像によって移された点，$d$と$d'$をY軸からの距離とする．
-$d$を$w$で割ることにより，剰余$d'$と商$i$を得る．
-最後に$d'$を用いて$P'$を計算し，これを$T^{-1}$で元の座標に戻す．
-以上の操作を一度行うことで，平面上の全ての点を基本領域に移すことができる．
+変換$T$を求める．
+共役変換で移された生成元は図\ref{fig:translationMod}に示した．
+写像に与えられた点$P$を$T$で移した点$T(P)$を基本領域上の点である$P'$に移
+すことを考える．
+$w$を二直線の距離，$i$を平行移動によって移された半径無限の円の指数，
+$d$と$d'$をY軸からの距離とする．
+$d$を$w$で割ることにより，剰余$d'$と商$i$を得ることができる．
+$d'$を用いて$T(P)$から$P'$を計算し，これを$T^{-1}$で元の座標に戻す．
+以上の操作を一度行うことで，平面上の全ての点を平行移動の生成元の基本領域
+に移すことができる．
+また，$i$から，通常の反転を何回行なうことで基本領域へと移すことができる
+かを求めることができる．
 
 \noindent\textbf{Parabolic.}
 
@@ -1305,8 +1309,8 @@ $T$を$C1,~C2,~C1'$に対して適用すると，固定点は無限遠点に移�
 赤の直線$TC1$と青の直線$TC1'$が平行移動を表す．
 
 最適化された写像の操作過程は以下のようになる．
-まず，$T$を写像に与えられた点に作用させて$P$を得る．
-そして，$P$を前述の平行移動と同様の操作で移し，点$P'$を得る．
+まず，写像に与えられた点${P}$に$T$を作用させた点$T(P)$を得る．
+そして，$T(P)$を前述の平行移動と同様の操作で移し，点$P'$を得る．
 最後にもう一度$T(= T^{-1})$を$P'$に作用させて元の座標に移すことで基本領
 域上の点を得る．
 
@@ -1319,9 +1323,10 @@ TC1'$とよぶ．
 これらは変換のもう一方の固定点に$T$を作用させた点を中心にもつ同心円となる．
 
 これらの円を図\ref{fig:hyperbolicMod}に示した．
-図において，$P$を写像に与えられた点，$P'$を写像された点，$r$と$r'$を
-$TC1$と$TC1'$の半径，$d$を$T(P)$と同心円の中心からの距離,$d'$を$P'$と同
-心円の中心からの距離とする．
+これまで同様に写像に与えられた点$P$を$T$で移した点$T(P)$を基本領域上の点
+である$P'$に移すことを考える．
+図において，$r$と$r'$を$TC1$と$TC1'$の半径，$d$を$T(P)$と同心円の中心か
+らの距離,$d'$を$P'$と同心円の中心からの距離とする．
 $k$を倍数，$q$を指数係数，$i$を円列の指数とする．
 これらは以下のように計算される．
  \begin{align*}
@@ -1358,14 +1363,14 @@ $TC1$，$TC1'$から$d'$を算出し，$P'$を計算する．
 \begin{figure}[h!tbp]
  \begin{minipage}[t]{0.24\hsize}
   \center
-  \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/2diis/translationMod.pdf}
+  \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/2diis/translationModTP.pdf}
   \caption{Parallel translation}
   \label{fig:translationMod}
  \end{minipage}
  \hspace*{\fill}
  \begin{minipage}[t]{0.24\hsize}
   \center
-  \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/2diis/parabolicMod.pdf}
+  \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/2diis/parabolicModTP.pdf}
   \caption{Inverted parabolic generator}
   \label{fig:parabolicMod}
  \end{minipage}

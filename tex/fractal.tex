@@ -5,11 +5,17 @@
 \emph{フラクタル}(\textit{fractal})は数学者ブノワ・マンデルブロ(Benoit
 B. Mandelbrot)が提唱した幾何学の概念である．フラクタル図形とよばれる図形
 は自己相似性を持ち，図形のどこを拡大しても全体と同じ形を見ることができる．
-図\ref{fig:gasket}は\emph{シェルピンスキーのギャスケッ
-ト}(\textit{Sierpinski gasket})と呼ばれるフラクタル図形である．
+
+図\ref{fig:gasket}に\emph{シェルピンスキーのギャスケッ
+ト}(\textit{Sierpinski gasket})と呼ばれるフラクタル図形を示した．
 三角形を一定の法則に基づいて分割していくことで，無限に
-続いていく三角形が得られる．その形はどこを拡大しても同様の法則性を持った
-図形が得られる．また，自然界の多くの場所でもフラクタル構造をみることがで
+続いていく三角形が得られる．
+図\ref{fig:menger}に示される物体は\emph{メンガーのスポンジ}(\textit{Menger
+sponge})とよばれ，立方体に一定の法則で穴を空けることで得られる．
+これらの形はどこを拡大しても同様の法則性を持った
+図形が得られる．
+
+また，自然界の多くの場所でもフラクタル構造をみることがで
 きる．海岸線や，シダ植物などにもフラクタル構造をみることができる．
 自己相似性を持つ図形はフラクタルという名がつけられる以前から研究されてい
 たが，名が付けられることで，研究が進むことになった．
@@ -50,10 +56,19 @@ Quilez's webpage: \url{http://iquilezles.org/index.html}}にコンピュータ�
 られている．
 
 \begin{figure}[htbp]
- \center
- \includegraphics[width=3in, height=3in, keepaspectratio]{../img/fractal/gasket.pdf}
- \caption{Sierpinski gasket}
- \label{fig:gasket}
+ \begin{minipage}{0.5\hsize}
+   \center
+  \includegraphics[width=3in, height=3in, keepaspectratio]{../img/fractal/gasket.pdf}
+  \caption{Sierpinski gasket}
+  \label{fig:gasket}
+ \end{minipage}
+ \begin{minipage}{0.5\hsize}
+  \center
+  \includegraphics[width=3in, height=3in, keepaspectratio]{../img/fractal/menger.pdf}
+  \caption{Menger sponge rendered with Fractal Lab}
+  \label{fig:menger}
+ \end{minipage}
+
 \end{figure}
 
 \subsection{Shader Based Rendering}
@@ -71,7 +86,7 @@ GPUは浮動小数演算性能に優れていることに加え，各ピクセ�
 プロシージャルとは，数式やアルゴリズムを用いて形状を生成すること等を
 指す．
 複雑な形状をあらかじめモデリングされたポリゴンで表現するよりもプログラム
-の実行サイズを下げたり，計算速度を向上させたりすることができる． 
+の実行サイズを下げたり，計算速度を向上させたりすることができる．
 このことはデモにおける小さなプログラムサイズでリアルタイムにレンダリングする
 という目的に適している．
 フラクタルはしばしば簡潔なアルゴリズムで複雑な形状を生成するので，デモに
@@ -88,8 +103,8 @@ GPUは浮動小数演算性能に優れていることに加え，各ピクセ�
    \caption{Sample shader}
    \label{shaderSample}
    \REQUIRE COORDINATES, resolution
-   \STATE uv = COORDINATES / resolution
-   \STATE COLOR = Vector3(uv.x uv.y, 1.)
+   \STATE uv $\leftarrow$ COORDINATES / resolution
+   \STATE COLOR $\leftarrow$ Vector3(uv.x uv.y, 1.)
   \end{minipage}
  \end{algorithmic}
 \end{algorithm}
@@ -116,12 +131,12 @@ GPUは浮動小数演算性能に優れていることに加え，各ピクセ�
   \caption{Render circle}
   \label{renderCircle}
   \REQUIRE COORDINATES, resolution
-  \STATE p = COORDINATES - (resolution / 2.)
-  \STATE distance = length(p) - radius
+  \STATE p $\leftarrow$ COORDINATES - (resolution / 2.)
+  \STATE distance $\leftarrow$ length(p) - radius
   \IF{distance $\leq$ 0}
-  \STATE COLOR = Vector3(1, 1, 1)
+  \STATE COLOR $\leftarrow$ Vector3(1, 1, 1)
   \ELSE
-  \STATE COLOR = Vector3(0, 0, 0)
+  \STATE COLOR $\leftarrow$ Vector3(0, 0, 0)
   \ENDIF
  \end{algorithmic}
 \end{algorithm}
@@ -169,39 +184,62 @@ GPUで行うことができるようになり，GPUによる並列演算は機�
 
 図\ref{fig:distance-estimate}における赤色の曲線を表す陰関数$f(x)$を考え
 る．
-平面上のある点を$x$，陰関数が表す零点集合上において$x$から最も近い点を
+平面上のある点を$x$とし，陰関数が表す零点集合上において$x$から最も近い点を
 $x + e$とすると，$e$は$x$から最も近い点へ向かうベクトルである．
 そして求めたい距離は$|e|$となる．
-$f(x + e) = 0$であるから，この式をテイラー展開すると
-$f(x + e) = f(x) + f'(x) \cdot e  + \frac{1}{2}f''(x) \cdot e^2 ...$とな
-る．ここで$e$が十分に小さいと仮定し，2次以上の項を無視する線型近似を行うと
-$0=|f(x + e)| \approx |f(x) + f'(x) \cdot e|$
-となる．ここで，$x, e$はベクトルであり，$\cdot$は内積を表すことに注意する．
-三角不等式によって，$| f(x) + f'(x) | \geq |f(x)| - |f'(x)|$であるから,
-$0 \geq |f(x)| - |f'(x) \cdot e|$となる．
-また，コーシーシュワルツの不等式より,
-$|f'(x)| \cdot |e| \geq | f'(x)\cdot e|$
-であるから,
-$0 \geq |f(x)| - |f'(x) \cdot e| \geq |f(x)| - |f'(x)| \cdot |e|$
-となる．
-最後に$0 \geq |f(x)| - |f'(x)| \cdot |e|$を変形すると
-$|e| \geq \frac{|f(x)|}{|f'(x)|}$が得られる．
-このことから，ある点$x$に対して陰関数$f(x)$が表す零点集合への最短距離を返す近
-似関数は以下のように表すことができる．
-\begin{align*}
- DistanceFunction(x) \approx \frac{|f(x)|}{|\bigtriangledown f(x)|}
-\end{align*}
-ただし，$e$が十分小さいことを仮定しているため，零点集合から遠い点につい
-ては誤差が大きくなってしまうことに注意する．
-導関数から得られる微分値にはヤコビアンや，中心差分法等
-で導出された微分の近似値が用いられることもある．
-
  \begin{figure}[htbp]
   \center
   \includegraphics[width=3in, keepaspectratio]{../img/fractal/distance-estimate.pdf}
   \caption{Distance estimation}
   \label{fig:distance-estimate}
  \end{figure}
+
+$f(x + e) = 0$をテイラー展開すると次のようになる．
+\begin{align*}
+f(x + e) = f(x) + f'(x) \cdot e  + \frac{1}{2}f''(x) \cdot e^2 ...
+\end{align*}
+ここで$e$が十分に小さいと仮定し，2次以上の項を無視する線型近似を行うこと
+で次の近似式を得る．
+\begin{align*}
+0=|f(x + e)| \approx |f(x) + f'(x) \cdot e|
+\end{align*}
+ここで，$x,~e$はベクトルであり$\cdot$は内積を表すことに注意する．
+三角不等式によって,
+\begin{align*}
+| f(x) + f'(x) \cdot e| \geq |f(x)| - |f'(x) \cdot e|
+\end{align*}
+であるから，
+\begin{align*}
+0 \geq |f(x)| - |f'(x) \cdot e|
+\end{align*}
+となる．
+次に，コーシーシュワルツの不等式より，
+\begin{align*}
+ |f'(x)| \cdot |e| \geq | f'(x)\cdot e|
+\end{align*}
+であるから，
+\begin{align*}
+ 0 \geq |f(x)| - |f'(x) \cdot e| \geq |f(x)| - |f'(x)| \cdot |e|
+\end{align*}
+となる．
+最後に
+\begin{align*}
+0 \geq |f(x)| - |f'(x)| \cdot |e|
+\end{align*}
+を変形すると
+\begin{align*}
+|e| \geq \frac{|f(x)|}{|f'(x)|}
+\end{align*}
+が得られる．
+このことから，ある点$x$に対して陰関数$f(x)$が表す零点集合への最短距離を返す近
+似関数は次のように表すことができる．
+\begin{align*}
+ DistanceFunction(x) \approx \frac{|f(x)|}{|\bigtriangledown f(x)|}
+\end{align*}
+ただし，$e$が十分小さいことを仮定しているため，零点集合から遠い点につい
+ては誤差が大きくなってしまうことに注意する．
+導関数から得られる微分値にはヤコビアンや中心差分法等
+で導出された微分の近似値が用いられることもある．
 
 \subsubsection{Ray tracing}
 
@@ -281,16 +319,16 @@ Green Functionについてはマンデルブロ集合に関する詳細な議論
 
 \begin{figure}[htbp]
  \begin{minipage}{0.49\hsize}
-  \begin{center}
+  \center
    \includegraphics[width=3in, height=3in, keepaspectratio]{../img/fractal/mandelbrot.pdf}
    \caption{Mandelbrot set}
    \label{fig:mandelbrot}
-  \end{center}
  \end{minipage}
  \begin{minipage}{0.49\hsize}
-     \includegraphics[width=3in, height=3in, keepaspectratio]{../img/fractal/julia.pdf}
-   \caption{Julia set}
-   \label{fig:julia}
+  \center
+  \includegraphics[width=3in, height=3in, keepaspectratio]{../img/fractal/julia.pdf}
+  \caption{Julia set}
+  \label{fig:julia}
  \end{minipage}
 \end{figure}
 
@@ -299,15 +337,33 @@ Green Functionについてはマンデルブロ集合に関する詳細な議論
 マンデルブロ集合は数あるフラクタルの中でも特に複雑な形状を見せるものであった
 ので，その三次元への拡張も古くから興味が持たれてきた．
 例えば，ジュリア集合を四元数を用いて計算した
-\textit{Quaternion Julia 3D fractal}\cite{hart1989ray}が1989年に発表されている．
-しかし，この形状は四元数による回転対称性をもつため，形状が単純でフラクタ
-ルコミュニティの満足のいくものではなかった．
+\textit{Quaternion Julia 3D fractal}\cite{hart1989ray}が1989年に発表され
+ている．
+しかし，この形状は図\ref{fig:qjulia}のように四元数による回転対称性をもつ
+ため，形状が単純でフラクタルコミュニティの満足のいくものではなかった．
 
 そのような中で，2003年に発表された阿原・荒木による４
 次元クライン群の一種である\textit{Quasi Fuchsian 3D
 Fractals}\cite{ahara2003sphairahedral}はある程度の複雑性を持った３次元フラクタルで
 あったため，コミュニティに大きな影響を与えたと言われている．
+図\ref{fig:quasi-fuchsian-3d}
 このフラクタルに関しては2章で触れる．
+
+\begin{figure}[htbp]
+  \begin{minipage}[t]{0.49\hsize}
+   \center
+   \includegraphics[width=3in, height=3in, keepaspectratio]{../img/fractal/qjulia.pdf}
+   \caption{Quaternion Julia rendered with Fragmentarium}
+   \label{fig:qjulia}
+  \end{minipage}
+ \begin{minipage}[t]{0.49\hsize}
+  \center
+  \includegraphics[width=3in, height=3in, keepaspectratio]{../img/fractal/quasi-fuchsian.pdf}
+  \caption{Quasi Fuchsian 3D Fractal rendered with Fragmentarium
+  (Knighty's script)}
+  \label{fig:quasi-fuchsian-3d}
+ \end{minipage}
+\end{figure}
 
 また，この時期から，コンピュータのグラフィクス性能が向上し，三次元のフラクタ
 ル図形をリアルタイムに描画することができるようになった．
@@ -360,7 +416,9 @@ $z^2$は点$z$に原点中心の回転と拡縮を作用させ，加算$z + c$�
 そのためのアプローチのひとつが四元数を用いたQuaternion Juliaであるが,
 生成される図は対称的であり，あまり興味を引くものではなかった．
 
-他にも三次元拡張のためのアプローチが考えられてきたが，最終的にDaniel
+他にも三次元拡張のためのアプローチが考えられてきた
+\footnote{Skytopia -The Mystery of the REAL, 3D Mandelbrot Fractal
+:\url{http://www.skytopia.com/project/fractal/mandelbrot.html}}が，最終的にDaniel
 White(twinbee)とPaul Nylanderが2009年に開発したMandelbulbがマンデルブロ
 集合の三次元拡張として広く知られることとなった．
 
@@ -382,21 +440,19 @@ Whiteは球面座標上においてマンデルブロ集合の漸化式を計算
 
 \begin{figure}[h!tbp]
  \begin{subfigure}{0.49\hsize}
-   \begin{center}
-    \includegraphics[width=3in, height=3in, keepaspectratio]{../img/fractal/mandelbulb2.pdf}
-    \caption{$z_{n + 1} = z_n^2 + c$}
-    \label{fig:mandelbulb2}
-   \end{center}
+  \center
+  \includegraphics[width=3in, height=3in, keepaspectratio]{../img/fractal/mandelbulb2.pdf}
+  \caption{$z_{n + 1} = z_n^2 + c$}
+  \label{fig:mandelbulb2}
  \end{subfigure}
  \hspace*{\fill}
  \begin{subfigure}{0.49\hsize}
-   \begin{center}
-    \includegraphics[width=3in, height=3in, keepaspectratio]{../img/fractal/mandelbulb8.pdf}
-    \caption{$z_{n+1} = z_n^8 + c$}
-    \label{fig:mandelbulb8}
-   \end{center}
+  \center
+  \includegraphics[width=3in, height=3in, keepaspectratio]{../img/fractal/mandelbulb8.pdf}
+  \caption{$z_{n+1} = z_n^8 + c$}
+  \label{fig:mandelbulb8}
  \end{subfigure}
- \caption{Mandelbulb rendered by Fractal Lab}
+ \caption{Mandelbulb rendered with Fractal Lab}
 \end{figure}
 
 \subsubsection{Mandelbox}
@@ -430,21 +486,19 @@ MandelboxのDistance Estimationでは漸化式の微分としてヤコビアン�
 
 \begin{figure}[h!tbp]
  \begin{subfigure}{0.49\hsize}
-   \begin{center}
-    \includegraphics[width=3in, height=3in, keepaspectratio]{../img/fractal/mandelbox.pdf}
-    \caption{}
-    \label{fig:mandelbox1}
-   \end{center}
+  \center
+  \includegraphics[width=3in, height=3in, keepaspectratio]{../img/fractal/mandelbox.pdf}
+  \caption{}
+  \label{fig:mandelbox1}
  \end{subfigure}
  \hspace*{\fill}
  \begin{subfigure}{0.49\hsize}
-   \begin{center}
-    \includegraphics[width=3in, height=3in, keepaspectratio]{../img/fractal/mandelbox2.pdf}
-    \caption{}
-    \label{fig:mandelbox2}
-   \end{center}
+  \center
+  \includegraphics[width=3in, height=3in, keepaspectratio]{../img/fractal/mandelbox2.pdf}
+  \caption{}
+  \label{fig:mandelbox2}
  \end{subfigure}
- \caption{Mandelbox rendered by Fractal Lab}
+ \caption{Mandelbox rendered with Fractal Lab}
  \label{fig:mandelbox}
 \end{figure}
 
@@ -455,17 +509,24 @@ Mandelboxの登場以降は漸化式にMandelbulbやMandelboxを含む複数の�
 \textit{Hybrid System}によって，様々なフラクタル作品が作られている．
 興味深いHybrid Systemの１つに\textit{pseudo-kleinian}がある．
 これは球の反転に近い操作であるspherefoldと平行移動と同じような働きをする
-boxfoldをうまく組み合わせることによって可視化されたクライン群のような形
-状が得られる式である．
-図\ref{fig:pseudoKleinian}はFragmentariumのサンプルスクリプトを用いてレ
-ンダリングされた．
+boxfoldをうまく組み合わせることによって，可視化されたクライン群のような
+形状が得られる式である．
+その形状のひとつを図\ref{fig:pseudoKleinian}に示した．
 
 \begin{figure}[htbp]
-  \begin{center}
-   \includegraphics[width=3in, height=3in, keepaspectratio]{../img/fractal/pseudoKleinian.pdf}
-   \caption{pseudo-kleinian}
-   \label{fig:pseudoKleinian}
-  \end{center}
+ \begin{minipage}{0.5\hsize}
+  \center
+  \includegraphics[width=3in, height=3in, keepaspectratio]{../img/fractal/pseudoKleinian.pdf}
+  \subcaption{}
+ \end{minipage}
+ \begin{minipage}{0.5\hsize}
+  \center
+  \includegraphics[width=3in, height=3in,
+  keepaspectratio]{../img/fractal/pseudo-kleinian2.pdf}
+  \subcaption{}
+ \end{minipage}
+  \caption{Pseudo-kleinian rendered with Fragmentarium}
+  \label{fig:pseudoKleinian}
 \end{figure}
 
 
@@ -478,29 +539,30 @@ Orbit Trap}とよばれる手法が使われる．
 
 Orbit trapはtrapと呼ばれる点や直線などの図形を空間上に置いておき，
 trapと漸化式の計算で得られる軌道の点の位置関係から色を付ける方法である．
-図\ref{fig:mandelbrotOrbit}はマンデルブロ集合の漸化式において$z_n$が桃色
-の領域に入った点を白く塗った．
+図\ref{fig:orbitTrap}はマンデルブロ集合とジュリア集合の漸化式において
+$z_n$が桃色の領域に入った点を白く塗った．
 これは桃色の領域に到達するまでの点の軌道を描いたと考えることができる．
 
-また，この方法を応用すると図\ref{fig:mandelbrotBitmap}のように画像を
-trapに用いることで，点の軌道上に画像を張り付けることも可能である．
+また，この方法を応用すると画像をtrapに用いて，画像を変換で移した軌道を描
+くことも可能である．
 この手法は特に\textit{Bitmap Orbit Trap}とも呼ばれる．
 
 \begin{figure}[htbp]
  \begin{minipage}{0.49\hsize}
-  \begin{center}
-   \includegraphics[width=3in, height=3in, keepaspectratio]{../img/fractal/mandelbrot-orbit.pdf}
-    \caption{Mandelbrot set}
-    \label{fig:mandelbrotOrbit}
-  \end{center}
+  \center
+  \includegraphics[width=3in, height=3in, keepaspectratio]{../img/fractal/mandelbrot-orbit.pdf}
+  \subcaption{Mandelbrot set}
+  \label{}
  \end{minipage}
  \begin{minipage}{0.49\hsize}
-  \begin{center}
-   \includegraphics[width=3in, height=3in, keepaspectratio]{../img/fractal/mandelbrot-bitmap.pdf}
-   \caption{Mandelbrot set}
-   \label{fig:mandelbrotBitmap}
-  \end{center}
+  \center
+  \includegraphics[width=3in, height=3in,
+   keepaspectratio]{../img/fractal/juliaOrbit.pdf}
+  \subcaption{Julia set}
+  \label{}
  \end{minipage}
+ \caption{Orbit trap}
+ \label{fig:orbitTrap}
 \end{figure}
 
 \subsection{Iterated Function System}
@@ -512,12 +574,9 @@ trapに用いることで，点の軌道上に画像を張り付けることも�
 IFSの描画アルゴリズムの一つとして，カオスゲームがある．
 カオスゲームでは，平面の点をランダムにとり，その点にランダムに選んだ関数を作用させることを
 繰り返すことで得られた点を描画する．
-シェルピンスキーのギャスケットなどもこの方法でレンダリングすることができる．
-
-IFSに関する書籍として\textit{Fractals
-Everywhere}\cite{BarnsleyMathematics201207}がある．
-また，並列計算による高速化に関する論文に
-~\cite{2010_fractal_flames}や\cite{Green:2005:GIF:1187112.1187128}がある．
+図\ref{fig:fern}はカオスゲームでレンダリングされたシダ植物である．
+シェルピンスキーのギャスケットといったその他のフラクタルもこの方法でレン
+ダリングすることができる．
 
 IFSを拡張したフラクタルアートの一種に\emph{フラクタルフレーム}\textit{(Fractal
 Flame)}~\cite{draves2003fractal}がある．
@@ -526,12 +585,24 @@ Flame)}~\cite{draves2003fractal}がある．
 図\ref{fig:pseudoKleinian}はフラクタルフレームレンダラのひとつである，
 Apophysis 7Xを用いてレンダリングされたフラクタルフレームである．
 
+IFSに関する書籍として\textit{Fractals
+Everywhere}\cite{BarnsleyMathematics201207}がある．
+また，並列計算による高速化に関する論文に
+~\cite{2010_fractal_flames}や\cite{Green:2005:GIF:1187112.1187128}がある．
+
 \begin{figure}[htbp]
-  \begin{center}
-   \includegraphics[width=3in, height=3in, keepaspectratio]{../img/fractal/fractalFlame.pdf}
-   \caption{Fractal Flame}
-   \label{fig:fractalFlame}
-  \end{center}
+  \begin{minipage}{0.49\hsize}
+   \center
+   \includegraphics[width=3in, height=3in, keepaspectratio]{../img/fractal/fern.pdf}
+   \caption{Fern}
+   \label{fig:fern}
+ \end{minipage}
+ \begin{minipage}{0.49\hsize}
+  \center
+  \includegraphics[width=3in, height=3in, keepaspectratio]{../img/fractal/fractalFlame.pdf}
+  \caption{Fractal Flame}
+  \label{fig:fractalFlame}
+ \end{minipage}
 \end{figure}
 
 \clearpage

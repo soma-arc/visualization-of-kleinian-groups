@@ -954,7 +954,8 @@ $C1$と$C2$が接触する時，図\ref{fig:parabolic2d}のように固定点は
 $P$は制御点であり，この点に$C1$の反転を作用させて得られた点を$P'$，$C2$の
 反転を作用させて得られた点を$P''$とする．
 $C3$は$P,~P',~P''$の三点から定義される．
-$L$と$C3$の反転の合成は双曲型変換の軌道に捻りを加える回転を表す．
+$L$と$C3$の反転の合成は双曲型変換の軌道に捻りを加える回転となる．
+また，固定点は$L$と$C3$の交点である．
 
 写像$G$は以下のようになる.
 \begin{align*}
@@ -965,39 +966,32 @@ G =
 \end{cases}
 \end{align*}
 
-また，二つの固定点からこの種類の生成元を得ることもできる.
+また，二つの固定点からこの種類の生成元を得ることもできる．
+このときの生成元を図\ref{fig:loxoFixed}に示した．
+図においてふたつ赤色の点を固定点$FP1$, $FP2$とする．
+ふたつの桃色の点を制御点$Q1$，$Q2$，水色の点を制御点$P$とする．
+変換を構成する円と直線である$C1,~C2,~C3,~L$は以下のように求めることがで
+きる．
+\begin{align*}
+ L &= line(FP1,~FP2)\\
+ C3 &= circle(P,~FP1,~FP2)\\
+ C1 &= circle(Q1,~I_{C3}(Q1),~I_{L}(Q1))\\
+ C2 &= circle(Q2,~I_{C3}(Q2),~I_{L}(Q2))
+\end{align*}
 
 \begin{figure}[htbp]
- \begin{minipage}[]{0.65\hsize}
-  \begin{minipage}[]{0.22\hsize}
-   \center
-   \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/2diis/scalingEdged.pdf}
-   \subcaption{Scaling}
-   \label{fig:scaling2d}
-  \end{minipage}
- \hspace*{\fill}
-  \begin{minipage}[]{0.22\hsize}
-   \center
-   \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/2diis/hyperbolicEdged.pdf}
-   \subcaption{Hyperbolic}
-   \label{fig:hyperbolic2d}
-  \end{minipage}
- \hspace*{\fill}
-  \begin{minipage}[]{0.22\hsize}
-   \center
-   \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/2diis/parabolicEdged.pdf}
-   \subcaption{Parabolic}
-   \label{fig:parabolic2d}
-  \end{minipage}
-  \caption{Composition of two circles}
-  \label{fig:twoCircles}
- \end{minipage}
- \hspace*{\fill}
- \begin{minipage}[]{0.22\hsize}
+ \begin{minipage}[t]{0.5\hsize}
   \center
-  \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/2diis/loxodromicEdged.pdf}
-  \caption{Loxodromic transformation}
-  \label{fig:loxodromic2d}
+   \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/2diis/loxodromicEdged.pdf}
+   \caption{Loxodromic transformation}
+   \label{fig:loxodromic2d}
+ \end{minipage}
+ \begin{minipage}[t]{0.5\hsize}
+  \center
+  \includegraphics[width=1.5in, height=1.5in,
+  keepaspectratio]{../img/klein/2diis/loxodromicFromFixedPoints.pdf}
+  \caption{Loxodromic transformation defined by two fixed points}
+  \label{fig:loxoFixed}
  \end{minipage}
 \end{figure}
 

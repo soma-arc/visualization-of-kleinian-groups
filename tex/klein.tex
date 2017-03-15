@@ -75,14 +75,16 @@
 \subsection{M\"obius Transformations}
 
 二次元のメビウス変換は複素平面上に，ひとつの無限遠点を付け加えた拡張複素
-平面$\hat{\mathbb{C}}$上で定義される．
-これはリーマン球面とも呼ばれ，拡張複素平面全体を球面として扱うことができ
+平面$\hat{\mathbb{C}}$上で定義される等角写像である．
+拡張複素平面はリーマン球面とも呼ばれ，その平面全体を球面として扱うことができ
 る．
-メビウス変換は一次分数変換とも呼ばれ，以下のように表される．
+
+メビウス変換は$a,~b,~c,~d$を$ad - bc \neq 0$を満たす任意の複素数とすると
+，次のように表される．
 \begin{align*}
- a, b, c, d\in \hat{\mathbb{C}} \quad f(z) = \frac{az + b}{cz + d}
+ f(z) = \frac{az + b}{cz + d}
 \end{align*}
-メビウス変換は等角性や円円対応といった性質をもつ．
+メビウス変換はその形から，一次分数変換ともよばれる．
 我々になじみの深い平行移動，拡縮や回転といった変換もメビウス変換に含まれる．
 
 メビウス変換は以下のように係数を２×２の複素数行列として扱うことで
@@ -94,13 +96,13 @@
   a & b \\
   c & d
  \end{array}
- \right), \quad
+ \right),~
  n = \left(
  \begin{array}{ccc}
   e & f \\
   g & h
  \end{array}
- \right), \quad
+ \right),~
  mn = \left(
  \begin{array}{ccc}
   a & b \\
@@ -165,11 +167,10 @@ I(z) =
 これを用いて三次元空間に作用するメビウス変換を構成することもできる．
 
 \begin{figure}[htbp]
- \begin{center}
-      \includegraphics[width=3in, height=3in, keepaspectratio]{../img/klein/circleInversion.pdf}
-    \caption{Circle Inversion}
-    \label{fig:circleInversion}
- \end{center}
+ \center
+ \includegraphics[width=3in, height=3in, keepaspectratio]{../img/klein/circleInversion.pdf}
+ \caption{Circle Inversion}
+ \label{fig:circleInversion}
 \end{figure}
 
 \subsection{Stereographic Projection}
@@ -185,7 +186,7 @@ stereographic projection})と呼ばれる方法がよく使われる．
 ある球面上の点を$P$とおくと，$P$を立体射影で移した複素平面上の点は球の北極
 から$P$へと引いた直線と複素平面との交点となる．
 図\ref{fig:stereoProject}は立体射影を図示したものである．
-赤の円は単位円，青の直線はx軸を表している．
+赤の円は単位円，青の直線はX軸を表している．
 
 \begin{figure}[htbp]
  \center
@@ -248,10 +249,10 @@ Saul Schleimer，Henry Segermanはメビウス変換を利用して全天球画�
 群を構成する変換の全ての組み合わせは変換の語で構成される有向グラフで表現
 することができる．
 図\ref{fig:wordTree}にそのようなグラフの例を示した．
-この図では変換$a$，$b$とそれらの逆変換である４種類の変換の合成の組合せを表
+この図では変換$a$，$b$とそれらの逆変換である4種類の変換の合成の組合せを表
 わしている．
-例えば，$a$というラベルがふられたノードには外側へ３本のエッジが
-張られ$ab$，$aa$，$aB$という合成変換を表すノードへとつながっている．
+例えば，$a$というラベルがふられたノードには外側へ3本のエッジが
+張られ$ab,~aa,~aB$という合成変換を表すノードへとつながっている．
 また，$aA$は逆変換を合成することになるので，このグラフ上では逆戻りを表し
 ている．
 このようなグラフはケーリーグラフ（Cayley graph）とよばれる．
@@ -319,9 +320,6 @@ Saul Schleimer，Henry Segermanはメビウス変換を利用して全天球画�
 図\ref{fig:orbit}には中央に描かれた六芒星の軌道を描いた．
 これも六芒星が周囲の円による反転の組み合わせで移されている．
 また，この軌道も極限集合へと収束していく．
-
-図\ref{fig:schottky}のような円の軌道が計算される過程を以下に記した．
-
 \begin{figure}[htbp]
  \begin{minipage}{0.49\hsize}
   \begin{center}
@@ -339,6 +337,7 @@ Saul Schleimer，Henry Segermanはメビウス変換を利用して全天球画�
   \end{minipage}
 \end{figure}
 
+図\ref{fig:schottky}のような円の軌道が計算される過程を以下にまとめた．
 \begin{enumerate}
  \item 図\ref{fig:level0}に示した4つの大きな円を反転円とよぶ．
        これらの円に関する反転を生成元とする群の軌道を描くことを考える．
@@ -347,8 +346,9 @@ Saul Schleimer，Henry Segermanはメビウス変換を利用して全天球画�
  \item この操作を４つの反転円でおこなうと，それぞれの円の内側には３つの円が移
        され，図\ref{fig:level1}のように合せて１２個の小円ができる．
  \item 次に，新たにできた小円に対してもその小円が属している反転円以外の反転を作
-       用させる図\ref{fig:level1inv}
- \item 小円の下に新たな小円ができる．図\ref{fig:level2}
+       用させる．図\ref{fig:level1inv}において白く縁取りされた円に関する
+       反転でその他の小円が移される様子を描いた．
+ \item 図\ref{fig:level2}のように小円の下に新たな小円ができる．
  \item このことを繰り返すと，最終的に図\ref{fig:levelMax}を得ることができる．
 \end{enumerate}
 
@@ -718,13 +718,13 @@ IISは平面状の全ての点に対して計算を行う．
 \begin{figure}[htbp]
   \begin{minipage}[]{0.49\hsize}
    \center
-   \includegraphics[ height=3in, keepaspectratio]{../img/klein/simpleGen.pdf}
+   \includegraphics[ height=2.5in, keepaspectratio]{../img/klein/simpleGen.pdf}
    \subcaption{Generator}
    \label{fig:simpleGen3d}
   \end{minipage}
   \begin{minipage}[]{0.49\hsize}
    \center
-   \includegraphics[ height=3in, keepaspectratio]{../img/klein/simpleOrbit.pdf}
+   \includegraphics[ height=2.5in, keepaspectratio]{../img/klein/simpleOrbit.pdf}
    \subcaption{Orbit}
    \label{fig:simpleOrb3d}
   \end{minipage}
@@ -735,13 +735,13 @@ IISは平面状の全ての点に対して計算を行う．
 \begin{figure}[htbp]
  \begin{minipage}{0.5\hsize}
   \center
-  \includegraphics[ width=3in, keepaspectratio]{../img/klein/sliceRect.pdf}
+  \includegraphics[ width=2.5in, keepaspectratio]{../img/klein/sliceRect.pdf}
   \caption{XY-slice image of Figure \ref{fig:simple3diis}}
   \label{fig:xySlice}
  \end{minipage}
  \begin{minipage}{0.5\hsize}
   \center
-  \includegraphics[ width=3in, keepaspectratio]{../img/klein/artifactRect.pdf}
+  \includegraphics[ width=2.5in, keepaspectratio]{../img/klein/artifactRect.pdf}
   \caption{The Artifact}
   \label{fig:artifact}
  \end{minipage}
@@ -944,6 +944,31 @@ $G$を点に繰り返し作用させることで，その点を基本領域へ�
 二つの円が交差しない限り，これも双曲型変換である.
 
 $C1$と$C2$が接触する時，図\ref{fig:parabolic2d}のように固定点はその交点で重なりあい，放物型変換となる.
+
+\begin{figure}[htbp]
+  \begin{minipage}[]{0.3\hsize}
+   \center
+   \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/2diis/scalingEdged.pdf}
+   \subcaption{Scaling}
+   \label{fig:scaling2d}
+  \end{minipage}
+ \hspace*{\fill}
+  \begin{minipage}[]{0.3\hsize}
+   \center
+   \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/2diis/hyperbolicEdged.pdf}
+   \subcaption{Hyperbolic}
+   \label{fig:hyperbolic2d}
+  \end{minipage}
+ \hspace*{\fill}
+  \begin{minipage}[]{0.3\hsize}
+   \center
+   \includegraphics[width=1.5in, height=1.5in, keepaspectratio]{../img/klein/2diis/parabolicEdged.pdf}
+   \subcaption{Parabolic}
+   \label{fig:parabolic2d}
+  \end{minipage}
+  \caption{Composition of two circles}
+  \label{fig:twoCircles}
+\end{figure}
 
 \noindent\textbf{Loxodromic.}
 
@@ -1312,8 +1337,8 @@ $T$を$C1,~C2,~C1'$に対して適用すると，固定点は無限遠点に移�
 
 最後に図\ref{fig:hyperbolic2d}のような双曲型変換を考える．
 この変換の片方の固定点を中心にもつ円に関する反転を共役変換$T$とする．
-そして，$T$を$C1, C2, C1'$に作用させて得られた円をそれぞれ$TC1, TC2,
-TC1'$とよぶ．
+そして，$T$を$C1,~C2,~C1'$に作用させて得られた円をそれぞれ
+$TC1,~TC2,~TC1'$とよぶ．
 これらは変換のもう一方の固定点に$T$を作用させた点を中心にもつ同心円となる．
 
 これらの円を図\ref{fig:hyperbolicMod}に示した．
@@ -1324,10 +1349,10 @@ TC1'$とよぶ．
 $k$を倍数，$q$を指数係数，$i$を円列の指数とする．
 これらは以下のように計算される．
  \begin{align*}
-  k = \frac{r'}{r} \quad
-  q = \log_{k} \frac{d}{r} \quad
-  d' = r \cdot k^{fracionalPart(q)} \quad
-  i = floor(q)
+  k &= \frac{r'}{r}\\
+  q &= \log_{k} \frac{d}{r}\\
+  d' &= r \cdot k^{fracionalPart(q)}\\
+  i &= floor(q)
  \end{align*}
 $d'$を用いて$T(P)$を基本領域へと移した点である$P'$を計算することが
 できる．また，$i$から最適化前の変換を何度点に作用させると基本領域へと移
@@ -1444,7 +1469,7 @@ $TC1$，$TC1'$から$d'$を算出し，$P'$を計算する．
 しかし，高次元のクライン群はまだわかっていないことが多い．
 先に述べたように三次元空間に作用するメビウス変換は四元数を用い
 て定義することができる．
-これは$Sp^k(1, 1)$とよばれ，2x2の四元数行列で表現される．
+これは$Sp^k(1,~1)$とよばれ，2x2の四元数行列で表現される．
 四元数で構成されるメビウス変換とその分類は佐久川による
 \cite{sakugawa2007master}や\cite{sakugawa2009accidental}にまとまっている．
 これらの論文において，佐久川は複合放物型変換を含む群のレシピを考案
@@ -1535,7 +1560,7 @@ Aaron MontagはIterated Inversion Systemを用いて極限集合を描画する�
 このアルゴリズムは二次元だけでなく，三次元の極限集合の描画にも対応している．
 荒木・糸\cite{araki2008extension}が考えた群と同様に，一方に平行移動を含
 む2つの放物型変換による群を考えている．
-詳細なアルゴリズムに関しては，Jos Leyがまとめている
+詳細なアルゴリズムに関してはJos Leyがまとめている
 \footnote{Mathematical Imagery, An escape-time algorithm for a family of
 Kleinian groups:\\ \quad \quad \url{http://www.josleys.com/article_show.php?id=221}}．
 

@@ -141,9 +141,9 @@
 \begin{align*}
 I(z) =
  \begin{cases}
-  \frac{r^2}{\overline{z - a}} + a \quad &for \quad z \in \mathbb{C} - \{a\} \\
-  a \quad &for \quad z = \infty\\
-  \infty \quad &for \quad z = a
+  \frac{r^2}{\overline{z - a}} + a \quad & z \in \mathbb{C} - \{a\} \\
+  a \quad & z = \infty\\
+  \infty \quad & z = a
  \end{cases}
 \end{align*}
 また，半径が無限大の円は直線と考えることができるので，その円に関する反転
@@ -674,14 +674,14 @@ IISは平面状の全ての点に対して計算を行う．
 求める距離を$d$，$S1$の半径と中心をそれぞれ$S1r,~S1c$とすると，次の式で
 近似することができる．
 \begin{align*}
- d \approx (distance(P1, S1c) - S1r) / Jacobian
+ d \approx \frac{distance(P1,~S1c) - S1r}{Jacobian}
 \end{align*}
 これは1章でみたDistance Estimationと同様のアプローチである．
 
 ここで，反転球の中心を$S$その半径を$R$,反転をさせる前の点を$P$とおくと
 球の反転のヤコビアンは次のように計算できる．
 \begin{align*}
- Jacobian = R^2 / distance(P, S)^2 
+ Jacobian = \frac{R^2}{distance(P,~S)^2}
 \end{align*}
 半径が無限大の球の反転のヤコビアンは1であることに注意する．
 
@@ -788,14 +788,14 @@ IISは平面状の全ての点に対して計算を行う．
  \caption{Distance function}
  \label{alg:iis3d}
  \begin{algorithmic}
-  \REQUIRE count $= 0$, $d$ = MAX\_DISTANCE, $dr = 1.0$, and coordinates $=$ tipping
+  \REQUIRE count $= 0,~d$ = MAX\_DISTANCE$,~dr = 1.0,~$and coordinates $=$ tipping
   point of the ray
   \FOR{$i=0$ to MAX\_INVERSION}
   \STATE inFundamentalDomain $\leftarrow$ \TRUE
   \FOR{ each Map $G$ in Maps}
   \IF{$G$ is available to coordinates}
   \STATE coordinates $\leftarrow$ $G(\text{coordinates})$
-  \STATE $dr \leftarrow dr * $ (Jacobian of $G(\text{coordinates})$)
+  \STATE $dr \leftarrow dr~*~$($Jacobian$ of $G(\text{coordinates})$)
   \STATE INCREMENT count
   \STATE inFundamentalDomain $\leftarrow$ \FALSE
   \ENDIF
@@ -805,8 +805,8 @@ IISは平面状の全ての点に対して計算を行う．
   \ENDIF
   \ENDFOR
   \FOR{ each BaseSphere $S$ in BaseSpheres}
-  \STATE $d \leftarrow$ min($d$, scalingFactor * (distance(coordinates, $S$.center) $-$
-  $S$.radius) $/$ (absolute value of $dr$))
+  \STATE $d \leftarrow$ min($d,$~scalingFactor$~*~(distance$(coordinate$,~S.center$) $-$
+  $S.radius$) $/$ (absolute value of $dr$))
   \ENDFOR
   \RETURN $d$
  \end{algorithmic}
@@ -887,7 +887,7 @@ transformation})とよばれる．
 
 平行な二直線による反転の組は直線の垂直方向への平行移動を表す．
 図\ref{fig:translation2d}では二つの無限の半径をもつ円が向かい合っている．
-これらの円の反転が繰り返されることにより，中央の４つの反転円はx軸方向に
+これらの円の反転が繰り返されることにより，中央の４つの反転円はX軸方向に
 平行移動される．
 平行移動の固定点は無限遠点であり，これは放物型変換となる．
 
@@ -918,7 +918,7 @@ transformation})とよばれる．
 
 二つの同心円による反転を合成することで，実数倍による拡縮
 を表すことができる．これは双曲型変換となる．
-図\ref{fig:scaling2d}における赤の円を$C1$,緑の円を$C2$，そして青の円を
+図\ref{fig:scaling2d}における赤の円を$C1$，緑の円を$C2$，そして青の円を
 $C1'$とよぶ．ここで$C1'$は$C1$を$C2$による反転で移した像である.
 図\ref{fig:scaling2d}では，白い縁をもつ二つの円の軌道を描いている.
 固定点は円の中心と無限遠点である.
@@ -993,7 +993,7 @@ G =
 
 また，二つの固定点からこの種類の生成元を得ることもできる．
 このときの生成元を図\ref{fig:loxoFixed}に示した．
-図においてふたつ赤色の点を固定点$FP1$, $FP2$とする．
+図においてふたつ赤色の点を固定点$FP1$，$FP2$とする．
 ふたつの桃色の点を制御点$Q1$，$Q2$，水色の点を制御点$P$とする．
 変換を構成する円と直線である$C1,~C2,~C3,~L$は以下のように求めることがで
 きる．
@@ -1170,9 +1170,9 @@ $P$に$S1$の反転を作用させて得られた点と，$S2$の
 反転を作用させて得られた点をそれぞれ$P'$，$P''$とする．
 そして，写像$G$は以下のようになる．
 \begin{align*}
-S3 = sphere(P, P', P'', Q1) \quad
-S4 = sphere(P, P', P'', Q2) \\
-G =
+S3 &= sphere(P,~P',~P'',~Q1) \\
+S4 &= sphere(P,~P',~P'',~Q2) \\
+G &=
 \begin{cases}
  (I_{S4} \circ I_{S3}) \circ (I_{S1} \circ I_{S2}) & (\text{The point is inside of } S1) \\
  (I_{S2} \circ I_{S1}) \circ (I_{S3} \circ I_{S4}) & (\text{The point is

@@ -104,7 +104,7 @@ GPUは浮動小数演算性能に優れていることに加え，各ピクセ�
    \label{shaderSample}
    \REQUIRE COORDINATES, resolution
    \STATE uv $\leftarrow$ COORDINATES / resolution
-   \STATE COLOR $\leftarrow$ Vector3(uv.x uv.y, 1.)
+   \STATE COLOR $\leftarrow$ Vector3(uv.x,~uv.y,~1.)
   \end{minipage}
  \end{algorithmic}
 \end{algorithm}
@@ -134,9 +134,9 @@ GPUは浮動小数演算性能に優れていることに加え，各ピクセ�
   \STATE p $\leftarrow$ COORDINATES - (resolution / 2.)
   \STATE distance $\leftarrow$ length(p) - radius
   \IF{distance $\leq$ 0}
-  \STATE COLOR $\leftarrow$ Vector3(1, 1, 1)
+  \STATE COLOR $\leftarrow$ Vector3(1,~1,~1)
   \ELSE
-  \STATE COLOR $\leftarrow$ Vector3(0, 0, 0)
+  \STATE COLOR $\leftarrow$ Vector3(0,~0,~0)
   \ENDIF
  \end{algorithmic}
 \end{algorithm}
@@ -461,7 +461,10 @@ Whiteは球面座標上においてマンデルブロ集合の漸化式を計算
 \url{https://sites.google.com/site/mandelbox/what-is-a-mandelbox}}が開発
 された．
 Mandelboxも三次元空間におけるEscape-time fractalである．
-漸化式は$z_{n+1} = scale * spherefold(minR, boxfold(z_n)) + c$となる．
+漸化式は次のようになる．
+\begin{align*}
+ z_{n+1} = scale * spherefold(minR, boxfold(z_n)) + c
+\end{align*}
 ここで\textit{boxfold}は$x=\pm1, y=\pm1, z=\pm1$を頂点にもつ立方体の各面
 に対して，点がその外側にある場合にそれらの面に関する反転を行なう操作である．
 また，\textit{spherefold}は点が原点中心の球の内側にある時にその球に関す
@@ -473,9 +476,9 @@ Mandelboxも三次元空間におけるEscape-time fractalである．
 球の半径を$R$，最小の半径を$r$としたときに，$z$に対するspherefoldは以下
 の式になる．
 \begin{align*}
- spherefold(R, r, z) = \begin{cases}
-                  z \frac{R^2}{r^2} & 0 \le |z| < r \\
-                  z \frac{R^2}{|z|^2} & r \le |z| < R
+ spherefold(R,~r,~z) = \begin{cases}
+                  z~\frac{R^2}{r^2} & 0 \le |z| < r \\
+                  z~\frac{R^2}{|z|^2} & r \le |z| < R
                  \end{cases}
 \end{align*}
 

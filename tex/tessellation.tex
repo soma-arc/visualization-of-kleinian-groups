@@ -70,33 +70,72 @@ Richter-Gebertによる\cite{journals/combinatorics/GagernR09}がある．
  \item 変換の回数や基本タイル上の色を使って色を付ける．
 \end{enumerate}
 
+正方形によるタイリングにおける変換の回数を計算するための擬似コードをアル
+ゴリズム\ref{alg:rectTile}に示した．
+このアルゴリズムによって得られた回数によって色をつけることで正方形の敷き詰め模
+様を見ることができる．例えば，偶数回の操作と奇数回の操作で白と黒に分けれ
+ばチェッカーボード模様が得られる．また，この操作も剰余を用いて最適化
+することができる．
+
 \begin{figure}[h!tbp]
-   \begin{subfigure}{0.3\textwidth}
-   \begin{center}
-    \includegraphics[width=2in, height=2in, keepaspectratio]{../img/tessellation/rectTile.pdf}
-    \caption{Rectangular tiling}
-    \label{fig:rectTile}
-   \end{center}
-  \end{subfigure}
- \hspace*{\fill}
-   \begin{subfigure}{0.3\textwidth}
-   \begin{center}
-    \includegraphics[width=2in, height=2in, keepaspectratio]{../img/tessellation/tile.pdf}
-    \caption{Tile and transformations}
-    \label{fig:tile}
-   \end{center}
-  \end{subfigure}
+ \begin{subfigure}{0.3\textwidth}
+  \center
+  \includegraphics[width=2in, height=2in, keepaspectratio]{../img/tessellation/rectTile.pdf}
+  \caption{Square tiling}
+  \label{fig:rectTile}
+ \end{subfigure}
  \hspace*{\fill}
  \begin{subfigure}{0.3\textwidth}
-  \begin{center}
-   \includegraphics[width=2in, height=2in, keepaspectratio]{../img/tessellation/tileMove.pdf}
-   \caption{Move}
-   \label{fig:tileMove}
-  \end{center}
+  \center
+  \includegraphics[width=2in, height=2in, keepaspectratio]{../img/tessellation/tile.pdf}
+  \caption{Tile and transformations}
+  \label{fig:tile}
+ \end{subfigure}
+ \hspace*{\fill}
+ \begin{subfigure}{0.3\textwidth}
+  \center
+  \includegraphics[width=2in, height=2in, keepaspectratio]{../img/tessellation/tileMove.pdf}
+  \caption{Move}
+  \label{fig:tileMove}
  \end{subfigure}
  \hspace*{\fill}
 \caption{Tile}
 \end{figure}
+
+\begin{algorithm}
+ \begin{algorithmic}
+  \caption{Count number of operations for square tiling}
+  \label{alg:rectTile}
+  \REQUIRE count $= 0$ and coordinates $=$ position determined by pixel
+  \FOR{$i=0$ to \texttt{MAX\char`_INVERSION}}
+  \STATE inFundamentalDomain $\leftarrow$ \TRUE
+  \IF{coordinates.x $< 0$}
+  \STATE coordinates.x $\leftarrow$ coordinates.x + \texttt{SQUARE\char`_SIZE}
+  \STATE INCREMENT count
+  \STATE inFundamentalDomain $\leftarrow$ \FALSE
+  \ENDIF
+  \IF{coordinates.x $>$ \texttt{SQUARE\char`_SIZE}}
+  \STATE coordinates.x $\leftarrow$ coordinates.x - \texttt{SQUARE\char`_SIZE}
+  \STATE INCREMENT count
+  \STATE inFundamentalDomain $\leftarrow$ \FALSE
+  \ENDIF
+  \IF{coordinates.y $< 0$}
+  \STATE coordinates.y $\leftarrow$ coordinates.y + \texttt{SQUARE\char`_SIZE}
+  \STATE INCREMENT count
+  \STATE inFundamentalDomain $\leftarrow$ \FALSE
+  \ENDIF
+  \IF{coordinates.y $>$ \texttt{SQUARE\char`_SIZE}}
+  \STATE coordinates.y $\leftarrow$ coordinates.y - \texttt{SQUARE\char`_SIZE}
+  \STATE INCREMENT count
+  \STATE inFundamentalDomain $\leftarrow$ \FALSE
+  \ENDIF
+  \IF {inFundamentalDomain}
+  \STATE BREAK for
+  \ENDIF
+  \ENDFOR
+  \STATE RETURN count
+ \end{algorithmic}
+\end{algorithm}
 
 \subsection{Hyperbolic Tessellation}
 
@@ -114,14 +153,14 @@ $L$とその直線上にない点$P$があるとき，$P$を通り，$L$に平�
 そのモデルとして有名なものに\emph{ポアンカレの円盤モデ
 ル}(\textit{Poincar\'e disk model})や\emph{ポアンカレの上半平面モデ
 ル}(\textit{Poincar\'e half-plane model})がある．
-図\ref{fig:hyperbolicTessellation}に円盤モデル，図\ref{fig:upperHalf}に
-上半平面モデルとこれらのモデルにおけるテセレーションを示した．
-双曲幾何学における平面である双曲平面の敷き詰め模様は\emph{双曲テセ
+図\ref{fig:hyperbolicTessellation}に円盤モデルと上半平面モデルにおけるテ
+セレーションを示した．
+双曲幾何学における平面である双曲平面の敷き詰め模は\emph{双曲テセ
 レーション}{\it (Hyperbolic Tessellation)}とよばれる．
 画家のM.C.エッシャーはこのような図に影響されて『天使と悪魔』や『Circle
 Limit』といった有名な作品を生み出した．
 
-円盤モデルにおいては図\ref{fig:hyperbolicTessellation}に示される円盤が双
+円盤モデルにおいては図\ref{fig:disk}に示される円盤が双
 曲平面であり，世界のすべてである．
 円盤の端がユークリッド平面における無限遠点となる．
 また，双曲平面では円弧が直線となり，あらゆるタイルが円弧で構成される．
@@ -131,16 +170,18 @@ Limit』といった有名な作品を生み出した．
   \center
   \includegraphics[width=3in, height=3in,
   keepaspectratio]{../img/tessellation/hyperbolicTessellation.pdf}
-  \caption{Hyperbolic Tessellation}
-  \label{fig:hyperbolicTessellation}
+  \subcaption{Disk model}
+  \label{fig:disk}
  \end{minipage}
  \hspace*{\fill}
  \begin{minipage}{0.49\hsize}
   \center
   \includegraphics[width=3in, height=3in, keepaspectratio]{../img/tessellation/upperHalf.pdf}
-  \caption{Upper half model}
+  \subcaption{Half-plane model}
   \label{fig:upperHalf}
  \end{minipage}
+  \caption{Hyperbolic Tessellation}
+  \label{fig:hyperbolicTessellation}
 \end{figure}
 
 これより円盤モデルにおけるテセレーションを描く方法をみていく．
@@ -204,7 +245,6 @@ Bulatovは他にも双曲平面や双曲空間におけるタイリングや，�
   \label{fig:zoom}
  \end{minipage}
 \end{figure}
-
 
 \begin{figure}[htbp]
   \begin{minipage}{0.49\hsize}

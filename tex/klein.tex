@@ -322,19 +322,17 @@ Saul Schleimer，Henry Segermanはメビウス変換を利用して全天球画�
 また，この軌道も極限集合へと収束していく．
 \begin{figure}[htbp]
  \begin{minipage}{0.49\hsize}
-  \begin{center}
-   \includegraphics[width=3in, height=3in, keepaspectratio]{../img/klein/schottkyCircles.pdf}
-   \caption{Schottky Circles}
-   \label{fig:schottky}
-  \end{center}
+  \center
+  \includegraphics[width=3in, height=3in, keepaspectratio]{../img/klein/schottkyCircles.pdf}
+  \caption{The orbit of circles}
+  \label{fig:schottky}
  \end{minipage}
-  \begin{minipage}{0.49\hsize}
-  \begin{center}
-   \includegraphics[width=3in, height=3in, keepaspectratio]{../img/klein/starOrbit.pdf}
-   \caption{orbit}
-   \label{fig:orbit}
-  \end{center}
-  \end{minipage}
+ \begin{minipage}{0.49\hsize}
+  \center
+  \includegraphics[width=3in, height=3in, keepaspectratio]{../img/klein/starOrbit.pdf}
+  \caption{The orbit of hexagram}
+  \label{fig:orbit}
+ \end{minipage}
 \end{figure}
 
 図\ref{fig:schottky}のような円の軌道が計算される過程を以下にまとめた．
@@ -354,46 +352,40 @@ Saul Schleimer，Henry Segermanはメビウス変換を利用して全天球画�
 
 \begin{figure}[htbp]
  \begin{minipage}{0.33\hsize}
-  \begin{center}
-   \includegraphics[width=2in, height=2in, keepaspectratio]{../img/klein/orbit/level0.pdf}
+  \center
+  \includegraphics[width=2in, height=2in, keepaspectratio]{../img/klein/orbit/level0.pdf}
    \subcaption{orbit}
-   \label{fig:level0}
-  \end{center}
+  \label{fig:level0}
  \end{minipage}
  \begin{minipage}{0.33\hsize}
-  \begin{center}
-   \includegraphics[width=2in, height=2in, keepaspectratio]{../img/klein/orbit/level0inv.pdf}
-   \subcaption{orbit}
+  \center
+  \includegraphics[width=2in, height=2in, keepaspectratio]{../img/klein/orbit/level0inv.pdf}
+  \subcaption{orbit}
    \label{fig:level0inv}
-  \end{center}
  \end{minipage}
  \begin{minipage}{0.33\hsize}
-  \begin{center}
-   \includegraphics[width=2in, height=2in, keepaspectratio]{../img/klein/orbit/level1.pdf}
-   \subcaption{orbit}
+  \center
+  \includegraphics[width=2in, height=2in, keepaspectratio]{../img/klein/orbit/level1.pdf}
+  \subcaption{orbit}
    \label{fig:level1}
-  \end{center}
  \end{minipage}
  \begin{minipage}{0.33\hsize}
-  \begin{center}
-   \includegraphics[width=2in, height=2in, keepaspectratio]{../img/klein/orbit/level1inv.pdf}
-   \subcaption{orbit}
-   \label{fig:level1inv}
-  \end{center}
+  \center
+  \includegraphics[width=2in, height=2in, keepaspectratio]{../img/klein/orbit/level1inv.pdf}
+  \subcaption{orbit}
+  \label{fig:level1inv}
  \end{minipage}
  \begin{minipage}{0.33\hsize}
-  \begin{center}
-   \includegraphics[width=2in, height=2in, keepaspectratio]{../img/klein/orbit/level2.pdf}
-   \subcaption{orbit}
-   \label{fig:level2}
-  \end{center}
+  \center
+  \includegraphics[width=2in, height=2in, keepaspectratio]{../img/klein/orbit/level2.pdf}
+  \subcaption{orbit}
+  \label{fig:level2}
  \end{minipage}
  \begin{minipage}{0.33\hsize}
-  \begin{center}
-   \includegraphics[width=2in, height=2in, keepaspectratio]{../img/klein/orbit/levelMax.pdf}
-   \subcaption{level max}
-   \label{fig:levelMax}
-  \end{center}
+  \center
+  \includegraphics[width=2in, height=2in, keepaspectratio]{../img/klein/orbit/levelMax.pdf}
+  \subcaption{level max}
+  \label{fig:levelMax}
  \end{minipage}
  \caption{Process}
 \end{figure}
@@ -610,7 +602,7 @@ IISは平面状の全ての点に対して計算を行う．
   \begin{algorithmic}
    \REQUIRE count $= 0$ and coordinates $=$ position determined by
    pixel
-   \FOR{$i=0$ to MAX\_INVERSION}
+   \FOR{$i=0$ to \texttt{MAX\char`_INVERSION}}
    \STATE inFundamentalDomain $\leftarrow$ \TRUE
    \FOR{ each map $G$ in Maps }
    \IF{$G$ is available to coordinates}
@@ -788,9 +780,9 @@ IISは平面状の全ての点に対して計算を行う．
  \caption{Distance function}
  \label{alg:iis3d}
  \begin{algorithmic}
-  \REQUIRE count $= 0,~d$ = MAX\_DISTANCE$,~dr = 1.0,~$and coordinates $=$ tipping
+  \REQUIRE count $= 0,~d = $ \texttt{MAX\char`_DISTANCE} $,~dr = 1.0,~$and coordinates $=$ tipping
   point of the ray
-  \FOR{$i=0$ to MAX\_INVERSION}
+  \FOR{$i=0$ to \texttt{MAX\char`_INVERSION}}
   \STATE inFundamentalDomain $\leftarrow$ \TRUE
   \FOR{ each Map $G$ in Maps}
   \IF{$G$ is available to coordinates}
@@ -1349,10 +1341,10 @@ $TC1,~TC2,~TC1'$とよぶ．
 $k$を倍数，$q$を指数係数，$i$を円列の指数とする．
 これらは以下のように計算される．
  \begin{align*}
-  k &= \frac{r'}{r}\\
-  q &= \log_{k} \frac{d}{r}\\
-  d' &= r \cdot k^{fracionalPart(q)}\\
-  i &= floor(q)
+  k& = \frac{r'}{r}\\
+  q& = \log_{k} \frac{d}{r}\\
+  d'& = r \cdot k^{fracionalPart(q)}\\
+  i& = floor(q)
  \end{align*}
 $d'$を用いて$T(P)$を基本領域へと移した点である$P'$を計算することが
 できる．また，$i$から最適化前の変換を何度点に作用させると基本領域へと移
@@ -1426,13 +1418,15 @@ $TC1$，$TC1'$から$d'$を算出し，$P'$を計算する．
 図\ref{fig:schottky}において，中央の円盤に囲まれた基本領域を\emph{円辺形}と
 よぶ．
 擬フックス群は円辺形を囲む円の組から生成元を得ることができる．
-そこで円辺形を三次元に拡張した\emph{球面体}を定義することで三次元の擬フッ
-クス群を構成することができる．
-図\ref{fig:sphairahedra}は6つの球に囲まれた球面体のひとつである．
-側面は3つの半径無限大の球に囲まれている．
+そこで円辺形を三次元に拡張した\emph{球面体}(\textit{Sphairahedron})を定義
+することで三次元の擬フックス群を構成することができる．
+
+図\ref{fig:sphairahedron}には6つの球に囲まれた球面体を示した．
 この球面体をそれを囲む球の反転で移していくことで極限集合を得ることができ
-る．
-図\ref{fig:quasiFuchsian}に極限集合のひとつを示した．
+る．図\ref{fig:quasiFuchsian}にその極限集合を示した．
+円辺形による擬フックス群の極限集合は円の和集合となる．したがって，球面体
+による擬フックス群の極限集合は球の和集合となる．
+
 阿原・荒木による動画\footnote{Quasi-fuchsian fractals:
 \url{https://www.youtube.com/watch?v=3lcO9zRCv-4}}ではこのフラクタルの構
 成過程をみることができる．
@@ -1440,26 +1434,48 @@ $TC1$，$TC1'$から$d'$を算出し，$P'$を計算する．
 また，レイマーチングとDistance Estimationによる高速描画のアルゴリズムが
 2012年にKnightyによって開発された
 \footnote{Another 3D Kleinian:
- \url{http://www.fractalforums.com/ifs-iterated-function-systems/another-3d-kleinian/}}．
+ \url{http://www.fractalforums.com/ifs-iterated-function-systems/another-3d-kleinian/}}
+ ．
+図\ref{fig:quasi-fuchsian-3d}はKnightyによるFragmentariumのスクリプトを用
+いてレンダリングした．
 
-荒木はこのフラクタル図形の物質化についてまとめている\cite{araki2006materializing}．
-数学的な事項については蔭山\cite{kageyama2016masterSphaira}がまとめている．
+
+荒木はこのフラクタル図形の物質化についてまとめている
+\cite{araki2006materializing}．
+円辺形や球面体の数学的な事項については蔭山
+がまとめている\cite{kageyama2016masterSphaira}．
+
 
 \begin{figure}[htbp]
  \begin{minipage}{0.49\hsize}
-  \begin{center}
-   \includegraphics[width=3in, height=3in, keepaspectratio]{../img/klein/sphairahedra.pdf}
-   \caption{Sphairahedra}
-   \label{fig:sphairahedra}
-  \end{center}
+  \center
+  \includegraphics[width=3in, height=3in, keepaspectratio]{../img/klein/sphairahedron1.pdf}
+  \subcaption{}
  \end{minipage}
+ \hspace*{\fill}
  \begin{minipage}{0.49\hsize}
-  \begin{center}
-   \includegraphics[width=3in, height=3in, keepaspectratio]{../img/klein/quasi-fuchsian.pdf}
-   \caption{quasi-fuchsian}
-   \label{fig:quasiFuchsian}
-  \end{center}
+  \center
+  \includegraphics[width=3in, height=3in, keepaspectratio]{../img/klein/sphairahedron2.pdf}
+  \subcaption{}
  \end{minipage}
+ \caption{Sphairahedron}
+ \label{fig:sphairahedron}
+\end{figure}
+
+\begin{figure}[htbp]
+ \begin{minipage}{0.49\hsize}
+  \center
+  \includegraphics[width=2.5in, height=2.5in, keepaspectratio]{../img/klein/quasi-fuchsian.pdf}
+  \subcaption{}
+ \end{minipage}
+ \hspace*{\fill}
+ \begin{minipage}{0.49\hsize}
+  \center
+  \includegraphics[width=2.5in, height=2.5in, keepaspectratio]{../img/klein/quasi-fuchsian2.pdf}
+  \subcaption{}
+ \end{minipage}
+ \caption{Quasi Fuchsian}
+ \label{fig:quasiFuchsian}
 \end{figure}
 
 \subsubsection{Other 4D Kleinian Groups}

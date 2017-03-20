@@ -3,8 +3,8 @@
 \section{Tessellation}
 
 \emph{テセレーション}{\it (Tessellation)}
-とは，\emph{タイリング}{\it(Tiling)}ともよばれ，平面や空間を平面図形や空
-間図形で埋め合わせることをいう．
+とは平面や空間を平面図形や空間図形で埋め合わせることをいう．
+\emph{タイリング}{\it(Tiling)}ともよばれる．
 図\ref{fig:rightTriangular}は直角二等辺三角形を各辺における鏡映変換で移
 すことで平面を敷き詰めた模様を描いた．
 図\ref{fig:tessellationT}はアルファベットのTによる敷き詰め模様を描いた．
@@ -20,11 +20,11 @@
 この本は主にデザイナーに向けて，装飾に用いられる敷き詰め模様の法則性,
 分類について記述しており，敷き詰め模様のデザインへの応用に役立つ．
 
-より数学的にまとめられた文献にはMartin von Gagern，Jrgen
+敷き詰めの分類がより専門的にまとめられた文献にはMartin von Gagern，Jrgen
 Richter-Gebertによる\cite{journals/combinatorics/GagernR09}がある．
 この論文はユークリッド平面上での敷き詰め模様を双曲平面での敷き詰めに変換
 する方法を提案したものであるが，敷き詰め模様の分類についても詳しい．
-また，Gagernによる\emph{morenaments}\footnote{morenaments:
+また，Gagernによる\emph{morenaments}\footnote{morenaments:~
 \url{http://www.morenaments.de/}}というソフトウェアを用いることで，各敷
 き詰めパターンの挙動をみることができる．
 
@@ -47,7 +47,7 @@ Richter-Gebertによる\cite{journals/combinatorics/GagernR09}がある．
 
 敷き詰め模様をシェーダを用いて描画することを考えるため，
 まずは図\ref{fig:rectTile}のような正方形のテセレーションを
-考える．基本的には図\ref{fig:tile}に矢印で示されるような，縦横全４種類の
+考える．基本的には図\ref{fig:tile}に矢印で示されるような，縦横全4種類の
 変換の組み合わせで基本となる正方形を動かすことで，平面全体を正方形で埋め
 尽くすことができる．
 
@@ -55,7 +55,7 @@ Richter-Gebertによる\cite{journals/combinatorics/GagernR09}がある．
 造を幅優先探索し，得られた合成変換で正方形を移動させることで描画すること
 ができる．
 一方で，シェーダを用いて描画する場合にはその逆の操作を行う．
-すなわち，図\ref{fig:tileMove}のように各ピクセルを敷き詰めを構成する４種
+すなわち，図\ref{fig:tileMove}のように各ピクセルを敷き詰めを構成する4種
 の変換で基本タイルへと点を動かす．
 そうして，基本タイルへ動かした後で操作の回数や基本タイル上の色からそのピ
 クセルの色を決めて塗る．
@@ -143,7 +143,7 @@ Richter-Gebertによる\cite{journals/combinatorics/GagernR09}がある．
 $L$とその直線上にない点$P$があるとき，$P$を通り，$L$に平行な直線は一本しか
 引くことができない．
 これは\emph{平行線公準}とよばれている．
-ボヤイ(Bolyai)，ロバチェフスキー(Lobachevsky)，ガウス(Gauss)といった数学者はそれぞれ
+ボヤイ(Bolyai)，ロバチェフスキー(Lobachevsky)，ガウス(Gauss)といった数学者は，
 こういった公理を崩した幾何学のモデルの一つである\emph{双曲幾何
 学}(\textit{Hyperbolic Geometry})を考案した．
 双曲幾何学では$L$に平行な直線を無限に引くことができる．
@@ -155,7 +155,7 @@ $L$とその直線上にない点$P$があるとき，$P$を通り，$L$に平�
 ル}(\textit{Poincar\'e half-plane model})がある．
 図\ref{fig:hyperbolicTessellation}に円盤モデルと上半平面モデルにおけるテ
 セレーションを示した．
-双曲幾何学における平面である双曲平面の敷き詰め模は\emph{双曲テセ
+双曲幾何学における平面である双曲平面の敷き詰め模様は，\emph{双曲テセ
 レーション}{\it (Hyperbolic Tessellation)}とよばれる．
 画家のM.C.エッシャーはこのような図に影響されて『天使と悪魔』や『Circle
 Limit』といった有名な作品を生み出した．
@@ -184,10 +184,10 @@ Limit』といった有名な作品を生み出した．
   \label{fig:hyperbolicTessellation}
 \end{figure}
 
-これより円盤モデルにおけるテセレーションを描く方法をみていく．
+これより，図\ref{fig:disk}に示した円盤モデルにおけるテセレーションを描く方法をみていく．
 円盤モデルの円盤は単位円とする．
-基本タイルを中央にある4つの最も大きなタイルの内の1つとする．
-このタイルはX軸，Y軸，そして2つの円弧で囲まれている．
+基本タイルを中央にある四つの最も大きなタイルの内の一つとする．
+このタイルはX軸，Y軸，そして二つの円弧で囲まれている．
 これらの弧に関する反転の組み合せによって基本タイルを動かすとその軌道は円
 に収束していき，図\ref{fig:hyperbolicTessellation}のような敷き詰め模様を
 得ることができる．
@@ -203,7 +203,7 @@ Limit』といった有名な作品を生み出した．
 るため，円盤の端まで描画することは難しい．しかし，前述のアルゴリズムを用いると
 図\ref{fig:zoom}のように端までリアルタイムで描画することができる．
 
-図\ref{fig:outer}では基本タイルとして，3つの角が$\frac{\pi}{2}$，残りの
+図\ref{fig:outer}では基本タイルとして，三つの角が$\frac{\pi}{2}$，残りの
 角が$\frac{\pi}{3}$である四辺形を用いた．しかし，どのような基本タイルでも敷き
 詰めることができるわけではない．
 双曲平面において敷き詰めることのできるタイルの条件は\emph{ポアンカレの張
@@ -211,53 +211,55 @@ Limit』といった有名な作品を生み出した．
 例えば双曲平面における三角形である双曲三角形のタイリング条件は以下のよう
 になる．
 \begin{eqnarray*}
-\text{３内角を}\frac{\pi}{p},~\frac{\pi}{q},~\frac{\pi}{r}~(p,~q,~r~\in
+3\text{内角を}\frac{\pi}{p},~\frac{\pi}{q},~\frac{\pi}{r}~(p,~q,~r~\in
  \mathbb{N} \cup \{\infty\}) \text{とする時，}~
  \frac{1}{p} + \frac{1}{q} + \frac{1}{r} < 1 \text{を満たす．}
 \end{eqnarray*}
-このような双曲三角形を2つ張り合わせることで敷き詰め可能な双曲四辺形を得
+このような双曲三角形を二つ張り合わせることで敷き詰め可能な双曲四辺形を得
 ることもできる．
 図\ref{fig:failed}にはこの条件を満さない双曲三角形の敷き詰めを描いた．
 よく見ると一部のタイルが正しく移りあっていないことがわかる．
 
 Vladimir Bulatovは双曲空間を考えることで円盤における双曲テセレーションを
-図\ref{fig:deformed}のように変形させる方法を考案した\cite{bridges2013-167}\cite{bridges2011-479}．
+図\ref{fig:deformed}のように変形させる方法を考案した\cite{bridges2013-167}
+~\cite{bridges2011-479}．
 Bulatovは他にも双曲平面や双曲空間におけるタイリングや，その変形についてまとめている
-\footnote{Bulatov Abstract Creations:
+\footnote{Bulatov Abstract Creations:~
 \url{http://bulatov.org/math/index.html}}．
 また，Chamberlain Fongは円を正方形に変形させるような擬等角写像を用いて双曲テセ
 レーションを矩形に変形させる方法をまとめている\cite{bridges2016-179}．
 筆者は双曲タイリングとその変形を行うウェブアプリケーションを開発している
-\footnote{Hyperbolic Tessellator: \url{https://soma-arc.net/HyperbolicTessellator/}}．
+\footnote{Hyperbolic Tessellator:~
+\url{https://soma-arc.net/HyperbolicTessellator/}}．
 
 \begin{figure}[htbp]
   \begin{minipage}{0.49\hsize}
    \center
    \includegraphics[width=3in, height=3in, keepaspectratio]{../img/tessellation/outer.pdf}
-   \caption{Outer}
+   \caption{Hyperbolic tessellation rendered with shader}
    \label{fig:outer}
   \end{minipage}
  \hspace*{\fill}
  \begin{minipage}{0.49\hsize}
   \center
   \includegraphics[width=3in, height=3in, keepaspectratio]{../img/tessellation/zoom.pdf}
-  \caption{zoom}
+  \caption{Edge of the disk}
   \label{fig:zoom}
  \end{minipage}
 \end{figure}
 
 \begin{figure}[htbp]
-  \begin{minipage}{0.49\hsize}
+  \begin{minipage}[t]{0.49\hsize}
    \center
    \includegraphics[width=3in, height=3in, keepaspectratio]{../img/tessellation/failed.pdf}
-   \caption{failed}
+   \caption{Attempt to tessellate non-rational angled hyperbolic triangle}
    \label{fig:failed}
   \end{minipage}
  \hspace*{\fill}
- \begin{minipage}{0.49\hsize}
+ \begin{minipage}[t]{0.49\hsize}
   \center
   \includegraphics[width=3in, height=3in, keepaspectratio]{../img/tessellation/deformed.pdf}
-  \caption{deformed}
+  \caption{Deformed hyperbolic tessellation}
   \label{fig:deformed}
  \end{minipage}
 \end{figure}

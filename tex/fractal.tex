@@ -21,7 +21,7 @@ sponge})とよばれ，立方体に一定の法則で穴を空けることで得
 した．これにはコンピュータの普及も大きく関連しており，コンピュータ文化と
 は切り離せない．
 インターネット上のフラクタルコミュニティとして最大のものに，\textit{Fractal
-Forum}\footnote{Fractal Forum:\url{http://www.fractalforums.com/}}
+Forum}\footnote{Fractal Forum:~\url{http://www.fractalforums.com/}}
 という電子掲示板がある．
 このコミュニティから生まれたフラクタル図形や描画手法はとても多い．
 
@@ -36,9 +36,9 @@ Forum}\footnote{Fractal Forum:\url{http://www.fractalforums.com/}}
 
 デモシーンに関しては，\textit{Demoscene - The
 Art of the Algorithm}\footnote{Demoscene - The Art of the Algorithms:
- \url{https://www.youtube.com/watch?v=iRkZcTg1JWU}}が詳しい．
+~\url{https://www.youtube.com/watch?v=iRkZcTg1JWU}}が詳しい．
 また，著名なデモシーナーのInigo Quilez (iq)は自身のウェブページ\footnote{Inigo
-Quilez's webpage: \url{http://iquilezles.org/index.html}}にコンピュータグラフィ
+Quilez's webpage:~\url{http://iquilezles.org/index.html}}にコンピュータグラフィ
 クスに関する様々な記事をまとめている．
 ここで紹介する手法もまとめられているので，併せて参考にされたい．
 
@@ -69,7 +69,7 @@ Quilez's webpage: \url{http://iquilezles.org/index.html}}にコンピュータ�
 
 \subsection{Shader Based Rendering}
 
-最近のデモ作品でよく用いられる作品制作手法の１つに\textit{OpenGL Shading
+最近のデモ作品でよく用いられる作品制作手法の一つに\textit{OpenGL Shading
 Language (GLSL)}や\textit{High Level Shading Language (HLSL)}の\emph{フラ
 グメントシェーダ}(\textit{Fragment Shader})を用いるものがある．
 フラグメントシェーダは本来，ポリゴンに陰影をつけるために使用され，その処
@@ -153,10 +153,10 @@ GPUは浮動小数演算性能に優れていることに加え，各ピクセ�
  \end{figure}
 
 シェーダを用いたレンダリングはglslsandbox\footnote{glslsandbox:
-\url{http://glslsandbox.com/}}やShadertoy\footnote{Shadertoy:
-\url{https://www.shadertoy.com/}}といったウェブサービスで手軽に試すこと
+~\url{http://glslsandbox.com/}}やShadertoy\footnote{Shadertoy:
+~\url{https://www.shadertoy.com/}}といったウェブサービスで手軽に試すこと
 ができる．h\_doxasによるwgld\footnote{wgld:
-\url{https://wgld.org/d/glsl/}}にはシェーダによるレンダリングの入門事項
+~\url{https://wgld.org/d/glsl/}}にはシェーダによるレンダリングの入門事項
 がよくまとまっている．
 
 また，GPUの計算性能をより汎用的な計算に用いるためのプラットフォームとしてCUDA
@@ -175,7 +175,7 @@ GPUで行うことができるようになり，GPUによる並列演算は機�
 しかし，\textit{Distance Estimation}という手法を用いることで，
 距離関数を陰関数から近似的に導出することができる．
 その式の一つをiqによる導出\footnote{distance estimation:
-\url{http://iquilezles.org/www/articles/distance/distance.htm}}
+~\url{http://iquilezles.org/www/articles/distance/distance.htm}}
 をベースにして紹介する．
 
 図\ref{fig:distance-estimate}における赤色の曲線を表す陰関数$f(x)$を考え
@@ -305,7 +305,7 @@ Escape-time Fractalsで代表的なものが\emph{マンデルブロ集
 シングノイズ等を避けてより精細に描画することができる．
 これには\textit{Green Function}と呼ばれるマンデルブロ集合の陰関数を用いる．
 導出はiqによる記事\footnote{distance rendering for fractals:
-\url{http://iquilezles.org/www/articles/distancefractals/distancefractals.htm}}
+~\url{http://iquilezles.org/www/articles/distancefractals/distancefractals.htm}}
 が詳しい．
 Green Functionについてはマンデルブロ集合に関する詳細な議論となってしま
 うので\cite{douady1984exploring}を参考にされたい．
@@ -342,8 +342,8 @@ Green Functionについてはマンデルブロ集合に関する詳細な議論
 その他にもマンデルブロ集合のような複雑な三次元フラクタルを描画しよう試み
 が様々にあった．
 それらについてはDaniel White (twinbee)がまとめている
-\footnote{Skytopia -The Mystery of the REAL, 3D Mandelbrot Fractal
-:\url{http://www.skytopia.com/project/fractal/mandelbrot.html}}．
+\footnote{Skytopia -The Mystery of the REAL, 3D Mandelbrot Fractal:~
+\url{http://www.skytopia.com/project/fractal/mandelbrot.html}}．
 
 そのような中で，2003年に発表された阿原・荒木による四次元クライン群の一種
 である\textit{Quasi Fuchsian 3D Fractals}~\cite{ahara2003sphairahedral}
@@ -373,10 +373,11 @@ Green Functionについてはマンデルブロ集合に関する詳細な議論
 例えば，2004年にKeenan CraneはQuaternion JuliaをGPUによってリアルタイムに
 描画している\footnote{Ray Tracing Quaternion Julia Sets on
 the GPU:
-\url{https://www.cs.cmu.edu/~kmcrane/Projects/QuaternionJulia/}}．
+~\url{https://www.cs.cmu.edu/~kmcrane/Projects/QuaternionJulia/}}．
 iqは2007年にQuaternion Juliaをテーマにした4k intro~(実行ファイルのサイズ
 を4kb以内に抑えたデモ作品)，
-\textit{kindernoiser}\footnote{kindernoiser: \url{http://www.pouet.net/prod.php?which=32549}}
+\textit{kindernoiser}\footnote{kindernoiser:
+~\url{http://www.pouet.net/prod.php?which=32549}}
 を発表している．
 
 その後，2009年に遂にマンデルブロ集合をうまく三次元に拡張した
@@ -393,15 +394,15 @@ Distance Estimationとレイマーチングを用いることで効率よくレ�
 
 これらのフラクタルをレンダリングするためのソフトウェアには\textit{Mandelbulb
 3D}\footnote{Mandelbulb 3D:
-\url{http://mandelbulb.com/2014/mandelbulb-3d-mb3d-fractal-rendering-software/}}
+~\url{http://mandelbulb.com/2014/mandelbulb-3d-mb3d-fractal-rendering-software/}}
 や\textit{Mandelbulber}\footnote{Mandelbulber:
-\url{http://www.mandelbulber.com/}}が有名である．
+~\url{http://www.mandelbulber.com/}}が有名である．
 シェーダベースのグラフィクスを開発するための環境である
 \textit{Fragmentarium}\footnote{Fragmentarium:
-\url{http://syntopia.github.io/Fragmentarium/}}は
+~\url{http://syntopia.github.io/Fragmentarium/}}は
 フラクタルのサンプルコードが豊富でアルゴリズムの学習に役立つ．
 \textit{Fractal Lab}\footnote{Fractal Lab:
-\url{http://hirnsohle.de/test/fractalLab/}}はブラウザ上でGLSLを用いてフ
+~\url{http://hirnsohle.de/test/fractalLab/}}はブラウザ上でGLSLを用いてフ
 ラクタルをレンダリングすることができるウェブアプリケーションである．
 この章で使われている図のいくつかはFractal LabとFragmentariumを用いてレン
 ダリングした．
@@ -430,7 +431,7 @@ Whiteは球面座標上においてマンデルブロ集合の漸化式を計算
 図\ref{fig:mandelbulb8}は$z_{n+1} = z_n^8 + c $という式でレンダリングさ
 れた形状であり，これがMandelbulbとして知られている．Whiteのウェブページ
 \footnote{Skytopia:
-\url{http://www.skytopia.com/project/fractal/mandelbulb.html}}には開発の
+~\url{http://www.skytopia.com/project/fractal/mandelbulb.html}}には開発の
 詳しい経緯がまとめられている．
 
 また，Mandelbulbも通常のマンデルブロ集合と同様にDistance Estimationによっ
@@ -457,12 +458,12 @@ Whiteは球面座標上においてマンデルブロ集合の漸化式を計算
 \subsubsection{Mandelbox}
 
 その後，2010年にTom Loweによって\textit{Mandelbox}\footnote{Mandelbox:
-\url{https://sites.google.com/site/mandelbox/what-is-a-mandelbox}}が開発
+~\url{https://sites.google.com/site/mandelbox/what-is-a-mandelbox}}が開発
 された．
 Mandelboxも三次元空間におけるEscape-time fractalである．
 漸化式は次のようになる．
 \begin{align*}
- z_{n+1} = scale * spherefold(minR, boxfold(z_n)) + c
+ z_{n+1} = scale * spherefold(minR,~boxfold(z_n)) + c
 \end{align*}
 ここで\textit{boxfold}は$x=\pm1,~y=\pm1,~z=\pm1$を頂点にもつ立方体の各面
 に対して，点がその外側にある場合にそれらの面に関する反転を行なう操作である．
@@ -510,7 +511,7 @@ MandelboxのDistance Estimationでは漸化式の微分としてヤコビアン�
 Mandelboxの登場以降は各$n$ごとに異なる式を組み合わせて漸化式を計算する
 \textit{Hybrid System}によって，様々なフラクタル作品が作られている．
 
-興味深いHybrid Systemの１つに\textit{pseudo-kleinian}がある．
+興味深いHybrid Systemの一つに\textit{pseudo-kleinian}がある．
 これは球の反転に近い操作であるspherefoldと平行移動と同じような働きをする
 boxfoldをうまく組み合わせることによって，可視化されたクライン群のような
 形状が得られる式である．
@@ -585,7 +586,7 @@ IFSを拡張したフラクタルアートの一種に\emph{フラクタルフ�
 Flame)}~\cite{draves2003fractal}がある．
 フラクタルフレームではIFSに用いる関数にメビウス変換などの非線形変換を用
 い，美しくレンダリングされるようにカラーリングにも工夫が加えられている．
-図\ref{fig:pseudoKleinian}はフラクタルフレームレンダラのひとつである，
+図\ref{fig:pseudoKleinian}はフラクタルフレームレンダラの一つである，
 Apophysis 7Xを用いてレンダリングされたフラクタルフレームである．
 
 IFSに関する書籍として\textit{Fractals

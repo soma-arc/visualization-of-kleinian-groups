@@ -254,7 +254,7 @@ Saul Schleimer，Henry Segermanはメビウス変換を利用して全天球画�
 右360度パノラマ写真)を編集することを考案した\cite{bridges2016-15}．
 彼らは\emph{ドロステ効果}(\textit{Droste-effect})をもつ再
 帰的な画像をメビウス変換を用いてつくる手法を提案している
-\footnote{Spherical Droste video:
+\footnote{Spherical Droste video:~
 \url{https://www.youtube.com/watch?v=qvh-EAipIUk}}．
 
 全天球画像はその名の通り球面に張り付けられた画像であるので，メビウス変
@@ -555,7 +555,7 @@ Processing InGroups}~\cite{Epstein:1992:wordProcessing}がある．
 スライスの離散と非離散の境界もしばしばフラクタル形状となる．
 また，その境界付近のパラメータの群を描画すると極限集合がしばしば興味
 深い形になる．
-山下のウェブページ\footnote{Discreteness Locus:
+山下のウェブページ\footnote{Discreteness Locus:~
 \url{http://vivaldi.ics.nara-wu.ac.jp/~yamasita/Slice/}}では様々な
 スライスの画像を見ることができる．
 
@@ -887,7 +887,7 @@ IISの擬似コードをアルゴリズム\ref{alg:iis2d}に示す．
 の軌道をIISで描画するための手法をまとめる．この内容は\textit{Bridges
 2017}に投稿中である．
 また，筆者は円や球の反転で構成される群をインタラクティブに構成するウェブアプリ
-ケーション，{\it Schottky Link} \footnote{Schottky Link:
+ケーション，{\it Schottky Link} \footnote{Schottky Link:~
 \url{https://schottky.jp}}を開発している．
 
 \subsubsection{2D Generators}
@@ -916,22 +916,22 @@ transformation})とよばれる．
 
 無限の半径をもつ円はその円弧を直線として表すことができるので，その反転は
 直線に関する反転として扱うことができる．
-図\ref{fig:infCircle}では中央の直線による反転で，左右対称の軌道をみること
-ができる．
+図\ref{fig:infCircle}では中央の直線に関する反転によって左右対称の軌道を
+みることができる．
 
 \noindent\textbf{Rotation.}
 
 二つの交差する直線の反転の組み合わせは回転を表わす．回転角は二直線のなす
-角の二倍である．図\ref{fig:rotation}において，二直線は45度で交わっている
+角の2倍である．図\ref{fig:rotation}において，二直線は45度で交わっている
 ので90度回転を表している. また，軌道の円同士がお互いに
-重なりあわないようにするためには，回転角は有理角である必要がある.
+重なりあわないようにするためには，回転角が有理角である必要がある.
 
 \noindent\textbf{Parallel Translation.}
 
 平行な二直線による反転の組は直線の垂直方向への平行移動を表す．
 図\ref{fig:translation2d}では二つの無限の半径をもつ円が向かい合っている．
-これらの円の反転が繰り返されることにより，中央の４つの反転円はX軸方向に
-平行移動される．
+これらの円の反転が繰り返されることにより，中央の四つの反転円の軌道にX軸方向の
+平行移動が加えられる．
 平行移動の固定点は無限遠点であり，これは放物型変換となる．
 
 \begin{figure}[h!tbp]
@@ -964,11 +964,11 @@ transformation})とよばれる．
 図\ref{fig:scaling2d}における赤の円を$C1$，緑の円を$C2$，そして青の円を
 $C1'$とよぶ．ここで$C1'$は$C1$を$C2$による反転で移した像である.
 図\ref{fig:scaling2d}では，白い縁をもつ二つの円の軌道を描いている.
-固定点は円の中心と無限遠点である.
+固定点は円の中心と無限遠点で
 
-IISに用いる写像$G$は以下のように定義される.
-また，接頭辞$I$は反転を表わす.
-例えば，$I_{C1}$は$C1$による反転を表わす.
+IISに用いる写像$G$は以下のように定義される．
+また，接頭辞$I$は反転を表わす．
+例えば，$I_{C1}$は$C1$による反転を表わす．
 \begin{align*}
  G =
   \begin{cases}
@@ -978,15 +978,16 @@ IISに用いる写像$G$は以下のように定義される.
 \end{align*}
 $G$を点に繰り返し作用させることで，その点を基本領域へと移動させることができる.
 この種類の生成元の基本領域は図\ref{fig:scaling2d}における青と緑の領域で
-ある.つまり$C1'$の内側かつ$C1$の外側の領域である．
+ある．つまり$C1'$の内側かつ$C1$の外側の領域である．
 完全な円の軌道をIISを用いて描くには，反転円をこの領域内に配置す
-る必要がある.
+る必要がある．
 
 次に，$C1$を少し動かすと，図\ref{fig:hyperbolic2d}のような軌道が得られる.
 無限遠点の固定点は有限の点に移り，有限の固定点は，$C1$の内部で移動する．
-二つの円が交差しない限り，これも双曲型変換である.
+二つの円が交差しない限り，これも双曲型変換である．
 
-$C1$と$C2$が接触する時，図\ref{fig:parabolic2d}のように固定点はその交点で重なりあい，放物型変換となる.
+さらに$C1$を動かし，$C1$と$C2$が接触するとき，図\ref{fig:parabolic2d}の
+ように固定点はその交点で重なりあい，放物型変換となる．
 
 \begin{figure}[htbp]
   \begin{minipage}[]{0.3\hsize}
@@ -999,14 +1000,14 @@ $C1$と$C2$が接触する時，図\ref{fig:parabolic2d}のように固定点は
   \begin{minipage}[]{0.3\hsize}
    \center
    \includegraphics[width=2in, height=2in, keepaspectratio]{../img/klein/2diis/hyperbolic.pdf}
-   \subcaption{Hyperbolic}
+   \subcaption{Hyperbolic transformation}
    \label{fig:hyperbolic2d}
   \end{minipage}
  \hspace*{\fill}
   \begin{minipage}[]{0.3\hsize}
    \center
    \includegraphics[width=2in, height=2in, keepaspectratio]{../img/klein/2diis/parabolic.pdf}
-   \subcaption{Parabolic}
+   \subcaption{Parabolic transformation}
    \label{fig:parabolic2d}
   \end{minipage}
   \caption{Composition of two circles}
@@ -1015,17 +1016,17 @@ $C1$と$C2$が接触する時，図\ref{fig:parabolic2d}のように固定点は
 
 \noindent\textbf{Loxodromic.}
 
-上記の二つの円による反転の合成変換は実数による拡縮と共役であった.
-この生成元にさらに二つの反転を加えることでその軌道に捻りを加えることができる.
+二つの円による反転の合成変換に，さらに二つの反転を加えることでその軌道に
+捻りを加えることができる．
 図\ref{fig:loxodromic2d}における$C1$と$C2$の中心を通る白い直線を$L$，
-黄色の円を$C3$，そして水色の点を$P$とよぶ.
+黄色の円を$C3$，そして水色の点を$P$とよぶ．
 $P$は制御点であり，この点に$C1$の反転を作用させて得られた点を$P'$，$C2$の
 反転を作用させて得られた点を$P''$とする．
 $C3$は$P,~P',~P''$の三点から定義される．
 $L$と$C3$の反転の合成は双曲型変換の軌道に捻りを加える回転となる．
 また，固定点は$L$と$C3$の交点である．
 
-写像$G$は以下のようになる.
+写像$G$は以下のようになる．
 \begin{align*}
 G =
 \begin{cases}
@@ -1036,8 +1037,8 @@ G =
 
 また，二つの固定点からこの種類の生成元を得ることもできる．
 このときの生成元を図\ref{fig:loxoFixed}に示した．
-図においてふたつ赤色の点を固定点$FP1$，$FP2$とする．
-ふたつの桃色の点を制御点$Q1$，$Q2$，水色の点を制御点$P$とする．
+図において二つの赤色の点を固定点$FP1$，$FP2$とする．
+二つの桃色の点を制御点$Q1$，$Q2$，水色の点を制御点$P$とする．
 変換を構成する円と直線である$C1,~C2,~C3,~L$は以下のように求めることがで
 きる．
 \begin{align*}
@@ -1065,7 +1066,7 @@ G =
 
 \subsubsection{3D Generators}
 
-球に関する反転の合成で三次元空間に作用するメビウス変換を得る．
+球に関する反転の合成で三次元空間に作用するメビウス変換を得ることができる．
 ほとんどの三次元の生成元は円を球に拡張することで自然に導くことが
 できる．三次元の群は基本球を反転球による反転の組み合わせで移した軌道を
 描画することで可視化する．
@@ -1073,37 +1074,37 @@ G =
 \noindent\textbf{Simple Inversion.}
 
 二次元の場合と同様に球の反転単体はメビウス変換ではなく，二つの球のペアに
-よる反転がメビウス変換である.
+よる反転がメビウス変換である．
 
 \noindent\textbf{Inversion of a Sphere with Infinite Radius.}
 
 半径が無限大の球の面は平面とみることができるので，その反転は平面による反
 転として表すことができる．
 図\ref{fig:infSphereGen}では青い板が半径が無限の球を表現している．
-図\ref{fig:infSphereOrb}における右側の球の軌道はこの板によって左側へと
-移されているため，軌道の左右に対称性をみることができる．
+図\ref{fig:infSphereOrb}ではこの平面による反転によって左右対称の軌道をみ
+ることができる．
 
 \noindent\textbf{Rotation.}
 
 二次元の場合と同様にして，互いに交わる二つの平面の反転によって
 回転を表すことができる．
-回転軸は二枚の平面の交線で，なす角の二倍が回転角となる.
-図\ref{fig:rotation3d}では180度の回転を示した．
+回転軸は2枚の平面の交線となり，回転角はそれらがなす角の2倍である．
+図\ref{fig:rotation3d}では180度の回転を含む軌道を示した．
 
 \noindent\textbf{Parallel Translation.}
 
-図\ref{fig:translation3d}に示されるような二枚の平行な平面による反転の組
+図\ref{fig:translation3d}に示されるような2枚の平行な平面による反転の組
 は平面の法線方向への平行移動を表わす．
-これは無限遠点に固定点をもつ放物型変換である.
-基本領域は二枚の平面の間になる．
+これは無限遠点に固定点をもつ放物型変換である．
+基本領域は2枚の平面の間になる．
 
 \noindent\textbf{Compound Parabolic.}
 
-更に，三次元では平行移動の軌道に捻りを加えることができる.
+さらに，三次元では平行移動の軌道に捻りを加えることができる．
 図\ref{fig:compParabolic}では軌道に平行移動が作用されるたびに回転
-が加えられていることがわかる.
+が加えられていることがわかる．
 この生成元は\emph{複合放物型変換}(\textit{Compound Parabolic})とよばれ，
-高次元特有のものである.
+高次元特有のものである．
 
 \begin{figure}[h!tbp]
  \begin{minipage}[]{0.49\hsize}
@@ -1121,7 +1122,7 @@ G =
    \label{fig:infSphereOrb}
   \end{minipage}
   \hspace*{\fill}
-  \caption{Inversion of the Sphere with infinite radius}
+  \caption{Inversion of the sphere with infinite radius}
   \label{fig:infSphere}
  \end{minipage}
  \begin{minipage}[]{0.49\hsize}
@@ -1183,10 +1184,10 @@ G =
  \end{minipage}
 \end{figure}
 
-\noindent\textbf{Composition of Two Spheres}
+\noindent\textbf{Composition of Two Spheres.}
 
 二次元の場合と同様に二つの球の反転を組み合わせた生成元を定義することができる．
-図\ref{fig:loxoGen3d}に示される赤い球を$S1$，黄緑の球を$S2$,
+図\ref{fig:loxoGen3d}に示される赤い球を$S1$，黄緑の球を$S2$，
 青い球を$S1'$とよぶとき，写像$G$は以下のようになる．
 \begin{align*}
 G =
@@ -1195,20 +1196,23 @@ G =
  I_{S1} \circ I_{S2} & (\text{The point is outside of }S1')
 \end{cases}
 \end{align*}
+基本領域は赤い球の外側かつ青い球の外側である．つまり，$S1$の外側かつ
+$S1'$の内側の領域である．
+
 $S1$と$S2$に接触がない場合,この生成元は斜航型変換となる．
 軌道は図\ref{fig:loxoOrb3d}に示した．
-この生成元に６つの反転球を加えた群の軌道が\ref{fig:loxoOrbSch3d}のようになる．
+この生成元に六つの反転球を加えた群の軌道は\ref{fig:loxoOrbSch3d}のようになる．
 
-図\ref{fig:parabolicGen3d}のように，$S1$と$S2$が一点で接触するとき，この
-生成元は放物型変換となる．
+$S1$を動かし，図\ref{fig:parabolicGen3d}のように$S1$と$S2$が一点で接触す
+るとき，この生成元は放物型変換となる．
 固定点は球同士の接点となり，軌道は図\ref{fig:parabolicOrb3d}のように一点
 に収束する．
 
-\noindent\textbf{Compound Loxodromic}
+\noindent\textbf{Compound Loxodromic.}
 
 最後に，$S1$と$S2$に直交する二つの球を追加する．
-図\ref{fig:compLoxoGen}に示される桃色の球を$S3$，黄色の球を$S4$,
-3つの制御点を$P，Q1，Q2$とよぶ．
+図\ref{fig:compLoxoGen}に示される桃色の球を$S3$，黄色の球を$S4$，
+三つの制御点を$P,~Q1,~Q2$とよぶ．
 $P$に$S1$の反転を作用させて得られた点と，$S2$の
 反転を作用させて得られた点をそれぞれ$P'$，$P''$とする．
 そして，写像$G$は以下のようになる．
@@ -1222,9 +1226,9 @@ G &=
  outside of } S1')\\
 \end{cases}
 \end{align*}
-$S3$と$S4$の反転の合成は回転を表す．
+$S3$と$S4$による反転の合成は回転を表す．
 この生成元の軌道を示した図\ref{fig:compLoxoOrb}では，二次元における斜航
-型変換のような三次元空間における捻じれた軌道をみることができる．
+型変換のように，三次元空間における捻じれた軌道をみることができる．
 この生成元は\emph{複合斜航型変換}(Compound Loxodromic)とよばれ，高次元特
 有のメビウス変換である．
 
@@ -1357,14 +1361,14 @@ $d$を$w$で割ることにより，剰余$d'$と商$i$を得ることができ�
 $d'$を用いて$T(P)$から$P'$を計算し，これを$T^{-1}$で元の座標に戻す．
 以上の操作を一度行うことで，平面上の全ての点を平行移動の生成元の基本領域
 に移すことができる．
-また，$i$から，通常の反転を何回行なうことで基本領域へと移すことができる
+また，$i$から通常の反転を何回行なうことで，点を基本領域へと移すことができる
 かを求めることができる．
 
 \noindent\textbf{Parabolic.}
 
-次に図\ref{fig:parabolic2d}のような放物型変換を考える．
-まず共役変換$T$をこの放物型変換の固定点を中心とする円の反転とする．
-$T$を$C1,~C2,~C1'$に対して適用すると，固定点は無限遠点に移るので，三本の平行な直
+次に，図\ref{fig:parabolic2d}のような放物型変換を考える．
+まず，共役変換$T$をこの放物型変換の固定点を中心とする円の反転とする．
+$T$を$C1,~C2,~C1'$に対して適用すると，固定点は無限遠点に移るので，3本の平行な直
 線を得ることができる．
 それぞれの直線を$TC1,~TC2,~TC1'$とよぶ．
 図\ref{fig:parabolicMod}にこれらの直線を示した．
@@ -1378,17 +1382,18 @@ $T$を$C1,~C2,~C1'$に対して適用すると，固定点は無限遠点に移�
 
 \noindent\textbf{Loxodromic.}
 
-最後に図\ref{fig:hyperbolic2d}のような双曲型変換を考える．
+最後に，図\ref{fig:hyperbolic2d}のような双曲型変換を考える．
 この変換の片方の固定点を中心にもつ円に関する反転を共役変換$T$とする．
 そして，$T$を$C1,~C2,~C1'$に作用させて得られた円をそれぞれ
 $TC1,~TC2,~TC1'$とよぶ．
-これらは変換のもう一方の固定点に$T$を作用させた点を中心にもつ同心円となる．
+これらの円は，双曲型変換のもう一方の固定点に，$T$を作用させた点を中心に
+もつ同心円となる．
 
 これらの円を図\ref{fig:hyperbolicMod}に示した．
 これまで同様に写像に与えられた点$P$を$T$で移した点$T(P)$を基本領域上の点
 である$P'$に移すことを考える．
 図において，$r$と$r'$を$TC1$と$TC1'$の半径，$d$を$T(P)$と同心円の中心か
-らの距離,$d'$を$P'$と同心円の中心からの距離とする．
+らの距離，$d'$を$P'$と同心円の中心からの距離とする．
 $k$を倍数，$q$を指数係数，$i$を円列の指数とする．
 これらは以下のように計算される．
  \begin{align*}
@@ -1416,10 +1421,10 @@ $T$によって移された生成元を図\ref{fig:loxodromicMod}に示した．
 
 上記の処理をまとめると以下のようになる．
 まず，$T$を与えられた点$P$に適用し，$T(P)$を得る．
-$TC1$，$TC1'$から$d'$を算出し，$P'$を計算する．
+$TC1$，$TC1'$から$d'$を算出し，$P'$を得る．
 もしも$TL$，$TC3$があれば，同心円の中心を回転中心として$P'$を$\varphi$回転
 させ，$P''$を得る．
-最後にもう一度$T$を$P'$もしくは$P''$に作用させ，元の座標に戻すことで基本
+最後に，もう一度$T$を$P'$もしくは$P''$に作用させ，元の座標に戻すことで基本
 領域上の点を得る．
 
 \begin{figure}[h!tbp]
@@ -1461,9 +1466,9 @@ $TC1$，$TC1'$から$d'$を算出し，$P'$を計算する．
 
 \subsubsection{Quasi Fuchsian 3D Fractals}
 
-阿原・荒木は擬フックス群を三次元に拡張した４次元クライン群を考案した
-\cite{ahara2003sphairahedral}\cite{ahara2003sphaira}．
-これはQuasi Fuchsian 3D Fractalsとよばれ,
+阿原・荒木はクライン群の一種である，擬フックス群を三次元に拡張した四次元
+クライン群を考案した\cite{ahara2003sphairahedral}~\cite{ahara2003sphaira}．
+これはQuasi Fuchsian 3D Fractalsとよばれ，
 フラクタルコミュニティに大きな影響を与えたといわれている．
 
 図\ref{fig:schottky}において，中央の円盤に囲まれた基本領域を\emph{円辺形}と
@@ -1472,20 +1477,19 @@ $TC1$，$TC1'$から$d'$を算出し，$P'$を計算する．
 そこで円辺形を三次元に拡張した\emph{球面体}(\textit{Sphairahedron})を定義
 することで三次元の擬フックス群を構成することができる．
 
-図\ref{fig:sphairahedron}には6つの球に囲まれた球面体を示した．
+図\ref{fig:sphairahedron}には六つの球に囲まれた球面体を示した．
 この球面体をそれを囲む球の反転で移していくことで極限集合を得ることができ
 る．図\ref{fig:quasiFuchsian}にその極限集合を示した．
 円辺形による擬フックス群の極限集合は円の和集合となる．したがって，球面体
 による擬フックス群の極限集合は球の和集合となる．
-
-阿原・荒木による動画\footnote{Quasi-fuchsian fractals:
+阿原・荒木による動画\footnote{Quasi-fuchsian fractals:~
 \url{https://www.youtube.com/watch?v=3lcO9zRCv-4}}ではこのフラクタルの構
 成過程をみることができる．
 
 また，レイマーチングとDistance Estimationによる高速描画のアルゴリズムが
 2012年にKnightyによって開発された
-\footnote{Another 3D Kleinian:
- \url{http://www.fractalforums.com/ifs-iterated-function-systems/another-3d-kleinian/}}
+\footnote{Another 3D Kleinian:~
+\url{http://www.fractalforums.com/ifs-iterated-function-systems/another-3d-kleinian/}}
  ．
 図\ref{fig:quasi-fuchsian-3d}はKnightyによるFragmentariumのスクリプトを用
 いてレンダリングした．
@@ -1571,24 +1575,24 @@ $TC1$，$TC1'$から$d'$を算出し，$P'$を計算する．
 \end{figure}
 
 また，荒木・糸はマスキット群を高次元に拡張することで四次元クライン群のレ
-シピを考案した\cite{araki2008extension}
-\footnote{4-dimensional Kleinian punctured torus groups:
+シピを導出した\cite{araki2008extension}
+\footnote{4-dimensional Kleinian punctured torus groups:\\
 \url{http://www.math.nagoya-u.ac.jp/~itoken/3d-maskit/3d-maskit.html}}．
-この論文中では幾何学的性質をうまく使うことで，四元数の計算を避けている．
+荒木・糸は幾何学的性質をうまく使うことで，四元数の計算を避けている．
 佐久川はこの群の四元数表示を導出した\cite{sakugawa2010limit}．
 
-三浦は３つ以上の生成元による４次元クライン群をモジュラー群から構成するこ
+三浦は三つ以上の生成元による四次元クライン群をモジュラー群から構成するこ
 とを試みた\cite{miura2015master}．
 筆者はこの論文における数値実験と可視化を行った．
 
 \subsubsection{Once Punctured Torus Groups}
 
 クライン群の部分群である一点穴開きトーラス群({\it Once Punctured Torus Groups})は
-和田による{\it OPTi}\footnote{OPTi:
+和田による{\it OPTi}\footnote{OPTi:~
 \url{http://delta-mat.ist.osaka-u.ac.jp/OPTi/index.html}}という描画ソフ
 トウェアによって大きく研究が進んだ．
 描画や離散性判定のためのアルゴリズムが開発者の和田によりまとめられている
-\cite{wada2003optiDrawingLimit}\cite{wada2006optiDiscreteness}．
+\cite{wada2003optiDrawingLimit}~\cite{wada2006optiDiscreteness}．
 この群の極限集合は図\ref{fig:opt}のようになる．
 
  \begin{figure}[htbp]
@@ -1615,21 +1619,22 @@ $TC1$，$TC1'$から$d'$を算出し，$P'$を計算する．
 Aaron MontagはIterated Inversion Systemを用いて極限集合を描画する方法を
 提案した\cite{Montag2014hyperbolicIFS}
 \footnote{Kleinian Groups WebGL:
- \url{https://www-m10.ma.tum.de/bin/view/Lehrstuhl/AaronMontagKleinian}}．
-これはテクスチャベースで実装されており，GPUで高速に描画される．
+~\url{https://www-m10.ma.tum.de/bin/view/Lehrstuhl/AaronMontagKleinian}}．
+これはテクスチャに描かれた図に対して変換を作用させ，テクスチャを更新する
+という方法で高速に描画される．
 
 また，Jos Ley，Knightyはマスキット群におけるEscape-timeアルゴリズムの式
 とDistance Estimationを考案した
-\footnote{An escape time algorithm for Kleinian group limit set:\\ \quad
-\quad
+\footnote{An escape time algorithm for Kleinian group limit set:\\
 \url{http://www.fractalforums.com/3d-fractal-generation/an-escape-tim-algorithm-for-kleinian-group-limit-sets/}}
 ．
 このアルゴリズムは二次元だけでなく，三次元の極限集合の描画にも対応している．
-荒木・糸\cite{araki2008extension}が考えた群と同様に，一方に平行移動を含
-む2つの放物型変換による群を考えている．
+荒木・糸\cite{araki2008extension}が考えた群と同様に，片方に平行移動を含
+む二つの放物型変換による群を考えている．
 詳細なアルゴリズムに関してはJos Leyがまとめている
 \footnote{Mathematical Imagery, An escape-time algorithm for a family of
-Kleinian groups:\\ \quad \quad \url{http://www.josleys.com/article_show.php?id=221}}．
+Kleinian groups:\\
+\url{http://www.josleys.com/article_show.php?id=221}}．
 
 \subsection{Further Readings}
 

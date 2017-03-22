@@ -5,14 +5,12 @@
 \emph{フラクタル}(\textit{fractal})は数学者ブノワ・マンデルブロ(Benoit
 B. Mandelbrot)が提唱した幾何学の概念である．フラクタル図形とよばれる図形
 は自己相似性を持ち，図形のどこを拡大しても全体と同じ形を見ることができる．
-
 図\ref{fig:gasket}に\emph{シェルピンスキーのギャスケッ
 ト}(\textit{Sierpinski gasket})とよばれるフラクタル図形を示した．
 三角形を一定の法則に基づいて分割していくことで得られる図形である．
 図\ref{fig:menger}に示される物体は\emph{メンガーのスポンジ}(\textit{Menger
 sponge})とよばれ，立方体に一定の法則で穴を空けることで得られる．
 これらの形はどこを拡大しても同様の法則性を持った形をみることができる．
-
 海岸線やシダ植物，体内の肺など自然界の多くの場所でもフラクタル構造をみる
 ことができる．
 フラクタルを考えることは自然科学研究の新たなアプローチとしても発展した．
@@ -33,7 +31,6 @@ Forum}\footnote{Fractal Forum:~\url{http://www.fractalforums.com/}}
 さらに小さなサイズのプログラムで描画することを追求している．
 フラクタルは形として面白いことに加え，数式で複雑な形状を描画できるの
 でデモと相性がよい．
-
 デモシーンに関しては\textit{Demoscene - The
 Art of the Algorithm}\footnote{Demoscene - The Art of the Algorithms:
 ~\url{https://www.youtube.com/watch?v=iRkZcTg1JWU}}が詳しい．
@@ -42,7 +39,7 @@ Quilez's webpage:~\url{http://iquilezles.org/index.html}}にコンピュータ�
 クスに関する様々な記事をまとめている．
 ここで紹介する手法もまとめられているので，併せて参考にされたい．
 
-この章では，後のクライン群の可視化に関わりのあるフラクタルとその描画手
+この章ではクライン群の可視化に関わりのあるフラクタルとその描画手
 法についてまとめる．
 ここで記述があるもの以外にも様々なフラクタルが存在している．
 マンデルブロ自身の著作である『フラクタル幾何学』
@@ -83,15 +80,14 @@ GPUは浮動小数演算性能に優れていることに加え，各ピクセ�
 指す．
 複雑な形状をあらかじめモデリングされたポリゴンで表現するよりもプログラム
 の実行サイズを下げたり，計算速度を向上させたりすることができる．
-このことはデモにおける小さなプログラムサイズでリアルタイムにレンダリングする
-という目的に適している．
+このことは小さなプログラムサイズでリアルタイムにレンダリングする
+というデモの目的に適している．
 フラクタルはしばしば簡潔なアルゴリズムで複雑な形状を生成するので，デモに
 おいてもよく使われる．
 
 シェーダはピクセルごとにその座標とCPU側から渡される変数を受け取る．
-これらを用いてピクセルの色を決定する．
-アルゴリズム\ref{shaderSample}に座標から色を決定して塗るシェーダの
-擬似コードを示した．
+そして，これらを用いてピクセルの色を決定する．
+アルゴリズム\ref{shaderSample}に簡単なシェーダの擬似コードを示した．
 図\ref{fig:simpleShader}にそのレンダリング結果を示した．
 \begin{algorithm}
  \begin{algorithmic}
@@ -112,14 +108,15 @@ GPUは浮動小数演算性能に優れていることに加え，各ピクセ�
 \begin{align*}
  f(z) =  length(z) - r
 \end{align*}
-この関数は円周からの距離を返す．
+この関数は円周からの距離を返す．また，点が円の内側にあるとき，値は負にな
+る．
 そのため，平面上の各点に距離関数を作用させ，得られた距離が負であるときに
 色をつける処理をシェーダで書くと円を描くことができる．
 複数の図形を描きたい時は，複数の距離関数を評価し，最も小さな距離を求めれ
 ばよい．
 距離関数による描画は，得られた距離によって色の濃さを変えるといった工夫で
 図形をより滑らかに描くことができる．
-アルゴリズム\ref{renderCircle}に円を描く疑似コードを示した．図
+アルゴリズム\ref{renderCircle}に円を描くシェーダの疑似コードを示した．図
 \ref{fig:circleShader}にそのレンダリング結果を示した．
 
 \begin{algorithm}
@@ -130,9 +127,9 @@ GPUは浮動小数演算性能に優れていることに加え，各ピクセ�
   \STATE p $\leftarrow$ COORDINATES $-$ (resolution$ / 2$)
   \STATE distance $\leftarrow$ length(p) $-$ radius
   \IF{distance $\leq$ 0}
-  \STATE COLOR $\leftarrow$ Vector3($1,~1,~1$)
-  \ELSE
   \STATE COLOR $\leftarrow$ Vector3($0,~0,~0$)
+  \ELSE
+  \STATE COLOR $\leftarrow$ Vector3($1,~1,~1$)
   \ENDIF
  \end{algorithmic}
 \end{algorithm}
@@ -147,7 +144,7 @@ GPUは浮動小数演算性能に優れていることに加え，各ピクセ�
   \begin{minipage}{0.5\hsize}
    \center
    \includegraphics[ height=1.5in, keepaspectratio]{../img/fractal/circle.pdf}
-   \caption{Circle}
+   \caption{Circle shader}
    \label{fig:circleShader}
   \end{minipage}
  \end{figure}
@@ -157,10 +154,10 @@ GPUは浮動小数演算性能に優れていることに加え，各ピクセ�
 ~\url{https://www.shadertoy.com/}}といったウェブサービスで手軽に試すこと
 ができる．h\_doxasによるwgld\footnote{wgld:
 ~\url{https://wgld.org/d/glsl/}}にはシェーダによるレンダリングの入門事項
-がよくまとまっている．
+がまとまっている．
 
 また，GPUの計算性能をより汎用的な計算に用いるためのプラットフォームとしてCUDA
-やOpenCLが登場している．
+やOpenCLがある．
 これらのプラットフォームを用いることでシェーダではできない複雑な処理を
 GPUで行うことができるようになり，GPUによる並列演算は機械学習などの分野に
 も活躍の場を広げた．
@@ -190,7 +187,7 @@ $x + e$とすると，$e$は$x$から最も近い点へ向かうベクトルで�
   \label{fig:distance-estimate}
  \end{figure}
 
-$f(x + e) = 0$をテイラー展開すると次のようになる．
+\noindent$f(x + e) = 0$をテイラー展開すると次のようになる．
 \begin{align*}
 f(x + e) = f(x) + f'(x) \cdot e  + \frac{1}{2}f''(x) \cdot e^2 ...
 \end{align*}
@@ -199,7 +196,7 @@ f(x + e) = f(x) + f'(x) \cdot e  + \frac{1}{2}f''(x) \cdot e^2 ...
 \begin{align*}
 0=|f(x + e)| \approx |f(x) + f'(x) \cdot e|
 \end{align*}
-ここで，$x,~e$はベクトルであり$\cdot$は内積を表すことに注意する．
+ここで，$x,~e$はベクトルであり，$\cdot$は内積を表すことに注意する．
 三角不等式によって，
 \begin{align*}
 | f(x) + f'(x) \cdot e| \geq |f(x)| - |f'(x) \cdot e|
@@ -234,7 +231,7 @@ f(x + e) = f(x) + f'(x) \cdot e  + \frac{1}{2}f''(x) \cdot e^2 ...
 \end{align*}
 ただし，$e$が十分小さいことを仮定しているため，零点集合から遠い点につい
 ては誤差が大きくなってしまうことに注意する．
-導関数から得られる微分値には，ヤコビアンや中心差分法等
+導関数から得られる微分値には，ヤコビアンや中心差分法など
 で導出された微分の近似値が用いられることもある．
 
 \subsubsection{Ray tracing}
@@ -253,9 +250,8 @@ tracing})が用いられる．
 図\ref{fig:raymarch}にレイマーチングの模式図を示した．
 レイマーチングではまず，レイの原点$P_0$からこの点に最も近い物体との距
 離を距離関数で求める．そしてその距離分だけレイを進めた位置を$P_1$とする．
-次に$P_1$に対しても同様の操作を行なう．
+次に，$P_1$に対しても同様の操作を行なう．
 この作業を繰り返し，得られた点列の極限点が交差点となる．
-
 レイマーチングでは距離関数をうまく組み合わせることで，三次元形状
 の和，差，積をとるような演算も高速に行なえる．
 この手法はメッシュによらないプロシージャルな形状表現に適しており，デモシー
@@ -302,7 +298,7 @@ Escape-time Fractalsで代表的なものが\emph{マンデルブロ集
 
 各点における漸化式の計算はお互いに干渉しないので，そのままシェーダでの実
 装が可能であるが，先に述べたDistance Estimationを用いることで，エイリア
-シングノイズ等を避けてより精細に描画することができる．
+シングノイズを避けて，より精細に描画することができる．
 これには\textit{Green Function}とよばれるマンデルブロ集合の陰関数を用いる．
 導出はiqによる記事\footnote{distance rendering for fractals:
 ~\url{http://iquilezles.org/www/articles/distancefractals/distancefractals.htm}}
@@ -311,8 +307,8 @@ Green Functionについてはマンデルブロ集合に関する詳細な議論
 うので\cite{douady1984exploring}を参考にされたい．
 
 その他のEscape-time fractalには図\ref{fig:julia}に示した
-\emph{ジュリア集合}(\textit{Julia set})や\emph{ファトゥー集
-合}(\textit{Fatou set})等がある．
+\emph{ジュリア集合}(\textit{Julia set})や\emph{バーニングシップ・フラク
+タル}(\textit{Burning Ship fractal})などがある．
 
 \begin{figure}[htbp]
  \begin{minipage}{0.49\hsize}
@@ -333,14 +329,12 @@ Green Functionについてはマンデルブロ集合に関する詳細な議論
 
 マンデルブロ集合は数あるフラクタルの中でも特に複雑な形状を見せるものであった
 ので，その三次元への拡張も古くから興味が持たれてきた．
-例えば，ジュリア集合を四元数を用いて計算した
-\textit{Quaternion Julia 3D fractal}~\cite{hart1989ray}が1989年に発表され
-ている．
+そのような試みの一つとして，ジュリア集合を四元数を用いて計算した
+\textit{Quaternion Julia 3D fractals}~\cite{hart1989ray}が1989年に発表され
+た．
 しかし，この形状は図\ref{fig:qjulia}のように四元数による回転対称性をもつ
 ため，形状が単純でフラクタルコミュニティの満足のいくものではなかった．
-
-その他にもマンデルブロ集合のような複雑な三次元フラクタルを描画しよう試み
-が様々にあった．
+その他にも複雑な三次元フラクタルを描画しよう試みが様々にあった．
 それらについてはDaniel White (twinbee)がまとめている
 \footnote{Skytopia -The Mystery of the REAL, 3D Mandelbrot Fractal:~
 \url{http://www.skytopia.com/project/fractal/mandelbrot.html}}．
@@ -349,7 +343,7 @@ Green Functionについてはマンデルブロ集合に関する詳細な議論
 である\textit{Quasi Fuchsian 3D Fractals}~\cite{ahara2003sphairahedral}
 は，ある程度の複雑性を持った三次元形状をもつフラクタルで
 あった．そのため，コミュニティに大きな影響を与えたと言われている．
-その形状のひとつを図\ref{fig:quasi-fuchsian-3d}に示した．
+その形状の一つを図\ref{fig:quasi-fuchsian-3d}に示した．
 このフラクタルに関しては2章で触れる．
 
 \begin{figure}[htbp]
@@ -362,7 +356,7 @@ Green Functionについてはマンデルブロ集合に関する詳細な議論
  \begin{minipage}[t]{0.49\hsize}
   \center
   \includegraphics[width=3in, height=3in, keepaspectratio]{../img/fractal/quasi-fuchsian.pdf}
-  \caption{Quasi Fuchsian 3D Fractal rendered with Fragmentarium
+  \caption{Quasi Fuchsian 3D Fractals rendered with Fragmentarium
   (Knighty's script)}
   \label{fig:quasi-fuchsian-3d}
  \end{minipage}
@@ -375,12 +369,12 @@ Green Functionについてはマンデルブロ集合に関する詳細な議論
 the GPU:
 ~\url{https://www.cs.cmu.edu/~kmcrane/Projects/QuaternionJulia/}}．
 iqは2007年にQuaternion Juliaをテーマにした4k intro~(実行ファイルのサイズ
-を4kb以内に抑えたデモ作品)，
+を4kb以内に抑えたデモ作品)である，
 \textit{kindernoiser}\footnote{kindernoiser:
 ~\url{http://www.pouet.net/prod.php?which=32549}}
 を発表している．
 
-その後，2009年に遂にマンデルブロ集合をうまく三次元に拡張した
+その後，2009年にマンデルブロ集合をうまく三次元に拡張した
 \textit{Mandelbulb}が開発された．
 これを皮切りに，次々と複雑な三次元フラクタルの式が開発された．
 それらの多くはEscape-time fractalの一種であり，
@@ -411,29 +405,26 @@ Distance Estimationとレイマーチングを用いることで効率よくレ�
 
 MandelbulbはDaniel WhiteとPaul Nylanderが2009年に開発した．
 マンデルブロ集合の三次元拡張として広く知られている．
-
 マンデルブロ集合の三次元の拡張において問題になるのは，三次元空間において
 用いる代数である．
 マンデルブロ集合の漸化式は複素数の乗算と加算で構成されている．
 $z^2$は点$z$に原点中心の回転と拡縮を作用させ，加算$z + c$は平行移動を作用さ
 せる．これによって点の軌道を考えることができる．
-そのため，三次元空間の点において，軌道を考えることができるような$z^2$の
+そのため，三次元空間の点における軌道を考えるためには，$z^2$の
 意味付けが必要であった．
-
-Whiteは球面座標上においてマンデルブロ集合の漸化式を計算するアプローチを提案
+Whiteは球面座標上において点$z$の回転と拡縮を行うアプローチを提案
 した
 \footnote{True 3D mandelbrot type fractal: \\
 \url{http://www.fractalforums.com/3d-fractal-generation/true-3d-mandlebrot-type-fractal/}}
 ．
 図\ref{fig:mandelbulb2}は$z_{n+1} = z_n^2 + c$を用いてレンダリングした結
-果であるが，あまり複雑な形状は現れなかった．
-しかし，その後Nylanderが式を高次の積を扱えるように拡張した．
+果である．あまり複雑な形状は現れなかったが，Nylanderが式を高次の積
+を扱えるように拡張した．
 図\ref{fig:mandelbulb8}は$z_{n+1} = z_n^8 + c $という式でレンダリングさ
-れた形状であり，これがMandelbulbとして知られている．Whiteのウェブページ
+れた形状である．これがMandelbulbとして知られている．Whiteのウェブページ
 \footnote{Skytopia:
 ~\url{http://www.skytopia.com/project/fractal/mandelbulb.html}}には開発の
 詳しい経緯がまとめられている．
-
 また，Mandelbulbも通常のマンデルブロ集合と同様にDistance Estimationによっ
 て形状への最短距離を求めることができるため，レイマーチングで描画す
 ることができる．
@@ -463,25 +454,24 @@ Whiteは球面座標上においてマンデルブロ集合の漸化式を計算
 Mandelboxも三次元空間におけるEscape-time fractalである．
 漸化式は次のようになる．
 \begin{align*}
- z_{n+1} = scale * spherefold(minR,~boxfold(z_n)) + c
+ z_{n+1} = scale * \text{spherefold}(R,~minR,~\text{boxfold}(z_n)) + c
 \end{align*}
-ここで\textit{boxfold}は$x=\pm1,~y=\pm1,~z=\pm1$を頂点にもつ立方体の各面
+ここでboxfoldは$x=\pm1,~y=\pm1,~z=\pm1$を頂点にもつ立方体の各面
 に対して，点がその外側にある場合にそれらの面に関する反転を行なう操作である．
-\textit{spherefold}は点が原点中心の球の内側にある時にその球に関す
+spherefoldは点が原点中心の球の内側にある際に，その球に関す
 る反転を行う操作である．
 ただし，球の反転は中心付近を無限遠点付近へと移してしまうため，漸化式の計算途中
-に中心付近を通る点が発散と判定されてしまう．
-そこでspherefoldでは中心付近の点の反転をあらかじめ決めておいた最小の半
-径における反転で置きかえることで軌道が発散しないようにしている．
+に中心付近を通る点すべて発散してしまう．
+そこでspherefoldでは中心付近の点の反転を，あらかじめ決めておいた最小の半
+径における反転で置きかえることで，軌道が発散しないようにしている．
 球の半径を$R$，最小の半径を$r$としたときに，$z$に対するspherefoldは以下
 の式になる．
 \begin{align*}
- spherefold(R,~r,~z) = \begin{cases}
-                  z~\frac{R^2}{r^2} & 0 \le |z| < r \\
-                  z~\frac{R^2}{|z|^2} & r \le |z| < R
-                 \end{cases}
+ \text{spherefold}(R,~r,~z) = \begin{cases}
+                               z~\frac{R^2}{r^2} & 0 \le |z| < r \\
+                               z~\frac{R^2}{|z|^2} & r \le |z| < R
+                              \end{cases}
 \end{align*}
-
 MandelboxのDistance Estimationでは漸化式の微分としてヤコビアンの積を用いる．
 式の各操作のたびにヤコビアンを累積していき，
 最終的な点の原点からの距離をヤコビアンの積で割ることで距離を近似的に求
@@ -508,9 +498,8 @@ MandelboxのDistance Estimationでは漸化式の微分としてヤコビアン�
 
 \subsubsection{Pseudo-Kleinian}
 
-Mandelboxの登場以降は各$n$ごとに異なる式を組み合わせて漸化式を計算する
-\textit{Hybrid System}によって，様々なフラクタル作品が作られている．
-
+Mandelboxの登場以降は$z_n$の各$n$ごとに異なる式を組み合わせた式を計
+算する\textit{Hybrid System}によって，様々なフラクタル作品が作られている．
 興味深いHybrid Systemの一つに\textit{pseudo-kleinian}がある．
 これは球の反転に近い操作であるspherefoldと平行移動と同じような働きをする
 boxfoldをうまく組み合わせることによって，可視化されたクライン群のような
@@ -540,13 +529,11 @@ boxfoldをうまく組み合わせることによって，可視化されたク�
 Escape-timeアルゴリズムを用いたフラクタルのカラーリングには，主に\textit{
 Orbit Trap}とよばれる手法が使われる．
 図\ref{fig:mandelbox}のMandelboxもOrbit Trapを用いて色がつけられている．
-
-Orbit trapはtrapとよばれる点や直線などの図形を空間上に置いておき，
-trapと漸化式の計算で得られる軌道の点との位置関係から色を付ける方法である．
+Orbit trapはtrapとよばれる，点や直線などの図形を空間上に置いておき，
+漸化式の計算で得られる軌道の点とtrapとの位置関係から色を付ける方法である．
 図\ref{fig:orbitTrap}はマンデルブロ集合とジュリア集合の漸化式において
 $z_n$が桃色の領域に入った点を白く塗った．
 これは桃色の領域に到達するまでの点の軌道を描いたと考えることができる．
-
 また，この方法を応用すると画像をtrapに用いて，画像を変換で移した軌道を描
 くことも可能である．
 この手法は特に\textit{Bitmap Orbit Trap}ともよばれる．
@@ -584,7 +571,7 @@ IFSの描画アルゴリズムの一つとして，カオスゲームがある�
 
 IFSを拡張したフラクタルアートの一種に\emph{フラクタルフレーム}\textit{(Fractal
 Flame)}~\cite{draves2003fractal}がある．
-フラクタルフレームではIFSに用いる関数にメビウス変換などの非線形変換を用
+フラクタルフレームではIFSに用いる関数にメビウス変換などの非線形関数も用
 い，美しくレンダリングされるようにカラーリングにも工夫が加えられている．
 図\ref{fig:pseudoKleinian}はフラクタルフレームレンダラの一つである，
 Apophysis 7Xを用いてレンダリングされたフラクタルフレームである．

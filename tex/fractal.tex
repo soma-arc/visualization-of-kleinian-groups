@@ -7,7 +7,7 @@ B. Mandelbrot)が提唱した幾何学の概念である．フラクタル図形
 は自己相似性を持ち，図形のどこを拡大しても全体と同じ形を見ることができる．
 
 図\ref{fig:gasket}に\emph{シェルピンスキーのギャスケッ
-ト}(\textit{Sierpinski gasket})と呼ばれるフラクタル図形を示した．
+ト}(\textit{Sierpinski gasket})とよばれるフラクタル図形を示した．
 三角形を一定の法則に基づいて分割していくことで得られる図形である．
 図\ref{fig:menger}に示される物体は\emph{メンガーのスポンジ}(\textit{Menger
 sponge})とよばれ，立方体に一定の法則で穴を空けることで得られる．
@@ -27,14 +27,14 @@ Forum}\footnote{Fractal Forum:~\url{http://www.fractalforums.com/}}
 
 また，\emph{デモシーン}(\textit{Demoscene})という文化もフラクタルレンダリン
 グと関連が深い．
-デモシーンは\emph{デモ}(\textit{Demo})と呼ばれるリアルタイ
+デモシーンは\emph{デモ}(\textit{Demo})とよばれるリアルタイ
 ムにコンピュータグラフィクスや音楽を生成するプログラムを見せ合うコンピュータサブ
 カルチャーの一つである．美しいコンピュータグラフィクスをリアルタイムに，
 さらに小さなサイズのプログラムで描画することを追求している．
 フラクタルは形として面白いことに加え，数式で複雑な形状を描画できるの
 でデモと相性がよい．
 
-デモシーンに関しては，\textit{Demoscene - The
+デモシーンに関しては\textit{Demoscene - The
 Art of the Algorithm}\footnote{Demoscene - The Art of the Algorithms:
 ~\url{https://www.youtube.com/watch?v=iRkZcTg1JWU}}が詳しい．
 また，著名なデモシーナーのInigo Quilez (iq)は自身のウェブページ\footnote{Inigo
@@ -79,7 +79,7 @@ GPUは浮動小数演算性能に優れていることに加え，各ピクセ�
 
 この手法はスクリーンスペースに矩形のポリゴンをレンダリングすることで
 \emph{プロシージャル}(\textit{Procedural})に図を描画する．
-プロシージャルとは，数式やアルゴリズムを用いて形状を生成すること等を
+プロシージャルとは数式やアルゴリズムを用いて形状を生成することを
 指す．
 複雑な形状をあらかじめモデリングされたポリゴンで表現するよりもプログラム
 の実行サイズを下げたり，計算速度を向上させたりすることができる．
@@ -106,7 +106,7 @@ GPUは浮動小数演算性能に優れていることに加え，各ピクセ�
 \end{algorithm}
 
 幾何図形を描く際には\emph{距離関数}(\textit{Distance Function})がよく用いられる．
-距離関数は任意の点が与えられたときに，点と図形の最短距離を返す関数である．
+距離関数は任意の点が与えられたときに，その点と図形の最短距離を返す関数である．
 例えば，平面上の点$z$が与えられたとき，原点を中心とする半径$r$の円との距
 離を返す距離関数$f(z)$は次のようになる．
 \begin{align*}
@@ -247,7 +247,7 @@ tracing})が用いられる．
 図\ref{fig:raytrace}にレイトレーシングの模式図を示した．
 レイと物体の交差点はレイの原点と方向から代数的に計算することができる．
 
-また，\emph{レイマーチング}({\it Ray marching，Sphere tracing}とも呼ばれ
+また，\emph{レイマーチング}({\it Ray marching，Sphere tracing}ともよばれ
 る)~\cite{hart1996sphere}という手法で，物体の距離関数からレイとの交差点を
 近似的に求めることができる．
 図\ref{fig:raymarch}にレイマーチングの模式図を示した．
@@ -303,7 +303,7 @@ Escape-time Fractalsで代表的なものが\emph{マンデルブロ集
 各点における漸化式の計算はお互いに干渉しないので，そのままシェーダでの実
 装が可能であるが，先に述べたDistance Estimationを用いることで，エイリア
 シングノイズ等を避けてより精細に描画することができる．
-これには\textit{Green Function}と呼ばれるマンデルブロ集合の陰関数を用いる．
+これには\textit{Green Function}とよばれるマンデルブロ集合の陰関数を用いる．
 導出はiqによる記事\footnote{distance rendering for fractals:
 ~\url{http://iquilezles.org/www/articles/distancefractals/distancefractals.htm}}
 が詳しい．
@@ -541,7 +541,7 @@ Escape-timeアルゴリズムを用いたフラクタルのカラーリングに
 Orbit Trap}とよばれる手法が使われる．
 図\ref{fig:mandelbox}のMandelboxもOrbit Trapを用いて色がつけられている．
 
-Orbit trapはtrapと呼ばれる点や直線などの図形を空間上に置いておき，
+Orbit trapはtrapとよばれる点や直線などの図形を空間上に置いておき，
 trapと漸化式の計算で得られる軌道の点との位置関係から色を付ける方法である．
 図\ref{fig:orbitTrap}はマンデルブロ集合とジュリア集合の漸化式において
 $z_n$が桃色の領域に入った点を白く塗った．
@@ -549,7 +549,7 @@ $z_n$が桃色の領域に入った点を白く塗った．
 
 また，この方法を応用すると画像をtrapに用いて，画像を変換で移した軌道を描
 くことも可能である．
-この手法は特に\textit{Bitmap Orbit Trap}とも呼ばれる．
+この手法は特に\textit{Bitmap Orbit Trap}ともよばれる．
 
 \begin{figure}[htbp]
  \begin{minipage}{0.49\hsize}
